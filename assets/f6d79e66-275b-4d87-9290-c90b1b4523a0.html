@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--pa)}
+input::placeholder{color:var(--t3)}
+@keyframes stRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes stShimmer{from{background-position:-420px 0}to{background-position:420px 0}}
+@keyframes stDetailIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes stBackIn{from{opacity:0}to{opacity:1}}
+@keyframes stCountPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes stPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+:root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-onink:#17131f;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-onink:#ffffff;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+@keyframes scRise{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes scPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes scArrow{0%{transform:none;opacity:1}42%{transform:translate(130%,-130%);opacity:0}43%{transform:translate(-130%,130%);opacity:0}100%{transform:none;opacity:1}}
+[data-st="0"]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-st="0"]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+@media (prefers-reduced-motion:reduce){[data-st]{animation:none!important;translate:none!important}[data-st] [data-act],[data-st] [data-act] svg{animation:none!important}}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-hov:0 0 0 1px rgba(232,224,248,.1),0 18px 34px -22px rgba(0,0,0,.75);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-hov:0 0 0 1px rgba(26,22,37,.09),0 18px 34px -22px rgba(60,30,110,.3);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+@keyframes lcLive{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(2.6);opacity:0}}
+[data-live]{position:relative}
+[data-live="1"]::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;opacity:0;animation:lcLive 2.4s ease-out infinite;will-change:transform,opacity;pointer-events:none}
+[data-preload] *,[data-preload] *::before,[data-preload] *::after{animation:none!important;transition:none!important}
+[data-lc]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-lc]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+@media (prefers-reduced-motion:reduce){[data-lc],[data-live]{animation:none!important;translate:none!important}[data-lc] [data-act],[data-lc] [data-act] svg{animation:none!important}}
+@keyframes crIn{from{opacity:0}to{opacity:1}}
+@keyframes crOut{from{opacity:1}to{opacity:0;visibility:hidden}}
+@keyframes crPop{0%{opacity:0;transform:translateY(18px) scale(.92);filter:blur(8px)}100%{opacity:1;transform:none;filter:blur(0)}}
+@keyframes crOrb{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes crDraw{to{stroke-dashoffset:0}}
+@keyframes crSheen{from{transform:translateX(-140%) skewX(-18deg)}to{transform:translateX(380%) skewX(-18deg)}}
+@keyframes crUp{from{opacity:0;transform:translateY(10px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+[data-sq]:focus-within{flex-basis:300px!important;box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.5)!important;color:var(--pa)!important}
+[data-sq] input::placeholder{color:var(--t3);opacity:1}
+@keyframes sqPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+[data-zr]{position:relative;height:1px;margin:16px 0 6px;pointer-events:none}
+[data-zr-line]{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--zr-line) 18%,var(--zr-mid) 50%,var(--zr-line) 82%,transparent)}
+[data-zr-glow]{position:absolute;left:30%;right:30%;top:-10px;height:21px;background:radial-gradient(closest-side,var(--zr-glow),transparent);filter:blur(4px)}
+:root{--zr-line:rgba(196,181,253,.10);--zr-mid:rgba(196,181,253,.34);--zr-glow:rgba(139,92,246,.22);--zr-spark:rgba(221,210,255,.85)}
+:root[data-theme=light]{--zr-line:rgba(91,33,182,.08);--zr-mid:rgba(91,33,182,.26);--zr-glow:rgba(139,92,246,.14);--zr-spark:rgba(124,58,237,.7)}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" data-screen-label="Final Stores" style="{{ rootStyle }}">
+<sc-if value="{{ showMain }}" hint-placeholder-val="{{ true }}">
+<div style="width:100%;max-width:1760px;padding:8px 24px 48px;display:flex;flex-direction:column;gap:20px;animation:{{ mainAnim }};opacity:{{ fadeOp }};transition:opacity .45s ease">
+<div data-zone="top" style="{{ zoneTop }}">
+  <sc-if value="{{ zoneGlow }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;background:radial-gradient(60% 120% at 12% 0%,rgba(139,92,246,.16),transparent 60%),radial-gradient(40% 90% at 100% 100%,rgba(139,92,246,.08),transparent 70%)"></span></sc-if>
+  <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="min-width:0">
+      <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Stores</h1>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <sc-if value="{{ oneDraft }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ resumeOne }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:var(--s2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--pa)"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1"></path></svg>Resume draft: {{ draftLabel }}</button>
+      </sc-if>
+      <sc-if value="{{ manyDrafts }}" hint-placeholder-val="{{ false }}">
+        <div data-pop="" style="position:relative">
+          <button type="button" onClick="{{ toggleDrafts }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:var(--s2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--pa)"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1"></path></svg>{{ draftsLabel }}<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="opacity:.6"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+          <sc-if value="{{ draftsOpen }}" hint-placeholder-val="{{ false }}">
+            <div data-dark="0" style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;width:340px;padding:6px;border-radius:20px;background:rgba(var(--g1),.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--w),.12);box-shadow:0 24px 50px var(--k55);transform-origin:top right;animation:scRise .25s cubic-bezier(.2,.8,.2,1)">
+              <span style="display:block;padding:8px 12px 6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Drafts</span>
+              <sc-for list="{{ draftRows }}" as="dr" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border-top:1px solid {{ dr.sep }}">
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ dr.title }}</span><span style="font-size:12px;color:var(--t3)">{{ dr.meta }}</span></span>
+                  <button type="button" onClick="{{ dr.discard }}" style="height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:var(--t3);font-size:12.5px;font-weight:600;cursor:pointer" style-hover="color:#f87171">Discard</button>
+                  <button type="button" onClick="{{ dr.resume }}" style="height:32px;padding:0 14px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">Resume</button>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <button data-dark="1" type="button" onClick="{{ addStore }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px 0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:filter .15s,transform .12s" style-hover="filter:brightness(1.08)" style-active="transform:scale(.97)">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>
+        Add store
+      </button>
+    </div>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(calc((100% - 70px) / 6),(1180px - 100%) * 999,calc((100% - 28px) / 3)),1fr));gap:14px">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+      <button type="button" onClick="{{ t.apply }}" data-dark="{{ t.dark }}" data-st="{{ t.dark }}" style="{{ t.style }}" style-hover="translate:0 -2px;box-shadow:{{ t.shHover }}">
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:230px;height:230px;top:-90px;left:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.920) 0%,rgba(176,107,255,0.791) 10%,rgba(176,107,255,0.607) 22%,rgba(176,107,255,0.423) 34%,rgba(176,107,255,0.267) 46%,rgba(176,107,255,0.147) 58%,rgba(176,107,255,0.069) 70%,rgba(176,107,255,0.023) 82%,rgba(176,107,255,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:210px;height:210px;bottom:-95px;right:-30px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.820) 0%,rgba(231,118,214,0.705) 10%,rgba(231,118,214,0.541) 22%,rgba(231,118,214,0.377) 34%,rgba(231,118,214,0.238) 46%,rgba(231,118,214,0.131) 58%,rgba(231,118,214,0.061) 70%,rgba(231,118,214,0.021) 82%,rgba(231,118,214,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s .05s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span style="{{ t.iconStyle }}">
+            <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><span style="{{ t.glyphLin }}"></span></sc-if>
+            <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><span style="{{ t.glyphBold }}"></span></sc-if>
+          </span>
+          <span data-act="1" style="{{ t.arrowStyle }}"><svg viewBox="0 0 24 24" width="{{ t.arrowSz }}" height="{{ t.arrowSz }}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.arrowD }}"></path></svg></span>
+        </span>
+        <span style="flex:1 1 auto;min-height:24px"></span>
+        <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="display:block;font:600 15px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ t.labelColor }};transition:color .25s">{{ t.label }}</span>
+          <span style="display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;font:400 12px/1.35 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ t.subColor }};transition:color .3s">{{ t.sub }}</span>
+          <span style="display:block;margin-top:10px;font:400 52px/.9 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:{{ t.valColor }}">{{ t.value }}</span>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+<sc-if value="{{ zoneRule }}" hint-placeholder-val="{{ false }}"><div data-zr="1" aria-hidden="true"><span data-zr-line="1"></span><span data-zr-glow="1"></span></div></sc-if>
+<div data-zone="bottom" style="{{ zoneBottom }}">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <label data-sq="1" style="display:flex;align-items:center;gap:8px;flex:0 1 240px;min-width:180px;height:44px;padding:0 7px 0 15px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t3);cursor:text;transition:flex-basis .35s cubic-bezier(.2,.8,.2,1),box-shadow .2s">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+        <input type="text" value="{{ q }}" onChange="{{ onQ }}" placeholder="Search stores" aria-label="Search stores" style="flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/>
+        <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQ }}" aria-label="Clear search" style="flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer;animation:sqPop .22s cubic-bezier(.34,1.56,.64,1) both" style-hover="color:var(--t1)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+      </label>
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <div data-pop="" style="position:relative">
+          <button type="button" onClick="{{ f.toggle }}" data-dark="{{ f.btnStyleDark }}" style="{{ f.btnStyle }}">
+            {{ f.label }}
+            <sc-if value="{{ f.hasCount }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;margin-left:2px;border-radius:999px;background:var(--lc-chip);color:var(--lc-title);font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:inset 0 0 0 1px rgba(167,139,250,.32);animation:stCountPop .38s cubic-bezier(.34,1.56,.64,1) both">{{ f.countTxt }}</span></sc-if>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="{{ f.caretStyle }}"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:calc(100% + 8px);left:0;z-index:30;min-width:240px;max-height:340px;overflow-y:auto;padding:5px;border-radius:16px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:stPop .2s cubic-bezier(.22,.9,.24,1)">
+              <sc-if value="{{ f.searchable }}" hint-placeholder-val="{{ false }}">
+                <input type="text" value="{{ techQ }}" onChange="{{ onTechQ }}" placeholder="Search technicians" style="width:100%;height:38px;margin-bottom:4px;padding:0 12px;border-radius:12px;border:0;background:var(--s1);outline:none;color:var(--t1);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/>
+              </sc-if>
+              <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="3">
+                <button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}">
+                  <span style="{{ o.boxStyle }}"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span>
+                  <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span>
+                  <span style="padding-left:14px;font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ o.n }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <div style="flex:1 1 0"></div>
+
+      <div data-pop="" style="position:relative">
+        <button type="button" onClick="{{ toggleSort }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="border-color:rgba(var(--w),0.12)">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--t3)"><path d="M3 7h18M6 12h12M10 17h4"></path></svg>
+          <span style="color:var(--t3)">Sort</span> {{ sortLabel }}
+        </button>
+        <sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:250px;padding:5px;border-radius:16px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:stPop .2s cubic-bezier(.22,.9,.24,1)">
+            <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="5">
+              <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}">
+                <span style="flex:1">{{ o.label }}</span>
+                <span style="{{ o.tickStyle }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);border:0">
+        <button type="button" onClick="{{ setGrid }}" aria-label="Grid view" style="{{ gridBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3zM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3z"></path></svg>Grid</button>
+        <button type="button" onClick="{{ setList }}" aria-label="List view" style="{{ listBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"></path></svg>List</button>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="2">
+          <button type="button" onClick="{{ c.remove }}" style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 10px 0 13px;border-radius:999px;border:0;background:var(--s3);color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;animation:stPop .22s cubic-bezier(.22,.9,.24,1)" style-hover="background:var(--s3)">
+            <span style="color:var(--t3);font-weight:500">{{ c.group }}</span>{{ c.label }}
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </button>
+        </sc-for>
+        <button type="button" onClick="{{ clearAll }}" style="height:32px;padding:0 8px;border:0;background:transparent;color:var(--t2);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="color:var(--t1)">Clear all</button>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ showLoadingList }}" hint-placeholder-val="{{ false }}">
+    <div style="border-radius:20px;background:var(--s1);box-shadow:0 20px 40px -24px var(--k55);border:0;overflow:hidden">
+      <div style="min-width:1240px">
+        <div style="display:grid;grid-template-columns:minmax(230px,1.3fr) minmax(200px,1fr) minmax(280px,1.6fr) minmax(190px,1fr) 128px 52px;align-items:center;gap:0 16px;height:46px;padding:0 20px;background:var(--s1);border-bottom:1px solid transparent">
+          <sc-for list="{{ cols }}" as="h" hint-placeholder-count="9">
+            <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);white-space:nowrap">{{ h.label }}</span>
+          </sc-for>
+        </div>
+        <sc-for list="{{ skeletonRows }}" as="k" hint-placeholder-count="10">
+          <div style="display:grid;grid-template-columns:minmax(230px,1.3fr) minmax(200px,1fr) minmax(280px,1.6fr) minmax(190px,1fr) 128px 52px;align-items:center;gap:0 16px;height:64px;padding:0 20px;border-top:1px solid transparent">
+            <sc-for list="{{ k.cells }}" as="c" hint-placeholder-count="9">
+              <span style="display:block;height:12px;border-radius:999px;width:{{ c.w }};background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></span>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showLoading }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px">
+      <sc-for list="{{ skeletons }}" as="k" hint-placeholder-count="8">
+        <div style="height:356px;padding:20px;border-radius:26px;background:var(--s1);box-shadow:0 20px 40px -24px var(--k55);border:0;display:flex;flex-direction:column;gap:12px">
+          <div style="width:62%;height:16px;border-radius:999px;background:linear-gradient(90deg,var(--c4) 0,var(--c5) 50%,var(--c4) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></div>
+          <div style="width:80%;height:11px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></div>
+          <div style="width:46%;height:24px;margin-top:6px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></div>
+          <div style="height:1px;margin:6px 0;background:var(--s3)"></div>
+          <div style="width:72%;height:12px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></div>
+          <div style="width:64%;height:12px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:stShimmer 1.4s linear infinite"></div>
+          <div style="flex:1"></div>
+          <div style="width:40%;height:11px;border-radius:999px;background:var(--s2)"></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px">
+      <sc-for list="{{ cards }}" as="s" hint-placeholder-count="8">
+        <div onClick="{{ s.open }}" data-lc="1" style="position:relative;display:flex;flex-direction:column;gap:16px;height:100%;padding:18px 18px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--sc-ink);cursor:pointer;opacity:{{ s.op }};transition:box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1);animation:scRise .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ s.delay }}" style-hover="translate:0 -2px;box-shadow:var(--lc-hov)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px 0 10px;border-radius:999px;background:{{ s.pillBg }};color:{{ s.pillFg }};font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><i data-live="{{ s.live }}" style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in oklab,currentColor 22%,transparent)"></i>{{ s.verdict }}</span>
+            <div data-pop="" style="position:relative;flex:none">
+              <button type="button" onClick="{{ s.toggleMenu }}" aria-label="Store actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+              <sc-if value="{{ s.menuOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;top:38px;right:0;z-index:30;min-width:200px;padding:5px;border-radius:16px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:stPop .2s cubic-bezier(.22,.9,.24,1)">
+                  <sc-for list="{{ s.menu }}" as="m" hint-placeholder-count="4">
+                    <button type="button" onClick="{{ m.run }}" style="display:flex;width:100%;align-items:center;padding:10px 11px;border:0;border-radius:12px;background:transparent;color:{{ m.color }};font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;white-space:nowrap;cursor:pointer" style-hover="background:var(--lc-chip)">{{ m.label }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;padding:0 2px;min-width:0">
+            <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);text-transform:uppercase;letter-spacing:.12em">Store {{ s.no }}</span>
+            <span style="font:600 24px/1.1 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span>
+            <span title="{{ s.addr }}" style="font:400 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.street }}</span>
+          </div>
+          <div style="border-radius:20px;background:var(--lc-inner);padding:4px 14px">
+            <sc-for list="{{ s.cRows }}" as="r" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 0;border-top:1px solid {{ r.sep }}">
+                <span style="width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ r.mBg }};color:{{ r.mFg }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.mD }}"></path></svg></span>
+                <span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.lFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.text }}</span>
+                <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ r.meta }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 auto;margin-top:-16px"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:2px">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0">
+              <span style="width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ s.avFg }};background:{{ s.avBg }};box-shadow:0 0 0 2px var(--lc-ring)">{{ s.avIni }}</span>
+              <div style="display:flex;flex-direction:column;min-width:0">
+                <span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ s.ownFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.ownName }}</span>
+                <span style="font:400 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ s.ownRole }}</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex:none">
+              <span style="display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border-radius:999px;background:var(--lc-chip);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-ink2)"><b style="color:var(--sc-ink)">{{ s.prodN }}</b>products</span>
+              <span data-act="1" style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--sc-actbg);border:1px solid var(--sc-actb);color:var(--sc-actfg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showList }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:auto;max-height:calc(100vh - 120px)">
+      <div style="min-width:1240px">
+        <div style="position:sticky;top:0;z-index:5;display:grid;grid-template-columns:minmax(230px,1.3fr) minmax(200px,1fr) minmax(280px,1.6fr) minmax(190px,1fr) 128px 52px;align-items:center;gap:0 18px;height:48px;padding:0 22px;background:var(--lc-inner);border-bottom:1px solid var(--lc-iline)">
+          <sc-for list="{{ cols }}" as="h" hint-placeholder-count="6">
+            <button type="button" onClick="{{ h.sort }}" style="{{ h.style }}">{{ h.label }}<span style="{{ h.arrowStyle }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></span></button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;padding:6px">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+          <div style="height:1px;margin:0 16px;background:var(--lc-iline);opacity:{{ r.sepOp }}"></div>
+          <div onClick="{{ r.open }}" style="position:relative;display:grid;grid-template-columns:minmax(230px,1.3fr) minmax(200px,1fr) minmax(280px,1.6fr) minmax(190px,1fr) 128px 52px;align-items:center;gap:0 18px;min-height:76px;padding:12px 16px;border-radius:18px;cursor:pointer;opacity:{{ r.op }};transition:background .25s,box-shadow .25s;animation:stRise .4s cubic-bezier(.22,.9,.24,1) both;animation-delay:{{ r.delay }}" style-hover="background:var(--lc-chip);box-shadow:inset 0 0 0 1px {{ r.edge }}">
+            <div style="display:flex;flex-direction:column;min-width:0">
+              <span style="font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.04em;color:var(--t3)">{{ r.no }}</span>
+              <span style="margin-top:3px;font:600 15.5px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span>
+              <span title="{{ r.addr }}" style="margin-top:2px;font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.street }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;min-width:0">
+              <span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:13px;background:{{ r.vBg }};border:1px solid {{ r.vEdge }};color:{{ r.tone }}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.vIcon }}"></path></svg></span>
+              <div style="flex:1;min-width:0">
+                <div style="font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:{{ r.tone }};white-space:nowrap">{{ r.verdict }}</div>
+                <div style="margin-top:2px;font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.listSub }}</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+              <sc-for list="{{ r.lRows }}" as="l" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:9px;min-width:0;color:{{ l.fg }}">
+                  <span style="flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:{{ l.dot }}"></span>
+                  <span style="flex:1;min-width:0;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.text }}</span>
+                  <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ l.meta }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;min-width:0">
+              <div style="display:flex;padding-left:8px;flex:0 0 auto">
+                <sc-for list="{{ r.cAvatars }}" as="a" hint-placeholder-count="2">
+                  <span style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin-left:-8px;border-radius:50%;background:{{ a.bg }};border:2px solid var(--lc-ring);color:{{ a.fg }};font:700 10px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ a.ini }}</span>
+                </sc-for>
+              </div>
+              <span title="{{ r.teamText }}" style="flex:1;min-width:0;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.teamFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.teamText }}</span>
+            </div>
+            <div><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-chip);border:0;font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ r.productsText }}</span></div>
+            <div data-pop="" style="position:relative;display:flex;justify-content:flex-end">
+              <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Store actions" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--t2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip);color:var(--t1)"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M5 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM19 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></button>
+              <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;top:38px;right:0;z-index:30;min-width:200px;padding:5px;border-radius:16px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:stPop .2s cubic-bezier(.22,.9,.24,1)">
+                  <sc-for list="{{ r.menu }}" as="m" hint-placeholder-count="4">
+                    <button type="button" onClick="{{ m.run }}" style="display:flex;width:100%;align-items:center;padding:10px 11px;border:0;border-radius:12px;background:transparent;color:{{ m.color }};font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;white-space:nowrap;cursor:pointer" style-hover="background:var(--lc-chip)">{{ m.label }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showNoResults }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 20px;border-radius:20px;border:1px dashed rgba(var(--w),0.12)">
+      <span style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--s3);color:var(--t2)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg></span>
+      <div style="margin-top:14px;font:600 17px 'AppNumerals','Urbanist',system-ui,sans-serif">No stores match these filters.</div>
+      <button type="button" onClick="{{ clearAll }}" style="margin-top:18px;height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:var(--s2)">Clear filters</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 20px;border-radius:20px;border:1px dashed rgba(var(--w),0.12)">
+      <span style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--s3);color:var(--pa)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21L9.64 2H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12z"></path></svg></span>
+      <div style="margin-top:14px;font:600 17px 'AppNumerals','Urbanist',system-ui,sans-serif">No stores yet.</div>
+      <div style="margin-top:6px;font:400 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">Add your first store to get started.</div>
+      <button data-dark="1" type="button" onClick="{{ addStore }}" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px 0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>Add store</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 20px;border-radius:20px;border:1px solid rgba(248,113,113,0.3);background:rgba(248,113,113,0.14)">
+      <span style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(248,113,113,0.14);color:var(--red)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01"></path></svg></span>
+      <div style="margin-top:14px;font:600 17px 'AppNumerals','Urbanist',system-ui,sans-serif">Couldn't load stores.</div>
+      <button type="button" onClick="{{ retry }}" style="margin-top:18px;height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:var(--s2)">Try again</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showPager }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ showing }}</span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button type="button" onClick="{{ prev }}" aria-label="Previous page" style="{{ prevStyle }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg></button>
+        <sc-for list="{{ pages }}" as="p" hint-placeholder-count="4">
+          <button type="button" onClick="{{ p.go }}" style="{{ p.style }}">{{ p.n }}</button>
+        </sc-for>
+        <button type="button" onClick="{{ next }}" aria-label="Next page" style="{{ nextStyle }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ preloadDetail }}" hint-placeholder-val="{{ false }}">
+<div data-preload="1" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;visibility:hidden;pointer-events:none">
+  <dc-import name="Final Store Detail" prefetch="{{ true }}" embedded="{{ true }}" hint-size="0px,0px"></dc-import>
+</div>
+</sc-if>
+<sc-if value="{{ showCreated }}" hint-placeholder-val="{{ false }}">
+<div role="status" aria-live="polite" style="position:fixed;inset:0;z-index:15;pointer-events:none">
+  <span aria-hidden="true" style="{{ cerHalo }}"></span>
+  <div style="{{ cerHead }}">
+    <span style="display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 6px;border-radius:999px;background:rgba(var(--pl),.14);color:var(--pa);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;animation:crUp .5s cubic-bezier(.2,.8,.2,1) .15s both"><span style="width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12.5l4 4L18 8"></path></svg></span>Store created</span>
+  </div>
+  <div data-dark="1" style="{{ cerCard }}">
+    <span aria-hidden="true" style="position:absolute;z-index:-1;width:260px;height:260px;top:-110px;left:-60px;border-radius:50%;background:radial-gradient(circle,rgba(176,107,255,.92),transparent 70%)"></span>
+    <span aria-hidden="true" style="position:absolute;z-index:-1;width:240px;height:240px;bottom:-120px;right:-50px;border-radius:50%;background:radial-gradient(circle,rgba(231,118,214,.82),transparent 70%)"></span>
+    <span aria-hidden="true" style="position:absolute;top:0;bottom:0;left:0;width:110px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);animation:crSheen .9s cubic-bezier(.4,0,.2,1) .7s both"></span>
+    <div style="{{ cerInner }}">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <span style="position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.24)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12zM12 17c-1.67 0-2.5.83-2.5 2.5V22h5v-2.5c0-1.67-.83-2.5-2.5-2.5z"></path></svg>
+          <span style="position:absolute;right:-7px;bottom:-7px;width:22px;height:22px;opacity:{{ cerBadgeOp }};transition:opacity .3s ease"><span style="position:relative;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#5b21b6;box-shadow:0 6px 14px -4px rgba(0,0,0,.5);animation:crOrb .45s cubic-bezier(.2,.9,.3,1.2) .9s both"><svg viewBox="0 0 24 24" width="12" height="12" fill="none"><path d="M6 12.5l4 4L18 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="20" stroke-dashoffset="20" style="animation:crDraw .35s cubic-bezier(.6,0,.2,1) 1.15s forwards"></path></svg></span></span>
+        </span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15M3 22h18"></path></svg></span>
+          <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg></span>
+        </div>
+      </div>
+      <span style="flex:1 1 auto;min-height:4px"></span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;min-width:0">
+        <span style="display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px 0 9px;border-radius:999px;background:rgba(255,255,255,.14);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:#fff"></span>{{ createdStatus }}</span>
+        <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.78);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ createdTz }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <span style="font-weight:300;line-height:1;font-family:'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.04em;font-size:{{ cerNumFs }};transition:font-size .78s cubic-bezier(.65,0,.25,1)">{{ createdNo }}</span>
+        <span style="font:500 22px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ createdName }}</span>
+      </div>
+      <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,.06))"></div>
+      <div style="display:flex;flex-direction:column;gap:8px;font:400 13px/1.4 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.78);min-width:0">
+        <span style="display:flex;align-items:center;gap:8px;min-width:0"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" style="flex:0 0 auto"><path d="M12 13.43a3.12 3.12 0 100-6.24 3.12 3.12 0 000 6.24z"></path><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 01-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05z"></path></svg><span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ createdAddr }}</span></span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span style="display:inline-flex;align-items:center;gap:5px;font-weight:600;color:#fff;white-space:nowrap">View on map<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span><span style="white-space:nowrap">{{ createdOn }}</span></span>
+      </div>
+    </div>
+  </div>
+  <div style="{{ cerChips }}">
+    <sc-for list="{{ createdChips }}" as="cc" hint-placeholder-count="3">
+      <span style="display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:999px;background:var(--sc-card);box-shadow:var(--sc-sh);color:var(--t1);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;animation:crUp .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ cc.delay }}">
+        <sc-if value="{{ cc.dot }}" hint-placeholder-val="{{ false }}"><span style="width:6px;height:6px;border-radius:50%;background:{{ cc.dotC }}"></span></sc-if>
+        {{ cc.label }}
+        <sc-if value="{{ cc.hasPics }}" hint-placeholder-val="{{ false }}"><span style="display:flex;margin-right:-6px"><sc-for list="{{ cc.pics }}" as="pc" hint-placeholder-count="2"><span style="width:22px;height:22px;margin-left:{{ pc.ml }};border-radius:50%;border:2px solid var(--s1);background:{{ pc.bg }}"></span></sc-for></span></sc-if>
+      </span>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+<sc-if value="{{ preloadAdd }}" hint-placeholder-val="{{ false }}">
+<div data-preload="1" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;visibility:hidden;pointer-events:none">
+  <dc-import name="Final Add Store" prefetch="{{ true }}" hint-size="0px,0px"></dc-import>
+</div>
+</sc-if>
+<sc-if value="{{ showAdd }}" hint-placeholder-val="{{ false }}">
+<div style="animation:stDetailIn .45s cubic-bezier(.2,.8,.2,1) backwards;opacity:{{ fadeOp }};transition:opacity .45s ease">
+  <dc-import name="Final Add Store" draft="{{ addDraft }}" existing="{{ existingNos }}" on-exit="{{ closeAdd }}" on-save-draft="{{ saveDraft }}" on-discard="{{ discardDraft }}" on-create="{{ createStore }}" on-open-store="{{ openFromAdd }}" hint-size="100%,0px"></dc-import>
+</div>
+</sc-if>
+<sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+<div ref="{{ detailRef }}" style="{{ detailWrap }}">
+  <dc-import name="Final Store Detail" store="{{ detailStore }}" initial-tab="{{ detailTab }}" embedded="{{ true }}" on-back="{{ closeDetail }}" hint-size="100%,0px"></dc-import>
+</div>
+</sc-if>
+<div style="position:fixed;left:50%;bottom:24px;z-index:60;padding:11px 18px;border-radius:999px;background:var(--t1);color:var(--s0);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;pointer-events:none;transition:opacity .2s,transform .2s;opacity:{{ toastOp }};transform:translateX(-50%) translateY({{ toastY }})">{{ toast }}</div>
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;viewState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Live data&quot;,&quot;Loading&quot;,&quot;No stores yet&quot;,&quot;Error loading&quot;],&quot;default&quot;:&quot;Live data&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Page state&quot;},&quot;showDraft&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Page state&quot;}}">
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const C = { text: "var(--t1)", muted: "var(--t2)", faint: "var(--t3)", surf: "var(--s2)", flat: "var(--s1)", edge: "var(--s3)", edge2: "rgba(var(--w),0.12)", accent: "var(--pa)", accentSoft: "var(--s3)", late: "var(--amb)", lateSoft: "rgba(251,191,36,0.14)", lateEdge: "rgba(251,191,36,0.3)", danger: "var(--red)", dangerSoft: "rgba(248,113,113,0.14)" };
+const I = {
+  checkC: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM7.75 12l2.83 2.83 5.67-5.66",
+  pauseC: "M10.65 19.11V4.89c0-1.35-.57-1.89-2.01-1.89H5.01C3.57 3 3 3.54 3 4.89v14.22C3 20.46 3.57 21 5.01 21h3.63c1.44 0 2.01-.54 2.01-1.89zM21 19.11V4.89C21 3.54 20.43 3 18.99 3h-3.63c-1.43 0-2.01.54-2.01 1.89v14.22c0 1.35.57 1.89 2.01 1.89h3.63c1.44 0 2.01-.54 2.01-1.89z",
+  shop: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21L9.64 2H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12z",
+  warn: "M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01",
+  userx: "M12 12a5 5 0 100-10 5 5 0 000 10zM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37M22 18l-4 4M18 18l4 4",
+  toggle: "M9.5 5h5c3.87 0 7 3.13 7 7s-3.13 7-7 7h-5c-3.87 0-7-3.13-7-7s3.13-7 7-7zM9.5 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z",
+  up: "M12 19V5M5 12l7-7 7 7", down: "M12 5v14M19 12l-7 7-7-7", both: "M7 20V4M3 8l4-4 4 4M17 4v16M21 16l-4 4-4-4",
+  chart: "M2 22h20M9.75 4v18h4.5V4c0-1.1-.45-2-1.8-2h-.9c-1.35 0-1.8.9-1.8 2zM3 10v12h4V10c0-1.1-.4-2-1.6-2h-.8C3.4 8 3 8.9 3 10zM17 15v7h4v-7c0-1.1-.4-2-1.6-2h-.8c-1.2 0-1.6.9-1.6 2z",
+  clock: "M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1",
+  box: "M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z",
+  shield: "M10.49 2.23L5.5 4.11c-1.15.43-2.09 1.79-2.09 3.01v7.43c0 1.18.78 2.73 1.73 3.44l4.3 3.21c1.41 1.06 3.73 1.06 5.14 0l4.3-3.21c.95-.71 1.73-2.26 1.73-3.44V7.12c0-1.23-.94-2.59-2.09-3.02l-4.99-1.87c-.85-.31-2.21-.31-3.04 0zM12 9v4M12 16h.01",
+  drop: "M12.61 2.21a.98.98 0 00-1.22 0C9.49 3.66 3.88 8.39 3.91 13.9c0 4.46 3.63 8.1 8.1 8.1s8.1-3.63 8.1-8.09c.01-5.43-5.61-10.24-7.5-11.7zM9 15h6",
+  doc: "M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8zM12 11v3M12 17h.01",
+  setup: "M12 15a3 3 0 100-6 3 3 0 000 6zM2 12.88v-1.76c0-1.04.85-1.9 1.9-1.9 1.81 0 2.55-1.28 1.64-2.85-.52-.9-.21-2.07.7-2.59l1.73-.99c.79-.47 1.81-.19 2.28.6l.11.19c.9 1.57 2.38 1.57 3.29 0l.11-.19c.47-.79 1.49-1.07 2.28-.6l1.73.99c.91.52 1.22 1.69.7 2.59-.91 1.57-.17 2.85 1.64 2.85 1.04 0 1.9.85 1.9 1.9v1.76c0 1.04-.85 1.9-1.9 1.9-1.81 0-2.55 1.28-1.64 2.85.52.91.21 2.07-.7 2.59l-1.73.99c-.79.47-1.81.19-2.28-.6l-.11-.19c-.9-1.57-2.38-1.57-3.29 0l-.11.19c-.47.79-1.49 1.07-2.28.6l-1.73-.99a1.9 1.9 0 01-.7-2.59c.91-1.57.17-2.85-1.64-2.85-1.05 0-1.9-.86-1.9-1.9z"
+};
+const FLAGS = {
+  usage: { label: "Usage alert", d: I.chart }, service: { label: "Service overdue", d: I.clock }, inventory: { label: "Inventory overdue", d: I.box },
+  safety: { label: "Safety flagged", d: I.shield, red: true }, lastc: { label: "Last container reported", d: I.drop }, zero: { label: "Zero reported", d: I.box }, data: { label: "Data issue", d: I.doc }, setup: { label: "Setup incomplete", d: I.setup }
+};
+const ORDER = ["usage", "service", "inventory", "safety", "lastc", "zero", "data", "setup"];
+const CHIP_FLAGS = ["safety", "lastc", "zero", "data", "setup"];
+const TECHS = [["James Carter", "JC"], ["Daniel Reyes", "DR"], ["Mario Lopez", "ML"], ["Kevin Tran", "KT"], ["Sam Mitchell", "SM"], ["Luis Ortega", "LO"], ["Raj Shah", "RS"]];
+const PRESETS = ["Standard 5 gal", "Standard 15 gal", "Standard 2.5 gal"];
+const PLACES = [["Santa Clarita","CA","913",[4100,4199]],["Roseville","CA","956",[2800,2899]],["Santa Maria","CA","934",[3400,3499]],["Riverside","CA","925",[4400,4499]],["Fresno","CA","937",[2600,2699]],["Bakersfield","CA","933",[3600,3699]],["Temecula","CA","925",[4300,4399]],["Pasadena","TX","775",[7600,7699]],["Arlington","TX","760",[7100,7199]],["Corpus Christi","TX","784",[7400,7499]],["San Antonio","TX","782",[7300,7399]],["Laredo","TX","780",[7200,7299]],["Round Rock","TX","786",[7000,7099]],["McAllen","TX","785",[7500,7599]],["Colorado Springs","CO","809",[5700,5799]],["Pueblo","CO","810",[5800,5899]],["Herriman","UT","840",[5200,5299]],["Ogden","UT","844",[5300,5399]],["St George","UT","847",[5400,5499]],["Henderson","NV","890",[6100,6199]],["Las Vegas","NV","891",[6000,6099]]];
+const REAL = [[4101,"Santa Clarita"],[7640,"Pasadena"],[2841,"Roseville"],[3401,"Santa Maria"],[7109,"Arlington"],[5703,"Colorado Springs"],[4439,"Riverside"],[7417,"Corpus Christi"],[7312,"San Antonio"],[5231,"Herriman"],[6101,"Henderson"],[5704,"Colorado Springs"]];
+const STREETS = ["Airline Rd", "Broadway St", "Main St", "State St", "Commerce Blvd", "Ranch Rd", "Lamar Blvd", "Center St", "Oak Ave", "Mesa Dr", "Frontier Way", "Pioneer Pkwy", "Alameda St", "Sunset Blvd"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const TODAY = new Date(2024, 9, 16);
+const dayLabel = days => { const d = new Date(TODAY); d.setDate(d.getDate() - days); return d.getDate() + " " + MONTHS[d.getMonth()]; };
+const INV_DATE = { Complete: "Mon 14 Oct", Due: "Mon 7 Oct", Overdue: "Mon 30 Sep" };
+const INV_DAYS = { Complete: 2, Due: 9, Overdue: 16 };
+
+function rng(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function buildStores() {
+  const r = rng(7401), pick = a => a[Math.floor(r() * a.length)];
+  const mk = o => Object.assign({ status: "Active", techs: [], flags: [], usage: null, inv: "Complete", svcDays: 10, svcNone: false, products: 14, preset: "Standard 5 gal", custom: false }, o);
+  const S = [
+    mk({ no: 1234, name: "Eagle Mountain", street: "1234 Car Wash Way", city: "Eagle Mountain", state: "UT", zip: "84005", techs: [0], svcDays: 7, products: 12 }),
+    mk({ no: 7401, name: "Corpus Christi", street: "4602 Airline Rd", city: "Corpus Christi", state: "TX", zip: "78412", techs: [0, 1], svcDays: 14, usage: { dir: "over", n: 2 }, flags: ["usage", "safety"], products: 14 }),
+    mk({ no: 7406, name: "Kingsville", street: "210 E King Ave", city: "Kingsville", state: "TX", zip: "78363", techs: [], svcNone: true, inv: "Due", flags: ["data", "setup"], products: 13, custom: true }),
+    mk({ no: 7412, name: "San Antonio", street: "3100 Broadway St", city: "San Antonio", state: "TX", zip: "78209", techs: [1], svcDays: 34, flags: ["service"], products: 15, preset: "Standard 15 gal" }),
+    mk({ no: 7420, name: "Sandy", street: "9450 S State St", city: "Sandy", state: "UT", zip: "84070", techs: [0], status: "Inactive", svcDays: 61, products: 12 })
+  ];
+  const used = new Set(S.map(s => s.no)), gen = [];
+  let ri = 0;
+  while (gen.length < 167) {
+    let pl, no;
+    if (ri < REAL.length) { const x = REAL[ri++]; no = x[0]; pl = PLACES.find(p => p[0] === x[1]); }
+    else { pl = pick(PLACES); no = pl[3][0] + Math.floor(r() * (pl[3][1] - pl[3][0])); }
+    if (used.has(no)) continue;
+    used.add(no);
+    const st = pick(STREETS), nt = r() < .55 ? 1 : 2, techs = [];
+    while (techs.length < nt) { const t = Math.floor(r() * TECHS.length); if (!techs.includes(t)) techs.push(t); }
+    gen.push(mk({ no, name: pl[0], street: (100 + Math.floor(r() * 9800)) + " " + st, city: pl[0], state: pl[1], zip: pl[2] + String(10 + Math.floor(r() * 89)), techs, svcDays: 2 + Math.floor(r() * 26), inv: r() < .86 ? "Complete" : "Due", products: 11 + Math.floor(r() * 6), preset: pick(PRESETS), custom: r() < .2 }));
+  }
+  gen.slice(0, 7).forEach(s => { s.status = "Inactive"; s.svcDays = 40 + Math.floor(r() * 60); });
+  gen.slice(7, 9).forEach(s => { s.techs = []; s.svcNone = true; s.flags = ["setup"]; if (r() < .5) s.flags.push("data"); });
+  gen.slice(9, 18).forEach(s => {
+    const pool = ["usage", "usage", "service", "inventory", "lastc", "data"], k = 1 + Math.floor(r() * 2), f = new Set();
+    while (f.size < k) f.add(pick(pool));
+    s.flags = [...f];
+    if (f.has("usage")) s.usage = { dir: pick(["over", "over", "under", "both"]), n: 1 + Math.floor(r() * 3) };
+    if (f.has("service")) s.svcDays = 31 + Math.floor(r() * 22);
+    if (f.has("inventory")) s.inv = "Overdue";
+  });
+  [gen[30], gen[61]].forEach(s => { s.flags = ["safety"]; if (s === gen[61]) { s.flags.push("service"); s.svcDays = 38; } });
+  const mixed = [S[0], S[1]].concat(gen.slice(18, 22), [S[2]], gen.slice(22, 26), gen.slice(9, 11), gen.slice(26, 31), [S[3]], gen.slice(31, 36), gen.slice(7, 8), gen.slice(36, 42), gen.slice(11, 12), gen.slice(42, 48), [S[4]], gen.slice(0, 1));
+  const seen = new Set(mixed);
+  const late = gen.slice(1, 7);
+  const rest0 = S.concat(gen).filter(x => !seen.has(x) && !late.includes(x));
+  const rest = [];
+  rest0.forEach((x, k) => { rest.push(x); if (k >= 20 && (k - 20) % 14 === 0 && late.length) rest.push(late.shift()); });
+  rest.push(...late);
+  S.length = 0; gen.length = 0; mixed.concat(rest).forEach((x, k) => { x.seq = k; S.push(x); });
+  {
+    const act = S.filter(x => x.status === "Active");
+    act.forEach(x => { x.flags = x.flags.filter(k => k !== "lastc" && k !== "zero"); });
+    const flagged = act.filter(x => x.flags.length && !x.flags.includes("setup"));
+    const calm = act.filter(x => !x.flags.length);
+    const lc = flagged.slice(0, 3).concat(calm.slice(12, 14));
+    lc.forEach(x => x.flags.push("lastc"));
+    [flagged[4] || calm[20], calm[30]].forEach(x => { if (x) x.flags.push("zero"); });
+  }
+  return S.concat(gen).map(s => {
+    s.flags.sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+    s.attn = s.status === "Active" ? s.flags.length : 0;
+    s.invDays = INV_DAYS[s.inv];
+    s.svcAge = s.svcNone ? 999 : s.svcDays;
+    s.presetLabel = s.custom ? "Customised" : s.preset;
+    s.hay = (s.no + " " + s.name + " " + s.city).toLowerCase();
+    return s;
+  });
+}
+const STORES = buildStores();
+const STATES = [...new Set(STORES.map(s => s.state))].sort();
+
+const SORTS = [
+  ["featured", "Recently updated", (a, b) => a.seq - b.seq],
+  ["attention", "Needs attention first", (a, b) => (b.attn - a.attn) || (a.no - b.no)],
+  ["number", "Store number", (a, b) => a.no - b.no],
+  ["name", "Store name", (a, b) => a.name.localeCompare(b.name) || a.no - b.no],
+  ["service", "Last service (oldest first)", (a, b) => (b.svcAge - a.svcAge) || a.no - b.no],
+  ["inventory", "Last inventory (oldest first)", (a, b) => (b.invDays - a.invDays) || a.no - b.no],
+  ["location", "Location", (a, b) => (a.state + a.city).localeCompare(b.state + b.city) || a.no - b.no],
+  ["status", "Status", (a, b) => ((a.status === "Active" ? 0 : 1) - (b.status === "Active" ? 0 : 1)) || a.no - b.no]
+];
+const FILTERS = [
+  { key: "status", label: "Status", opts: () => [["Active", "Active"], ["Inactive", "Inactive"]], test: (s, v) => v.includes(s.status) },
+  { key: "state", label: "State", opts: () => STATES.map(x => [x, x]), test: (s, v) => v.includes(s.state) },
+  { key: "tech", label: "Technician", searchable: true, opts: () => TECHS.map((t, i) => [String(i), t[0]]).concat([["none", "No technician"]]), test: (s, v) => v.some(x => x === "none" ? !s.techs.length : s.techs.includes(+x)) },
+  { key: "preset", label: "Preset", opts: () => PRESETS.map(p => [p, p]).concat([["Customised", "Customised"]]), test: (s, v) => v.includes(s.presetLabel) },
+  { key: "attn", label: "Attention", opts: () => ORDER.map(k => [k, FLAGS[k].label]), test: (s, v) => s.attn > 0 && v.some(f => s.flags.includes(f)) }
+];
+const EMPTY_SEL = () => ({ status: [], state: [], tech: [], preset: [], attn: [] });
+const VIEW_KEY = "apf-stores-view";
+const DRAFT_KEY = "apf-store-drafts";
+
+class Component extends DCLogic {
+  state = { q: "", sel: EMPTY_SEL(), needsAttn: false, sort: "featured", view: "grid", page: 1, open: null, techQ: "", menuFor: null, loading: true, toast: "", errorRetry: false, detailReady: false, created: null, createdOut: false, add: null, drafts: [], draftsOpen: false, prefetch: false, detail: null, detailTab: "overview", backed: false };
+  rootRef = React.createRef();
+  detailRef = React.createRef();
+  watchReady() {
+    cancelAnimationFrame(this.rdy);
+    const t0 = performance.now();
+    const tick = () => {
+      const el = this.detailRef.current;
+      const ok = el && el.querySelector('[data-screen-label="Store detail"]');
+      if (ok) { setTimeout(() => this.setState({ detailReady: true }), 60); return; }
+      if (performance.now() - t0 > 8000) { this.setState({ detailReady: true }); return; }
+      this.rdy = requestAnimationFrame(tick);
+    };
+    this.rdy = requestAnimationFrame(tick);
+  }
+  openStore(no, tab) {
+    if (!this.props.allowDetail) { this.say("Store " + no + " · detail page not added yet"); return; }
+    const st = STORES.find(x => x.no === no); if (!st) return;
+    this.listScroll = this.scrollPos();
+    this.setState({ detailReady: false }, () => this.watchReady());
+    this.setState({ detail: st, detailTab: tab || "overview", menuFor: null, open: null });
+    this.setScroll(0);
+  }
+  loadDrafts() { try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { return null; } }
+  storeDrafts(d) { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(d)); } catch (e) {} }
+  openAdd(draft) { this.listScroll = this.scrollPos(); this.setState({ add: { draft: draft || null, key: Date.now() }, draftsOpen: false, menuFor: null, open: null }); this.setScroll(0); }
+  closeAdd() { this.setState({ add: null, backed: true }); const y = this.listScroll || 0; requestAnimationFrame(() => this.setScroll(y)); }
+  saveDraft(d, silent) { const list = (this.state.drafts || []).filter(x => x.id !== d.id); list.unshift(d); this.storeDrafts(list); this.setState({ drafts: list }); if (!silent) this.say("Draft saved: " + (d.no || "Untitled draft")); }
+  discardDraft(id) { const list = (this.state.drafts || []).filter(x => x.id !== id); this.storeDrafts(list); this.setState({ drafts: list }); }
+  createStore(d) {
+    const f = d.f, techs = d.techs, active = d.status === "Active";
+    const flags = techs.length ? [] : ["setup"];
+    const log = [{ days: 0, h: new Date().getHours(), m: new Date().getMinutes(), person: "You", type: "Details", details: "Created store " + d.no }];
+    if (d.preset && d.preset !== "empty") log.unshift({ days: 0, h: log[0].h, m: log[0].m, person: "You", type: "Preset", details: "Applied preset " + d.presetName + " · Add " + d.rows.length });
+    techs.forEach(t => log.unshift({ days: 0, h: log[0].h, m: log[0].m, person: "You", type: "Technicians", details: "Assigned " + TECHS[t][0] }));
+    const st = { no: d.no, name: f.name, street: f.street, city: f.city, state: f.state, zip: f.zip, tz: f.tz, match: f.match, techs, svcDays: 0, svcNone: true, usage: null, flags, products: d.rows.length, rows: d.rows, preset: d.presetName, custom: d.custom, status: d.status, inv: "Due", fresh: true, log, seq: -1 };
+    st.attn = active ? flags.length : 0; st.invDays = INV_DAYS["Due"]; st.svcAge = 999; st.presetLabel = st.custom ? "Customised" : st.preset; st.hay = (st.no + " " + st.name + " " + st.city).toLowerCase();
+    STORES.unshift(st);
+    this.discardDraft(d.draftId);
+    this.runCeremony({ no: st.no, name: st.name + " - " + st.state, active, products: st.products, techNames: techs.map(t => (typeof t === "number" ? TECHS[t][0] : (t.name || t[0] || t))), addr: [st.street, st.city, st.state + " " + (st.zip || "")].filter(Boolean).join(", "), sub: (active ? "Active" : "Inactive") + " · " + st.products + (st.products === 1 ? " product" : " products") + " · " + (techs.length ? techs.length + (techs.length === 1 ? " technician" : " technicians") : "no technician yet") }, st.no, () => this.setState({ add: null }));
+  }
+  runCeremony(info, no, beforeOpen) {
+    (this.cerT || []).forEach(clearTimeout); this.cerT = [];
+    const T = (ms, fn) => this.cerT.push(setTimeout(fn, ms));
+    const r = this.rootRef.current ? this.rootRef.current.getBoundingClientRect() : { left: 0, width: innerWidth };
+    const W = 360, H = 340, cx = r.left + r.width / 2, cy = Math.max(76 + 70 + H / 2, 76 + (innerHeight - 76) / 2 + 6);
+    const start = { left: cx - W / 2, top: cy - H / 2, width: W, height: H };
+    this.setState({ created: info, cer: { phase: "out", rect: start } });
+    T(380, () => this.setState(z => ({ cer: Object.assign({}, z.cer, { phase: "card" }) })));
+    T(2050, () => { if (beforeOpen) beforeOpen(); this.openStore(no); this.setState(z => ({ cer: Object.assign({}, z.cer, { phase: "wait" }) })); });
+    T(2650, () => {
+      const el = this.detailRef.current, hero = el && el.querySelector('aside section[data-dark="1"]');
+      const h = hero ? hero.getBoundingClientRect() : null;
+      const to = h && h.width > 40 ? { left: h.left, top: h.top, width: h.width, height: h.height } : start;
+      let m = {};
+      if (hero) { const cs = getComputedStyle(hero); const n = [...hero.querySelectorAll("span")].find(x => x.textContent.trim() === String(no) && !x.children.length); m = { pad: cs.paddingTop + " " + cs.paddingRight + " " + cs.paddingBottom + " " + cs.paddingLeft, gap: cs.rowGap, numFs: n ? getComputedStyle(n).fontSize : "40px" }; }
+      this.setState(z => ({ cer: Object.assign({}, z.cer, { phase: "fly", rect: to }, m) }));
+    });
+    T(3250, () => {
+      const el = this.detailRef.current, hero = el && el.querySelector('aside section[data-dark="1"]');
+      const h = hero && hero.getBoundingClientRect();
+      if (h && h.width > 40) this.setState(z => ({ cer: Object.assign({}, z.cer, { rect: { left: h.left, top: h.top, width: h.width, height: h.height } }) }));
+    });
+    T(3440, () => this.setState(z => ({ cer: Object.assign({}, z.cer, { phase: "reveal" }) })));
+    T(3880, () => this.setState({ created: null, cer: null, cerLanded: true }));
+  }
+  closeDetail() { this.setState({ detail: null, backed: true, cerLanded: false }); const y = this.listScroll || 0; requestAnimationFrame(() => this.setScroll(y)); }
+  scrollEl() { const r = this.rootRef.current; if (r && r.scrollHeight > r.clientHeight && getComputedStyle(r).overflowY !== "visible") return r; return null; }
+  scrollPos() { const e = this.scrollEl(); return e ? e.scrollTop : window.scrollY; }
+  setScroll(y) { const e = this.scrollEl(); if (e) e.scrollTop = y; else window.scrollTo(0, y); }
+
+  componentDidMount() {
+    try { const v = localStorage.getItem(VIEW_KEY); if (v === "list" || v === "grid") this.setState({ view: v }); } catch (e) {}
+    const hm = /store=(\d+)(?:&tab=([a-z]+))?/.exec(location.hash || "");
+    if (hm) this.openStore(+hm[1], hm[2]);
+    let dl = this.loadDrafts();
+    if (!dl) { dl = this.props.showDraft ? [{ id: "seed4512", no: "4512", name: "Riverside Magnolia", step: 2, edited: Date.now() - 2 * 3600e3, data: { step: 2, done: [1], f: { no: "4512", name: "Riverside Magnolia", street: "10380 Magnolia Ave", city: "Riverside", state: "CA", zip: "92505", tz: "Pacific (PT)", tzAuto: true, match: ["Riverside Magnolia", "QQ 4512"] }, preset: null, rows: [], edits: 0, picker: true, techs: [], skipped: false, status: "Active", statusSet: false } }] : []; this.storeDrafts(dl); }
+    this.setState({ drafts: dl });
+    if (/add-store/.test(location.hash || "")) { const n = (/add-store=([A-Za-z0-9]+)/.exec(location.hash) || [])[1]; this.openAdd(dl.find(x => x.no === n) || null); }
+    if (this.props.allowDetail) this.setState({ loading: false }); else this.lt = setTimeout(() => this.setState({ loading: false }), 650);
+    this.onDoc = e => { if ((this.state.open || this.state.menuFor || this.state.draftsOpen) && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ open: null, menuFor: null, draftsOpen: false }); };
+    document.addEventListener("mousedown", this.onDoc);
+  }
+  componentDidUpdate() { const a = !!this.state.add; if (a !== this._adding) { this._adding = a; document.documentElement.toggleAttribute("data-adding", a); } }
+  componentWillUnmount() { document.documentElement.removeAttribute("data-adding"); clearTimeout(this.cr1); clearTimeout(this.cr2); clearTimeout(this.cr3); clearTimeout(this.lt); clearTimeout(this.tt); document.removeEventListener("mousedown", this.onDoc); }
+
+  say(msg) { clearTimeout(this.tt); this.setState({ toast: msg, menuFor: null }); this.tt = setTimeout(() => this.setState({ toast: "" }), 2200); }
+  setView(v) { try { localStorage.setItem(VIEW_KEY, v); } catch (e) {} this.setState({ view: v, page: 1, menuFor: null }); }
+  toggleOpt(key, val) { this.setState(s => { const cur = s.sel[key]; const next = cur.includes(val) ? cur.filter(x => x !== val) : cur.concat([val]); return { sel: Object.assign({}, s.sel, { [key]: next }), page: 1 }; }); }
+  applyTile(t) {
+    const sel = EMPTY_SEL();
+    if (t === "active") sel.status = ["Active"];
+    if (t === "notech") sel.tech = ["none"];
+    if (t === "inactive") sel.status = ["Inactive"];
+    if (t === "lastc" || t === "zero") { sel.status = ["Active"]; sel.attn = [t]; }
+    const on = this.tileOn(t);
+    this.setState(on ? { sel: EMPTY_SEL(), needsAttn: false, page: 1 } : { sel, needsAttn: t === "attn", page: 1 });
+  }
+  tileOn(t) {
+    const s = this.state, sel = s.sel, n = Object.values(sel).reduce((a, v) => a + v.length, 0) + (s.needsAttn ? 1 : 0);
+    if ((t === "lastc" || t === "zero") && n === 2 && sel.status[0] === "Active" && sel.attn.length === 1 && sel.attn[0] === t) return true;
+    if (n !== 1) return false;
+    return (t === "active" && sel.status[0] === "Active") || (t === "inactive" && sel.status[0] === "Inactive") || (t === "notech" && sel.tech[0] === "none") || (t === "attn" && s.needsAttn);
+  }
+
+  filtered() {
+    const s = this.state, q = s.q.trim().toLowerCase();
+    let list = STORES.filter(st => (!q || st.hay.includes(q)) && (!s.needsAttn || st.attn > 0) && FILTERS.every(f => !s.sel[f.key].length || f.test(st, s.sel[f.key])));
+    const so = SORTS.find(x => x[0] === s.sort) || SORTS[0];
+    return list.slice().sort(so[2]);
+  }
+
+  storeView(st, i) {
+    const inactive = st.status === "Inactive", active = !inactive;
+    const names = st.techs.map(t => TECHS[t][0]);
+    const svcOverdue = active && st.svcDays > 30 && !st.svcNone;
+    const svcBy = st.techs.length ? TECHS[st.techs[0]][0] : null;
+    const svcText = st.svcNone ? "No service visits yet" : svcOverdue ? "Last service " + dayLabel(st.svcDays) : "Last service " + dayLabel(st.svcDays) + (svcBy ? " · " + svcBy : "");
+    const u = active ? st.usage : null;
+    const prodWord = n => n + (n === 1 ? " product" : " products");
+    const usageText = !u ? "" : u.dir === "over" ? "Over usage · " + prodWord(u.n) : u.dir === "under" ? "Under usage · " + prodWord(u.n) : "Usage out of range · " + prodWord(u.n + 1);
+    const usageShort = !u ? "" : u.dir === "over" ? "Over · " + u.n : u.dir === "under" ? "Under · " + u.n : "Both · " + (u.n + 1);
+    const usageD = !u ? "" : u.dir === "over" ? I.up : u.dir === "under" ? I.down : I.both;
+    const chipFlags = active ? st.flags.filter(f => CHIP_FLAGS.includes(f)) : [];
+    const chip = f => ({ label: FLAGS[f].label, d: FLAGS[f].d, bg: FLAGS[f].red ? C.dangerSoft : C.lateSoft, fg: FLAGS[f].red ? C.danger : C.late });
+    const invStyle = st.inv === "Complete" ? [C.accentSoft, C.accent] : st.inv === "Due" ? ["var(--s3)", C.muted] : [C.lateSoft, C.late];
+    const menuOpen = this.state.menuFor === st.no;
+    const no = st.no;
+    const menu = [
+      { label: "Open", color: C.text, run: e => { e.stopPropagation(); this.openStore(no); } },
+      { label: "Edit details", color: C.text, run: e => { e.stopPropagation(); this.say("Edit details for store " + no); } },
+      { label: "Manage technicians", color: C.text, run: e => { e.stopPropagation(); this.openStore(no, "people"); } },
+      { label: inactive ? "Activate" : "Deactivate", color: inactive ? C.accent : C.danger, run: e => { e.stopPropagation(); this.say((inactive ? "Activate" : "Deactivate") + " store " + no + " opens a confirm step"); } }
+    ];
+    const T = { ok: "167,139,250", warn: "251,191,36", bad: "248,113,113" };
+    const META = { safety: "2 Oct visit", lastc: "Wed", zero: "Confirmed empty", data: "Upload 14 Oct", setup: "No technician", usage: "Wk 12 Oct" };
+    const issues = active ? st.flags.map(k => {
+      const red = !!FLAGS[k].red;
+      const text = k === "usage" ? usageText : k === "service" ? "Service overdue · " + st.svcDays + " days" : FLAGS[k].label;
+      const meta = k === "service" ? "Last " + dayLabel(st.svcDays) : k === "inventory" ? INV_DATE[st.inv] : META[k];
+      return { red, text, meta };
+    }).sort((a, b) => b.red - a.red) : [];
+    const nI = issues.length, hasRed = issues.some(x => x.red);
+    const tk = inactive ? null : !nI ? "ok" : hasRed ? "bad" : "warn";
+    const ta = x => tk ? "rgba(" + T[tk] + "," + x + ")" : null;
+    const PUR = "rgba(139,92,246,0.4)", GR = "rgba(var(--w),0.24)";
+    let cRows;
+    if (inactive) cRows = [{ text: "Hidden from technicians and store users", fg: C.faint, dot: GR, meta: "" }, { text: "Reminders and alerts paused", fg: C.faint, dot: GR, meta: "" }, { text: "Last service " + dayLabel(st.svcDays), fg: C.faint, dot: GR, meta: svcBy ? svcBy.split(" ")[0] : "" }];
+    else if (nI) cRows = (nI > 3 ? issues.slice(0, 2) : issues).map(x => ({ text: x.text, fg: C.text, dot: x.red ? C.danger : C.late, meta: x.meta })).concat(nI > 3 ? [{ text: "+" + (nI - 2) + " more to review", fg: C.muted, dot: PUR, meta: "" }] : []);
+    else cRows = [
+      { text: st.inv === "Due" ? "Inventory due" : "Inventory complete", fg: "var(--t2)", dot: PUR, meta: INV_DATE[st.inv] },
+      { text: "Serviced " + dayLabel(st.svcDays), fg: "var(--t2)", dot: PUR, meta: svcBy ? svcBy.split(" ")[0] : "" },
+      { text: "Usage in range", fg: "var(--t2)", dot: PUR, meta: "Wk 12 Oct" }
+    ];
+    const MK = { ok: ["var(--lc-okbg)", "var(--lc-ok)", "M5 12.5l4.5 4.5L19 7.5"], warn: ["var(--lc-warnbg)", "var(--lc-warn)", "M12 6v7M12 17.5v.5"], bad: ["var(--lc-badbg)", "var(--lc-bad)", "M7 7l10 10M17 7L7 17"], mute: ["var(--lc-chip)", "var(--sc-ink3)", "M7 12h10"] };
+    cRows = cRows.map((r, i) => { const k = r.dot === C.danger ? "bad" : r.dot === C.late ? "warn" : (!inactive && !nI && r.dot === PUR) ? "ok" : "mute"; return Object.assign({}, r, { mBg: MK[k][0], mFg: MK[k][1], mD: MK[k][2], lFg: k === "mute" ? "var(--lc-ink2)" : "var(--sc-ink)", sep: i ? "var(--lc-iline)" : "transparent" }); });
+    const tech0 = st.techs.length ? TECHS[st.techs[0]] : null;
+    const card = {
+      pillBg: inactive ? "var(--lc-chip)" : "var(--lc-" + tk + "bg)", pillFg: inactive ? "var(--sc-ink3)" : "var(--lc-" + tk + ")", live: tk === "ok" ? "1" : "0",
+      avIni: tech0 ? "" : "?", avBg: tech0 ? "url(assets/people/" + tech0[0].toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,linear-gradient(135deg,#b06bff,#5b21b6)" : "var(--lc-warnbg)", avFg: tech0 ? "#fff" : "var(--lc-warn)",
+      ownName: tech0 ? tech0[0] : "No technician", ownFg: tech0 ? "var(--sc-ink)" : "var(--lc-warn)",
+      ownRole: tech0 ? (st.techs.length > 1 ? "Technician · +" + (st.techs.length - 1) + " more" : "Technician") : "Assign one to this store",
+      prodN: String(st.products),
+      tone: inactive ? C.faint : tk === "ok" ? C.accent : tk === "bad" ? C.danger : C.late,
+      verdict: inactive ? "Inactive" : nI ? nI + (nI === 1 ? " issue to fix" : " issues to fix") : "All good",
+      verdictSub: inactive ? "Paused · not counted or serviced" : nI ? (hasRed ? "Includes a safety flag" : "Open the store to resolve") : "Counted, serviced and in range",
+      vIcon: inactive ? I.pauseC : nI ? I.warn : I.checkC,
+      vBg: ta(.12) || "var(--s2)", vEdge: "transparent",
+      edge: "transparent", edgeHover: "rgba(var(--w),0.06)",
+      line: ta(.55) || "var(--s3)", glow: "transparent", shadow: "var(--k55)",
+      cRows,
+      cAvatars: st.techs.length ? st.techs.slice(0, 3).map(t => { const p = "assets/people/" + TECHS[t][0].toLowerCase().replace(/\s+/g, "-") + ".png"; return { ini: TECHS[t][1], bg: "url(" + p + ") center/cover no-repeat,var(--s2)", fg: "transparent" }; }) : [{ ini: "?", bg: "rgba(251,191,36,0.14)", fg: C.late }],
+      teamText: st.techs.length ? names.join(", ") : "No technician assigned",
+      teamFg: st.techs.length ? C.muted : C.late,
+      productsText: st.products + " products",
+      sepOp: i === 0 ? 0 : 1,
+      listSub: inactive ? "Paused" : nI ? (hasRed ? "Safety flag" : "Needs review") : "In range",
+      lRows: inactive ? [cRows[0]] : nI ? (nI > 2 ? cRows.slice(0, 1).concat([{ text: "+" + (nI - 1) + " more to review", fg: C.muted, dot: PUR, meta: "" }]) : cRows.slice(0, 2)) : [{ text: (st.inv === "Due" ? "Inventory due" : "Inventory complete") + " · Serviced " + dayLabel(st.svcDays), fg: "var(--t2)", dot: PUR, meta: "" }]
+    };
+    return {
+      ...card,
+      street: st.street + ", " + st.zip,
+      no, name: st.name + " - " + st.state, status: st.status,
+      addr: st.street + ", " + st.city + ", " + st.state + " " + st.zip,
+      loc: st.street,
+      op: inactive ? .55 : 1,
+      delay: Math.min(i, 16) * 22 + "ms",
+      stBg: inactive ? "var(--s3)" : C.accentSoft, stFg: inactive ? C.faint : C.accent,
+      hasTech: names.length > 0, noTech: names.length === 0,
+      avatars: st.techs.slice(0, 3).map(t => ({ ini: TECHS[t][1] })),
+      techNames: names.length > 2 ? names.slice(0, 2).join(", ") + " +" + (names.length - 2) : names.join(", "),
+      techTitle: names.join(", "),
+      hasMoreTech: names.length > 3, moreTech: "+" + (names.length - 3),
+      inv: st.inv, invBg: invStyle[0], invFg: invStyle[1], invText: "Last count " + INV_DATE[st.inv], invDate: INV_DATE[st.inv],
+      svcOverdue, svcPill: "Overdue · " + st.svcDays + " days", svcText,
+      hasUsage: !!u, usageText, usageShort, usageD,
+      hasChips: chipFlags.length > 0, chips: chipFlags.slice(0, 3).map(chip),
+      hasMore: chipFlags.length > 3, more: "+" + (chipFlags.length - 3), moreTitle: chipFlags.slice(3).map(f => FLAGS[f].label).join(", "),
+      flagIcons: active ? st.flags.map(f => ({ label: FLAGS[f].label, d: FLAGS[f].d, fg: FLAGS[f].red ? C.danger : C.late })) : [],
+      barOp: st.attn > 0 ? 1 : 0,
+      products: st.products, preset: st.presetLabel, presetColor: st.custom ? C.late : C.faint,
+      menuOpen, menu,
+      open: () => this.openStore(no),
+      toggleMenu: e => { e.stopPropagation(); this.setState(s => ({ menuFor: s.menuFor === no ? null : no, open: null })); }
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const off = this.props.topOffset;
+    const rootStyle = off != null
+      ? { position: "relative", isolation: "isolate", flex: "1 1 auto", height: "calc(100vh - " + off + "px)", minHeight: 0, overflowY: "auto", overflowX: "clip", background: "transparent", fontFamily: "'AppNumerals','Urbanist',system-ui,sans-serif", color: "var(--t1)" }
+      : { position: "relative", isolation: "isolate", overflowX: "clip", minHeight: (s.detail || s.add) ? 0 : "100vh", background: "transparent", fontFamily: "'AppNumerals','Urbanist',system-ui,sans-serif", color: "var(--t1)" };
+    const vs = this.props.viewState || "Live data";
+    const list = this.filtered();
+    const isGrid = s.view === "grid", size = isGrid ? 48 : 50;
+    const pagesN = Math.max(1, Math.ceil(list.length / size)), page = Math.min(s.page, pagesN);
+    const slice = list.slice((page - 1) * size, page * size);
+    const views = slice.map((st, i) => this.storeView(st, i));
+    const live = vs === "Live data" && !s.loading;
+    const loading = vs === "Loading" || (vs === "Live data" && s.loading);
+    const noStores = vs === "No stores yet";
+
+    const countAll = { active: STORES.filter(x => x.status === "Active").length, attn: STORES.filter(x => x.attn > 0).length, notech: STORES.filter(x => x.status === "Active" && !x.techs.length).length, inactive: STORES.filter(x => x.status === "Inactive").length, lastc: STORES.filter(x => x.status === "Active" && x.flags.includes("lastc")).length, zero: STORES.filter(x => x.status === "Active" && x.flags.includes("zero")).length };
+    const tileDefs = [["active", "Active stores", I.shop, false], ["attn", "Needs attention", I.warn, true], ["notech", "No technician", I.userx, true], ["inactive", "Inactive", I.toggle, false], ["lastc", "Last container", I.drop, true], ["zero", "Zero reported", I.box, true]];
+    const safetyN = STORES.filter(x => x.status === "Active" && x.flags.includes("safety")).length;
+    const SUBS = { active: "of " + STORES.length + " stores", attn: safetyN ? safetyN + " with a safety flag" : "Across the network", notech: "Setup incomplete", inactive: "Paused", lastc: "Stores waiting for acknowledgement", zero: "Products confirmed empty" };
+    const amber = v => "rgba(245,180,60," + v + ")", violet = v => "rgba(139,92,246," + v + ")", grey = v => "rgba(var(--w)," + v + ")";
+    const ALL = x => ({ active: x, attn: x, notech: x, inactive: x, lastc: x, zero: x });
+    const TONE = ALL("var(--pa)"), GLOW = ALL(violet(.18)), LINE = ALL(violet(.45)), CHIP = ALL(violet(.12)), CHIPE = ALL(violet(.28)), DOTS = ALL(C.accent);
+const IX_LIN = {"active":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3.01001%2011.2207V15.7107C3.01001%2020.2007%204.81001%2022.0007%209.30001%2022.0007H14.69C19.18%2022.0007%2020.98%2020.2007%2020.98%2015.7107V11.2207%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12%2012C13.83%2012%2015.18%2010.51%2015%208.68L14.34%202H9.66999L8.99999%208.68C8.81999%2010.51%2010.17%2012%2012%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M18.31%2012C20.33%2012%2021.81%2010.36%2021.61%208.35L21.33%205.6C20.97%203%2019.97%202%2017.35%202H14.3L15%209.01C15.17%2010.66%2016.66%2012%2018.31%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M5.64%2012C7.29%2012%208.78%2010.66%208.94%209.01L9.16%206.8L9.64001%202H6.59C3.97001%202%202.97%203%202.61%205.6L2.34%208.35C2.14%2010.36%203.62%2012%205.64%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12%2017C10.33%2017%209.5%2017.83%209.5%2019.5V22H14.5V19.5C14.5%2017.83%2013.67%2017%2012%2017Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\")","attn":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12%209V14%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12.0001%2021.4093H5.94005C2.47005%2021.4093%201.02005%2018.9293%202.70005%2015.8993L5.82006%2010.2793L8.76006%204.9993C10.5401%201.7893%2013.4601%201.7893%2015.2401%204.9993L18.1801%2010.2893L21.3001%2015.9093C22.9801%2018.9393%2021.5201%2021.4193%2018.0601%2021.4193H12.0001V21.4093Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M11.9945%2017H12.0035%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E\")","notech":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M19.5%2019H15.5%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12.1498%2010.87C12.0498%2010.86%2011.9298%2010.86%2011.8198%2010.87C9.4398%2010.79%207.5498%208.84%207.5498%206.44C7.5498%203.99%209.5298%202%2011.9898%202C14.4398%202%2016.4298%203.99%2016.4298%206.44C16.4198%208.84%2014.5298%2010.79%2012.1498%2010.87Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M11.99%2021.8097C10.17%2021.8097%208.36004%2021.3497%206.98004%2020.4297C4.56004%2018.8097%204.56004%2016.1697%206.98004%2014.5597C9.73004%2012.7197%2014.24%2012.7197%2016.99%2014.5597%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\")","inactive":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M21.01%2011.2207V15.7107C21.01%2020.2007%2019.22%2022.0007%2014.72%2022.0007H9.33002C8.75002%2022.0007%208.21998%2021.9708%207.72998%2021.9008%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M3.04004%2015.5208V11.2207%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12.03%2012C13.86%2012%2015.21%2010.5101%2015.03%208.68005L14.36%202H9.69001L9.02003%208.68005C8.84003%2010.5101%2010.2%2012%2012.03%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M18.3301%2012C20.3501%2012%2021.8301%2010.36%2021.6301%208.34998L21.35%205.59998C20.99%202.99998%2019.9901%202%2017.3701%202H14.3201L15.0201%209.01001C15.2001%2010.66%2016.6801%2012%2018.3301%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M5.67004%2012C7.32004%2012%208.81003%2010.66%208.97003%209.01001L9.19006%206.80005L9.67004%202H6.62005C4.00005%202%203.00007%202.99998%202.64007%205.59998L2.36004%208.34998C2.16004%2010.36%203.65004%2012%205.67004%2012Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M9%2019C9%2019.75%208.78998%2020.4601%208.41998%2021.0601C8.22998%2021.3801%207.99998%2021.67%207.72998%2021.9C7.69998%2021.94%207.67%2021.97%207.63%2022C6.93%2022.63%206.01%2023%205%2023C3.78%2023%202.68997%2022.45%201.96997%2021.59C1.94997%2021.56%201.92002%2021.54%201.90002%2021.51C1.78002%2021.37%201.67002%2021.2201%201.58002%2021.0601C1.21002%2020.4601%201%2019.75%201%2019C1%2017.74%201.58%2016.61%202.5%2015.88C2.67%2015.74%202.84998%2015.62%203.03998%2015.52C3.61998%2015.19%204.29%2015%205%2015C6%2015%206.89998%2015.36%207.59998%2015.97C7.71998%2016.06%207.82999%2016.17%207.92999%2016.28C8.58999%2017%209%2017.95%209%2019Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-miterlimit%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M6.48999%2018.9805H3.51001%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-miterlimit%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\")","lastc":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12.61%202.21C12.25%201.93%2011.75%201.93%2011.39%202.21C9.49004%203.66%203.88003%208.39%203.91003%2013.9C3.91003%2018.36%207.54004%2022%2012.01%2022C16.48%2022%2020.11%2018.37%2020.11%2013.91C20.12%208.48%2014.5%203.67%2012.61%202.21Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E\")","zero":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3.17004%207.43945L12%2012.5495L20.77%207.46945%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12%2021.6091V12.5391%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M9.93001%202.4793L4.59001%205.4393C3.38001%206.1093%202.39001%207.7893%202.39001%209.1693V14.8193C2.39001%2016.1993%203.38001%2017.8793%204.59001%2018.5493L9.93001%2021.5193C11.07%2022.1493%2012.94%2022.1493%2014.08%2021.5193L19.42%2018.5493C20.63%2017.8793%2021.62%2016.1993%2021.62%2014.8193V9.1693C21.62%207.7893%2020.63%206.1093%2019.42%205.4393L14.08%202.4693C12.93%201.8393%2011.07%201.8393%209.93001%202.4793Z%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\")"};
+const IX_BOLD = {"active":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M22.3599%208.27L22.0699%205.5C21.6499%202.48%2020.2799%201.25%2017.3499%201.25H14.9899H13.5099H10.4699H8.98989H6.58989C3.64989%201.25%202.28989%202.48%201.85989%205.53L1.58989%208.28C1.48989%209.35%201.77989%2010.39%202.40989%2011.2C3.16989%2012.19%204.33989%2012.75%205.63989%2012.75C6.89989%2012.75%208.10989%2012.12%208.86989%2011.11C9.54989%2012.12%2010.7099%2012.75%2011.9999%2012.75C13.2899%2012.75%2014.4199%2012.15%2015.1099%2011.15C15.8799%2012.14%2017.0699%2012.75%2018.3099%2012.75C19.6399%2012.75%2020.8399%2012.16%2021.5899%2011.12C22.1899%2010.32%2022.4599%209.31%2022.3599%208.27Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M11.3501%2016.6602C10.0801%2016.7902%209.12012%2017.8702%209.12012%2019.1502V21.8902C9.12012%2022.1602%209.34012%2022.3802%209.61012%2022.3802H14.3801C14.6501%2022.3802%2014.8701%2022.1602%2014.8701%2021.8902V19.5002C14.8801%2017.4102%2013.6501%2016.4202%2011.3501%2016.6602Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M21.3699%2014.4001V17.3801C21.3699%2020.1401%2019.1299%2022.3801%2016.3699%2022.3801C16.0999%2022.3801%2015.8799%2022.1601%2015.8799%2021.8901V19.5001C15.8799%2018.2201%2015.4899%2017.2201%2014.7299%2016.5401C14.0599%2015.9301%2013.1499%2015.6301%2012.0199%2015.6301C11.7699%2015.6301%2011.5199%2015.6401%2011.2499%2015.6701C9.46988%2015.8501%208.11988%2017.3501%208.11988%2019.1501V21.8901C8.11988%2022.1601%207.89988%2022.3801%207.62988%2022.3801C4.86988%2022.3801%202.62988%2020.1401%202.62988%2017.3801V14.4201C2.62988%2013.7201%203.31988%2013.2501%203.96988%2013.4801C4.23988%2013.5701%204.50988%2013.6401%204.78988%2013.6801C4.90988%2013.7001%205.03988%2013.7201%205.15988%2013.7201C5.31988%2013.7401%205.47988%2013.7501%205.63988%2013.7501C6.79988%2013.7501%207.93988%2013.3201%208.83988%2012.5801C9.69988%2013.3201%2010.8199%2013.7501%2011.9999%2013.7501C13.1899%2013.7501%2014.2899%2013.3401%2015.1499%2012.6001C16.0499%2013.3301%2017.1699%2013.7501%2018.3099%2013.7501C18.4899%2013.7501%2018.6699%2013.7401%2018.8399%2013.7201C18.9599%2013.7101%2019.0699%2013.7001%2019.1799%2013.6801C19.4899%2013.6401%2019.7699%2013.5501%2020.0499%2013.4601C20.6999%2013.2401%2021.3699%2013.7201%2021.3699%2014.4001Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")","attn":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M21.76%2015.92L15.36%204.4C14.5%202.85%2013.31%202%2012%202C10.69%202%209.49998%202.85%208.63998%204.4L2.23998%2015.92C1.42998%2017.39%201.33998%2018.8%201.98998%2019.91C2.63998%2021.02%203.91998%2021.63%205.59998%2021.63H18.4C20.08%2021.63%2021.36%2021.02%2022.01%2019.91C22.66%2018.8%2022.57%2017.38%2021.76%2015.92ZM11.25%209C11.25%208.59%2011.59%208.25%2012%208.25C12.41%208.25%2012.75%208.59%2012.75%209V14C12.75%2014.41%2012.41%2014.75%2012%2014.75C11.59%2014.75%2011.25%2014.41%2011.25%2014V9ZM12.71%2017.71C12.52%2017.89%2012.26%2018%2012%2018C11.74%2018%2011.48%2017.89%2011.29%2017.71C11.11%2017.52%2011%2017.26%2011%2017C11%2016.74%2011.11%2016.48%2011.29%2016.29C11.67%2015.92%2012.33%2015.92%2012.71%2016.29C12.89%2016.48%2013%2016.74%2013%2017C13%2017.26%2012.89%2017.52%2012.71%2017.71Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")","notech":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12%202C9.38%202%207.25%204.13%207.25%206.75C7.25%209.32%209.26%2011.4%2011.88%2011.49C11.96%2011.48%2012.04%2011.48%2012.1%2011.49C12.12%2011.49%2012.13%2011.49%2012.15%2011.49C12.16%2011.49%2012.16%2011.49%2012.17%2011.49C14.73%2011.4%2016.74%209.32%2016.75%206.75C16.75%204.13%2014.62%202%2012%202Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M17.08%2014.1596C14.29%2012.2996%209.73996%2012.2996%206.92996%2014.1596C5.65996%2014.9996%204.95996%2016.1496%204.95996%2017.3796C4.95996%2018.6096%205.65996%2019.7496%206.91996%2020.5896C8.31996%2021.5296%2010.16%2021.9996%2012%2021.9996C13.84%2021.9996%2015.68%2021.5296%2017.08%2020.5896C18.34%2019.7396%2019.04%2018.5996%2019.04%2017.3596C19.03%2016.1396%2018.34%2014.9896%2017.08%2014.1596ZM13.83%2018.0696H10.18C9.79996%2018.0696%209.48996%2017.7596%209.48996%2017.3796C9.48996%2016.9996%209.79996%2016.6896%2010.18%2016.6896H13.83C14.21%2016.6896%2014.52%2016.9996%2014.52%2017.3796C14.52%2017.7596%2014.21%2018.0696%2013.83%2018.0696Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")","inactive":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M7.92999%2016.28C7.82999%2016.17%207.71998%2016.06%207.59998%2015.97C6.89998%2015.36%206%2015%205%2015C4.29%2015%203.61998%2015.19%203.03998%2015.52C2.84998%2015.62%202.67%2015.74%202.5%2015.88C1.58%2016.61%201%2017.74%201%2019C1%2019.75%201.21002%2020.46%201.58002%2021.06C1.67002%2021.22%201.78002%2021.37%201.90002%2021.51C1.92002%2021.54%201.94997%2021.56%201.96997%2021.59C2.68997%2022.45%203.78%2023%205%2023C6.01%2023%206.93001%2022.63%207.63%2022C7.67%2021.97%207.69998%2021.94%207.72998%2021.9C7.99998%2021.67%208.22998%2021.38%208.41998%2021.06C8.78998%2020.46%209%2019.75%209%2019C9%2017.95%208.58999%2017%207.92999%2016.28ZM6.5%2019.73H3.51001C3.10001%2019.73%202.76001%2019.39%202.76001%2018.98C2.76001%2018.57%203.10001%2018.23%203.51001%2018.23H6.5C6.91%2018.23%207.25%2018.57%207.25%2018.98C7.25%2019.39%206.91%2019.73%206.5%2019.73Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20opacity%3D%220.5%22%20d%3D%22M21.05%2011.7097V17.6997C21.05%2020.4597%2018.81%2022.6997%2016.05%2022.6997H7.31006C7.08006%2022.6997%206.85007%2022.6797%206.63007%2022.6497C7.00007%2022.4897%207.33007%2022.2697%207.63007%2021.9997C7.67007%2021.9697%207.70004%2021.9397%207.73004%2021.8997C8.00004%2021.6697%208.23004%2021.3797%208.42004%2021.0597C8.79004%2020.4597%209.00006%2019.7497%209.00006%2018.9997C9.00006%2017.9497%208.59005%2016.9997%207.93005%2016.2797C7.83005%2016.1697%207.72004%2016.0597%207.60004%2015.9697C6.90004%2015.3597%206.00006%2014.9997%205.00006%2014.9997C4.29006%2014.9997%203.62004%2015.1897%203.04004%2015.5197C2.85004%2015.6197%202.67006%2015.7397%202.50006%2015.8797C2.43006%2015.9297%202.37006%2015.9897%202.31006%2016.0497V11.7797C3.07006%2012.5997%204.15007%2013.0697%205.32007%2013.0697C6.58007%2013.0697%207.79005%2012.4397%208.55005%2011.4297C9.23005%2012.4397%2010.3901%2013.0697%2011.6801%2013.0697C12.9601%2013.0697%2014.1%2012.4697%2014.79%2011.4697C15.56%2012.4597%2016.7501%2013.0697%2017.9901%2013.0697C19.2001%2013.0697%2020.3%2012.5797%2021.05%2011.7097Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M14.67%201.57031H8.67002L7.93003%208.9303C7.87003%209.6103%207.97001%2010.2503%208.22001%2010.8303C8.80001%2012.1903%2010.16%2013.0703%2011.68%2013.0703C13.22%2013.0703%2014.5501%2012.2103%2015.1501%2010.8403C15.3301%2010.4103%2015.44%209.91033%2015.45%209.40033V9.21033L14.67%201.57031Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20opacity%3D%220.75%22%20d%3D%22M22.0402%208.59058L21.7602%205.81055C21.3402%202.79055%2019.9702%201.56055%2017.0402%201.56055H13.2002L13.9402%209.06055C13.9502%209.16055%2013.9602%209.27057%2013.9602%209.46057C14.0202%209.98057%2014.1802%2010.4606%2014.4202%2010.8906C15.1402%2012.2106%2016.5402%2013.0605%2018.0002%2013.0605C19.3302%2013.0605%2020.5302%2012.4705%2021.2802%2011.4305C21.8702%2010.6405%2022.1402%209.63058%2022.0402%208.59058Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20opacity%3D%220.75%22%20d%3D%22M6.26983%201.57031C3.32983%201.57031%201.96978%202.80028%201.53978%205.85028L1.26983%208.60028C1.16983%209.67028%201.45983%2010.7103%202.08983%2011.5203C2.84983%2012.5103%204.01981%2013.0703%205.31981%2013.0703C6.77981%2013.0703%208.17982%2012.2203%208.88982%2010.9203C9.14982%2010.4703%209.3198%209.95028%209.3698%209.41028L10.1498%201.58032H6.26983V1.57031Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")","lastc":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12.61%202.21C12.25%201.93%2011.75%201.93%2011.39%202.21C9.49004%203.66%203.88003%208.39%203.91003%2013.9C3.91003%2018.36%207.54004%2022%2012.01%2022C16.48%2022%2020.11%2018.37%2020.11%2013.91C20.12%208.48%2014.5%203.67%2012.61%202.21Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")","zero":"url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M20.21%207.81945L12.51%2012.2795C12.2%2012.4595%2011.81%2012.4595%2011.49%2012.2795L3.78997%207.81945C3.23997%207.49945%203.09997%206.74945%203.51997%206.27945C3.80997%205.94945%204.13997%205.67945%204.48997%205.48945L9.90997%202.48945C11.07%201.83945%2012.95%201.83945%2014.11%202.48945L19.53%205.48945C19.88%205.67945%2020.21%205.95945%2020.5%206.27945C20.9%206.74945%2020.76%207.49945%2020.21%207.81945Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M11.43%2014.1409V20.9609C11.43%2021.7209%2010.66%2022.2209%209.97998%2021.8909C7.91998%2020.8809%204.44998%2018.9909%204.44998%2018.9909C3.22998%2018.3009%202.22998%2016.5609%202.22998%2015.1309V9.97086C2.22998%209.18086%203.05998%208.68086%203.73998%209.07086L10.93%2013.2409C11.23%2013.4309%2011.43%2013.7709%2011.43%2014.1409Z%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M12.5701%2014.1409V20.9609C12.5701%2021.7209%2013.3401%2022.2209%2014.0201%2021.8909C16.0801%2020.8809%2019.5501%2018.9909%2019.5501%2018.9909C20.7701%2018.3009%2021.7701%2016.5609%2021.7701%2015.1309V9.97086C21.7701%209.18086%2020.9401%208.68086%2020.2601%209.07086L13.0701%2013.2409C12.7701%2013.4309%2012.5701%2013.7709%2012.5701%2014.1409Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E\")"};
+const ixGlyph = (u, sz) => ({ display: "block", width: sz, height: sz, background: "currentColor", WebkitMaskImage: u, maskImage: u, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" });
+    const tiles = tileDefs.map(([k, label, d, late]) => {
+      const on = this.tileOn(k);
+      const v = noStores ? 0 : countAll[k];
+      return {
+        label, d, value: v, apply: () => this.applyTile(k),
+        sub: noStores ? "" : SUBS[k],
+        tone: TONE[k],
+        glow: on ? "rgba(139,92,246,0.4)" : GLOW[k],
+        line: on ? "rgba(139,92,246,0.4)" : LINE[k],
+        chipBg: CHIP[k], chipEdge: CHIPE[k],
+        edgeHover: on ? "rgba(var(--w),0.24)" : "rgba(var(--w),0.12)", shHover: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 30px 50px -24px var(--k55)" : "var(--sc-shh)", arrowSz: on ? 16 : 13,
+        valColor: on ? "#fff" : "var(--sc-acc)",
+        subColor: on ? "rgba(255,255,255,0.78)" : "var(--sc-ink3)",
+        labelColor: on ? "#fff" : "var(--sc-acc)",
+        dark: on ? "1" : "0", blobOp: on ? 1 : 0, blobScale: on ? 1 : 0.6,
+        arrowD: on ? "M7 7l10 10M17 7L7 17" : "M7 17L17 7M8 7h9v9",
+        style: { position: "relative", isolation: "isolate", overflow: "hidden", display: "flex", flexDirection: "column", width: "100%", minWidth: 0, minHeight: 214, textAlign: "left", padding: "18px 20px 20px", borderRadius: 28, animation: "scRise .85s cubic-bezier(.2,.8,.2,1) " + (0.17 + tileDefs.findIndex(x => x[0] === k) * 0.09).toFixed(2) + "s both", cursor: "pointer", font: "inherit", color: C.text,
+          background: on ? "linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%)" : "var(--sc-card)",
+          boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 20px 40px -24px var(--k55)" : "var(--sc-sh)",
+          border: "1.5px solid transparent",
+          transition: "background .35s,box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1)" },
+        on, off: !on, glyphLin: ixGlyph(IX_LIN[k], 18), glyphBold: Object.assign(ixGlyph(IX_BOLD[k], 18), { color: "#fff", animation: "stCountPop .42s cubic-bezier(.34,1.56,.64,1) both" }), iconStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", width: 40, height: 40, borderRadius: 999,
+          border: "1px solid " + (on ? "rgba(255,255,255,0.3)" : "var(--sc-line)"),
+          background: on ? "rgba(255,255,255,0.12)" : "transparent",
+          color: on ? "#fff" : "var(--sc-ink)",
+          transition: "background .3s,border-color .3s,color .3s" },
+        arrowStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", overflow: "hidden", width: 36, height: 36, borderRadius: 999,
+          border: on ? "0" : "1px solid var(--sc-actb)",
+          background: on ? "#fff" : "var(--sc-actbg)",
+          boxShadow: "none",
+          color: on ? "#2e1065" : "var(--sc-actfg)",
+          transition: "background .3s,color .3s,box-shadow .3s,transform .45s cubic-bezier(.34,1.56,.64,1)", transform: on ? "rotate(90deg)" : "none" }
+      };
+    });
+
+    const filters = FILTERS.map(f => {
+      const n = s.sel[f.key].length, open = s.open === f.key;
+      let opts = f.opts();
+      if (f.searchable && s.techQ.trim()) opts = opts.filter(o => o[1].toLowerCase().includes(s.techQ.trim().toLowerCase()));
+      return {
+        label: f.label, countTxt: n ? String(n) : "", open, searchable: !!f.searchable,
+        toggle: () => this.setState({ open: open ? null : f.key, menuFor: null, techQ: "" }),
+        hasCount: n > 0,
+        btnStyleDark: n ? "1" : "0", btnStyle: { display: "inline-flex", alignItems: "center", gap: 7, height: 44, padding: n ? "0 12px 0 18px" : "0 14px 0 16px", borderRadius: 999, whiteSpace: "nowrap", cursor: "pointer", font: (n ? "600" : "500") + " 13.5px " + F,
+          color: n ? "var(--lc-title)" : C.text,
+          background: "var(--lc-flat)",
+          border: 0,
+          boxShadow: n ? "0 0 0 1px rgba(167,139,250,.38),0 12px 28px -22px rgba(0,0,0,.65)" : open ? "0 0 0 1px rgba(167,139,250,.45),0 12px 28px -22px rgba(0,0,0,.65)" : "var(--lc-edge)",
+          transition: "background .3s,border-color .2s,box-shadow .3s,color .2s" },
+        caretStyle: { color: n ? "rgba(var(--w),0.8)" : open ? C.accent : C.faint, transition: "transform .22s", transform: open ? "rotate(180deg)" : "none" },
+        options: opts.map(([val, label]) => {
+          const on = s.sel[f.key].includes(val);
+          const cnt = STORES.filter(st => f.test(st, [val])).length;
+          return {
+            label, n: cnt, toggle: () => this.toggleOpt(f.key, val),
+            style: { display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "10px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", font: (on ? 600 : 500) + " 14px " + F, color: on ? C.accent : C.text, background: on ? C.accentSoft : "transparent" },
+            boxStyle: { flex: "0 0 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: 6, border: "1.5px solid " + (on ? "#6d28d9" : C.edge2), background: on ? "#6d28d9" : "transparent", color: on ? "#fff" : "transparent" }
+          };
+        })
+      };
+    });
+
+    const chips = [];
+    if (s.needsAttn) chips.push({ group: "", label: "Needs attention", remove: () => this.setState({ needsAttn: false, page: 1 }) });
+    FILTERS.forEach(f => s.sel[f.key].forEach(v => { const o = f.opts().find(x => x[0] === v); chips.push({ group: f.label + " ", label: o ? o[1] : v, remove: () => this.toggleOpt(f.key, v) }); }));
+
+    const so = SORTS.find(x => x[0] === s.sort) || SORTS[0];
+    const seg = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 34, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: "600 13px " + F, background: on ? "var(--lc-chip)" : "transparent", color: on ? "var(--lc-title)" : C.muted, boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.28)" : "none", transition: "background .2s,color .2s" });
+
+    const COLS = [["Store", "number"], ["Status", "attention"], ["Details", null], ["Technicians", null], ["Products", null], ["", null]];
+    const cols = COLS.map(([label, key]) => ({
+      label,
+      sort: key ? () => this.setState({ sort: key, page: 1 }) : () => {},
+      style: { display: "inline-flex", alignItems: "center", gap: 5, padding: 0, border: 0, background: "transparent", cursor: key ? "pointer" : "default", textAlign: "left", whiteSpace: "nowrap", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: key && s.sort === key ? C.text : C.muted },
+      arrowStyle: { display: key && s.sort === key ? "inline-flex" : "none", color: C.accent }
+    }));
+
+    const win = [];
+    const start = Math.max(1, Math.min(page - 2, pagesN - 4));
+    for (let p = start; p <= Math.min(pagesN, start + 4); p++) win.push(p);
+    const navBtn = dis => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: "50%", border: "1px solid " + C.edge, background: C.surf, color: dis ? "rgba(var(--w),0.24)" : C.text, cursor: dis ? "default" : "pointer" });
+
+    const Z = this.props.zone || "a", col = { display: "flex", flexDirection: "column", gap: 20 };
+    const zoneTop = Z === "b" ? Object.assign({}, col, { position: "relative", isolation: "isolate", gap: 22, padding: "26px 26px 26px", borderRadius: 32, background: "linear-gradient(180deg,rgba(var(--w),.035),rgba(var(--w),.012))", boxShadow: "inset 0 1px 0 rgba(255,255,255,.06), 0 30px 60px -40px var(--k8)", overflow: "hidden" })
+      : Z === "c" ? Object.assign({}, col, { padding: "8px 2px 0" }) : Object.assign({}, col, { padding: "8px 0 0" });
+    const zoneBottom = Z === "b" ? Object.assign({}, col, { marginTop: 18 })
+      : Z === "c" ? Object.assign({}, col, { marginTop: 18, marginLeft: -24, marginRight: -24, marginBottom: -48, padding: "28px 24px 48px", borderRadius: "36px 36px 0 0", background: "var(--s0b)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.08), 0 -30px 60px -30px var(--k8)", minHeight: 600 })
+      : Object.assign({}, col, { marginTop: 22 });
+    return {
+      zoneTop, zoneBottom, zoneGlow: Z === "b", zoneRule: Z === "a",
+      rootStyle, rootRef: this.rootRef,
+      prefetchProfile: s.prefetch && !s.detail, preloadDetail: !!this.props.allowDetail && !s.detail, detailRef: this.detailRef,
+      skelOp: s.detailReady ? 0 : 1, detailOp: s.detailReady ? 1 : 0, detailY: s.detailReady ? "0px" : "10px",
+      detailStore: s.detail, detailTab: s.detailTab, closeDetail: () => this.closeDetail(),
+      addDraft: s.add ? s.add.draft : null, existingNos: STORES.map(x => x.no),
+      closeAdd: () => this.closeAdd(), saveDraft: (d, silent) => this.saveDraft(d, silent), discardDraft: id => { this.discardDraft(id); this.closeAdd(); }, createStore: d => this.createStore(d),
+      openFromAdd: no => { this.setState({ add: null }); this.openStore(+no || no); },
+      showDetail: !!s.detail, showMain: !s.detail && !s.add, showAdd: !!s.add, preloadAdd: !s.add, showCreated: !!s.created && !!s.cer,
+      createdTz: s.created ? ({ TX: "Central (CT)", CA: "Pacific (PT)", NV: "Pacific (PT)", UT: "Mountain (MT)", CO: "Mountain (MT)" }[(/ - ([A-Z]{2})$/.exec(s.created.name) || [])[1]] || "Central (CT)") + " time" : "",
+      createdOn: s.created ? (s.created.createdOn || "Created 16 Oct 2024") : "",
+      fadeOp: s.cer && (s.cer.phase === "out" || s.cer.phase === "card") ? 0 : 1,
+      detailWrap: s.cer ? { opacity: s.cer.phase === "reveal" ? 1 : 0, transition: "opacity .36s ease" } : s.cerLanded ? { opacity: 1 } : { animation: "stDetailIn .45s cubic-bezier(.2,.8,.2,1) backwards" },
+      cerCard: s.cer ? Object.assign({ position: "fixed", isolation: "isolate", overflow: "hidden", borderRadius: 28, background: "linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%)", border: "1px solid rgba(255,255,255,.14)", color: "#fff", boxShadow: s.cer.phase === "fly" || s.cer.phase === "reveal" ? "inset 0 1px 0 rgba(255,255,255,.24),0 20px 40px -24px rgba(0,0,0,.55)" : "inset 0 1px 0 rgba(255,255,255,.24),0 40px 80px -28px rgba(76,29,149,.95)", opacity: s.cer.phase === "out" ? 0 : 1, transform: s.cer.phase === "out" ? "perspective(1000px) rotateX(16deg) translateY(40px) scale(.9)" : "none", transformOrigin: "50% 100%", filter: s.cer.phase === "out" ? "blur(10px)" : "blur(0)", transition: s.cer.phase === "fly" ? "left .78s cubic-bezier(.65,0,.25,1),top .78s cubic-bezier(.65,0,.25,1),width .78s cubic-bezier(.65,0,.25,1),height .78s cubic-bezier(.65,0,.25,1),box-shadow .78s" : s.cer.phase === "reveal" ? "none" : "opacity .6s ease,transform .8s cubic-bezier(.2,.8,.2,1),filter .6s ease" }, s.cer.rect) : {},
+      createdHead: s.created ? (s.created.active === false ? "Ready when you are" : "It's live") : "",
+      cerHalo: s.cer ? { position: "fixed", left: s.cer.rect.left - 90, top: s.cer.rect.top - 60, width: s.cer.rect.width + 180, height: s.cer.rect.height + 140, borderRadius: "50%", background: "radial-gradient(closest-side,rgba(139,92,246,.42),rgba(139,92,246,.12) 55%,transparent)", filter: "blur(30px)", opacity: s.cer.phase === "card" ? 1 : 0, transform: s.cer.phase === "card" ? "scale(1)" : "scale(.85)", transition: "opacity .7s ease,transform 1s cubic-bezier(.2,.8,.2,1)" } : {},
+      cerHead: s.cer ? { position: "fixed", left: s.cer.rect.left - 120, width: s.cer.rect.width + 240, top: s.cer.rect.top - 50, display: "flex", flexDirection: "column", alignItems: "center", gap: 10, textAlign: "center", opacity: s.cer.phase === "card" || s.cer.phase === "out" ? 1 : 0, transition: "opacity .3s ease" } : {},
+      cerInner: (() => { const f = s.cer && (s.cer.phase === "fly" || s.cer.phase === "reveal"); const E = ".78s cubic-bezier(.65,0,.25,1)"; return { position: "absolute", inset: 0, display: "flex", flexDirection: "column", gap: f && s.cer.gap ? s.cer.gap : "14px", padding: f && s.cer.pad ? s.cer.pad : "18px 20px 20px", minWidth: 0, transition: "padding " + E + ",gap " + E }; })(),
+      cerNumFs: s.cer && (s.cer.phase === "fly" || s.cer.phase === "reveal") && s.cer.numFs ? s.cer.numFs : "40px",
+      cerBadgeOp: s.cer && (s.cer.phase === "fly" || s.cer.phase === "reveal") ? 0 : 1,
+      cerChips: s.cer ? { position: "fixed", left: s.cer.rect.left - 120, width: s.cer.rect.width + 240, top: s.cer.rect.top + s.cer.rect.height + 22, display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", opacity: s.cer.phase === "card" ? 1 : 0, transition: "opacity .3s ease" } : {}, createdStatus: s.created && s.created.active === false ? "Inactive" : "Active", createdAddr: s.created ? s.created.addr : "",
+      createdChips: s.created ? (() => { const c = s.created, n = c.techNames || [], out = [];
+        out.push({ label: c.active === false ? "Hidden until activated" : "Live for technicians", dot: true, dotC: c.active === false ? "#8c8b95" : "#62d69a", hasPics: false, pics: [] });
+        out.push({ label: c.products + (c.products === 1 ? " product" : " products"), dot: false, hasPics: false, pics: [] });
+        out.push(n.length ? { label: n.length + (n.length === 1 ? " technician" : " technicians"), dot: false, hasPics: true, pics: n.slice(0, 3).map((nm, i) => ({ ml: i ? "-7px" : "0px", bg: "url(assets/people/" + String(nm).toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,#2a2238" })) } : { label: "No technician yet", dot: true, dotC: "#f0c35a", hasPics: false, pics: [] });
+        return out.map((x, i) => Object.assign(x, { delay: (1250 + i * 100) + "ms" })); })() : [], createdNo: s.created ? String(s.created.no) : "", createdName: s.created ? s.created.name : "", createdSub: s.created ? s.created.sub : "", createdAnim: s.createdOut ? "crOut .45s ease forwards" : "crIn .3s ease both",
+      mainAnim: s.backed ? "stBackIn .35s ease both" : "none",
+      total: noStores ? 0 : STORES.length,
+      showDraft: !!this.props.showDraft,
+            oneDraft: (s.drafts || []).length === 1, manyDrafts: (s.drafts || []).length > 1,
+      draftLabel: s.drafts && s.drafts[0] ? (s.drafts[0].no || "Untitled draft") : "", draftsLabel: (s.drafts || []).length + " drafts",
+      resumeOne: () => this.openAdd(s.drafts[0]), toggleDrafts: e => { e.stopPropagation(); this.setState({ draftsOpen: !s.draftsOpen }); },
+      draftsOpen: s.draftsOpen,
+      draftRows: (s.drafts || []).map((d, i) => { const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + "h ago" : Math.round(m / 1440) + "d ago"; }; return { title: (d.no || "Untitled draft") + (d.name ? " · " + d.name : ""), meta: "Step " + (d.step || 1) + " of 4 · edited " + ago(d.edited), sep: i ? "rgba(var(--w),.06)" : "transparent", resume: () => this.openAdd(d), discard: e => { e.stopPropagation(); this.discardDraft(d.id); } }; }),
+      addStore: () => this.openAdd(null),
+      tiles,
+      q: s.q, hasQ: !!s.q, onQ: e => this.setState({ q: e.target.value, page: 1 }), clearQ: () => this.setState({ q: "", page: 1 }),
+      onSearch: e => this.setState({ q: e.target.value, page: 1 }),
+      clearQ: () => this.setState({ q: "", page: 1 }),
+      techQ: s.techQ, onTechQ: e => this.setState({ techQ: e.target.value }),
+      filters,
+      sortLabel: so[1], sortOpen: s.open === "sort",
+      toggleSort: () => this.setState({ open: s.open === "sort" ? null : "sort", menuFor: null }),
+      sortOptions: SORTS.slice(0, 5).map(([k, label]) => ({
+        label, pick: () => this.setState({ sort: k, open: null, page: 1 }),
+        style: { display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "10px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (s.sort === k ? 600 : 500) + " 14px " + F, color: s.sort === k ? C.accent : C.text, background: s.sort === k ? C.accentSoft : "transparent" },
+        tickStyle: { display: s.sort === k ? "flex" : "none" }
+      })),
+      gridBtn: seg(isGrid), listBtn: seg(!isGrid),
+      setGrid: () => this.setView("grid"), setList: () => this.setView("list"),
+      hasChips: chips.length > 0, chips,
+      clearAll: () => this.setState({ q: "", sel: EMPTY_SEL(), needsAttn: false, page: 1 }),
+      showLoading: loading && isGrid, showLoadingList: loading && !isGrid,
+      skeletonRows: Array.from({ length: 10 }, (_, i) => ({ cells: ["70%", "64%", "74%", "56%", "60%", "0%"].map((w, j) => ({ w: j === 5 ? "0%" : (parseInt(w) - (i * 7 + j * 3) % 16) + "%" })) })),
+      skeletons: Array.from({ length: 8 }, (_, i) => ({ i })),
+      showGrid: live && isGrid && list.length > 0, cards: views,
+      showList: live && !isGrid && list.length > 0, rows: views, cols,
+      showNoResults: live && list.length === 0,
+      showEmpty: noStores, showError: vs === "Error loading",
+      retry: () => this.say("Retrying…"),
+      showPager: live && list.length > 0,
+      showing: "Showing " + ((page - 1) * size + 1) + " to " + Math.min(page * size, list.length) + " of " + list.length,
+      pages: win.map(p => ({ n: p, go: () => this.setState({ page: p }), style: { minWidth: 38, height: 38, padding: "0 6px", borderRadius: 999, border: "1px solid " + (p === page ? "transparent" : C.edge), background: p === page ? "var(--seg)" : C.surf, color: p === page ? "var(--segfg)" : C.muted, font: "600 13px " + F, cursor: "pointer" } })),
+      prev: () => page > 1 && this.setState({ page: page - 1 }), next: () => page < pagesN && this.setState({ page: page + 1 }),
+      prevStyle: navBtn(page <= 1), nextStyle: navBtn(page >= pagesN),
+      toast: s.toast, toastOp: s.toast ? 1 : 0, toastY: s.toast ? "0px" : "12px"
+    };
+  }
+}
+</script>
+</body>
+</html>

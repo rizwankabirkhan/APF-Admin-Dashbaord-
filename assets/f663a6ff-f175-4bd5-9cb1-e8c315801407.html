@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--pa)}
+input::placeholder{color:var(--t3)}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+:root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-onink:#17131f;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-onink:#ffffff;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-hov:0 0 0 1px rgba(232,224,248,.1),0 18px 34px -22px rgba(0,0,0,.75);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-hov:0 0 0 1px rgba(26,22,37,.09),0 18px 34px -22px rgba(60,30,110,.3);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+:root{--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-glow:radial-gradient(closest-side,rgba(150,120,255,.34),rgba(120,90,230,.12) 55%,transparent);--pn-sheen:rgba(232,224,248,.05);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-line:rgba(232,224,248,.07);--pn-tile:rgba(232,224,248,.045);--pn-tileh:rgba(232,224,248,.09);--pn-inner:rgba(10,8,18,.35);--pn-track:rgba(232,224,248,.08);--pn-win:rgba(167,139,250,.36);--pn-ring:#1d1729;--pn-redbg:rgba(248,113,113,.09);--pn-rededge:rgba(248,113,113,.22);--pn-cta:#f1edf8;--pn-ctafg:#17131f;--pn-hero:#f1edf8;--pn-herofg:#17131f}
+:root[data-theme=light]{--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-glow:radial-gradient(closest-side,rgba(168,140,245,.32),rgba(184,160,246,.12) 55%,transparent);--pn-sheen:rgba(255,255,255,.4);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-line:rgba(26,22,37,.07);--pn-tile:rgba(255,255,255,.7);--pn-tileh:#f1edf8;--pn-inner:#f6f3fb;--pn-track:rgba(26,22,37,.08);--pn-win:rgba(124,58,237,.22);--pn-ring:#ffffff;--pn-redbg:#fde8e3;--pn-rededge:rgba(210,61,34,.2);--pn-cta:#1a1625;--pn-ctafg:#ffffff;--pn-hero:#1a1625;--pn-herofg:#ffffff}
+@keyframes tvRise{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes tvPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes tvFade{from{opacity:0}to{opacity:1}}
+@keyframes tvModal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes tvShimmer{from{background-position:-420px 0}to{background-position:420px 0}}
+@keyframes tvSpin{to{transform:rotate(360deg)}}
+@keyframes tvStripe{from{background-position:0 0}to{background-position:28px 0}}
+@keyframes tvCount{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes pnIn{from{opacity:0;transform:translateX(48px) scale(.975);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pnScrim{from{opacity:0}to{opacity:1}}
+@keyframes pnRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pnGlow{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.12)}}
+[data-vc]:hover [data-play]{opacity:1;transform:translate(-50%,-50%) scale(1)}
+[data-vc]:hover [data-thumbimg]{transform:scale(1.045)}
+[data-tip]{position:relative}
+[data-tip]:hover>[data-tipbox]{opacity:1;transform:translate(-50%,0)}
+[data-fr]:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){[data-vc],[data-thumbimg],[data-play]{animation:none!important;transition:none!important}}
+[data-sq]:focus-within{flex-basis:300px!important;box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.5)!important;color:var(--pa)!important}
+[data-sq] input::placeholder{color:var(--t3);opacity:1}
+@keyframes sqPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" data-screen-label="Training videos" style="position:relative;isolation:isolate;overflow-x:clip;min-height:100vh;background:transparent;font-family:'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1)">
+<input ref="{{ fileRef }}" type="file" accept="video/*,.mov,.mp4,.avi,.mkv" onChange="{{ onFilePicked }}" style="display:none"/>
+<input ref="{{ imgRef }}" type="file" accept="image/*" onChange="{{ onImgPicked }}" style="display:none"/>
+<div ref="{{ wrapRef }}" style="width:100%;max-width:1760px;padding:8px 24px 48px;display:flex;flex-direction:column;gap:20px">
+
+<div style="display:flex;flex-direction:column;gap:22px;padding:8px 0 0">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Training videos</h1>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button type="button" onClick="{{ openActivity }}" aria-label="History" title="History" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);cursor:pointer;transition:background .2s,transform .2s" style-hover="background:var(--s2);transform:translateY(-1px)" style-active="transform:scale(.95)"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 103-6.7L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7.5V12l3 2"></path></svg></button>
+      <button data-dark="1" type="button" onClick="{{ openUpload }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px 0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:filter .15s,transform .12s" style-hover="filter:brightness(1.08)" style-active="transform:scale(.97)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17v-6l-2 2M9 11l2 2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z"></path></svg>Upload video</button>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <div ref="{{ tabsRef }}" style="position:relative;display:flex;gap:2px;width:max-content;max-width:100%;padding:4px;border-radius:999px;background:rgba(var(--g1),0.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(var(--w),0.06);box-shadow:0 20px 40px -24px var(--k55)">
+      <div data-dark="1" aria-hidden="true" style="position:absolute;top:4px;bottom:4px;left:0;width:{{ indW }};transform:translateX({{ indX }});opacity:{{ indOp }};border-radius:999px;background:#7c3aed;transition:transform .45s cubic-bezier(.34,1.32,.5,1),width .45s cubic-bezier(.34,1.32,.5,1),opacity .2s"></div>
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+        <button type="button" data-tab="{{ t.key }}" onClick="{{ t.go }}" style="{{ t.style }}" style-hover="color:var(--t1)">{{ t.label }}<span style="{{ t.countStyle }}">{{ t.count }}</span></button>
+      </sc-for>
+    </div>
+    <span style="display:inline-flex;align-items:center;gap:8px;font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:var(--pa)"><path d="M20 7v10c0 4-1 5-5 5H9c-4 0-5-1-5-5V7c0-4 1-5 5-5h6c4 0 5 1 5 5zM14 5.5h-4M12 19.1a1.55 1.55 0 100-3.1 1.55 1.55 0 000 3.1z"></path></svg>{{ audience }}</span>
+  </div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:18px;margin-top:22px">
+  <sc-if value="{{ notReorder }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <label data-sq="1" style="display:flex;align-items:center;gap:8px;flex:0 1 240px;min-width:180px;height:44px;padding:0 7px 0 15px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t3);cursor:text;transition:flex-basis .35s cubic-bezier(.2,.8,.2,1),box-shadow .2s">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+        <input type="text" value="{{ lq }}" onChange="{{ onLq }}" placeholder="Search videos" aria-label="Search videos" style="flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/>
+        <sc-if value="{{ hasLq }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clrLq }}" aria-label="Clear search" style="flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer;animation:sqPop .22s cubic-bezier(.34,1.56,.64,1) both" style-hover="color:var(--t1)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+      </label>
+      <div data-pop="" style="position:relative">
+        <button type="button" onClick="{{ toggleStatus }}" style="{{ statusBtn }}">
+          <span style="color:var(--t3);font-weight:500">Status</span>{{ statusLabel }}
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg>
+        </button>
+        <sc-if value="{{ statusOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 8px);left:0;z-index:30;min-width:220px;padding:5px;border-radius:16px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:tvPop .2s cubic-bezier(.22,.9,.24,1)">
+            <sc-for list="{{ statusOptions }}" as="o" hint-placeholder-count="3">
+              <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}"><span style="flex:1">{{ o.label }}</span><span style="font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ o.n }}</span><span style="{{ o.tickStyle }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ clearQuery }}" style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 10px 0 13px;border-radius:999px;border:0;background:var(--s3);color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;animation:tvPop .22s cubic-bezier(.22,.9,.24,1)"><span style="color:var(--t3);font-weight:500">Search</span>{{ queryLabel }}<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </sc-if>
+      <div style="flex:1 1 0"></div>
+      <span data-tip="" style="display:inline-flex">
+        <button type="button" onClick="{{ startReorder }}" disabled="{{ reorderOff }}" style="{{ reorderBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg>Reorder</button>
+        <sc-if value="{{ reorderOff }}" hint-placeholder-val="{{ false }}"><span data-tipbox="" style="position:absolute;bottom:calc(100% + 10px);left:50%;z-index:40;padding:8px 12px;border-radius:12px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);color:var(--sc-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,4px);transition:opacity .18s,transform .18s">{{ reorderTip }}</span></sc-if>
+      </span>
+      <div data-pop="" style="position:relative">
+        <button type="button" onClick="{{ toggleSort }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--t3)"><path d="M3 7h18M6 12h12M10 17h4"></path></svg>
+          <span style="color:var(--t3)">Sort</span> {{ sortLabel }}
+        </button>
+        <sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:5px;border-radius:16px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:tvPop .2s cubic-bezier(.22,.9,.24,1)">
+            <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="4">
+              <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}"><span style="flex:1">{{ o.label }}</span><span style="{{ o.tickStyle }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge)">
+        <button type="button" onClick="{{ setGrid }}" style="{{ gridBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3zM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3z"></path></svg>Grid</button>
+        <button type="button" onClick="{{ setList }}" style="{{ listBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"></path></svg>List</button>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ reorder }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-height:60px;padding:8px 8px 8px 20px;border-radius:999px;background:var(--lc-flat);box-shadow:0 0 0 1px rgba(167,139,250,.38),0 12px 28px -22px rgba(0,0,0,.65);animation:tvPop .25s cubic-bezier(.22,.9,.24,1)">
+      <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--lc-chip);color:var(--pa)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg></span>
+      <span style="flex:1 1 260px;min-width:0;font:500 14px 'AppNumerals','Urbanist',system-ui,sans-serif">Drag videos into the order the app should show them.</span>
+      <button type="button" onClick="{{ cancelReorder }}" style="height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--s2)">Cancel</button>
+      <button data-dark="1" type="button" onClick="{{ saveOrder }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="filter:brightness(1.08)" style-active="transform:scale(.97)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>Save order</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showSkelGrid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:16px">
+      <sc-for list="{{ skel }}" as="k" hint-placeholder-count="8">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:10px 10px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge)">
+          <span style="display:block;aspect-ratio:16/9;border-radius:20px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span>
+          <span style="display:block;height:14px;width:72%;margin:0 8px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span>
+          <span style="display:block;height:11px;width:90%;margin:0 8px;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span>
+          <span style="display:block;height:30px;width:55%;margin:6px 8px 0;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showSkelList }}" hint-placeholder-val="{{ false }}">
+    <div style="border-radius:26px;background:var(--s1);box-shadow:inset 0 1px 0 var(--s2),0 18px 40px -24px var(--k8);overflow:hidden;padding:6px">
+      <sc-for list="{{ skel }}" as="k" hint-placeholder-count="8">
+        <div style="display:flex;align-items:center;gap:16px;height:84px;padding:0 16px">
+          <span style="flex:none;width:112px;height:63px;border-radius:14px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:10px"><span style="display:block;height:13px;width:40%;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span><span style="display:block;height:11px;width:62%;border-radius:999px;background:linear-gradient(90deg,var(--c3) 0,var(--c5) 50%,var(--c3) 100%) 0 0/420px 100%;animation:tvShimmer 1.4s linear infinite"></span></span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 24px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);animation:tvRise .6s cubic-bezier(.2,.8,.2,1) both">
+      <span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:var(--lc-chip);color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ emptyIcon }}"></path></svg></span>
+      <span style="margin-top:16px;font:600 18px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ emptyTitle }}</span>
+      <span style="margin-top:6px;max-width:420px;font:400 14px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">{{ emptyBody }}</span>
+      <button type="button" onClick="{{ emptyRun }}" data-dark="{{ emptyDark }}" style="{{ emptyBtn }}">{{ emptyCta }}</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:{{ gridCols }};gap:16px">
+      <sc-for list="{{ cards }}" as="v" hint-placeholder-count="8">
+        <div data-vc="1" draggable="{{ v.drag }}" onDragStart="{{ v.dragStart }}" onDragOver="{{ v.dragOver }}" onDrop="{{ v.drop }}" onDragEnd="{{ v.dragEnd }}" onClick="{{ v.open }}" style="{{ v.style }}" style-hover="{{ v.hover }}">
+          <div onClick="{{ v.preview }}" style="position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--lc-inner);cursor:{{ v.thumbCursor }}">
+            <span data-thumbimg="1" style="{{ v.thumbBg }}"></span>
+            <sc-if value="{{ v.isMedia }}" hint-placeholder-val="{{ true }}">
+              <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,14,.28) 0%,transparent 34%,transparent 58%,rgba(8,6,14,.55) 100%);pointer-events:none"></span>
+              <sc-if value="{{ v.canPlay }}" hint-placeholder-val="{{ true }}"><span data-play="1" style="position:absolute;left:50%;top:50%;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.94);color:#5b21b6;box-shadow:0 14px 34px -10px rgba(0,0,0,.6);opacity:0;transform:translate(-50%,-50%) scale(.72);transition:opacity .25s,transform .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="margin-left:3px"><path d="M8 5.14v13.72a1 1 0 001.5.86l11.2-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z"></path></svg></span></sc-if>
+              <span style="position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ v.dur }}</span>
+            </sc-if>
+            <sc-if value="{{ v.showOrder }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:28px;padding:0 9px;border-radius:999px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:700 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums;transition:background .25s">#{{ v.pos }}</span></sc-if>
+            <sc-if value="{{ v.showPill }}" hint-placeholder-val="{{ false }}"><span style="{{ v.pillStyle }}">{{ v.pillLabel }}</span></sc-if>
+            <sc-if value="{{ v.isUploading }}" hint-placeholder-val="{{ false }}">
+              <div data-dark="1" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:16px;background:linear-gradient(158deg,rgba(91,33,182,.9),rgba(59,15,122,.92));color:#fff">
+                <span style="display:flex;align-items:center;justify-content:space-between;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif"><span>Uploading · {{ v.pct }}</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="opacity:.8"><path d="M9 17v-6l-2 2M9 11l2 2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z"></path></svg></span>
+                <span style="position:relative;display:block;height:6px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden"><span style="{{ v.barStyle }}"></span></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ v.isProcessing }}" hint-placeholder-val="{{ false }}">
+              <div data-dark="1" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(158deg,rgba(91,33,182,.9),rgba(59,15,122,.92));color:#fff;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif">
+                <span style="width:28px;height:28px;border-radius:50%;border:2.5px solid rgba(255,255,255,.25);border-top-color:#fff;animation:tvSpin .8s linear infinite"></span>Processing video...
+              </div>
+            </sc-if>
+            <sc-if value="{{ v.isFailed }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--lc-badbg);color:var(--lc-bad);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">
+                <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--lc-badbg);box-shadow:inset 0 0 0 1px currentColor"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01"></path></svg></span>Upload failed
+              </div>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:4px 8px 0;min-width:0">
+            <span title="{{ v.title }}" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em;font:600 16.5px/1.25 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--sc-ink)">{{ v.title }}</span>
+            <span title="{{ v.desc }}" style="display:block;font:400 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ v.descShown }}</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 4px 0 8px">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0">
+              <span style="{{ v.avStyle }}">{{ v.avIni }}</span>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ v.metaBy }}</span><span style="font:400 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ v.meta }}</span></span>
+            </div>
+            <sc-if value="{{ v.isFailed }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:6px;flex:none">
+                <button type="button" onClick="{{ v.remove }}" style="height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--lc-chip)">Remove</button>
+                <button data-dark="1" type="button" onClick="{{ v.retry }}" style="height:34px;padding:0 14px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="filter:brightness(1.08)">Retry</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ v.showMenu }}" hint-placeholder-val="{{ true }}">
+              <div data-pop="" style="position:relative;flex:none">
+                <button type="button" onClick="{{ v.toggleMenu }}" aria-label="Video actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                <sc-if value="{{ v.menuOpen }}" hint-placeholder-val="{{ false }}">
+                  <div data-dark="0" style="position:absolute;bottom:calc(100% + 8px);right:0;z-index:40;min-width:230px;padding:6px;border-radius:18px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);transform-origin:bottom right;animation:tvPop .22s cubic-bezier(.22,.9,.24,1)">
+                    <sc-for list="{{ v.menu }}" as="mi" hint-placeholder-count="6">
+                      <button type="button" onClick="{{ mi.run }}" style="display:flex;width:100%;align-items:center;gap:10px;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:{{ mi.color }};font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;white-space:nowrap;cursor:pointer;box-shadow:0 -1px 0 {{ mi.sep }};transition:background .15s,padding .15s" style-hover="background:var(--lc-chip);padding-left:15px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;opacity:.85"><path d="{{ mi.d }}"></path></svg>{{ mi.label }}</button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ v.showMove }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:6px;flex:none">
+                <button type="button" onClick="{{ v.up }}" disabled="{{ v.upOff }}" aria-label="Move earlier" style="{{ v.upStyle }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg></button>
+                <button type="button" onClick="{{ v.down }}" disabled="{{ v.downOff }}" aria-label="Move later" style="{{ v.downStyle }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showList }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:auto">
+      <div style="min-width:1060px">
+        <div style="position:sticky;top:0;z-index:5;display:grid;grid-template-columns:56px minmax(320px,2.4fr) 110px 120px minmax(170px,1fr) minmax(170px,1fr) 52px;align-items:center;gap:0 18px;height:48px;padding:0 22px;background:var(--lc-inner);border-bottom:1px solid var(--lc-iline)">
+          <sc-for list="{{ cols }}" as="h" hint-placeholder-count="7">
+            <button type="button" onClick="{{ h.sort }}" disabled="{{ h.static }}" style="{{ h.style }}">{{ h.label }}<span style="{{ h.arrowStyle }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></span></button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;padding:6px">
+          <sc-for list="{{ cards }}" as="r" hint-placeholder-count="8">
+            <div style="height:1px;margin:0 16px;background:linear-gradient(90deg,transparent,var(--c4) 12%,var(--c4) 88%,transparent);opacity:{{ r.sepOp }}"></div>
+            <div draggable="{{ r.drag }}" onDragStart="{{ r.dragStart }}" onDragOver="{{ r.dragOver }}" onDrop="{{ r.drop }}" onDragEnd="{{ r.dragEnd }}" onClick="{{ r.open }}" style="{{ r.rowStyle }}" style-hover="background:var(--s2)">
+              <span style="display:flex;align-items:center;gap:6px;font:700 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);font-variant-numeric:tabular-nums"><sc-if value="{{ r.reorderMode }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="cursor:grab;color:var(--pa)"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg></sc-if>{{ r.posLabel }}</span>
+              <span style="display:flex;align-items:center;gap:14px;min-width:0">
+                <span onClick="{{ r.preview }}" style="position:relative;flex:none;width:112px;height:63px;border-radius:14px;overflow:hidden;background:var(--lc-inner);cursor:{{ r.thumbCursor }}"><span style="{{ r.thumbBg }}"></span><sc-if value="{{ r.isUploading }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:8px;right:8px;bottom:8px;height:4px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden"><span style="{{ r.barStyle }}"></span></span></sc-if></span>
+                <span style="min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.title }}</span><span title="{{ r.desc }}" style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.descShown }}</span></span>
+              </span>
+              <span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--t2)">{{ r.durTxt }}</span>
+              <span><span style="{{ r.statusStyle }}"><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>{{ r.statusLabel }}</span></span>
+              <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ r.upDate }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ r.upBy }}</span></span>
+              <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.edFg }}">{{ r.edDate }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ r.edBy }}</span></span>
+              <span style="display:flex;justify-content:flex-end">
+                <sc-if value="{{ r.showMenu }}" hint-placeholder-val="{{ true }}">
+                  <div data-pop="" style="position:relative">
+                    <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Video actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                    <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}">
+                      <div data-dark="0" style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;min-width:230px;padding:6px;border-radius:18px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);transform-origin:top right;animation:tvPop .22s cubic-bezier(.22,.9,.24,1)">
+                        <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="6">
+                          <button type="button" onClick="{{ mi.run }}" style="display:flex;width:100%;align-items:center;gap:10px;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:{{ mi.color }};font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;white-space:nowrap;cursor:pointer;box-shadow:0 -1px 0 {{ mi.sep }};transition:background .15s,padding .15s" style-hover="background:var(--lc-chip);padding-left:15px"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;opacity:.85"><path d="{{ mi.d }}"></path></svg>{{ mi.label }}</button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showPager }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">
+      <span>{{ pagerText }}</span>
+      <div style="display:flex;gap:8px">
+        <button type="button" onClick="{{ prevPage }}" disabled="{{ prevOff }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;opacity:{{ prevOp }}">Previous</button>
+        <button type="button" onClick="{{ nextPage }}" disabled="{{ nextOff }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;opacity:{{ nextOp }}">Next</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</div>
+
+<sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closePanel }}" style="position:fixed;inset:0;z-index:180;background:var(--pn-scrim);backdrop-filter:blur(14px) saturate(.9);-webkit-backdrop-filter:blur(14px) saturate(.9);animation:pnScrim .4s ease both"></div>
+  <aside role="dialog" aria-modal="true" aria-label="{{ pTitle }}" style="position:fixed;top:16px;right:16px;bottom:16px;z-index:181;width:min(600px,calc(100vw - 32px));display:flex;flex-direction:column;isolation:isolate;overflow:hidden;border-radius:32px;background:var(--pn-bg);backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);box-shadow:var(--pn-sh);color:var(--pn-ink);font-family:'AppNumerals','Urbanist',system-ui,sans-serif;animation:pnIn .6s cubic-bezier(.2,.8,.2,1) both">
+    <span aria-hidden="true" style="position:absolute;z-index:-1;top:-180px;right:-120px;width:520px;height:420px;border-radius:50%;background:var(--pn-glow);filter:blur(10px);pointer-events:none;animation:pnGlow 14s ease-in-out infinite alternate"></span>
+    <span aria-hidden="true" style="position:absolute;z-index:-1;inset:0;border-radius:inherit;background:linear-gradient(180deg,var(--pn-sheen),transparent 42%);pointer-events:none"></span>
+    <div style="flex:none;display:flex;flex-direction:column;gap:20px;padding:24px 24px 18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 60ms both">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;min-width:0">
+          <span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px 0 9px;border-radius:999px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:var(--pa)"><path d="{{ pLibIcon }}"></path></svg>{{ pLibChip }}</span>
+          <sc-if value="{{ pHasStatus }}" hint-placeholder-val="{{ false }}"><span style="{{ pStatusStyle }}"><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>{{ pStatus }}</span></sc-if>
+        </div>
+        <button type="button" onClick="{{ closePanel }}" aria-label="Close" style="flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:0;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);cursor:pointer;transition:background .2s,transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="background:var(--pn-tileh);transform:rotate(90deg)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;min-width:0;animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 110ms both">
+        <span data-dark="1" aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 14px 30px -14px rgba(59,15,122,.8);color:#fff"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 15V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7zM2.52 7.11h18.96M8.52 2.11v4.86M15.48 2.11v4.41M9.75 14.45v-1.2c0-1.54 1.09-2.17 2.42-1.4l1.04.6 1.04.6c1.33.77 1.33 2.03 0 2.8l-1.04.6-1.04.6c-1.33.77-2.42.14-2.42-1.4v-1.2z"></path></svg></span>
+        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
+          <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">Training videos</span>
+          <span style="display:block;padding-bottom:2px;font:600 30px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pTitle }}</span>
+          <span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pSub }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:none;padding:2px 24px 24px;display:flex;flex-direction:column;gap:12px;mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 22px),transparent);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 22px),transparent)">
+
+      <section style="padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 150ms both">
+        <span style="display:block;margin-bottom:12px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">Video file <span style="color:var(--red)">*</span></span>
+        <sc-if value="{{ fZone }}" hint-placeholder-val="{{ true }}">
+          <div onDragOver="{{ zoneOver }}" onDragLeave="{{ zoneLeave }}" onDrop="{{ zoneDrop }}" onClick="{{ browse }}" style="{{ zoneStyle }}">
+            <span style="{{ zoneIconStyle }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ zoneIcon }}"></path></svg></span>
+            <span style="font:600 15px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ zoneTitle }}</span>
+            <span style="font:400 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ zoneSubFg }};max-width:360px">{{ zoneSub }}</span>
+          </div>
+          <sc-if value="{{ showSamples }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px">
+              <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">No file handy? Try a sample</span>
+              <sc-for list="{{ samples }}" as="sm" hint-placeholder-count="3"><button type="button" onClick="{{ sm.pick }}" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:0;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink2);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s" style-hover="background:var(--pn-tileh);color:var(--pn-ink)">{{ sm.name }}</button></sc-for>
+            </div>
+          </sc-if>
+        </sc-if>
+        <sc-if value="{{ fRow }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:14px;padding:12px;border-radius:18px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px {{ fRowEdge }}">
+            <span style="position:relative;flex:none;width:96px;height:54px;border-radius:12px;overflow:hidden;background:var(--pn-track)">
+              <sc-if value="{{ fHasThumb }}" hint-placeholder-val="{{ false }}"><span style="{{ fThumbBg }}"></span></sc-if>
+              <sc-if value="{{ fNoThumb }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:{{ fIconFg }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ fIcon }}"></path></svg></span></sc-if>
+              <sc-if value="{{ fSpin }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,6,14,.4)"><span style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:tvSpin .8s linear infinite"></span></span></sc-if>
+            </span>
+            <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px">
+              <span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ fName }}</span>
+              <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ fMetaFg }}">{{ fMeta }}</span>
+              <sc-if value="{{ fBar }}" hint-placeholder-val="{{ false }}"><span style="position:relative;display:block;height:6px;border-radius:999px;background:var(--pn-track);overflow:hidden"><span style="{{ fBarStyle }}"></span></span></sc-if>
+            </div>
+            <sc-if value="{{ fHasAct }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ fAct }}" style="flex:none;height:36px;padding:0 14px;border:0;border-radius:999px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:var(--pn-tileh)">{{ fActLabel }}</button></sc-if>
+            <sc-if value="{{ fHasX }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ fX }}" aria-label="Cancel upload" style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:0;background:transparent;color:var(--pn-ink2);cursor:pointer" style-hover="background:var(--pn-tileh)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+          </div>
+          <sc-if value="{{ fNote }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:8px;margin-top:10px;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="flex:none;color:var(--pa)"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM12 8v5M11.99 16h.01"></path></svg>{{ fNoteText }}</span></sc-if>
+        </sc-if>
+      </section>
+
+      <section style="padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 190ms both">
+        <span style="display:block;margin-bottom:12px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">Library <span style="color:var(--red)">*</span></span>
+        <div style="display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)">
+          <sc-for list="{{ libSegs }}" as="ls" hint-placeholder-count="2"><button type="button" onClick="{{ ls.pick }}" style="{{ ls.style }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ ls.d }}"></path></svg>{{ ls.label }}</button></sc-for>
+        </div>
+        <span style="display:block;margin-top:10px;font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ libHelp }}</span>
+        <sc-if value="{{ libWarn }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;margin-top:12px;padding:12px 14px;border-radius:16px;background:var(--lc-warnbg);color:var(--lc-warn);font:500 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;animation:tvPop .25s both"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01"></path></svg>{{ libWarnText }}</div></sc-if>
+      </section>
+
+      <section style="padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);display:flex;flex-direction:column;gap:18px;animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 230ms both">
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)"><span>Title <span style="color:var(--red)">*</span></span><span style="letter-spacing:0;text-transform:none;font-weight:500;color:{{ tCountFg }}">{{ tCount }}</span></span>
+          <input type="text" value="{{ fTitle }}" onChange="{{ onTitle }}" placeholder="e.g. Running a usage test" style="{{ tInput }}"/>
+          <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ tHelpFg }}">{{ tHelp }}</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)"><span>Description <span style="color:var(--red)">*</span></span><span style="letter-spacing:0;text-transform:none;font-weight:500;color:{{ dCountFg }}">{{ dCount }}</span></span>
+          <input type="text" value="{{ fDesc }}" onChange="{{ onDesc }}" placeholder="e.g. Measure ml per car and record settings." style="{{ dInput }}"/>
+          <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ dHelpFg }}">{{ dHelp }}</span>
+        </label>
+      </section>
+
+      <section style="padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 270ms both">
+        <span style="display:block;margin-bottom:12px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">Thumbnail <span style="color:var(--red)">*</span></span>
+        <sc-if value="{{ thNone }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line);font:400 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">
+            <span style="flex:none;width:96px;height:54px;border-radius:12px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)"></span>A thumbnail will be created once the video is processed.
+          </div>
+        </sc-if>
+        <sc-if value="{{ thHas }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+            <span style="position:relative;flex:none;width:208px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--pn-track);box-shadow:0 14px 30px -16px rgba(0,0,0,.6)"><span style="{{ thBg }}"></span><span style="position:absolute;left:8px;top:8px;height:22px;padding:0 8px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ thSrcLabel }}</span></span>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <button type="button" onClick="{{ toggleFrames }}" style="{{ thFramesBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7zM2 9h20M2 15h20M9 2v20M15 2v20"></path></svg>Choose another frame</button>
+              <button type="button" onClick="{{ pickImage }}" style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border:0;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--pn-tileh)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7zM9 10a2 2 0 100-4 2 2 0 000 4zM2.67 18.95l4.93-3.31c.79-.53 1.93-.47 2.64.14l.33.29c.78.67 2.04.67 2.82 0l4.16-3.57c.78-.67 2.04-.67 2.82 0L22 13.9"></path></svg>Upload image</button>
+            </div>
+          </div>
+          <sc-if value="{{ framesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px;animation:tvPop .25s both">
+              <sc-for list="{{ frames }}" as="fr" hint-placeholder-count="6"><button type="button" data-fr="1" onClick="{{ fr.pick }}" aria-label="{{ fr.label }}" style="{{ fr.style }}"><span style="{{ fr.bg }}"></span><span style="position:absolute;left:4px;bottom:4px;padding:1px 5px;border-radius:6px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:600 9.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ fr.t }}</span></button></sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ cropOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:14px;padding:14px;border-radius:18px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line);animation:tvPop .25s both">
+              <span style="display:block;margin-bottom:10px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ cropText }}</span>
+              <div style="position:relative;width:100%;aspect-ratio:{{ cropAspect }};max-height:260px;margin:0 auto;border-radius:12px;overflow:hidden;background:#000"><img src="{{ cropUrl }}" alt="" hidden="{{ cropHidden }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain"/><span style="{{ cropWin }}"></span></div>
+              <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+                <button type="button" onClick="{{ cropCancel }}" style="height:38px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--pn-ink2);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Cancel</button>
+                <button type="button" onClick="{{ cropApply }}" style="height:38px;padding:0 16px;border:0;border-radius:999px;background:var(--pn-cta);color:var(--pn-ctafg);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Apply crop</button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ imgErr }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:10px;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--red)">{{ imgErrText }}</span></sc-if>
+        </sc-if>
+      </section>
+
+      <sc-if value="{{ pIsEdit }}" hint-placeholder-val="{{ false }}">
+        <section style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 300ms both">
+          <span style="flex:1 1 auto;display:flex;flex-direction:column;gap:3px"><span style="font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif">Visibility</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ visHelp }}</span></span>
+          <div style="flex:none;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)"><sc-for list="{{ visSegs }}" as="vs" hint-placeholder-count="2"><button type="button" onClick="{{ vs.pick }}" style="{{ vs.style }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ vs.d }}"></path></svg>{{ vs.label }}</button></sc-for></div>
+        </section>
+      </sc-if>
+
+      <section style="padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 330ms both">
+        <span style="display:block;margin-bottom:14px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">{{ apLabel }}</span>
+        <div data-dark="1" style="margin:0 auto;position:relative;width:272px;height:400px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent);mask-image:linear-gradient(180deg,#000 78%,transparent)">
+          <div style="position:absolute;left:3.6%;right:3.6%;top:3px;height:540px;border-radius:38px;overflow:hidden;background:var(--s0);color:var(--sc-ink)">
+            <span aria-hidden="true" style="position:absolute;top:-80px;left:-60px;width:260px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.28),transparent);pointer-events:none"></span>
+            <div style="position:relative;display:flex;justify-content:space-between;align-items:center;height:44px;padding:6px 26px 0;font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink)"><span>9:41</span><span style="display:flex;gap:5px;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M2 17h3v4H2zM7 13h3v8H7zM12 9h3v12h-3zM17 5h3v16h-3z"></path></svg><span style="width:22px;height:11px;border-radius:3px;box-shadow:inset 0 0 0 1.5px currentColor;padding:2px"><span style="display:block;width:70%;height:100%;border-radius:1px;background:currentColor"></span></span></span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px;padding:8px 14px 0">
+              <span style="font:600 21px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;padding:0 2px">How-to Videos</span>
+              <span style="display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>Search videos</span>
+              <div style="display:flex;flex-direction:column;gap:9px;padding:8px 8px 12px;border-radius:22px;background:var(--lc-flat);box-shadow:var(--lc-edge)">
+                <span style="position:relative;display:block;aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:var(--lc-inner)"><span style="{{ apThumb }}"></span><span style="position:absolute;right:7px;bottom:7px;height:22px;padding:0 8px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ apDur }}</span></span>
+                <span style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding:0 4px;font:600 14px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ apTitleFg }}">{{ apTitle }}</span>
+                <span style="display:block;margin-top:-5px;padding:0 4px;font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ apDesc }}</span>
+              </div>
+              <sc-if value="{{ apHasNext }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:9px;padding:8px 8px 12px;border-radius:22px;background:var(--lc-flat);box-shadow:var(--lc-edge);opacity:.9">
+                  <span style="position:relative;display:block;aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:var(--lc-inner)"><span style="{{ apNextThumb }}"></span></span>
+                  <span style="padding:0 4px;font:600 14px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ apNextTitle }}</span>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <img src="assets/iphone-frame.png" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:272px;height:auto;pointer-events:none;user-select:none"/>
+        </div>
+      </section>
+    </div>
+
+    <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px 22px;box-shadow:0 -1px 0 var(--pn-line)">
+      <sc-if value="{{ pIsEdit }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ pDelete }}" style="height:48px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--red);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--pn-redbg)">Delete</button>
+        <span style="flex:1"></span>
+        <button type="button" onClick="{{ closePanel }}" style="height:48px;padding:0 18px;border:0;border-radius:999px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--pn-tileh)">Cancel</button>
+        <span data-tip="" style="display:inline-flex">
+          <button type="button" onClick="{{ pSave }}" disabled="{{ pSaveOff }}" style="{{ pSaveStyle }}">Save changes</button>
+          <sc-if value="{{ pSaveOff }}" hint-placeholder-val="{{ false }}"><span data-tipbox="" style="position:absolute;bottom:calc(100% + 10px);left:50%;z-index:40;padding:8px 12px;border-radius:12px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);color:var(--sc-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,4px);transition:opacity .18s,transform .18s">{{ pSaveTip }}</span></sc-if>
+        </span>
+      </sc-if>
+      <sc-if value="{{ pIsNew }}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{ closePanel }}" style="height:52px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--pn-ink2);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="color:var(--pn-ink)">Cancel</button>
+        <span style="flex:1"></span>
+        <span data-tip="" style="display:inline-flex">
+          <button type="button" onClick="{{ pSaveHidden }}" disabled="{{ pPubOff }}" style="{{ pHiddenStyle }}">Save as hidden</button>
+        </span>
+        <span data-tip="" style="display:inline-flex">
+          <button type="button" onClick="{{ pPublish }}" disabled="{{ pPubOff }}" style="{{ pPubStyle }}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17v-6l-2 2M9 11l2 2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z"></path></svg>Publish</button>
+          <sc-if value="{{ pPubOff }}" hint-placeholder-val="{{ true }}"><span data-tipbox="" style="position:absolute;bottom:calc(100% + 10px);right:0;left:auto;z-index:40;padding:8px 12px;border-radius:12px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);color:var(--sc-ink);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(0,4px);transition:opacity .18s,transform .18s">Finish uploading and fill in the required fields.</span></sc-if>
+        </span>
+      </sc-if>
+    </div>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ actOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeActivity }}" style="position:fixed;inset:0;z-index:180;background:var(--pn-scrim);backdrop-filter:blur(14px) saturate(.9);-webkit-backdrop-filter:blur(14px) saturate(.9);animation:pnScrim .4s ease both"></div>
+  <aside role="dialog" aria-modal="true" aria-label="Activity" style="position:fixed;top:16px;right:16px;bottom:16px;z-index:181;width:min(660px,calc(100vw - 32px));display:flex;flex-direction:column;isolation:isolate;overflow:hidden;border-radius:32px;background:var(--pn-bg);backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);box-shadow:var(--pn-sh);color:var(--pn-ink);font-family:'AppNumerals','Urbanist',system-ui,sans-serif;animation:pnIn .6s cubic-bezier(.2,.8,.2,1) both">
+    <span aria-hidden="true" style="position:absolute;z-index:-1;top:-180px;right:-120px;width:520px;height:420px;border-radius:50%;background:var(--pn-glow);filter:blur(10px);pointer-events:none;animation:pnGlow 14s ease-in-out infinite alternate"></span>
+    <div style="flex:none;display:flex;flex-direction:column;gap:18px;padding:24px 24px 16px">
+      <div style="display:flex;align-items:center;gap:16px;min-width:0;animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 60ms both">
+        <span data-dark="1" aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 14px 30px -14px rgba(59,15,122,.8);color:#fff"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 103-6.7L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7.5V12l3 2"></path></svg></span>
+        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
+          <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">Training videos</span>
+          <span style="font:600 30px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.025em">Activity</span>
+          <span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ actCount }}</span>
+        </div>
+        <button type="button" onClick="{{ closeActivity }}" aria-label="Close" style="flex:none;align-self:flex-start;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:0;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);cursor:pointer;transition:background .2s,transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="background:var(--pn-tileh);transform:rotate(90deg)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;animation:pnRise .55s cubic-bezier(.2,.8,.2,1) 110ms both">
+        <div style="display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)">
+          <sc-for list="{{ actLibSegs }}" as="a" hint-placeholder-count="3"><button type="button" onClick="{{ a.pick }}" style="{{ a.style }}">{{ a.label }}</button></sc-for>
+        </div>
+        <label style="position:relative;display:inline-flex;align-items:center"><select value="{{ actType }}" onChange="{{ onActType }}" style="height:40px;padding:0 36px 0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:var(--k28);color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;appearance:none;-webkit-appearance:none;outline:none;cursor:pointer"><sc-for list="{{ actTypeOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:12px;pointer-events:none;color:var(--pn-ink3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></label>
+        <label style="position:relative;display:inline-flex;align-items:center"><select value="{{ actPerson }}" onChange="{{ onActPerson }}" style="height:40px;padding:0 36px 0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:var(--k28);color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;appearance:none;-webkit-appearance:none;outline:none;cursor:pointer"><sc-for list="{{ actPersonOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:12px;pointer-events:none;color:var(--pn-ink3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></label>
+        <div style="display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)">
+          <sc-for list="{{ actRangeSegs }}" as="a" hint-placeholder-count="3"><button type="button" onClick="{{ a.pick }}" style="{{ a.style }}">{{ a.label }}</button></sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:none;padding:0 24px 24px;mask-image:linear-gradient(180deg,transparent 0,#000 12px,#000 calc(100% - 22px),transparent);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12px,#000 calc(100% - 22px),transparent)">
+      <div style="border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);padding:4px 16px">
+        <sc-for list="{{ actRows }}" as="ar" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:112px minmax(0,1fr);gap:14px;padding:14px 0;border-top:1px solid {{ ar.sep }};animation:pnRise .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ ar.delay }}">
+            <span style="display:flex;flex-direction:column;gap:2px;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2);font-variant-numeric:tabular-nums"><span style="color:var(--pn-ink)">{{ ar.day }}</span>{{ ar.time }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="{{ ar.avStyle }}">{{ ar.ini }}</span>
+                <span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ ar.by }}</span>
+                <span style="{{ ar.pill }}">{{ ar.type }}</span>
+                <span style="margin-left:auto;font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);white-space:nowrap">{{ ar.lib }}</span>
+              </div>
+              <span style="font:400 13.5px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ ar.details }}</span>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ actEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 0;text-align:center;font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">No activity matches these filters.</div></sc-if>
+      </div>
+    </div>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ prevOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:190;display:flex;align-items:center;justify-content:center;padding:24px">
+    <div onClick="{{ closePreview }}" style="position:absolute;inset:0;background:var(--pn-scrim);backdrop-filter:blur(14px) saturate(.9);-webkit-backdrop-filter:blur(14px) saturate(.9);animation:tvFade .25s both"></div>
+    <div role="dialog" aria-modal="true" aria-label="{{ pvTitle }}" style="position:relative;width:{{ pvWidth }};max-width:100%;max-height:calc(100vh - 48px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:18px;padding:18px;border-radius:32px;background:var(--pn-bg);backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);box-shadow:var(--pn-sh);color:var(--pn-ink);transition:width .45s cubic-bezier(.2,.8,.2,1);animation:tvModal .36s cubic-bezier(.2,.8,.2,1) both">
+      <div style="display:flex;gap:18px;align-items:stretch;flex-wrap:wrap">
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:16px">
+          <div style="position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#000"><video ref="{{ pvRef }}" src="{{ pvSrc }}" poster="{{ pvPoster }}" controls="{{ true }}" playsInline="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000"></video></div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding:0 6px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px 0 9px;border-radius:999px;background:var(--lc-chip);color:var(--lc-title);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ pvLibIcon }}"></path></svg>{{ pvLib }}</span>
+              <span style="display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ pvDur }}</span>
+              <sc-if value="{{ pvHidden }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px 0 9px;border-radius:999px;background:var(--lc-chip);color:var(--sc-ink3);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.53 9.47l-5.06 5.06a3.576 3.576 0 115.06-5.06zM17.82 5.77C16.07 4.45 14.07 3.73 12 3.73c-3.53 0-6.82 2.08-9.11 5.68-.9 1.41-.9 3.78 0 5.19.79 1.24 1.71 2.31 2.71 3.17M9.47 14.53L2 22M22 2l-7.47 7.47"></path></svg>{{ pvHiddenLabel }}</span></sc-if>
+            </div>
+            <span style="font:600 24px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em">{{ pvTitle }}</span>
+            <span style="font:400 14px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">{{ pvDesc }}</span>
+          </div>
+        </div>
+        <sc-if value="{{ pvApp }}" hint-placeholder-val="{{ false }}">
+          <div data-dark="1" style="flex:0 0 272px;align-self:center;animation:tvRise .45s cubic-bezier(.2,.8,.2,1) both;position:relative;width:272px;height:400px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent);mask-image:linear-gradient(180deg,#000 78%,transparent)">
+          <div style="position:absolute;left:3.6%;right:3.6%;top:3px;height:540px;border-radius:38px;overflow:hidden;background:var(--s0);color:var(--sc-ink)">
+            <span aria-hidden="true" style="position:absolute;top:-80px;left:-60px;width:260px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.28),transparent);pointer-events:none"></span>
+            <div style="position:relative;display:flex;justify-content:space-between;align-items:center;height:44px;padding:6px 26px 0;font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink)"><span>9:41</span><span style="display:flex;gap:5px;align-items:center"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M2 17h3v4H2zM7 13h3v8H7zM12 9h3v12h-3zM17 5h3v16h-3z"></path></svg><span style="width:22px;height:11px;border-radius:3px;box-shadow:inset 0 0 0 1.5px currentColor;padding:2px"><span style="display:block;width:70%;height:100%;border-radius:1px;background:currentColor"></span></span></span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px;padding:8px 14px 0">
+              <span style="font:600 21px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;padding:0 2px">How-to Videos</span>
+              <span style="display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>Search videos</span>
+              <div style="display:flex;flex-direction:column;gap:9px;padding:8px 8px 12px;border-radius:22px;background:var(--lc-flat);box-shadow:var(--lc-edge)">
+                <span style="position:relative;display:block;aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:var(--lc-inner)"><span style="{{ pvThumb }}"></span><span style="position:absolute;right:7px;bottom:7px;height:22px;padding:0 8px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(var(--g1),.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(var(--w),.1);color:var(--sc-ink);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ pvDur }}</span></span>
+                <span style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding:0 4px;font:600 14px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ pvTitleFg }}">{{ pvTitle }}</span>
+                <span style="display:block;margin-top:-5px;padding:0 4px;font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pvDesc }}</span>
+              </div>
+              <sc-if value="{{ pvHasNext }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:9px;padding:8px 8px 12px;border-radius:22px;background:var(--lc-flat);box-shadow:var(--lc-edge);opacity:.9">
+                  <span style="position:relative;display:block;aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:var(--lc-inner)"><span style="{{ pvNextThumb }}"></span></span>
+                  <span style="padding:0 4px;font:600 14px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pvNextTitle }}</span>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+          <img src="assets/iphone-frame.png" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:272px;height:auto;pointer-events:none;user-select:none"/>
+        </div>
+        </sc-if>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 6px 2px;box-shadow:0 -1px 0 var(--pn-line)">
+        <div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><sc-for list="{{ pvSegs }}" as="ps" hint-placeholder-count="2"><button type="button" onClick="{{ ps.pick }}" style="{{ ps.style }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ ps.d }}"></path></svg>{{ ps.label }}</button></sc-for></div>
+        <span style="flex:1"></span>
+        <sc-if value="{{ pvCanEdit }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ pvEdit }}" style="height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--s2)">Edit details</button></sc-if>
+        <button type="button" onClick="{{ closePreview }}" style="height:44px;padding:0 22px;border:0;border-radius:999px;background:var(--pn-cta);color:var(--pn-ctafg);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;transition:transform .15s" style-active="transform:scale(.97)">Close</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:var(--pn-scrim);backdrop-filter:blur(14px) saturate(.9);-webkit-backdrop-filter:blur(14px) saturate(.9);animation:tvFade .22s both"></div>
+    <div role="dialog" aria-modal="true" style="position:relative;width:min(480px,100%);display:flex;flex-direction:column;gap:6px;padding:26px;border-radius:30px;background:var(--pn-bg);backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);box-shadow:var(--pn-sh);color:var(--pn-ink);animation:tvModal .32s cubic-bezier(.2,.8,.2,1) both">
+      <span style="{{ mIconStyle }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ mIcon }}"></path></svg></span>
+      <span style="margin-top:12px;font:600 20px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em">{{ mTitle }}</span>
+      <p style="margin:0;font:400 14px/1.55 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">{{ mBody }}</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:18px">
+        <sc-for list="{{ mButtons }}" as="mb" hint-placeholder-count="2"><button type="button" onClick="{{ mb.run }}" style="{{ mb.style }}">{{ mb.label }}</button></sc-for>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<div style="position:fixed;left:50%;bottom:32px;z-index:210;display:flex;align-items:center;gap:14px;padding:12px 14px 12px 18px;border-radius:999px;background:var(--sc-card);border:0;box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);color:var(--sc-ink);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translateX(-50%) translateY({{ toastY }});pointer-events:{{ toastPe }}">
+  <span style="display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(139,92,246,.2);color:var(--pa)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span>
+  {{ toast }}
+  <sc-if value="{{ hasUndo }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ undo }}" style="height:30px;padding:0 12px;border:0;border-radius:999px;background:var(--lc-chip);color:var(--pa);font:700 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="filter:brightness(1.15)">Undo</button></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;viewState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Live data&quot;,&quot;Loading&quot;,&quot;Error&quot;],&quot;default&quot;:&quot;Live data&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;States&quot;},&quot;storeEmpty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;States&quot;},&quot;sampleFiles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Upload&quot;},&quot;query&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Search&quot;},&quot;onClearQuery&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;active&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const ME = "Alex Falkenrath", DAN = "Dan Whitfield";
+const TODAY = new Date(2024, 9, 22);
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const LIB = { tech: "Technicians", store: "Store users" };
+const APP = { tech: "technician app", store: "store app" };
+const VIEW_KEY = "apf-videos-view", TAB_KEY = "apf-videos-tab", SRC = "assets/login-wash-src.mp4", IMG = "assets/login-wash.jpg";
+const I = {
+  tech: "M12 12a5 5 0 100-10 5 5 0 000 10zM20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7",
+  store: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12z",
+  play: "M15.58 12A3.58 3.58 0 1112 8.42 3.58 3.58 0 0115.58 12zM12 20.27c3.53 0 6.82-2.08 9.11-5.68.9-1.41.9-3.78 0-5.19-2.29-3.6-5.58-5.68-9.11-5.68-3.53 0-6.82 2.08-9.11 5.68-.9 1.41-.9 3.78 0 5.19 2.29 3.6 5.58 5.68 9.11 5.68z",
+  edit: "M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15M3 22h18",
+  replace: "M14.55 21.67C18.84 20.54 22 16.64 22 12c0-5.52-4.44-10-10-10C5.33 2 2 7.56 2 7.56m0 0V3m0 4.56h4.44M2 12c0 5.52 4.48 10 10 10",
+  move: "M20.5 14.99l-5.01 5.02M3.5 14.99h17M3.5 9.01l5.01-5.02M20.5 9.01h-17",
+  hide: "M14.53 9.47l-5.06 5.06a3.576 3.576 0 115.06-5.06zM17.82 5.77C16.07 4.45 14.07 3.73 12 3.73c-3.53 0-6.82 2.08-9.11 5.68-.9 1.41-.9 3.78 0 5.19.79 1.24 1.71 2.31 2.71 3.17M8.42 19.53c1.14.48 2.35.74 3.58.74 3.53 0 6.82-2.08 9.11-5.68.9-1.41.9-3.78 0-5.19-.33-.52-.69-1.01-1.06-1.47M9.47 14.53L2 22M22 2l-7.47 7.47",
+  trash: "M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14",
+  x: "M6 6l12 12M18 6L6 18",
+  upload: "M9 17v-6l-2 2M9 11l2 2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z",
+  warn: "M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01",
+  video: "M22 15V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7zM2.52 7.11h18.96M8.52 2.11v4.86M15.48 2.11v4.41M9.75 14.45v-1.2c0-1.54 1.09-2.17 2.42-1.4l1.04.6 1.04.6c1.33.77 1.33 2.03 0 2.8l-1.04.6-1.04.6c-1.33.77-2.42.14-2.42-1.4v-1.2z",
+  search: "M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2",
+  filter: "M5.4 2.1h13.2c1.1 0 2 .9 2 2v2.2c0 .8-.5 1.8-1 2.3l-4.3 3.8c-.6.5-1 1.5-1 2.3V19c0 .6-.4 1.4-.9 1.7L12 21.6c-1.3.8-3.1-.1-3.1-1.7v-5.3c0-.7-.4-1.6-.8-2.1L4.3 8.5c-.5-.5-.9-1.4-.9-2V4.2c0-1.2.9-2.1 2-2.1z",
+  cloud: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1",
+  check: "M5 12.5l4.5 4.5L19 7"
+};
+const dm = d => d.getDate() + " " + MON[d.getMonth()];
+const ago = (n, h, m) => { const x = new Date(TODAY); x.setDate(x.getDate() - n); x.setHours(h || 10, m || 0, 0, 0); return x; };
+const nowAt = () => { const n = new Date(), d = new Date(TODAY); d.setHours(n.getHours(), n.getMinutes(), n.getSeconds(), 0); return d; };
+const hm = d => { const h = d.getHours(); return (h % 12 || 12) + ":" + String(d.getMinutes()).padStart(2, "0") + " " + (h < 12 ? "AM" : "PM"); };
+const dayLabel = d => { const t = new Date(TODAY); if (d.toDateString() === t.toDateString()) return "Today"; t.setDate(t.getDate() - 1); return d.toDateString() === t.toDateString() ? "Yesterday" : dm(d); };
+const fmtDur = s => { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+const toSec = t => { const [m, s] = t.split(":").map(Number); return m * 60 + s; };
+const fmtSize = b => b >= 1e9 ? (b / 1e9).toFixed(2) + " GB" : Math.max(1, Math.round(b / 1e6)) + " MB";
+const ini = n => n.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+const pic = n => n === DAN ? "assets/people/dan-whitfield.png" : null;
+const crop = i => ({ kind: "crop", s: 200 + (i * 47) % 150, x: (i * 37 + 11) % 100, y: 22 + (i * 29) % 60 });
+const cropFrames = i => { const b = crop(i); return [0, 1, 2, 3, 4, 5].map(k => ({ kind: "crop", s: b.s + k * 9, x: (b.x + k * 17) % 100, y: Math.min(90, b.y + (k % 3) * 9) })); };
+const TH = n => "assets/thumbs/t-" + n + ".jpg";
+const TECH_TH = [1, 2, 4, 3, 8, 6, 5, 7, 1, 4, 2];
+const STORE_TH = [7, 5, 3, 6, 4, 8, 1];
+const imgFrames = url => [{ kind: "url", url }].concat([[135, 20, 30], [150, 80, 35], [160, 50, 70], [140, 10, 80], [170, 90, 60]].map(([s, x, y]) => ({ kind: "img", url, s, x, y })));
+const thumbCss = (t, extra) => Object.assign({ position: "absolute", inset: 0, backgroundRepeat: "no-repeat", transition: "transform .6s cubic-bezier(.2,.8,.2,1),filter .3s" },
+  !t ? { background: "repeating-linear-gradient(135deg,rgba(var(--w),.06) 0 6px,transparent 6px 12px)" }
+  : t.kind === "url" ? { backgroundImage: 'url("' + t.url + '")', backgroundSize: "cover", backgroundPosition: "center" }
+  : t.kind === "img" ? { backgroundImage: 'url("' + t.url + '")', backgroundSize: t.s + "%", backgroundPosition: t.x + "% " + t.y + "%" }
+  : { backgroundImage: "url(" + IMG + ")", backgroundSize: t.s + "%", backgroundPosition: t.x + "% " + t.y + "%" }, extra || {});
+const prefill = name => { const b = name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim(); return (b.charAt(0).toUpperCase() + b.slice(1)).slice(0, 80); };
+
+const TECH = [
+  ["Start here: your first week", "What a technician does on a store visit and how the app fits in.", "6:10", 1, 13, DAN],
+  ["Running a service visit", "Fill in the Service Visit Report from safety to photos and location.", "7:45", 1, 12, DAN],
+  ["Running a usage test", "Measure ml per car and record settings before and after changes.", "8:20", 1, 12, DAN, [2, DAN]],
+  ["Reading usage alerts", "What over and under usage means and which products to test first.", "4:32", 1, 8, DAN],
+  ["Checking conveyor speed", "Why chain speed changes usage and how to record it.", "3:15", 1, 11, DAN],
+  ["Water hardness and TDS testing", "Test incoming and in-wash water and note the results.", "5:40", 1, 10, DAN],
+  ["Booster pump and air pressure", "Check injection panel pressure and solenoid air pressure.", "4:55", 1, 10, ME],
+  ["Diagnosing a poor show", "Find the cause when triple foam or lava looks weak.", "6:05", 1, 9, DAN],
+  ["Counting inventory as a technician", "Count for a store and how it shows in their history.", "2:50", 1, 7, ME],
+  ["Acknowledging last container reports", "Close out last container reports from your stores.", "2:10", 1, 6, DAN],
+  ["Old dial settings guide", "Replaced by the usage test video.", "5:00", 0, 30, DAN, [1, DAN]]
+];
+const STORE = [
+  ["Welcome to the APF app", "A quick tour of your store's home screen.", "2:30", 1, 12, DAN],
+  ["Counting your weekly inventory", "Count unopened and opened containers in a few minutes.", "4:05", 1, 11, DAN],
+  ["Counting 2.5 gal tanks", "Enter secondary tank gallons correctly.", "3:20", 1, 14, DAN, [3, ME]],
+  ["Reporting a last container", "Let APF know when you are down to the last one.", "1:45", 1, 10, DAN],
+  ["Requesting site supplies", "Order towels, cleaner and other supplies.", "1:50", 1, 9, ME],
+  ["Tracking your next shipment", "Find the delivery date and tracking number.", "1:30", 1, 9, DAN],
+  ["Reading your latest service visit", "See what your technician found and what to fix.", "2:40", 1, 8, DAN]
+];
+const SAMPLES = [
+  { name: "usage_test_walkthrough.mp4", size: 214e6, dur: 268 },
+  { name: "tire-shine_coverage.mp4", size: 341e6, dur: 312, failOnce: true },
+  { name: "dial-settings_2019.avi", size: 96e6, dur: 0 }
+];
+let UID = 100;
+function seed() {
+  const out = [], seen = {}, rep = {};
+  [["tech", TECH], ["store", STORE]].forEach(([lib, rows], L) => rows.forEach((r, i) => { const k = (L ? STORE_TH : TECH_TH)[i], c = seen[k] || 0; seen[k] = c + 1; rep[L * 20 + i] = [0, 3, 1, 5][c % 4]; }));
+  [["tech", TECH], ["store", STORE]].forEach(([lib, rows], L) => rows.forEach((r, i) => {
+    const n = L * 20 + i, up = ago(r[4], 9 + (i % 6), (i * 13) % 60);
+    out.push({ id: "v" + n, lib, title: r[0], desc: r[1], dur: toSec(r[2]), state: "ready", visible: !!r[3], ord: i + 1, thumb: imgFrames(TH((L ? STORE_TH : TECH_TH)[i]))[rep[n]], frames: imgFrames(TH((L ? STORE_TH : TECH_TH)[i])), thumbIdx: rep[n], thumbSrc: "frame", src: SRC, fileName: r[0].toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "") + ".mp4", size: 120e6 + ((n * 7919) % 260) * 1e6, up: { d: up, by: r[5] }, ed: r[6] ? { d: ago(r[6][0], 14, 5), by: r[6][1] } : null, created: up.getTime() });
+  }));
+  out.push({ id: "v90", lib: "tech", title: "Testing tire shine coverage", desc: "How far tire shine reaches at different conveyor speeds.", dur: 0, state: "uploading", progress: 64, visible: false, ord: 0, thumb: null, frames: [], src: SRC, fileName: "tire-shine-coverage.mp4", size: 388e6, up: { d: nowAt(), by: ME }, ed: null, created: Date.now(), sampleDur: 255, slow: true });
+  out.push({ id: "v91", lib: "tech", title: "Ceramic sealant overview", desc: "What ceramic sealant does and when stores use it.", dur: 0, state: "failed", visible: false, ord: 0, thumb: null, frames: [], src: SRC, fileName: "ceramic-sealant-overview.mov", size: 512e6, up: { d: ago(0, 9, 12), by: DAN }, ed: null, created: Date.now() + 1, sampleDur: 290 });
+  return out;
+}
+function seedLog() {
+  const L = (n, h, m, by, lib, type, details) => ({ at: ago(n, h, m), by, lib, type, details });
+  return [
+    L(1, 16, 12, DAN, "tech", "Hidden", "Hid 'Old dial settings guide'"),
+    L(2, 14, 5, DAN, "tech", "Edited", "Changed title from 'Usage test' to 'Running a usage test'"),
+    L(3, 11, 40, ME, "store", "Moved", "Moved 'Counting 2.5 gal tanks' from Technicians to Store users"),
+    L(4, 10, 2, DAN, "tech", "Reordered", "Reordered Technicians library"),
+    L(5, 15, 30, ME, "tech", "Deleted", "Deleted 'Test upload'"),
+    L(6, 9, 48, DAN, "tech", "Uploaded", "Uploaded 'Acknowledging last container reports' to Technicians"),
+    L(6, 9, 52, DAN, "tech", "Published", "Published 'Acknowledging last container reports'"),
+    L(8, 11, 15, DAN, "tech", "Uploaded", "Uploaded 'Reading usage alerts' to Technicians"),
+    L(8, 11, 20, DAN, "tech", "Published", "Published 'Reading usage alerts'"),
+    L(9, 13, 0, ME, "store", "Uploaded", "Uploaded 'Requesting site supplies' to Store users"),
+    L(12, 10, 30, DAN, "tech", "Replaced video", "Replaced the file for 'Running a usage test'"),
+    L(13, 9, 5, DAN, "tech", "Uploaded", "Uploaded 'Start here: your first week' to Technicians")
+  ];
+}
+async function captureFrames(src) {
+  const v = document.createElement("video");
+  v.muted = true; v.preload = "auto"; v.playsInline = true; v.src = src;
+  const wait = (ev, ms) => new Promise((res, rej) => { const t = setTimeout(() => rej(new Error("timeout")), ms); v.addEventListener(ev, () => { clearTimeout(t); res(); }, { once: true }); v.addEventListener("error", () => { clearTimeout(t); rej(new Error("err")); }, { once: true }); });
+  await wait("loadedmetadata", 6000);
+  const d = v.duration; if (!isFinite(d) || d <= 0) throw new Error("dur");
+  const c = document.createElement("canvas"); c.width = 480; c.height = 270; const ctx = c.getContext("2d");
+  const frames = [];
+  for (const p of [.1, .25, .4, .55, .7, .85]) {
+    v.currentTime = Math.min(d - .05, d * p); await wait("seeked", 4000);
+    const vw = v.videoWidth || 16, vh = v.videoHeight || 9, r = Math.max(480 / vw, 270 / vh), w = vw * r, h = vh * r;
+    ctx.drawImage(v, (480 - w) / 2, (270 - h) / 2, w, h);
+    frames.push({ kind: "url", url: c.toDataURL("image/jpeg", .82) });
+  }
+  return { dur: d, frames };
+}
+
+class Component extends DCLogic {
+  state = { lq: "", lib: "tech", view: "grid", sort: "app", dir: 1, status: "all", open: null, menuFor: null, reorder: false, rOrder: null, dragId: null, panel: null, modal: null, preview: null, pvApp: false, act: false, actLib: "all", actType: "all", actPerson: "all", actRange: "all", toast: "", hasUndo: false, loading: true, err: false, cols: 4, ind: null, page: 1, v: 0 };
+  vids = seed(); log = seedLog();
+  rootRef = React.createRef(); wrapRef = React.createRef(); tabsRef = React.createRef(); fileRef = React.createRef(); imgRef = React.createRef(); pvRef = React.createRef();
+
+  componentDidMount() {
+    let lib = null, view = null;
+    const m = /videos=(tech|store)/.exec(location.hash || ""); if (m) lib = m[1];
+    try { lib = lib || localStorage.getItem(TAB_KEY); view = localStorage.getItem(VIEW_KEY); } catch (e) {}
+    this.setState({ lib: lib === "store" ? "store" : "tech", view: view === "list" ? "list" : "grid" });
+    this.lt = setTimeout(() => this.setState({ loading: false }), this.props.prewarmed ? 0 : 260);
+    this.onDoc = e => { if ((this.state.open || this.state.menuFor) && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ open: null, menuFor: null }); };
+    this.onKey = e => { if (e.key !== "Escape") return; const s = this.state; if (s.modal) this.setState({ modal: null }); else if (s.preview) this.closePreview(); else if (s.panel) this.requestClose(); else if (s.act) this.setState({ act: false }); else this.setState({ open: null, menuFor: null }); };
+    document.addEventListener("mousedown", this.onDoc); document.addEventListener("keydown", this.onKey);
+    if (window.ResizeObserver && this.wrapRef.current) { this.ro = new ResizeObserver(es => { const w = es[0].contentRect.width; const c = w >= 1180 ? 4 : w >= 860 ? 3 : w >= 520 ? 2 : 1; if (c !== this.state.cols) this.setState({ cols: c }); }); this.ro.observe(this.wrapRef.current); }
+    if (this.props.active !== false) this.ensureTick();
+    this.measureTabs();
+  }
+  componentWillUnmount() { document.removeEventListener("mousedown", this.onDoc); document.removeEventListener("keydown", this.onKey); clearInterval(this.tk); this.tk = null; clearTimeout(this.tt); clearTimeout(this.lt); this.ro && this.ro.disconnect(); }
+  componentDidUpdate() { this.measureTabs(); if (this.props.active !== false && !this.tk && this.vids.some(x => x.state === "uploading" || x.state === "processing")) this.ensureTick(); }
+  measureTabs() {
+    const w = this.tabsRef.current; if (!w) return;
+    const b = w.querySelector('[data-tab="' + this.state.lib + '"]'); if (!b) return;
+    const ind = { x: b.offsetLeft - 4, w: b.offsetWidth };
+    const o = this.state.ind; if (!o || o.x !== ind.x || o.w !== ind.w) this.setState({ ind });
+  }
+  bump() { this.setState(s => ({ v: s.v + 1 })); }
+  say(msg, undo) { clearTimeout(this.tt); this.undoFn = undo || null; this.setState({ toast: msg, hasUndo: !!undo }); this.tt = setTimeout(() => { this.undoFn = null; this.setState({ toast: "", hasUndo: false }); }, undo ? 5200 : 3200); }
+  addLog(lib, type, details) { this.log.unshift({ at: nowAt(), by: ME, lib, type, details, fresh: true }); }
+  find(id) { return this.vids.find(v => v.id === id); }
+  ready(lib) { return this.vids.filter(v => v.lib === lib && v.state === "ready").sort((a, b) => a.ord - b.ord); }
+  nextOrd(lib) { return this.ready(lib).reduce((m, v) => Math.max(m, v.ord), 0) + 1; }
+  compact(lib) { this.ready(lib).forEach((v, i) => { v.ord = i + 1; }); }
+  setLib(lib) {
+    if (lib === this.state.lib) return;
+    try { localStorage.setItem(TAB_KEY, lib); } catch (e) {}
+    if (this.props.active !== false) { try { history.replaceState(null, "", location.pathname + location.search + "#videos=" + lib); } catch (e) {} }
+    this.setState({ lib, reorder: false, rOrder: null, menuFor: null, open: null, page: 1 });
+  }
+  setView(view) { try { localStorage.setItem(VIEW_KEY, view); } catch (e) {} this.setState({ view, page: 1 }); }
+
+  ensureTick() {
+    if (this.tk) return;
+    this.tk = setInterval(() => this.tick(), 120);
+  }
+  tick() {
+    if (this.props.active === false && !this.state.panel) { clearInterval(this.tk); this.tk = null; return; }
+    let any = false, dirty = false;
+    const now = Date.now();
+    this.vids.forEach(v => {
+      if (v.state === "uploading") { any = true; dirty = true; v.progress = Math.min(100, v.progress + (v.slow ? .32 : 1.4 + Math.random() * 2.6)); if (v.progress >= 100) { v.state = "processing"; v.procAt = now; } }
+      else if (v.state === "processing") { any = true; if (!v.capturing && now - v.procAt > 1600) { v.capturing = true; this.finishItem(v); } }
+    });
+    const p = this.state.panel, j = p && p.job;
+    if (j && (j.state === "uploading" || j.state === "processing")) {
+      any = true;
+      const nj = Object.assign({}, j);
+      if (j.state === "uploading") {
+        nj.progress = Math.min(100, j.progress + 1.6 + Math.random() * 3);
+        if (j.failOnce && !j.retried && nj.progress >= 42) { nj.state = "failed"; nj.progress = 42; }
+        else if (nj.progress >= 100) { nj.state = "processing"; nj.procAt = now; }
+        this.setPanel({ job: nj });
+      } else if (!j.capturing && now - j.procAt > 1400) {
+        nj.capturing = true; this.setPanel({ job: nj });
+        this.capture(j).then(r => { const pp = this.state.panel; if (!pp || !pp.job || pp.job.key !== j.key) return; this.applyReady(r); });
+      }
+    }
+    if (dirty) this.bump();
+    if (!any && !(this.state.panel && this.state.panel.job && this.state.panel.job.state === "uploading")) { clearInterval(this.tk); this.tk = null; }
+  }
+  async capture(j) {
+    try { const r = await captureFrames(j.src); return { dur: j.sampleDur || r.dur, frames: r.frames }; }
+    catch (e) { const n = 40 + (UID % 17); return { dur: j.sampleDur || 240, frames: cropFrames(n) }; }
+  }
+  finishItem(v) {
+    this.capture(v).then(r => {
+      v.dur = r.dur; v.frames = r.frames; v.thumb = r.frames[0]; v.thumbIdx = 0; v.state = "draft"; v.capturing = false;
+      this.say("'" + v.title + "' is ready. Open it to publish."); this.bump();
+    });
+  }
+  setPanel(patch) { this.setState(s => ({ panel: s.panel ? Object.assign({}, s.panel, patch) : null })); }
+  setF(patch) { this.setState(s => ({ panel: s.panel ? Object.assign({}, s.panel, { f: Object.assign({}, s.panel.f, patch) }) : null })); }
+
+  openUpload() {
+    this.setState({ panel: { mode: "upload", f: { title: "", desc: "", lib: this.state.lib, thumb: null, thumbIdx: 0, thumbSrc: "frame", visible: true }, job: null, err: null, frames: [], framesOpen: false, crop: null, imgErr: "", titleAuto: true, dragOver: false }, open: null, menuFor: null });
+  }
+  openEdit(id) {
+    const v = this.find(id); if (!v) return;
+    if (v.state === "uploading" || v.state === "processing" || v.state === "failed") return;
+    const f = { title: v.title, desc: v.desc, lib: v.lib, thumb: v.thumb, thumbIdx: v.thumbIdx || 0, thumbSrc: v.thumbSrc || "frame", visible: v.visible };
+    this.setState({ panel: { mode: v.state === "draft" ? "draft" : "edit", id, f, orig: Object.assign({}, f), job: null, replaced: null, err: null, frames: v.frames || [], framesOpen: false, crop: null, imgErr: "", titleAuto: false }, open: null, menuFor: null, preview: null });
+  }
+  startFile(file) {
+    const p = this.state.panel; if (!p) return;
+    const ext = (/\.([a-z0-9]+)$/i.exec(file.name) || [])[1] || "";
+    if (!/^(mp4|mov)$/i.test(ext)) { this.setPanel({ err: "type", job: null }); return; }
+    if (file.size > 2e9) { this.setPanel({ err: "size", job: null }); return; }
+    const job = { key: ++UID, name: file.name, size: file.size, state: "uploading", progress: 0, src: file.url || (file.raw ? URL.createObjectURL(file.raw) : SRC), sampleDur: file.dur || 0, failOnce: !!file.failOnce, retried: false };
+    const patch = { job, err: null };
+    if (p.mode === "upload" && (p.titleAuto || !p.f.title)) { patch.f = Object.assign({}, p.f, { title: prefill(file.name) }); patch.titleAuto = true; }
+    this.setPanel(patch); this.ensureTick();
+  }
+  applyReady(r) {
+    const p = this.state.panel; if (!p || !p.job) return;
+    const job = Object.assign({}, p.job, { state: "ready", dur: r.dur, capturing: false });
+    const fi = Math.min(r.frames.length - 1, 0);
+    this.setState({ panel: Object.assign({}, p, { job, frames: r.frames, f: Object.assign({}, p.f, { thumb: r.frames[fi], thumbIdx: fi, thumbSrc: "frame" }) }) });
+  }
+  pickSample(sm) { this.startFile({ name: sm.name, size: sm.size, dur: sm.dur, failOnce: sm.failOnce && !this.usedFail, url: SRC }); if (sm.failOnce) this.usedFail = true; }
+  requestClose() {
+    const p = this.state.panel; if (!p) return;
+    const j = p.job;
+    if (j && (j.state === "uploading" || j.state === "processing")) {
+      if (p.mode === "upload") { this.setState({ modal: { kind: "keep" } }); return; }
+    }
+    if (this.isDirty(p)) { this.setState({ modal: { kind: "discard" } }); return; }
+    this.setState({ panel: null });
+  }
+  isDirty(p) {
+    if (p.mode === "upload") return !!(p.job || p.f.title.trim() || p.f.desc.trim());
+    const o = p.orig, f = p.f;
+    return !!(p.job && p.job.state === "ready") || o.title !== f.title || o.desc !== f.desc || o.lib !== f.lib || o.visible !== f.visible || o.thumb !== f.thumb;
+  }
+  keepUploading() {
+    const p = this.state.panel, j = p.job, f = p.f;
+    const v = { id: "v" + (++UID), lib: f.lib, title: f.title.trim() || prefill(j.name), desc: f.desc.trim(), dur: 0, state: j.state, progress: j.progress, procAt: j.procAt || Date.now(), visible: false, ord: 0, thumb: null, frames: [], src: j.src, fileName: j.name, size: j.size, up: { d: nowAt(), by: ME }, ed: null, created: Date.now(), sampleDur: j.sampleDur };
+    this.vids.push(v); this.addLog(f.lib, "Uploaded", "Uploaded '" + v.title + "' to " + LIB[f.lib]);
+    this.setState({ panel: null, modal: null, lib: f.lib }); this.ensureTick();
+    this.say("Uploading in the background. We'll let you know when it's ready.");
+  }
+  publish(visible) {
+    const p = this.state.panel; if (!p) return;
+    const f = p.f, lib = f.lib, title = f.title.trim(), desc = f.desc.trim();
+    if (p.mode === "draft") {
+      const v = this.find(p.id); Object.assign(v, { title, desc, lib, thumb: f.thumb, thumbIdx: f.thumbIdx, thumbSrc: f.thumbSrc, state: "ready", visible, ord: this.nextOrd(lib), ed: null });
+    } else {
+      const j = p.job;
+      this.vids.push({ id: "v" + (++UID), lib, title, desc, dur: j.dur, state: "ready", visible, ord: this.nextOrd(lib), thumb: f.thumb, thumbIdx: f.thumbIdx, thumbSrc: f.thumbSrc, frames: p.frames, src: j.src, fileName: j.name, size: j.size, up: { d: nowAt(), by: ME }, ed: null, created: Date.now() });
+      this.addLog(lib, "Uploaded", "Uploaded '" + title + "' to " + LIB[lib]);
+    }
+    this.addLog(lib, visible ? "Published" : "Hidden", visible ? "Published '" + title + "'" : "Saved '" + title + "' as hidden");
+    this.setState({ panel: null, lib, status: "all", sort: "app", reorder: false });
+    try { localStorage.setItem(TAB_KEY, lib); } catch (e) {}
+    this.say(visible ? "Video published. " + (lib === "tech" ? "Technicians" : "Store users") + " can watch it now." : "Saved as hidden. Show it in the app when it's ready.");
+    setTimeout(() => { const el = this.rootRef.current; const sc = el && this.scroller(el); if (sc) sc.scrollTo({ top: sc.scrollHeight, behavior: "smooth" }); }, 120);
+  }
+  scroller(el) { for (let p = el; p; p = p.parentElement) { const o = getComputedStyle(p).overflowY; if ((o === "auto" || o === "scroll") && p.scrollHeight > p.clientHeight) return p; } return document.scrollingElement; }
+  saveEdit() {
+    const p = this.state.panel, v = this.find(p.id), f = p.f, o = p.orig, changes = [];
+    const title = f.title.trim(), desc = f.desc.trim();
+    if (o.title !== title) changes.push("title from '" + o.title + "' to '" + title + "'");
+    if (o.desc !== desc) changes.push("description");
+    if (o.thumb !== f.thumb) changes.push("thumbnail");
+    if (changes.length) this.addLog(v.lib, "Edited", "Changed " + changes.join(", ") + (changes[0].startsWith("title") ? "" : " for '" + title + "'"));
+    if (p.job && p.job.state === "ready") { Object.assign(v, { dur: p.job.dur, src: p.job.src, fileName: p.job.name, size: p.job.size, frames: p.frames }); this.addLog(v.lib, "Replaced video", "Replaced the file for '" + title + "'"); }
+    Object.assign(v, { title, desc, thumb: f.thumb, thumbIdx: f.thumbIdx, thumbSrc: f.thumbSrc, ed: { d: nowAt(), by: ME } });
+    let msg = "Changes saved.";
+    if (o.visible !== f.visible) { v.visible = f.visible; this.addLog(v.lib, f.visible ? "Shown" : "Hidden", (f.visible ? "Showed '" : "Hid '") + title + "'"); }
+    if (o.lib !== f.lib) { const from = v.lib; v.lib = f.lib; v.ord = this.nextOrd(f.lib) ; this.compact(from); this.addLog(f.lib, "Moved", "Moved '" + title + "' from " + LIB[from] + " to " + LIB[f.lib]); msg = "Moved to " + LIB[f.lib] + "."; }
+    this.setState({ panel: null }); this.say(msg);
+  }
+  setVisible(id, vis, silentLog) {
+    const v = this.find(id), prev = v.visible; v.visible = vis; v.ed = { d: nowAt(), by: ME };
+    this.addLog(v.lib, vis ? "Shown" : "Hidden", (vis ? "Showed '" : "Hid '") + v.title + "'");
+    this.bump();
+    this.say((vis ? "Now shown in the " : "Hidden from the ") + APP[v.lib] + ".", () => { v.visible = prev; this.addLog(v.lib, prev ? "Shown" : "Hidden", (prev ? "Showed '" : "Hid '") + v.title + "' (undo)"); this.bump(); this.say(prev ? "Shown again." : "Hidden again."); });
+  }
+  moveLib(id) {
+    const v = this.find(id), from = v.lib, to = from === "tech" ? "store" : "tech", oldOrd = v.ord;
+    v.lib = to; v.ord = this.nextOrd(to); this.compact(from); v.ed = { d: nowAt(), by: ME };
+    this.addLog(to, "Moved", "Moved '" + v.title + "' from " + LIB[from] + " to " + LIB[to]); this.bump();
+    this.say("Moved to " + LIB[to] + ".", () => { v.lib = from; this.ready(from).filter(x => x !== v && x.ord >= oldOrd).forEach(x => x.ord++); v.ord = oldOrd; this.compact(to); this.compact(from); this.addLog(from, "Moved", "Moved '" + v.title + "' back to " + LIB[from]); this.bump(); this.say("Moved back to " + LIB[from] + "."); });
+  }
+  remove(id, logIt) {
+    const v = this.find(id); if (!v) return;
+    this.vids = this.vids.filter(x => x !== v); if (v.state === "ready") this.compact(v.lib);
+    if (logIt) this.addLog(v.lib, "Deleted", "Deleted '" + v.title + "'");
+    this.setState({ modal: null, panel: null, menuFor: null }); this.bump();
+  }
+  retry(id) { const v = this.find(id); v.state = "uploading"; v.progress = 0; v.slow = false; this.bump(); this.ensureTick(); }
+  openPreview(id) { this.setState({ preview: { id }, menuFor: null, open: null }); }
+  closePreview() { const el = this.pvRef.current; if (el) try { el.pause(); } catch (e) {} this.setState({ preview: null }); }
+  confirmDelete(id) { this.setState({ modal: { kind: "delete", id }, menuFor: null }); }
+  pickFile(target) { this.fileTarget = target; const el = this.fileRef.current; if (el) { el.value = ""; el.click(); } }
+  startReplace(id) { this.openEdit(id); this.pendingReplace = true; this.pickFile("panel"); }
+
+  sorted(list) {
+    const s = this.state, d = s.dir;
+    const by = { app: (a, b) => (a.state === "ready" ? 0 : 1) - (b.state === "ready" ? 0 : 1) || (a.state === "ready" ? a.ord - b.ord : a.created - b.created), newest: (a, b) => b.up.d - a.up.d, oldest: (a, b) => a.up.d - b.up.d, title: (a, b) => a.title.localeCompare(b.title),
+      dur: (a, b) => (a.dur - b.dur) * d, upl: (a, b) => (a.up.d - b.up.d) * d, edit: (a, b) => (((a.ed || a.up).d) - ((b.ed || b.up).d)) * d };
+    return list.slice().sort(by[s.sort] || by.app);
+  }
+  renderVals() {
+    const s = this.state, lib = s.lib, vids = this.vids || [];
+    const q = (String(s.lq || "").trim() || String(this.props.query || "")).trim().toLowerCase();
+    const vs = this.props.viewState || "Live data";
+    const loading = vs === "Loading" || (vs === "Live data" && s.loading), err = vs === "Error" || s.err;
+    const libAll = vids.filter(v => v.lib === lib && !(lib === "store" && this.props.storeEmpty));
+    const count = l => vids.filter(v => v.lib === l && v.state === "ready" && !(l === "store" && this.props.storeEmpty)).length;
+    const st = v => v.state !== "ready" ? v.state : v.visible ? "visible" : "hidden";
+    let list = libAll.filter(v => s.status === "all" || (s.status === "visible" ? st(v) === "visible" : (st(v) === "hidden" || st(v) === "draft")));
+    if (q) list = list.filter(v => (v.title + " " + v.desc).toLowerCase().includes(q));
+    list = this.sorted(list);
+    const reorderOff = s.sort !== "app" || !!q || s.status !== "all" || this.ready(lib).length < 2;
+    if (s.reorder) list = (s.rOrder || []).map(id => this.find(id)).filter(Boolean);
+    const isGrid = s.view === "grid", size = isGrid ? 24 : 50, pages = Math.max(1, Math.ceil(list.length / size)), page = Math.min(s.page, pages);
+    const shown = s.reorder ? list : list.slice((page - 1) * size, page * size);
+    const appSort = s.sort === "app";
+    const move = (id, dir) => this.setState(x => { const o = x.rOrder.slice(), i = o.indexOf(id), j = i + dir; if (j < 0 || j >= o.length) return null; o.splice(i, 1); o.splice(j, 0, id); return { rOrder: o }; });
+    const circ = off => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 34, height: 34, borderRadius: "50%", border: "1px solid var(--sc-line)", background: "transparent", color: "var(--t1)", cursor: off ? "default" : "pointer", opacity: off ? .35 : 1 });
+    const menuFor = v => {
+      const other = v.lib === "tech" ? "store" : "tech", stop = fn => e => { e.stopPropagation(); this.setState({ menuFor: null }); fn(); };
+      if (v.state === "uploading" || v.state === "processing") return [{ label: "Cancel upload", d: I.x, color: "var(--red)", run: stop(() => { this.remove(v.id); this.say("Upload cancelled."); }) }];
+      if (v.state === "failed") return [{ label: "Retry upload", d: I.replace, color: "var(--t1)", run: stop(() => this.retry(v.id)) }, { label: "Remove", d: I.trash, color: "var(--red)", run: stop(() => { this.remove(v.id); this.say("Upload removed."); }) }];
+      const m = [
+        { label: "Preview", d: I.play, run: stop(() => this.openPreview(v.id)) },
+        { label: v.state === "draft" ? "Open to publish" : "Edit details", d: I.edit, run: stop(() => this.openEdit(v.id)) }
+      ];
+      if (v.state === "ready") m.push(
+        { label: "Replace video", d: I.replace, run: stop(() => this.startReplace(v.id)) },
+        { label: "Move to " + LIB[other], d: I.move, run: stop(() => this.moveLib(v.id)) },
+        { label: v.visible ? "Hide from app" : "Show in app", d: v.visible ? I.hide : I.play, run: stop(() => this.setVisible(v.id, !v.visible)) });
+      m.push({ label: "Delete", d: I.trash, color: "var(--red)", run: stop(() => this.confirmDelete(v.id)) });
+      return m.map((x, i) => Object.assign({ color: "var(--t1)" }, x, { sep: x.label === "Delete" ? "rgba(var(--w),.08)" : "transparent" }));
+    };
+    const statusPill = (bg, fg) => ({ display: "inline-flex", alignItems: "center", gap: 6, height: 28, padding: "0 11px 0 9px", borderRadius: 999, background: bg, color: fg, font: "600 12px " + F, whiteSpace: "nowrap" });
+    const STP = { visible: ["Visible", "var(--lc-okbg)", "var(--lc-ok)"], hidden: ["Hidden", "var(--lc-chip)", "var(--sc-ink3)"], draft: ["Draft", "var(--lc-chip)", "var(--lc-title)"], uploading: ["Uploading", "var(--lc-chip)", "var(--lc-title)"], processing: ["Processing", "var(--lc-chip)", "var(--lc-title)"], failed: ["Failed", "var(--lc-badbg)", "var(--lc-bad)"] };
+    const cards = shown.map((v, i) => {
+      const state = st(v), ready = v.state === "ready", media = ready || v.state === "draft", hidden = state === "hidden" || state === "draft";
+      const dragOn = s.reorder, dragging = s.dragId === v.id;
+      const p = s.reorder ? i + 1 : v.ord;
+      const by = v.ed || v.up, meta = (v.ed ? "Edited " : "Uploaded ") + dm(by.d), metaBy = by.by;
+      const ph = pic(by.by);
+      const pillMap = { hidden: ["Hidden", "rgba(8,6,14,.62)", "#fff"], draft: ["Draft", "linear-gradient(180deg,#8b5cf6,#6d28d9)", "#fff"], failed: ["Failed", "var(--lc-bad)", "#fff"] };
+      const pl = s.reorder && hidden ? ["Hidden in app", "rgba(8,6,14,.62)", "#fff"] : pillMap[state];
+      return {
+        id: v.id, title: v.title || "Untitled video", desc: v.desc, descShown: v.desc || (v.state === "uploading" ? "Add a description before publishing." : ""),
+        dur: fmtDur(v.dur), pos: p, showOrder: ready && (appSort || s.reorder) && !q,
+        isMedia: media, canPlay: media && !dragOn, isUploading: v.state === "uploading", isProcessing: v.state === "processing", isFailed: v.state === "failed",
+        pct: Math.floor(v.progress || 0) + "%", barStyle: { position: "absolute", left: 0, top: 0, bottom: 0, width: (v.progress || 0) + "%", borderRadius: 999, background: "repeating-linear-gradient(90deg,#fff 0 14px,rgba(255,255,255,.82) 14px 28px)", animation: "tvStripe .8s linear infinite", transition: "width .12s linear" },
+        thumbBg: thumbCss(media ? v.thumb : null, hidden ? { filter: "grayscale(.85) brightness(.82)" } : {}),
+        thumbCursor: media && !dragOn ? "pointer" : "default",
+        showPill: !!pl, pillLabel: pl ? pl[0] : "", pillStyle: pl ? { position: "absolute", right: 10, top: 10, display: "inline-flex", alignItems: "center", height: 28, padding: "0 11px", borderRadius: 999, background: pl[1], color: pl[2], backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", font: "600 12px " + F, whiteSpace: "nowrap" } : {},
+        avIni: ph ? "" : ini(by.by), avStyle: { flex: "none", width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", font: "700 11px " + F, color: "#fff", background: ph ? "url(" + ph + ") center/cover no-repeat" : "linear-gradient(135deg,#b06bff,#5b21b6)", boxShadow: "0 0 0 2px var(--lc-ring)" },
+        meta, metaBy, showMenu: !dragOn && !(v.state === "failed"), showMove: dragOn, menuOpen: s.menuFor === v.id, menu: menuFor(v),
+        toggleMenu: e => { e.stopPropagation(); this.setState(x => ({ menuFor: x.menuFor === v.id ? null : v.id, open: null })); },
+        open: () => { if (dragOn) return; this.openEdit(v.id); },
+        preview: e => { if (!media || dragOn) return; e.stopPropagation(); this.openPreview(v.id); },
+        retry: e => { e.stopPropagation(); this.retry(v.id); }, remove: e => { e.stopPropagation(); this.remove(v.id); this.say("Upload removed."); },
+        drag: dragOn, up: e => { e.stopPropagation(); move(v.id, -1); }, down: e => { e.stopPropagation(); move(v.id, 1); },
+        upOff: i === 0, downOff: i === shown.length - 1, upStyle: circ(i === 0), downStyle: circ(i === shown.length - 1),
+        dragStart: e => { if (!dragOn) return; try { e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", v.id); } catch (er) {} this.setState({ dragId: v.id }); },
+        dragOver: e => { if (!dragOn) return; e.preventDefault(); const from = s.dragId; if (!from || from === v.id) return; this.setState(x => { const o = x.rOrder.slice(), a = o.indexOf(from), b = o.indexOf(v.id); if (a < 0 || b < 0) return null; o.splice(a, 1); o.splice(b, 0, from); return { rOrder: o }; }); },
+        drop: e => { if (dragOn) e.preventDefault(); }, dragEnd: () => this.setState({ dragId: null }),
+        style: { position: "relative", display: "flex", flexDirection: "column", gap: 12, padding: "10px 10px 14px", borderRadius: 28, background: "var(--lc-flat)", boxShadow: dragging ? "0 0 0 2px rgba(167,139,250,.7),0 30px 50px -24px rgba(0,0,0,.8)" : dragOn ? "0 0 0 1px rgba(167,139,250,.3),0 12px 28px -22px rgba(0,0,0,.65)" : v.state === "failed" ? "0 0 0 1px var(--lc-badbg),0 12px 28px -22px rgba(0,0,0,.65)" : "var(--lc-edge)", color: "var(--sc-ink)", cursor: dragOn ? "grab" : media ? "pointer" : "default", opacity: dragging ? .55 : hidden && !dragOn ? .72 : 1, transform: dragging ? "scale(.97)" : "none", transition: "box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1),opacity .25s,transform .25s", animation: "tvRise .7s cubic-bezier(.2,.8,.2,1) both", animationDelay: Math.min(i, 12) * 45 + "ms" },
+        hover: dragOn ? "" : "translate:0 -3px;box-shadow:var(--lc-hov)",
+        sepOp: i ? 1 : 0, reorderMode: dragOn, posLabel: ready ? (s.reorder ? i + 1 : v.ord) : "—", durTxt: media ? fmtDur(v.dur) : "—",
+        statusLabel: STP[state][0], statusStyle: statusPill(STP[state][1], STP[state][2]),
+        upDate: dm(v.up.d), upBy: v.up.by, edDate: v.ed ? dm(v.ed.d) : "Not edited", edBy: v.ed ? v.ed.by : "", edFg: v.ed ? "var(--t1)" : "var(--t3)",
+        rowStyle: { display: "grid", gridTemplateColumns: "56px minmax(320px,2.4fr) 110px 120px minmax(170px,1fr) minmax(170px,1fr) 52px", alignItems: "center", gap: "0 18px", minHeight: 84, padding: "10px 16px", borderRadius: 18, cursor: dragOn ? "grab" : media ? "pointer" : "default", opacity: dragging ? .5 : hidden && !dragOn ? .7 : 1, background: dragging ? "var(--s2)" : "transparent", transition: "background .25s,opacity .25s", animation: "pnRise .45s cubic-bezier(.2,.8,.2,1) both", animationDelay: Math.min(i, 12) * 30 + "ms" }
+      };
+    });
+
+    const tabs = [["tech", "Technicians"], ["store", "Store users"]].map(([k, label]) => ({ key: k, label, count: count(k), go: () => this.setLib(k),
+      style: { display: "inline-flex", alignItems: "center", gap: 8, height: 40, padding: "0 16px 0 18px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (lib === k ? 600 : 500) + " 14px " + F, color: lib === k ? "#fff" : "var(--t3)", position: "relative", zIndex: 1, background: "transparent", transition: "color .25s" },
+      countStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 24, height: 22, padding: "0 7px", borderRadius: 999, background: lib === k ? "rgba(255,255,255,.2)" : "var(--lc-chip)", color: lib === k ? "#fff" : "var(--t2)", font: "700 12px " + F, fontVariantNumeric: "tabular-nums", transition: "background .25s,color .25s" } }));
+
+    const libCount = libAll.length;
+    let empty = null;
+    if (!loading && !err) {
+      if (!libCount) empty = { icon: I.video, title: lib === "tech" ? "No technician videos yet." : "No store videos yet.", body: "Upload the first one to start the library.", cta: "Upload video", run: () => this.openUpload(), primary: true };
+      else if (!list.length && q) empty = { icon: I.search, title: "No videos match '" + (String(s.lq || "").trim() || String(this.props.query || "").trim()) + "'.", body: "Try a different word, or search titles and descriptions in the other library.", cta: "Clear search", run: () => this.props.onClearQuery && this.props.onClearQuery() };
+      else if (!list.length) empty = { icon: I.filter, title: s.status === "hidden" ? "No hidden videos." : "No visible videos.", body: "Every video in this library is " + (s.status === "hidden" ? "shown in the app." : "hidden right now."), cta: "Clear filter", run: () => this.setState({ status: "all" }) };
+    }
+    if (err && !loading) empty = { icon: I.warn, title: "Couldn't load videos.", body: "Check your connection, then try again.", cta: "Try again", run: () => { this.setState({ err: false, loading: true }); clearTimeout(this.lt); this.lt = setTimeout(() => this.setState({ loading: false }), 700); }, primary: true };
+    const SEC = { marginTop: 22, height: 44, padding: "0 20px", borderRadius: 999, border: "1px solid rgba(var(--w),0.12)", background: "transparent", color: "var(--t1)", font: "600 14px " + F, cursor: "pointer" };
+    const PRIB = { marginTop: 22, display: "inline-flex", alignItems: "center", gap: 8, height: 44, padding: "0 22px", border: 0, borderRadius: 999, background: "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: "#fff", boxShadow: "inset 0 1px 0 rgba(255,255,255,.24)", font: "600 14px " + F, cursor: "pointer" };
+
+    const statusN = { all: libAll.length, visible: libAll.filter(v => st(v) === "visible").length, hidden: libAll.filter(v => st(v) === "hidden" || st(v) === "draft").length };
+    const optStyle = on => ({ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "10px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 14px " + F, color: on ? "var(--pa)" : "var(--t1)", background: on ? "rgba(139,92,246,.14)" : "transparent" });
+    const SORTS = [["app", "App order"], ["newest", "Newest"], ["oldest", "Oldest"], ["title", "Title A to Z"]];
+    const SORT_LBL = { app: "App order", newest: "Newest", oldest: "Oldest", title: "Title A to Z", dur: "Duration", upl: "Uploaded", edit: "Last edited" };
+    const seg = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 34, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: "600 13px " + F, background: on ? "var(--lc-chip)" : "transparent", color: on ? "var(--lc-title)" : "var(--t3)", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.28)" : "none", transition: "background .2s,color .2s" });
+    const COLS = [["#", null], ["Video", null], ["Duration", "dur"], ["Status", null], ["Uploaded", "upl"], ["Last edited", "edit"], ["", null]];
+
+    const out = {
+      rootRef: this.rootRef, wrapRef: this.wrapRef, tabsRef: this.tabsRef, fileRef: this.fileRef, imgRef: this.imgRef, pvRef: this.pvRef,
+      openActivity: () => this.setState({ act: true, open: null, menuFor: null }), openUpload: () => this.openUpload(),
+      tabs, indX: (s.ind ? s.ind.x : 0) + "px", indW: (s.ind ? s.ind.w : 0) + "px", indOp: s.ind ? 1 : 0,
+      audience: lib === "tech" ? "Shown in the technician app under How-to Videos. Store users never see these." : "Shown in the store app under How-to Videos. Only store users see these.",
+      notReorder: !s.reorder, reorder: s.reorder,
+      statusLabel: { all: "All", visible: "Visible", hidden: "Hidden" }[s.status], statusOpen: s.open === "status",
+      toggleStatus: () => this.setState({ open: s.open === "status" ? null : "status", menuFor: null }),
+      statusBtn: { display: "inline-flex", alignItems: "center", gap: 7, height: 44, padding: "0 14px 0 16px", borderRadius: 999, whiteSpace: "nowrap", cursor: "pointer", font: (s.status !== "all" ? 600 : 500) + " 13.5px " + F, color: s.status !== "all" ? "var(--lc-title)" : "var(--t1)", background: "var(--lc-flat)", border: 0, boxShadow: s.status !== "all" ? "0 0 0 1px rgba(167,139,250,.38),0 12px 28px -22px rgba(0,0,0,.65)" : "var(--lc-edge)", transition: "box-shadow .3s,color .2s" },
+      statusOptions: [["all", "All"], ["visible", "Visible"], ["hidden", "Hidden"]].map(([k, label]) => ({ label, n: statusN[k], pick: () => this.setState({ status: k, open: null, page: 1 }), style: optStyle(s.status === k), tickStyle: { display: s.status === k ? "flex" : "none", color: "var(--pa)" } })),
+      lq: s.lq || "", onLq: e => this.setState({ lq: e.target.value, page: 1 }), clrLq: () => this.setState({ lq: "", page: 1 }), hasLq: !!s.lq, hasQuery: !!String(this.props.query || "").trim(), queryLabel: "“" + String(this.props.query || "").trim() + "”", clearQuery: () => this.props.onClearQuery && this.props.onClearQuery(),
+      reorderOff, reorderTip: "Clear search and filters to reorder.",
+      reorderBtn: { display: "inline-flex", alignItems: "center", gap: 8, height: 44, padding: "0 18px 0 14px", borderRadius: 999, border: 0, background: "var(--lc-flat)", boxShadow: "var(--lc-edge)", color: "var(--t1)", font: "500 13.5px " + F, whiteSpace: "nowrap", cursor: reorderOff ? "not-allowed" : "pointer", opacity: reorderOff ? .45 : 1, transition: "opacity .2s" },
+      startReorder: () => { if (reorderOff) return; this.setState({ reorder: true, rOrder: this.ready(lib).map(v => v.id), menuFor: null, open: null }); },
+      cancelReorder: () => this.setState({ reorder: false, rOrder: null, dragId: null }),
+      saveOrder: () => { const before = this.ready(lib).map(v => v.id).join(); s.rOrder.forEach((id, i) => { this.find(id).ord = i + 1; }); if (before !== s.rOrder.join()) this.addLog(lib, "Reordered", "Reordered " + LIB[lib] + " library"); this.setState({ reorder: false, rOrder: null, dragId: null }); this.say("Order saved. The app shows the new order right away."); },
+      sortLabel: SORT_LBL[s.sort] + (["dur", "upl", "edit"].includes(s.sort) ? (s.dir > 0 ? " ↑" : " ↓") : ""), sortOpen: s.open === "sort",
+      toggleSort: () => this.setState({ open: s.open === "sort" ? null : "sort", menuFor: null }),
+      sortOptions: SORTS.map(([k, label]) => ({ label, pick: () => this.setState({ sort: k, dir: 1, open: null, page: 1 }), style: optStyle(s.sort === k), tickStyle: { display: s.sort === k ? "flex" : "none", color: "var(--pa)" } })),
+      gridBtn: seg(isGrid), listBtn: seg(!isGrid), setGrid: () => this.setView("grid"), setList: () => this.setView("list"),
+      gridCols: "repeat(" + s.cols + ",minmax(0,1fr))",
+      skel: Array.from({ length: isGrid ? s.cols * 2 : 7 }, (_, i) => i),
+      showSkelGrid: loading && isGrid, showSkelList: loading && !isGrid,
+      showEmpty: !!empty, emptyIcon: empty ? empty.icon : "", emptyTitle: empty ? empty.title : "", emptyBody: empty ? empty.body : "", emptyCta: empty ? empty.cta : "", emptyRun: empty ? empty.run : null, emptyDark: empty && empty.primary ? "1" : "0", emptyBtn: empty && empty.primary ? PRIB : SEC,
+      showGrid: !loading && !empty && isGrid, showList: !loading && !empty && !isGrid, cards,
+      cols: COLS.map(([label, k]) => { const on = s.sort === k; return { label, static: !k, sort: () => { if (!k) return; this.setState(x => ({ sort: k, dir: x.sort === k ? -x.dir : 1, page: 1 })); }, style: { display: "inline-flex", alignItems: "center", gap: 6, padding: 0, border: 0, background: "transparent", cursor: k ? "pointer" : "default", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", whiteSpace: "nowrap", color: on ? "var(--pa)" : "var(--t2)" }, arrowStyle: { display: on ? "inline-flex" : "none", transform: s.dir > 0 ? "rotate(180deg)" : "none", transition: "transform .2s" } }; }),
+      showPager: !loading && !empty && !s.reorder && list.length > size, pagerText: "Showing " + ((page - 1) * size + 1) + " to " + Math.min(list.length, page * size) + " of " + list.length,
+      prevPage: () => this.setState({ page: page - 1 }), nextPage: () => this.setState({ page: page + 1 }), prevOff: page <= 1, nextOff: page >= pages, prevOp: page <= 1 ? .4 : 1, nextOp: page >= pages ? .4 : 1,
+      onFilePicked: e => { const f = e.target.files && e.target.files[0]; if (!f) return; if (!this.state.panel) return; this.startFile({ name: f.name, size: f.size, raw: f }); },
+      onImgPicked: e => { const f = e.target.files && e.target.files[0]; if (f) this.loadImage(f); e.target.value = ""; },
+      toast: s.toast, hasUndo: s.hasUndo, toastOp: s.toast ? 1 : 0, toastY: s.toast ? "0px" : "12px", toastPe: s.toast ? "auto" : "none",
+      undo: () => { const fn = this.undoFn; this.undoFn = null; clearTimeout(this.tt); this.setState({ toast: "", hasUndo: false }); if (fn) fn(); }
+    };
+
+    Object.assign(out, this.panelVals(), this.activityVals(), this.previewVals(), this.modalVals());
+    return out;
+  }
+
+  loadImage(file) {
+    if (!/^image\/(jpeg|png)$/.test(file.type)) { this.setPanel({ imgErr: "Use a JPG or PNG image." }); return; }
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const w = img.naturalWidth, h = img.naturalHeight;
+      if (w < 1280 || h < 720) { this.setPanel({ imgErr: "This image is " + w + " × " + h + " px. Use one at least 1280 × 720 px.", crop: null }); return; }
+      if (Math.abs(w / h - 16 / 9) > .02) { this.setPanel({ crop: { url, w, h, img }, imgErr: "", framesOpen: false }); return; }
+      this.setF({ thumb: { kind: "url", url: this.downscale(img, 0, 0, w, h) }, thumbSrc: "image" }); this.setPanel({ imgErr: "", crop: null });
+    };
+    img.onerror = () => this.setPanel({ imgErr: "Couldn't read this image. Try another one." });
+    img.src = url;
+  }
+  downscale(img, sx, sy, sw, sh) { const c = document.createElement("canvas"); c.width = 960; c.height = 540; c.getContext("2d").drawImage(img, sx, sy, sw, sh, 0, 0, 960, 540); return c.toDataURL("image/jpeg", .85); }
+
+  panelVals() {
+    const p = this.state.panel;
+    if (!p) return { panelOpen: false };
+    const f = p.f, j = p.job, isEdit = p.mode === "edit", isNew = !isEdit, v = p.id ? this.find(p.id) : null;
+    const libName = LIB[f.lib], title = f.title.trim(), desc = f.desc.trim();
+    const replacing = isEdit && j && j.state !== "ready";
+    const fileReady = isEdit || p.mode === "draft" ? !replacing : !!(j && j.state === "ready");
+    const valid = title.length > 0 && f.title.length <= 80 && desc.length > 0 && f.desc.length <= 120 && !!f.thumb && fileReady;
+    const dirty = this.isDirty(p);
+    const inp = bad => ({ height: 48, padding: "0 16px", borderRadius: 16, border: 0, outline: "none", background: "var(--pn-inner)", boxShadow: bad ? "inset 0 0 0 1.5px var(--red)" : "inset 0 0 0 1px var(--pn-line)", color: "var(--pn-ink)", font: "500 15px " + F, transition: "box-shadow .2s" });
+    const tOver = f.title.length > 80, dOver = f.desc.length > 120;
+    const PUB = dis => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 52, padding: "0 26px", border: 0, borderRadius: 999, background: "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: "#fff", font: "600 15px " + F, cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .4 : 1, boxShadow: dis ? "none" : "0 10px 26px rgba(109,40,217,.4),inset 0 1px 0 rgba(255,255,255,.24)", transition: "opacity .25s,filter .15s" });
+    const SECB = dis => ({ height: 52, padding: "0 20px", border: 0, borderRadius: 999, background: "var(--pn-tile)", boxShadow: "inset 0 0 0 1px var(--pn-line)", color: "var(--pn-ink)", font: "600 14px " + F, cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .45 : 1, whiteSpace: "nowrap" });
+
+    // file section
+    let zone = !isEdit && p.mode !== "draft" && (!j || p.err) ? true : false;
+    if (isEdit && !j) zone = false;
+    const errMsg = { type: "This file type isn't supported. Upload an MP4 or MOV.", size: "This file is larger than 2 GB." }[p.err];
+    const fv = {};
+    if (zone) Object.assign(fv, {
+      zoneTitle: p.err ? (p.err === "type" ? "File type not supported" : "File too large") : p.dragOver ? "Drop to upload" : "Drag a video here or browse",
+      zoneSub: errMsg || "MP4 or MOV, up to 2 GB", zoneSubFg: p.err ? "var(--red)" : "var(--pn-ink2)",
+      zoneIcon: p.err ? I.warn : I.upload,
+      zoneIconStyle: { display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 18, background: p.err ? "var(--pn-redbg)" : "rgba(139,92,246,.16)", color: p.err ? "var(--red)" : "var(--pa)", transform: p.dragOver ? "translateY(-4px) scale(1.06)" : "none", transition: "transform .35s cubic-bezier(.34,1.56,.64,1)" },
+      zoneStyle: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 8, padding: "30px 20px", borderRadius: 20, cursor: "pointer", background: p.dragOver ? "rgba(139,92,246,.1)" : p.err ? "var(--pn-redbg)" : "var(--pn-inner)", border: "1.5px dashed " + (p.dragOver ? "rgba(167,139,250,.8)" : p.err ? "var(--pn-rededge)" : "rgba(var(--pl),.32)"), transition: "background .25s,border-color .25s" }
+    });
+    const rowThumb = j && j.state === "ready" ? (p.frames[0] || null) : (!j && v ? v.thumb : null);
+    const jPct = j ? Math.floor(j.progress) : 0;
+    let fName = "", fMeta = "", fMetaFg = "var(--pn-ink2)", fAct = null, fActLabel = "", fX = null, fBar = false, fIcon = I.video, fIconFg = "var(--pa)", fRowEdge = "var(--pn-line)", fSpin = false;
+    if (j) {
+      fName = j.name;
+      if (j.state === "uploading") { fMeta = fmtSize(j.size) + " · Uploading · " + jPct + "%"; fBar = true; fX = () => { this.setPanel({ job: null }); }; }
+      else if (j.state === "processing") { fMeta = fmtSize(j.size) + " · Processing..."; fBar = true; fSpin = true; }
+      else if (j.state === "failed") { fMeta = "Upload failed. Check your connection and try again."; fMetaFg = "var(--red)"; fIcon = I.warn; fIconFg = "var(--red)"; fRowEdge = "var(--pn-rededge)"; fAct = () => { this.setPanel({ job: Object.assign({}, j, { state: "uploading", retried: true }) }); this.ensureTick(); }; fActLabel = "Retry"; fX = () => this.setPanel({ job: null }); }
+      else { fMeta = fmtDur(j.dur) + " · " + fmtSize(j.size) + (isEdit ? " · New file, saves with your changes" : " · Ready"); fAct = () => this.pickFile("panel"); fActLabel = isEdit ? "Replace again" : "Replace file"; }
+    } else if (v) {
+      fName = v.fileName; fMeta = fmtDur(v.dur) + " · " + fmtSize(v.size) + " · Uploaded " + dm(v.up.d); fAct = () => this.pickFile("panel"); fActLabel = "Replace video";
+    }
+    Object.assign(fv, {
+      fZone: zone, fRow: !zone, showSamples: zone && this.props.sampleFiles !== false,
+      samples: SAMPLES.map(sm => ({ name: sm.name, pick: e => { e.stopPropagation(); this.pickSample(sm); } })),
+      zoneOver: e => { e.preventDefault(); if (!p.dragOver) this.setPanel({ dragOver: true }); }, zoneLeave: () => this.setPanel({ dragOver: false }),
+      zoneDrop: e => { e.preventDefault(); this.setPanel({ dragOver: false }); const file = e.dataTransfer.files && e.dataTransfer.files[0]; if (file) this.startFile({ name: file.name, size: file.size, raw: file }); },
+      browse: () => this.pickFile("panel"),
+      fHasThumb: !!rowThumb && !fSpin, fNoThumb: !rowThumb || fSpin, fThumbBg: thumbCss(rowThumb), fIcon, fIconFg, fSpin,
+      fName, fMeta, fMetaFg, fBar, fBarStyle: { position: "absolute", left: 0, top: 0, bottom: 0, width: (j && j.state === "processing" ? 100 : jPct) + "%", borderRadius: 999, background: j && j.state === "processing" ? "repeating-linear-gradient(90deg,#a78bfa 0 14px,#7c3aed 14px 28px)" : "linear-gradient(90deg,#8b5cf6,#a78bfa)", animation: j && j.state === "processing" ? "tvStripe .8s linear infinite" : "none", transition: "width .12s linear" },
+      fHasAct: !!fAct, fAct, fActLabel, fHasX: !!fX, fX, fRowEdge,
+      fNote: !!(isEdit && j && j.state !== "failed"), fNoteText: j && j.state === "ready" ? "The new video replaces the current one when you save." : "The current video stays in the app until the new one is ready."
+    });
+
+    const otherWarn = isEdit && f.lib !== p.orig.lib;
+    const frames = (p.frames || []).map((fr, i) => { const on = f.thumbSrc === "frame" && f.thumbIdx === i; return { label: "Frame " + (i + 1), t: ["10%", "25%", "40%", "55%", "70%", "85%"][i], bg: thumbCss(fr), pick: () => { this.setF({ thumb: fr, thumbIdx: i, thumbSrc: "frame" }); this.setPanel({ crop: null, imgErr: "" }); }, style: { position: "relative", aspectRatio: "16/9", padding: 0, border: 0, borderRadius: 10, overflow: "hidden", cursor: "pointer", background: "var(--pn-track)", boxShadow: on ? "0 0 0 2px #a78bfa,0 8px 18px -10px rgba(109,40,217,.8)" : "inset 0 0 0 1px var(--pn-line)", transition: "box-shadow .2s,transform .25s cubic-bezier(.34,1.56,.64,1)" } }; });
+    const cr = p.crop;
+    let cropWin = {}, cropAspect = "16/9";
+    if (cr) { const r = cr.w / cr.h; cropAspect = cr.w + "/" + cr.h; const wide = r > 16 / 9; const ww = wide ? (16 / 9) / r * 100 : 100, hh = wide ? 100 : r / (16 / 9) * 100; cropWin = { position: "absolute", left: (100 - ww) / 2 + "%", top: (100 - hh) / 2 + "%", width: ww + "%", height: hh + "%", borderRadius: 8, boxShadow: "0 0 0 9999px rgba(0,0,0,.55),inset 0 0 0 2px #fff" }; }
+    const track = on => ({ position: "relative", flex: "none", width: 50, height: 30, padding: 0, border: 0, borderRadius: 999, cursor: "pointer", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "var(--pn-track)", boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,.24)" : "inset 0 0 0 1px var(--pn-line)", transition: "background .25s" });
+    const knob = on => ({ position: "absolute", top: 3, left: on ? 23 : 3, width: 24, height: 24, borderRadius: "50%", background: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,.3)", transition: "left .3s cubic-bezier(.34,1.56,.64,1)" });
+    const stName = !v ? "" : v.state === "draft" ? "Draft" : f.visible ? "Visible" : "Hidden";
+    const saveOff = !dirty || !valid || replacing;
+    return Object.assign(fv, {
+      panelOpen: true, closePanel: () => this.requestClose(),
+      pTitle: isEdit ? "Edit video" : p.mode === "draft" ? "Publish video" : "Upload video",
+      pSub: isEdit || p.mode === "draft" ? (v ? v.title : "") : "Shown in the " + APP[f.lib] + " under How-to Videos.",
+      pLibChip: libName + " library", pLibIcon: I[f.lib], pHasStatus: !!v, pStatus: stName,
+      pStatusStyle: { display: "inline-flex", alignItems: "center", gap: 7, height: 32, padding: "0 13px 0 11px", borderRadius: 999, background: stName === "Visible" ? "var(--lc-okbg)" : "var(--pn-tile)", color: stName === "Visible" ? "var(--lc-ok)" : stName === "Draft" ? "var(--lc-title)" : "var(--pn-ink3)", boxShadow: "inset 0 0 0 1px var(--pn-line)", font: "600 12.5px " + F },
+      libSegs: [["tech", "Technicians"], ["store", "Store users"]].map(([k, label]) => { const on = f.lib === k; return { label, d: I[k], pick: () => this.setF({ lib: k }), style: { flex: "1 1 0", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 42, border: 0, borderRadius: 999, cursor: "pointer", font: (on ? 600 : 500) + " 14px " + F, color: on ? "#fff" : "var(--pn-ink2)", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "transparent", boxShadow: on ? "0 8px 20px -10px rgba(109,40,217,.7),inset 0 1px 0 rgba(255,255,255,.24)" : "none", transition: "background .25s,color .25s" } }; }),
+      libHelp: f.lib === "tech" ? "Only technicians will see this video." : "Only store users will see this video.",
+      libWarn: otherWarn, libWarnText: "This video will be removed from the " + APP[otherWarn ? p.orig.lib : f.lib] + " and added to the " + APP[f.lib] + ". It goes to the end of the " + libName + " order.",
+      fTitle: f.title, onTitle: e => { this.setF({ title: e.target.value }); this.setPanel({ titleAuto: false }); }, tCount: f.title.length + " / 80", tCountFg: tOver ? "var(--red)" : "var(--pn-ink3)", tInput: inp(tOver), tHelp: tOver ? "Keep the title to 80 characters." : "Say what the viewer will learn, e.g. Running a usage test.", tHelpFg: tOver ? "var(--red)" : "var(--pn-ink2)",
+      fDesc: f.desc, onDesc: e => this.setF({ desc: e.target.value.replace(/\n/g, " ") }), dCount: f.desc.length + " / 120", dCountFg: dOver ? "var(--red)" : "var(--pn-ink3)", dInput: inp(dOver), dHelp: dOver ? "Keep it to one line, 120 characters at most." : "One line shown under the title in the app.", dHelpFg: dOver ? "var(--red)" : "var(--pn-ink2)",
+      thNone: !f.thumb, thHas: !!f.thumb, thBg: thumbCss(f.thumb), thSrcLabel: f.thumbSrc === "image" ? "Uploaded image" : "Frame at " + ["10%", "25%", "40%", "55%", "70%", "85%"][f.thumbIdx || 0],
+      toggleFrames: () => this.setPanel({ framesOpen: !p.framesOpen, crop: null }), framesOpen: p.framesOpen && frames.length > 0, frames,
+      thFramesBtn: { display: "inline-flex", alignItems: "center", gap: 8, height: 38, padding: "0 14px", border: 0, borderRadius: 999, background: p.framesOpen ? "rgba(139,92,246,.16)" : "var(--pn-inner)", boxShadow: p.framesOpen ? "inset 0 0 0 1px rgba(167,139,250,.45)" : "inset 0 0 0 1px var(--pn-line)", color: p.framesOpen ? "var(--pa)" : "var(--pn-ink)", font: "600 12.5px " + F, cursor: frames.length ? "pointer" : "not-allowed", opacity: frames.length ? 1 : .45 },
+      pickImage: () => { const el = this.imgRef.current; if (el) el.click(); },
+      cropOpen: !!cr, cropUrl: cr ? cr.url : IMG, cropHidden: !cr, cropAspect, cropWin, cropText: cr ? "This image is " + cr.w + " × " + cr.h + " px. We'll crop it to 16:9 from the centre." : "",
+      cropCancel: () => this.setPanel({ crop: null }),
+      cropApply: () => { const c = p.crop, r = c.w / c.h; let sw = c.w, sh = c.h; if (r > 16 / 9) sw = c.h * 16 / 9; else sh = c.w * 9 / 16; this.setF({ thumb: { kind: "url", url: this.downscale(c.img, (c.w - sw) / 2, (c.h - sh) / 2, sw, sh) }, thumbSrc: "image" }); this.setPanel({ crop: null }); },
+      imgErr: !!p.imgErr, imgErrText: p.imgErr,
+      pIsEdit: isEdit, pIsNew: isNew,
+      visSegs: [[true, "Shown in app", I.play], [false, "Hidden", I.hide]].map(([k, label, d]) => { const on = f.visible === k; return { label, d, pick: () => this.setF({ visible: k }), style: { display: "inline-flex", alignItems: "center", gap: 7, height: 38, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13px " + F, color: on ? "#fff" : "var(--pn-ink2)", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "transparent", boxShadow: on ? "0 8px 20px -10px rgba(109,40,217,.7),inset 0 1px 0 rgba(255,255,255,.24)" : "none", transition: "background .25s,color .25s" } }; }),
+      visHelp: f.visible ? "Shown in the " + APP[f.lib] + " in its place in the order." : "Hidden videos stay here but aren't shown in the app.",
+      apLabel: "How it looks in the " + APP[f.lib], apThumb: thumbCss(f.thumb), ...this.nextOf(f.lib, p.id, "ap"), apDur: (j && j.state === "ready") ? fmtDur(j.dur) : v && v.dur ? fmtDur(v.dur) : "0:00",
+      apTitle: title || "Your title appears here", apTitleFg: title ? "var(--sc-ink)" : "var(--sc-ink3)", apDesc: desc || "Your one-line description appears here",
+      pDelete: () => this.setState({ modal: { kind: "delete", id: p.id } }),
+      pSave: () => { if (!saveOff) this.saveEdit(); }, pSaveOff: saveOff, pSaveStyle: Object.assign(PUB(saveOff), { padding: "0 24px" }), pSaveTip: replacing ? "Wait for the new video to finish." : !valid ? "Fill in the required fields." : "Make a change to save.",
+      pPubOff: !valid, pPubStyle: PUB(!valid), pHiddenStyle: SECB(!valid),
+      pPublish: () => { if (valid) this.publish(true); }, pSaveHidden: () => { if (valid) this.publish(false); }
+    });
+  }
+
+  activityVals() {
+    const s = this.state;
+    if (!s.act) return { actOpen: false };
+    const maxD = s.actRange === "30" ? 30 : s.actRange === "90" ? 90 : 1e9;
+    const rows = (this.log || []).filter(a => (s.actLib === "all" || a.lib === s.actLib) && (s.actType === "all" || a.type === s.actType) && (s.actPerson === "all" || a.by === s.actPerson) && (TODAY - a.at) / 864e5 <= maxD).sort((a, b) => b.at - a.at);
+    const seg = on => ({ height: 32, padding: "0 13px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 12.5px " + F, color: on ? "#fff" : "var(--pn-ink2)", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "transparent", transition: "background .2s,color .2s" });
+    const PT = { Uploaded: ["rgba(139,92,246,.16)", "var(--pa)"], Published: ["var(--lc-okbg)", "var(--lc-ok)"], Shown: ["var(--lc-okbg)", "var(--lc-ok)"], Hidden: ["var(--pn-track)", "var(--pn-ink2)"], Deleted: ["var(--lc-badbg)", "var(--lc-bad)"], Moved: ["var(--lc-warnbg)", "var(--lc-warn)"] };
+    const types = ["Uploaded", "Published", "Edited", "Replaced video", "Moved", "Hidden", "Shown", "Reordered", "Deleted"];
+    return {
+      actOpen: true, closeActivity: () => this.setState({ act: false }), actCount: rows.length + (rows.length === 1 ? " entry" : " entries") + " · newest first",
+      actLibSegs: [["all", "All"], ["tech", "Technicians"], ["store", "Store users"]].map(([k, label]) => ({ label, style: seg(s.actLib === k), pick: () => this.setState({ actLib: k }) })),
+      actRangeSegs: [["30", "30 days"], ["90", "90 days"], ["all", "All"]].map(([k, label]) => ({ label, style: seg(s.actRange === k), pick: () => this.setState({ actRange: k }) })),
+      actType: s.actType, onActType: e => this.setState({ actType: e.target.value }), actTypeOpts: [{ v: "all", l: "All actions" }].concat(types.map(t => ({ v: t, l: t }))),
+      actPerson: s.actPerson, onActPerson: e => this.setState({ actPerson: e.target.value }), actPersonOpts: [{ v: "all", l: "Everyone" }, { v: DAN, l: DAN }, { v: ME, l: ME }],
+      actEmpty: !rows.length,
+      actRows: rows.map((a, i) => { const ph = pic(a.by), c = PT[a.type] || ["var(--pn-tile)", "var(--pn-ink)"]; return { day: dayLabel(a.at), time: hm(a.at), by: a.by, ini: ph ? "" : ini(a.by), type: a.type, details: a.details, lib: LIB[a.lib], sep: i ? "var(--pn-line)" : "transparent", delay: Math.min(i, 10) * 35 + "ms",
+        avStyle: { width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", font: "700 10px " + F, color: "#fff", background: ph ? "url(" + ph + ") center/cover no-repeat" : "linear-gradient(135deg,#b06bff,#5b21b6)" },
+        pill: { display: "inline-flex", alignItems: "center", height: 24, padding: "0 10px", borderRadius: 999, background: c[0], color: c[1], font: "600 11.5px " + F, whiteSpace: "nowrap" } }; })
+    };
+  }
+
+  nextOf(lib, id, p) {
+    const n = this.ready(lib).find(x => x.id !== id && x.visible);
+    return { [p + "HasNext"]: !!n, [p + "NextThumb"]: thumbCss(n ? n.thumb : null), [p + "NextTitle"]: n ? n.title : "" };
+  }
+  previewVals() {
+    const s = this.state, v = s.preview && this.find(s.preview.id);
+    if (!v) return { prevOpen: false };
+    const hidden = v.state === "draft" || !v.visible;
+    return {
+      prevOpen: true, closePreview: () => this.closePreview(), pvSrc: v.src || SRC, pvPoster: v.thumb && v.thumb.kind === "url" ? v.thumb.url : IMG,
+      pvTitle: v.title, pvDesc: v.desc, pvLib: LIB[v.lib], pvLibIcon: I[v.lib], pvDur: fmtDur(v.dur), pvHidden: hidden, pvHiddenLabel: v.state === "draft" ? "Draft" : "Hidden",
+      pvThumb: thumbCss(v.thumb), pvTitleFg: "var(--sc-ink)", ...this.nextOf(v.lib, v.id, "pv"), pvApp: s.pvApp, pvWidth: s.pvApp ? "1060px" : "880px",
+      pvSegs: [[false, "Video", I.video], [true, "In the app", I.tech]].map(([k, label, d]) => { const on = s.pvApp === k; return { label, d, pick: () => this.setState({ pvApp: k }), style: { display: "inline-flex", alignItems: "center", gap: 7, height: 36, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: "600 13px " + F, background: on ? "var(--lc-chip)" : "transparent", color: on ? "var(--lc-title)" : "var(--t3)", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.28)" : "none", transition: "background .2s,color .2s" } }; }),
+      pvTrack: { position: "relative", flex: "none", width: 44, height: 26, borderRadius: 999, background: s.pvApp ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "var(--s3)", transition: "background .25s" },
+      pvKnob: { position: "absolute", top: 3, left: s.pvApp ? 21 : 3, width: 20, height: 20, borderRadius: "50%", background: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,.3)", transition: "left .3s cubic-bezier(.34,1.56,.64,1)" },
+      pvCanEdit: true, pvEdit: () => { const id = v.id; this.closePreview(); this.openEdit(id); }
+    };
+  }
+
+  modalVals() {
+    const m = this.state.modal;
+    if (!m) return { modalOpen: false };
+    const F2 = F, btn = kind => kind === "red" ? { height: 44, padding: "0 20px", border: 0, borderRadius: 999, background: "#ef4444", color: "#fff", font: "600 14px " + F2, cursor: "pointer", boxShadow: "0 10px 26px rgba(239,68,68,.3)" }
+      : kind === "pri" ? { height: 44, padding: "0 20px", border: 0, borderRadius: 999, background: "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: "#fff", font: "600 14px " + F2, cursor: "pointer", boxShadow: "0 10px 26px rgba(109,40,217,.4)" }
+      : kind === "text" ? { height: 44, padding: "0 14px", border: 0, borderRadius: 999, background: "transparent", color: "var(--t2)", font: "600 14px " + F2, cursor: "pointer" }
+      : { height: 44, padding: "0 18px", borderRadius: 999, border: "1px solid rgba(var(--w),0.12)", background: "transparent", color: "var(--t1)", font: "600 14px " + F2, cursor: "pointer" };
+    const box = c => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, borderRadius: 16, background: c[0], color: c[1] });
+    const close = () => this.setState({ modal: null });
+    if (m.kind === "delete") {
+      const v = this.find(m.id), aud = v && v.lib === "store" ? "Store users" : "Technicians";
+      return { modalOpen: true, closeModal: close, mIcon: I.trash, mIconStyle: box(["rgba(248,113,113,.16)", "#f87171"]), mTitle: "Delete '" + (v ? v.title : "") + "'?", mBody: aud + " will no longer see it, and the file is removed permanently. To take it out of the app but keep it here, hide it instead.",
+        mButtons: [{ label: "Cancel", style: btn("text"), run: close }].concat(v && v.state === "ready" && v.visible ? [{ label: "Hide instead", style: btn("sec"), run: () => { this.setState({ modal: null, panel: null }); this.setVisible(v.id, false); } }] : []).concat([{ label: "Delete video", style: btn("red"), run: () => { this.remove(v.id, true); this.say("Video deleted."); } }]) };
+    }
+    if (m.kind === "keep") return { modalOpen: true, closeModal: close, mIcon: I.upload, mIconStyle: box(["rgba(139,92,246,.16)", "var(--pa)"]), mTitle: "Keep uploading in the background?", mBody: "The upload continues and the video appears in the library. You can publish it once it's ready.",
+      mButtons: [{ label: "Cancel upload", style: btn("text"), run: () => { this.setState({ modal: null, panel: null }); this.say("Upload cancelled."); } }, { label: "Keep uploading", style: btn("pri"), run: () => this.keepUploading() }] };
+    return { modalOpen: true, closeModal: close, mIcon: I.trash, mIconStyle: box(["rgba(251,191,36,.16)", "var(--amb)"]), mTitle: this.state.panel && this.state.panel.mode === "upload" ? "Discard this upload?" : "Discard your changes?", mBody: this.state.panel && this.state.panel.mode === "upload" ? "The file and details will be removed." : "Your edits to this video won't be saved.",
+      mButtons: [{ label: "Keep editing", style: btn("sec"), run: close }, { label: "Discard", style: btn("red"), run: () => this.setState({ modal: null, panel: null }) }] };
+  }
+}
+</script>
+</body>
+</html>

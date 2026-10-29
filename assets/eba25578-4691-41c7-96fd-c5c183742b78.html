@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes asRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes asPop{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes asFade{from{opacity:0}to{opacity:1}}
+@keyframes asPanel{from{opacity:0;transform:translateX(36px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes asModal{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes asCheck{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+@keyframes asSpin{to{transform:rotate(360deg)}}
+@keyframes asShake{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes asPulse{0%{box-shadow:0 0 0 0 rgba(167,139,250,.55)}70%,100%{box-shadow:0 0 0 8px rgba(167,139,250,0)}}
+[data-as-in]:focus{border-color:rgba(167,139,250,.7)!important;box-shadow:0 0 0 4px rgba(139,92,246,.16)!important;outline:none}
+[data-as-scroll]::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion:reduce){[data-as-anim]{animation:none!important}}
+:root{--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-glow:radial-gradient(closest-side,rgba(150,120,255,.34),rgba(120,90,230,.12) 55%,transparent);--pn-sheen:rgba(232,224,248,.05);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-line:rgba(232,224,248,.07);--pn-tile:rgba(232,224,248,.045);--pn-tileh:rgba(232,224,248,.09);--pn-inner:rgba(10,8,18,.35);--pn-track:rgba(232,224,248,.08);--pn-win:rgba(167,139,250,.36);--pn-ring:#1d1729;--pn-redbg:rgba(248,113,113,.09);--pn-rededge:rgba(248,113,113,.22);--pn-cta:#f1edf8;--pn-ctafg:#17131f;--pn-hero:#f1edf8;--pn-herofg:#17131f}
+:root[data-theme=light]{--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-glow:radial-gradient(closest-side,rgba(168,140,245,.32),rgba(184,160,246,.12) 55%,transparent);--pn-sheen:rgba(255,255,255,.4);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-line:rgba(26,22,37,.07);--pn-tile:rgba(255,255,255,.7);--pn-tileh:#f1edf8;--pn-inner:#f6f3fb;--pn-track:rgba(26,22,37,.08);--pn-win:rgba(124,58,237,.22);--pn-ring:#ffffff;--pn-redbg:#fde8e3;--pn-rededge:rgba(210,61,34,.2);--pn-cta:#1a1625;--pn-ctafg:#ffffff;--pn-hero:#1a1625;--pn-herofg:#ffffff}
+html[data-aspn="1"] [data-screen-label="Final Stores"]{isolation:auto!important}
+html[data-aspn="1"] main{z-index:70!important}
+@keyframes asPnIn{from{opacity:0;transform:translateX(48px) scale(.975);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes asPnGlow{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.12)}}
+@keyframes asMapIn{from{opacity:0;transform:scale(1.04);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes asMapPulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+@keyframes asPinDrop{from{opacity:0;translate:0 -26px}to{opacity:1;translate:0 0}}
+@keyframes asPinDot{from{opacity:0;translate:0 -26px}to{opacity:1;translate:0 0}}
+</style>
+</helmet>
+
+<div data-screen-label="Add store" style="width:100%;max-width:1760px;padding:8px 24px 16px;display:flex;flex-direction:column;gap:18px;color:var(--t1);font-family:'AppNumerals','Urbanist',system-ui,sans-serif">
+
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:asRise .45s cubic-bezier(.2,.8,.2,1) backwards">
+    <button type="button" onClick="{{ back }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background .15s,transform .2s" style-hover="background:var(--s2);transform:translateX(-2px)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>Stores</button>
+    <h1 style="margin:0;font:500 28px/1.1 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;white-space:nowrap">Add store</h1>
+    <span style="flex:1 1 auto"></span>
+    <span style="font-size:12.5px;color:var(--t3);white-space:nowrap">{{ savedLine }}</span>
+    <button type="button" onClick="{{ discard }}" style="height:44px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--t2);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;transition:color .15s,background .15s" style-hover="color:#f87171;background:rgba(248,113,113,.08)">Discard</button>
+    <button type="button" onClick="{{ saveDraft }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px 0 15px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background .15s" style-hover="background:var(--s2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.82 2H7.18C5.05 2 3.32 3.74 3.32 5.86v14.09c0 1.8 1.29 2.56 2.87 1.69l4.88-2.71c.52-.29 1.36-.29 1.87 0l4.88 2.71c1.58.88 2.87.12 2.87-1.69V5.86C20.68 3.74 18.95 2 16.82 2z"></path></svg>Save draft</button>
+  </div>
+
+  <div ref="{{ shellRef }}" style="{{ shellStyle }}">
+    <aside style="{{ asideStyle }}">
+      <section data-dark="1" style="position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:18px 20px 20px;min-height:300px;border-radius:28px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);border:1px solid rgba(var(--w),0.12);box-shadow:inset 0 1px 0 rgba(255,255,255,0.24),0 20px 40px -24px var(--k55);color:var(--t1);animation:asRise .5s cubic-bezier(.2,.8,.2,1) .04s backwards">
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:260px;height:260px;top:-110px;left:-60px;border-radius:50%;background:radial-gradient(circle,rgba(176,107,255,.92),transparent 70%);pointer-events:none"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:240px;height:240px;bottom:-120px;right:-50px;border-radius:50%;background:radial-gradient(circle,rgba(231,118,214,.82),transparent 70%);pointer-events:none"></span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:rgba(var(--w),0.14);border:1px solid rgba(var(--w),0.2);box-shadow:inset 0 1px 0 rgba(255,255,255,0.24)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12zM12 17c-1.67 0-2.5.83-2.5 2.5V22h5v-2.5c0-1.67-.83-2.5-2.5-2.5z"></path></svg></span>
+          <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(var(--w),.72)">Live preview</span>
+        </div>
+        <span style="flex:1 1 auto;min-height:4px"></span>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px 0 9px;border-radius:999px;background:rgba(var(--w),0.14);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:var(--t1);animation:asPulse 2.4s ease-out infinite"></span>Draft</span>
+          <span style="font-size:12.5px;color:{{ pvTzFg }};white-space:nowrap">{{ pvTz }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="font-size:40px;font-weight:300;line-height:1;letter-spacing:-.04em;color:{{ pvNoFg }};transition:color .3s">{{ pvNo }}</span>
+          <span style="font:500 22px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ pvNameFg }};transition:color .3s">{{ pvName }}</span>
+        </div>
+        <div aria-hidden="true" style="height:1px;background:linear-gradient(90deg,rgba(var(--w),.28),rgba(var(--w),.06))"></div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;line-height:1.4;color:rgba(var(--w),.78)">
+          <span style="display:flex;align-items:center;gap:8px;min-width:0"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" style="flex:0 0 auto"><path d="M12 13.43a3.12 3.12 0 100-6.24 3.12 3.12 0 000 6.24z"></path><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 01-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05z"></path></svg><span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ pvAddrFg }}">{{ pvAddr }}</span></span>
+          <sc-if value="{{ pvHasProducts }}" hint-placeholder-val="{{ false }}"><span data-as-anim="1" style="display:flex;align-items:center;gap:8px;animation:asRise .4s both"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z"></path></svg><span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pvProducts }}</span></span></sc-if>
+          <sc-if value="{{ pvHasTechs }}" hint-placeholder-val="{{ false }}">
+            <span data-as-anim="1" style="display:flex;align-items:center;gap:10px;animation:asRise .4s both">
+              <span style="display:flex;padding-left:8px"><sc-for list="{{ pvTechs }}" as="pt" hint-placeholder-count="2"><span title="{{ pt.name }}" style="width:28px;height:28px;margin-left:-8px;border-radius:50%;border:2px solid #4a1596;background:{{ pt.bg }};animation:asCheck .35s both"></span></sc-for></span>
+              <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pvTechLine }}</span>
+            </span>
+          </sc-if>
+        </div>
+      </section>
+
+      <section style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:16px;animation:asRise .5s cubic-bezier(.2,.8,.2,1) .1s backwards">
+        <h2 style="margin:0 0 10px 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Steps</h2>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+            <button type="button" onClick="{{ st.go }}" disabled="{{ st.locked }}" style="{{ st.rowStyle }}">
+              <sc-if value="{{ st.hasLine }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position:absolute;left:25px;top:46px;width:2px;height:calc(100% - 36px);border-radius:2px;background:{{ st.line }};transition:background .4s"></span></sc-if>
+              <span style="{{ st.dot }}">
+                  <sc-if value="{{ st.isNum }}" hint-placeholder-val="{{ true }}">{{ st.n }}</sc-if>
+                  <sc-if value="{{ st.isIcon }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="animation:asCheck .4s both"><path d="{{ st.icon }}"></path></svg></sc-if>
+              </span>
+              <span style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left">
+                <span style="font-size:14.5px;font-weight:600;color:{{ st.labelFg }}">{{ st.label }}</span>
+                <span style="font-size:12.5px;color:{{ st.subFg }}">{{ st.sub }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </aside>
+
+    <div style="{{ rightStyle }}">
+      <div ref="{{ scrollRef }}" data-as-scroll="1" style="{{ scrollStyle }}">
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:22px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) backwards">
+          <h2 style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Store</h2>
+          <p style="margin:0 0 18px;font-size:13.5px;color:var(--t2)">The store number links every upload, count and visit. Check it carefully.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+            <label style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <span style="font-size:13px;font-weight:600;color:var(--t2)">Store number <span style="color:#f87171">*</span></span>
+              <span style="position:relative;display:flex">
+                <input data-as-in="1" type="text" value="{{ vNo }}" onChange="{{ onNo }}" onBlur="{{ blurNo }}" placeholder="e.g. 4512" autoComplete="off" style="{{ noStyle }}"/>
+                <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:{{ noTagFg }};pointer-events:none">
+                  <sc-if value="{{ noChecking }}" hint-placeholder-val="{{ false }}"><span style="width:14px;height:14px;border-radius:50%;border:2px solid rgba(var(--w),.18);border-top-color:var(--pa);animation:asSpin .7s linear infinite"></span></sc-if>
+                  <sc-if value="{{ noOk }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="animation:asCheck .35s both"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></sc-if>
+                  {{ noTag }}
+                </span>
+              </span>
+              <sc-if value="{{ noHasErr }}" hint-placeholder-val="{{ false }}">
+                <span data-as-anim="1" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#f87171;animation:asPop .25s both">{{ noErr }}<sc-if value="{{ noTaken }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ viewTaken }}" style="font-weight:600;color:var(--pa)">View store</a></sc-if></span>
+              </sc-if>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <span style="display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600;color:var(--t2)"><span style="white-space:nowrap">Store name <span style="color:#f87171">*</span></span><span style="font-weight:500;color:{{ nameCountFg }}">{{ nameCount }}</span></span>
+              <input data-as-in="1" type="text" value="{{ vName }}" onChange="{{ onName }}" onBlur="{{ blurName }}" placeholder="Store name" maxLength="90" style="{{ nameStyle }}"/>
+              <span style="font-size:12.5px;color:{{ nameHelpFg }}">{{ nameHelp }}</span>
+            </label>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding:12px 14px;border-radius:16px;background:var(--lc-inner)">
+            <span style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:rgba(139,92,246,.14);color:var(--pa)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10zM2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg></span>
+            <span style="flex:1;min-width:0;font-size:13.5px;color:var(--t2)">Region: <span style="font-weight:600;color:{{ regionFg }}">{{ regionText }}</span></span>
+          </div>
+        </section>
+
+        <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:22px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .06s backwards">
+          <h2 style="margin:0 0 18px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Location</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:22px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+              <label style="position:relative;display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:13px;font-weight:600;color:var(--t2)">Street address <span style="color:#f87171">*</span></span>
+                <input data-as-in="1" type="text" value="{{ vStreet }}" onChange="{{ onStreet }}" onFocus="{{ focusStreet }}" onBlur="{{ blurStreet }}" placeholder="Start typing an address" autoComplete="off" style="{{ streetStyle }}"/>
+                <sc-if value="{{ showSugg }}" hint-placeholder-val="{{ false }}">
+                  <div data-dark="0" style="position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:30;padding:6px;border-radius:18px;background:rgba(var(--g1),.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(var(--w),.12);box-shadow:0 24px 50px var(--k55);transform-origin:top;animation:asPop .2s cubic-bezier(.22,.9,.24,1)">
+                    <sc-for list="{{ sugg }}" as="sg" hint-placeholder-count="3">
+                      <button type="button" onMouseDown="{{ sg.pick }}" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:var(--t1);text-align:left;cursor:pointer;transition:background .15s" style-hover="background:rgba(var(--w),.06)">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--pa)" stroke-width="1.6" style="flex:0 0 auto"><path d="M12 13.43a3.12 3.12 0 100-6.24 3.12 3.12 0 000 6.24z"></path><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 01-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05z"></path></svg>
+                        <span style="display:flex;flex-direction:column;min-width:0"><span style="font-size:13.5px;font-weight:600">{{ sg.street }}</span><span style="font-size:12px;color:var(--t3)">{{ sg.rest }}</span></span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ streetHasErr }}" hint-placeholder-val="{{ false }}"><span style="font-size:12.5px;color:#f87171">Enter the street address</span></sc-if>
+              </label>
+              <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,.9fr);gap:12px">
+                <label style="display:flex;flex-direction:column;gap:8px;min-width:0"><span style="font-size:13px;font-weight:600;color:var(--t2)">City <span style="color:#f87171">*</span></span><input data-as-in="1" type="text" value="{{ vCity }}" onChange="{{ onCity }}" onBlur="{{ blurCity }}" placeholder="City" style="{{ cityStyle }}"/></label>
+                <label style="position:relative;display:flex;flex-direction:column;gap:8px;min-width:0"><span style="font-size:13px;font-weight:600;color:var(--t2)">State <span style="color:#f87171">*</span></span>
+                  <select data-as-in="1" key="{{ stateKey }}" defaultValue="{{ vState }}" onChange="{{ onState }}" onBlur="{{ blurState }}" style="{{ stateStyle }}"><option value="">Select</option><sc-for list="{{ stateOpts }}" as="o" hint-placeholder-count="6"><option value="{{ o }}">{{ o }}</option></sc-for></select>
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:14px;bottom:17px;pointer-events:none;color:var(--t3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:8px;min-width:0"><span style="font-size:13px;font-weight:600;color:var(--t2)">ZIP code <span style="color:#f87171">*</span></span><input data-as-in="1" type="text" inputMode="numeric" value="{{ vZip }}" onChange="{{ onZip }}" onBlur="{{ blurZip }}" placeholder="00000" maxLength="5" style="{{ zipStyle }}"/></label>
+              </div>
+              <sc-if value="{{ cszHasErr }}" hint-placeholder-val="{{ false }}"><span style="margin-top:-8px;font-size:12.5px;color:#f87171">{{ cszErr }}</span></sc-if>
+              <label style="position:relative;display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:13px;font-weight:600;color:var(--t2)">Time zone <span style="color:#f87171">*</span></span>
+                <select data-as-in="1" key="{{ tzKey }}" defaultValue="{{ vTz }}" onChange="{{ onTz }}" style="{{ tzStyle }}"><option value="">Select a time zone</option><sc-for list="{{ tzOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o }}">{{ o }}</option></sc-for></select>
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:14px;top:47px;pointer-events:none;color:var(--t3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg>
+                <span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--t3)">Used for weekly inventory deadlines and reminders.<sc-if value="{{ tzAuto }}" hint-placeholder-val="{{ false }}"><span data-as-anim="1" style="white-space:nowrap;padding:2px 8px;border-radius:999px;background:rgba(139,92,246,.14);color:var(--pa);font-size:11px;font-weight:700;animation:asPop .25s both">Set from address</span></sc-if></span>
+              </label>
+            </div>
+            <div style="position:relative;overflow:hidden;min-height:280px;border-radius:22px;background:var(--lc-inner);background-image:radial-gradient(rgba(var(--w),.08) 1px,transparent 1.3px);background-size:18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center">
+              <sc-if value="{{ mapReady }}" hint-placeholder-val="{{ false }}">
+                <div data-dark="1" style="position:absolute;inset:0;background:#15111f;color:#eeeef3;text-align:left;animation:asMapIn .6s cubic-bezier(.2,.8,.2,1) both">
+                  <svg viewBox="0 0 560 340" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%" fill="none">
+                    <path d="M-20 300 C 90 250, 160 300, 250 262 S 420 200, 600 236" stroke="rgba(110,140,255,.10)" stroke-width="22" stroke-linecap="round"></path>
+                    <path d="M360 40 C 420 30, 470 60, 500 110 C 470 140, 400 130, 370 96 Z" fill="rgba(139,92,246,.07)"></path>
+                    <path d="M40 60 C 70 50, 120 70, 130 110 C 100 128, 52 118, 40 90 Z" fill="rgba(139,92,246,.06)"></path>
+                    <g stroke="rgba(232,224,248,.055)" stroke-width="3" stroke-linecap="round">
+                      <path d="M70 -10 L100 350"></path><path d="M190 -10 L176 350"></path><path d="M330 -10 L346 350"></path><path d="M460 -10 L440 350"></path>
+                      <path d="M-10 78 L580 98"></path><path d="M-10 150 L580 140"></path><path d="M-10 232 L580 248"></path>
+                      <path d="M120 -10 L250 350"></path><path d="M400 -10 L520 160"></path>
+                    </g>
+                    <g stroke-linecap="round">
+                      <path d="M-20 196 C 110 178, 210 214, 300 178 S 470 120, 600 136" stroke="rgba(232,224,248,.11)" stroke-width="9"></path>
+                      <path d="M-20 196 C 110 178, 210 214, 300 178 S 470 120, 600 136" stroke="rgba(232,224,248,.06)" stroke-width="1" stroke-dasharray="6 8"></path>
+                      <path d="M262 -20 C 270 80, 300 120, 300 178 S 320 290, 300 360" stroke="rgba(232,224,248,.09)" stroke-width="6"></path>
+                    </g>
+                  </svg>
+                  <div style="position:absolute;inset:0;background:radial-gradient(260px 200px at 50% 40%,rgba(139,92,246,.22),transparent 70%),linear-gradient(180deg,transparent 45%,rgba(13,10,21,.85))"></div>
+                  <div style="position:absolute;left:50%;top:40%;width:0;height:0">
+                    <span style="position:absolute;left:-36px;top:-36px;width:72px;height:72px;border-radius:50%;border:1px solid rgba(217,194,255,.5);animation:asMapPulse 2.6s ease-out infinite"></span>
+                    <span style="position:absolute;left:-36px;top:-36px;width:72px;height:72px;border-radius:50%;border:1px solid rgba(217,194,255,.5);animation:asMapPulse 2.6s ease-out 1.3s infinite"></span>
+                    <span style="position:absolute;left:-10px;top:14px;width:20px;height:6px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(2px)"></span>
+                    <span style="position:absolute;left:-22px;top:-44px;width:44px;height:44px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:linear-gradient(158deg,#8b5cf6,#5b21b6);box-shadow:0 10px 24px -6px rgba(109,40,217,.8),inset 0 1px 0 rgba(255,255,255,.3);animation:asPinDrop .6s cubic-bezier(.2,.9,.3,1.3) .15s both"></span>
+                    <span style="position:absolute;left:-7px;top:-29px;width:14px;height:14px;border-radius:50%;background:#fff;animation:asPinDot .6s cubic-bezier(.2,.9,.3,1.3) .15s both"></span>
+                  </div>
+                  <span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:999px;background:rgba(20,16,30,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(232,224,248,.1);font-size:12.5px;font-weight:600;color:#d9c2ff;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:#62d69a"></span>Address confirmed</span>
+                  <div style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 12px 16px;border-radius:20px;background:rgba(24,19,36,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(232,224,248,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)">
+                    <div style="display:flex;flex-direction:column;gap:3px;flex:1 1 auto;min-width:0">
+                      <span style="font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mapLine1 }}</span>
+                      <span style="font-size:12.5px;color:#a7a3b5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mapLine2 }}</span>
+                    </div>
+                    <a href="{{ mapUrl }}" target="_blank" rel="noopener" style="flex:none;display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(232,224,248,.14);color:#eeeef3;font-size:13px;font-weight:600;white-space:nowrap;transition:background .15s" style-hover="background:rgba(232,224,248,.06);color:#fff">View on map<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ mapEmpty }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:rgba(var(--w),.06);color:var(--t3)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 13.43a3.12 3.12 0 100-6.24 3.12 3.12 0 000 6.24z"></path><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 01-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05z"></path></svg></span>
+                <span style="max-width:240px;font-size:13px;line-height:1.5;color:var(--t3)">The map confirms the address once it's entered.</span>
+              </sc-if>
+            </div>
+          </div>
+        </section>
+
+        <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:22px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .12s backwards">
+          <h2 style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Upload matching</h2>
+          <p style="margin:0 0 14px;font-size:13.5px;color:var(--t2)">Other names this store appears under in car count or sales order files. Helps match future uploads.</p>
+          <div onClick="{{ focusMatch }}" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-height:50px;padding:7px 10px;border-radius:14px;background:rgba(var(--w),0.04);border:1px solid rgba(var(--w),0.12);cursor:text">
+            <sc-for list="{{ matchChips }}" as="mc" hint-placeholder-count="2">
+              <span data-as-anim="1" style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 6px 0 12px;border-radius:999px;background:rgba(var(--w),.08);font-size:13px;font-weight:500;animation:asPop .22s both">{{ mc.name }}<button type="button" onClick="{{ mc.remove }}" aria-label="Remove" style="display:flex;align-items:center;justify-content:center;width:20px;height:20px;border:0;border-radius:50%;background:transparent;color:var(--t3);cursor:pointer" style-hover="background:rgba(var(--w),.1);color:var(--t1)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+            </sc-for>
+            <input ref="{{ matchRef }}" type="text" value="{{ vMatch }}" onChange="{{ onMatch }}" onKeyDown="{{ keyMatch }}" placeholder="{{ matchPh }}" style="flex:1 1 160px;min-width:120px;height:34px;padding:0 6px;border:0;background:transparent;outline:none;color:var(--t1);font-size:14px"/>
+          </div>
+          <span style="display:block;margin-top:8px;font-size:12.5px;color:var(--t3)">Type a name and press Enter.</span>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ showPicker }}" hint-placeholder-val="{{ true }}">
+          <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:22px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) backwards">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+              <div style="flex:1;min-width:0"><h2 style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Choose a starting point</h2><p style="margin:0;font-size:13.5px;color:var(--t2)">A preset fills the product list in one step. Everything stays editable.</p></div>
+              <sc-if value="{{ pickerClosable }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ closePicker }}" style="height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font-size:13px;font-weight:600;cursor:pointer" style-hover="background:var(--s2)">Keep current list</button></sc-if>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px">
+              <sc-for list="{{ presetCards }}" as="pc" hint-placeholder-count="4">
+                <button type="button" onClick="{{ pc.pick }}" style="{{ pc.style }}">
+                  <span style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                    <span style="{{ pc.iconStyle }}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ pc.icon }}"></path></svg></span>
+                    <sc-if value="{{ pc.suggested }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:rgba(139,92,246,.18);color:var(--pa);font-size:11px;font-weight:700;white-space:nowrap"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.7z"></path></svg>Suggested for this region</span></sc-if>
+                    <sc-if value="{{ pc.selected }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--pa);color:#fff;animation:asCheck .35s both"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span></sc-if>
+                  </span>
+                  <span style="display:flex;flex-direction:column;gap:3px;margin-top:14px"><span style="font-size:16px;font-weight:600">{{ pc.name }}</span><span style="font-size:12.5px;color:var(--t3)">{{ pc.meta }}</span></span>
+                  <span style="margin-top:12px;padding-top:12px;border-top:1px solid var(--lc-iline);font-size:12.5px;line-height:1.5;color:var(--t2)">{{ pc.preview }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ hasPreset }}" hint-placeholder-val="{{ false }}">
+          <section data-as-anim="1" style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:24px;background:var(--sc-card);box-shadow:var(--sc-sh);animation:asRise .4s cubic-bezier(.2,.8,.2,1) backwards">
+            <span style="padding:0 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Starting point</span>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:8px">
+              <sc-for list="{{ presetMini }}" as="pm" hint-placeholder-count="4">
+                <button type="button" onClick="{{ pm.pick }}" style="{{ pm.style }}">
+                  <span style="{{ pm.iconStyle }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ pm.icon }}"></path></svg></span>
+                  <span style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pm.name }}</span><span style="font-size:12px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pm.meta }}</span></span>
+                  <sc-if value="{{ pm.suggested }}" hint-placeholder-val="{{ false }}"><span title="Suggested for this region" style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(139,92,246,.18);color:var(--pa)"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.7z"></path></svg></span></sc-if>
+                  <sc-if value="{{ pm.selected }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;animation:asCheck .35s both"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span></sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </section>
+          <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);overflow:hidden;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .05s backwards">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 18px 14px 22px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--t2)">
+                <span>{{ basedOnLabel }} <span style="color:var(--t1);font-weight:600">{{ presetName }}</span></span>
+                <sc-if value="{{ isCustom }}" hint-placeholder-val="{{ false }}"><span data-as-anim="1" style="padding:3px 10px;border-radius:999px;background:rgba(251,191,36,.14);color:var(--amb);font-size:12px;font-weight:600;animation:asPop .25s both">Customised</span><button type="button" onClick="{{ resetPreset }}" style="border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer">Reset to preset</button></sc-if>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <sc-if value="{{ notReorder }}" hint-placeholder-val="{{ true }}">
+                  
+                  <button type="button" onClick="{{ startReorder }}" disabled="{{ noRows }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font-size:13.5px;font-weight:600;white-space:nowrap;cursor:pointer" style-hover="background:var(--s2)">Reorder</button>
+                  <button data-dark="1" type="button" onClick="{{ openAdd }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 18px 0 14px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;font-size:13.5px;font-weight:600;white-space:nowrap;cursor:pointer;box-shadow:0 10px 26px rgba(109,40,217,.4);transition:filter .15s,transform .2s" style-hover="filter:brightness(1.08);transform:translateY(-1px)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>Add product</button>
+                </sc-if>
+                <sc-if value="{{ reorder }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:13px;color:var(--t3);margin-right:4px">Drag rows to set the order used in counts and technician forms</span>
+                  <button data-dark="1" type="button" onClick="{{ doneReorder }}" style="height:40px;padding:0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Done</button>
+                </sc-if>
+              </div>
+            </div>
+
+            <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:44px 24px 48px;border-top:1px solid var(--lc-iline);text-align:center">
+                <span style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:18px;background:rgba(139,92,246,.14);color:var(--pa)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z"></path></svg></span>
+                <span style="max-width:360px;font-size:14.5px;line-height:1.5;color:var(--t2)">No products yet. Add products one by one, or pick a preset above.</span>
+                <div style="display:flex;gap:8px;margin-top:4px">
+                  
+                  <button data-dark="1" type="button" onClick="{{ openAdd }}" style="height:40px;padding:0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Add product</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
+              <div ref="{{ tableRef }}" data-as-scroll="1" style="overflow-x:auto;scrollbar-width:none">
+                <div style="min-width:1060px">
+                  <div style="display:grid;grid-template-columns:52px minmax(190px,1.3fr) 104px 156px minmax(250px,1.7fr) 128px 84px 56px;gap:12px;padding:10px 22px;border-top:1px solid var(--lc-iline);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">
+                    <span>#</span><span>Product</span><span>Number</span><span>Size</span><span>Wash functions</span><span>Secondary</span><span>Source</span><span></span>
+                  </div>
+                  <sc-for list="{{ rowsView }}" as="r" hint-placeholder-count="8">
+                    <div draggable="{{ r.draggable }}" onDragStart="{{ r.dragStart }}" onDragOver="{{ r.dragOver }}" onDrop="{{ r.drop }}" onDragEnd="{{ r.dragEnd }}" style="{{ r.rowStyle }}">
+                      <span style="display:flex;align-items:center;gap:6px;color:var(--t3);font-weight:600">
+                        <sc-if value="{{ r.reorder }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="cursor:grab"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg></sc-if>{{ r.idx }}
+                      </span>
+                      <span style="min-width:0;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span>
+                      <span style="font-variant-numeric:tabular-nums;color:var(--t2);white-space:nowrap">{{ r.num }}</span>
+                      <span style="display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--lc-inner);width:max-content">
+                        <sc-for list="{{ r.sizes }}" as="z" hint-placeholder-count="3"><button type="button" onClick="{{ z.pick }}" style="{{ z.style }}">{{ z.label }}</button></sc-for>
+                      </span>
+                      <span style="min-width:0;display:flex;flex-direction:column;gap:6px">
+                        <span style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+                          <sc-for list="{{ r.fns }}" as="fc" hint-placeholder-count="1">
+                            <span style="{{ fc.style }}">
+                              <button type="button" onClick="{{ fc.open }}" style="display:inline-flex;align-items:center;gap:6px;height:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer">{{ fc.name }}<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="opacity:.6"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+                              <sc-if value="{{ fc.removable }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ fc.remove }}" aria-label="Remove function" style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:-4px;border:0;border-radius:50%;background:transparent;color:var(--t3);cursor:pointer" style-hover="background:rgba(var(--w),.12);color:var(--t1)"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+                            </span>
+                          </sc-for>
+                          <sc-if value="{{ r.noFn }}" hint-placeholder-val="{{ false }}">
+                            <button type="button" onClick="{{ r.addFn }}" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:1px dashed rgba(248,113,113,.6);background:rgba(248,113,113,.08);color:#f87171;font-size:12.5px;font-weight:600;cursor:pointer;animation:asShake .4s .2s both">Pick a wash function</button>
+                          </sc-if>
+                          <sc-if value="{{ r.hasFn }}" hint-placeholder-val="{{ true }}">
+                            <button type="button" onClick="{{ r.addFn }}" aria-label="Add wash function" title="Add another wash function" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px dashed rgba(var(--w),.24);background:transparent;color:var(--t2);cursor:pointer;transition:all .18s" style-hover="border-color:rgba(167,139,250,.7);color:var(--pa);transform:rotate(90deg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg></button>
+                          </sc-if>
+                        </span>
+                      </span>
+                      <span style="display:flex;flex-direction:column;gap:5px">
+                        <sc-if value="{{ r.is25 }}" hint-placeholder-val="{{ false }}">
+                          <span style="{{ r.secWrap }}"><sc-for list="{{ r.secs }}" as="sc" hint-placeholder-count="2"><button type="button" onClick="{{ sc.pick }}" style="{{ sc.style }}">{{ sc.label }}</button></sc-for></span>
+                          <sc-if value="{{ r.secMissing }}" hint-placeholder-val="{{ false }}"><span style="font-size:11.5px;color:#f87171;white-space:nowrap">Pick 10 or 20 gal</span></sc-if>
+                        </sc-if>
+                        <sc-if value="{{ r.not25 }}" hint-placeholder-val="{{ true }}"><span style="color:var(--t3)">—</span></sc-if>
+                      </span>
+                      <span><span style="{{ r.srcStyle }}">{{ r.src }}</span></span>
+                      <span style="display:flex;justify-content:flex-end;gap:2px">
+                        <sc-if value="{{ r.notReorder }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ r.remove }}" aria-label="Remove product" title="Remove" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:var(--t3);cursor:pointer;transition:background .15s,color .15s" style-hover="background:rgba(248,113,113,.12);color:#f87171"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14"></path></svg></button></sc-if>
+                        <sc-if value="{{ r.reorder }}" hint-placeholder-val="{{ false }}">
+                          <button type="button" onClick="{{ r.up }}" aria-label="Move up" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--t2);cursor:pointer" style-hover="background:rgba(var(--w),.08)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+                          <button type="button" onClick="{{ r.down }}" aria-label="Move down" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--t2);cursor:pointer" style-hover="background:rgba(var(--w),.08)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></button>
+                        </sc-if>
+                      </span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 22px 16px;border-top:1px solid var(--lc-iline)">
+                <span style="font-size:13px;color:var(--t2)"><span style="font-weight:600;color:var(--t1)">{{ countProducts }}</span> · <span style="font-weight:600;color:var(--t1)">{{ countLines }}</span></span>
+                <span style="font-size:12.5px;color:var(--t3)">Each product and function pair is its own line in the technician's Usage Test.</span>
+              </div>
+            </sc-if>
+          </section>
+
+          <sc-if value="{{ zeroNotice }}" hint-placeholder-val="{{ false }}">
+            <div data-as-anim="1" style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:20px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.24);color:var(--amb);font-size:13.5px;font-weight:500;animation:asRise .35s both"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01"></path></svg>A store with no products can only be created as Inactive.</div>
+          </sc-if>
+        </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 6px 0">
+          <div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:var(--t3)">Assigned technicians</h2><sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:rgba(139,92,246,.18);color:var(--pa);font-size:11.5px;font-weight:700">{{ selCount }}</span></sc-if></div>
+          <sc-if value="{{ canSkip }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ skip }}" style="border:0;background:transparent;padding:0;color:var(--t2);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;transition:color .15s" style-hover="color:var(--t1)">Skip for now</button></sc-if>
+        </div>
+        <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:14px">
+            <sc-for list="{{ selCards }}" as="tc" hint-placeholder-count="2">
+              <div data-as-anim="1" style="position:relative;display:flex;flex-direction:column;gap:16px;min-height:212px;padding:20px;border-radius:28px;border:1px solid transparent;background:var(--sc-card);box-shadow:var(--sc-sh);transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s;animation:asRise .45s cubic-bezier(.2,.8,.2,1) backwards" style-hover="transform:translateY(-3px);border-color:rgba(var(--w),.14)">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+                  <span style="flex:0 0 auto;width:56px;height:56px;border-radius:18px;overflow:hidden;background:{{ tc.bg }};background-clip:padding-box;outline:1px solid rgba(var(--w),.1);outline-offset:2px"></span>
+                  <span style="flex:0 0 auto;display:inline-flex;align-items:center;height:26px;padding:0 11px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap;background:rgba(139,92,246,.16);color:var(--pa)">Technician</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                  <span style="font-size:17px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tc.name }}</span>
+                </div>
+                <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid rgba(var(--w),0.06)">
+                  <span style="min-width:0;font-size:12px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tc.foot }}</span>
+                  <span style="flex:0 0 auto;display:flex;gap:6px">
+                    <button type="button" onClick="{{ tc.remove }}" aria-label="Remove technician" title="Remove" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(var(--w),.1);background:transparent;color:var(--t2);cursor:pointer;transition:all .18s" style-hover="background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4);color:#f87171"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14"></path></svg></button>
+                  </span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showSkipWarn }}" hint-placeholder-val="{{ false }}">
+          <div data-as-anim="1" style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:24px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.24);color:var(--amb);font-size:13.5px;font-weight:500;animation:asRise .35s both"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12v-.01zM11.99 17h.01"></path></svg>No technician will see this store until one is assigned. It will show as Setup incomplete.</div>
+        </sc-if>
+        <sc-if value="{{ showSelHint }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);font-size:13.5px;color:var(--t3)"><span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:var(--lc-inner);color:var(--pa)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7.16a.61.61 0 00-.19 0 2.573 2.573 0 01-.06-5.14c1.42 0 2.57 1.15 2.57 2.57A2.586 2.586 0 0118 7.16zM16.97 14.44c1.37.23 2.88-.01 3.94-.72 1.41-.94 1.41-2.48 0-3.42-1.07-.71-2.6-.95-3.97-.71M5.97 7.16c.06-.01.13-.01.19 0a2.573 2.573 0 01.06-5.14c-1.42 0-2.57 1.15-2.57 2.57 0 1.39 1.09 2.52 2.32 2.57zM7 14.44c-1.37.23-2.88-.01-3.94-.72-1.41-.94-1.41-2.48 0-3.42 1.07-.71 2.6-.95 3.97-.71M12 14.63a.61.61 0 00-.19 0 2.573 2.573 0 01-.06-5.14c1.42 0 2.57 1.15 2.57 2.57-.01 1.39-1.1 2.52-2.32 2.57zM9.09 17.78c-1.41.94-1.41 2.48 0 3.42 1.6 1.07 4.22 1.07 5.82 0 1.41-.94 1.41-2.48 0-3.42-1.59-1.06-4.22-1.06-5.82 0z"></path></svg></span>No technicians selected yet. Pick from the list below.</div>
+        </sc-if>
+
+        <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);overflow:hidden;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .06s backwards">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:16px 16px 12px">
+            <label style="flex:1 1 260px;display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:999px;background:var(--lc-inner)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color:var(--t3)"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+              <input type="text" value="{{ techQ }}" onChange="{{ onTechQ }}" placeholder="Search technicians" style="flex:1;min-width:0;height:100%;border:0;background:transparent;outline:none;color:var(--t1);font-size:14px"/>
+            </label>
+            <div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-inner)">
+              <sc-for list="{{ techFilters }}" as="tf" hint-placeholder-count="3"><button type="button" onClick="{{ tf.pick }}" style="{{ tf.style }}">{{ tf.label }}</button></sc-for>
+            </div>
+          </div>
+          <sc-for list="{{ techRows }}" as="tr" hint-placeholder-count="7">
+            <button type="button" onClick="{{ tr.toggle }}" style="{{ tr.style }}">
+              <span style="{{ tr.box }}"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span>
+              <span style="flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:{{ tr.bg }}"></span>
+              <span style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="font-size:14px;font-weight:600">{{ tr.name }}</span><span style="font-size:12.5px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tr.email }}</span></span>
+              <span style="flex:0 1 220px;min-width:0;font-size:12.5px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left">{{ tr.regions }}</span>
+              <span style="flex:0 0 auto;padding:4px 11px;border-radius:999px;background:var(--lc-chip);font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap">{{ tr.stores }}</span>
+            </button>
+          </sc-for>
+          <sc-if value="{{ techEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:22px;border-top:1px solid var(--lc-iline);font-size:13.5px;color:var(--t3)">No technicians match.</div></sc-if>
+          <div style="height:6px"></div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ hasIssues }}" hint-placeholder-val="{{ false }}">
+          <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:18px 18px 10px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) backwards">
+            <h2 style="margin:0 0 8px 4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Before you create</h2>
+            <sc-for list="{{ issues }}" as="is" hint-placeholder-count="2">
+              <button type="button" onClick="{{ is.go }}" style="display:flex;align-items:center;gap:12px;width:100%;padding:10px 8px;margin-bottom:6px;border:0;border-radius:16px;background:{{ is.bg }};color:var(--t1);text-align:left;cursor:pointer;transition:transform .2s" style-hover="transform:translateX(3px)">
+                <span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:{{ is.iconBg }};color:{{ is.fg }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="{{ is.icon }}"></path></svg></span>
+                <span style="flex:1 1 auto;min-width:0;font-size:13.5px;font-weight:500">{{ is.text }}</span>
+                <span style="flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--pa);white-space:nowrap">{{ is.link }}<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
+              </button>
+            </sc-for>
+          </section>
+        </sc-if>
+        <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:20px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .04s backwards">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h2 style="margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Details</h2><button type="button" onClick="{{ edit1 }}" style="border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer">Edit</button></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px">
+            <sc-for list="{{ sumDetails }}" as="sd" hint-placeholder-count="6">
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0;padding:14px 16px;border-radius:18px;background:var(--lc-inner)"><span style="font-size:12px;color:var(--t3)">{{ sd.k }}</span><span style="font-size:14px;font-weight:600;line-height:1.4;color:{{ sd.fg }};overflow-wrap:anywhere">{{ sd.v }}</span></div>
+            </sc-for>
+          </div>
+        </section>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px;align-items:stretch">
+          <section data-as-anim="1" style="display:flex;flex-direction:column;min-width:0;border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:20px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .08s backwards">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><h2 style="margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Products</h2><button type="button" onClick="{{ edit2 }}" style="border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer">Edit</button></div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px"><span style="font-size:16px;font-weight:600">{{ sumPreset }}</span><sc-if value="{{ isCustom }}" hint-placeholder-val="{{ false }}"><span style="padding:3px 10px;border-radius:999px;background:rgba(251,191,36,.14);color:var(--amb);font-size:12px;font-weight:600">Customised</span></sc-if></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+              <div style="padding:14px 16px;border-radius:18px;background:var(--lc-inner)"><span style="display:block;font-size:28px;font-weight:300;line-height:1.1;letter-spacing:-.02em">{{ sumCount }}</span><span style="font-size:12px;color:var(--t3)">Products</span></div>
+              <div style="padding:14px 16px;border-radius:18px;background:var(--lc-inner)"><span style="display:block;font-size:28px;font-weight:300;line-height:1.1;letter-spacing:-.02em">{{ sumLines }}</span><span style="font-size:12px;color:var(--t3)">Wash function lines</span></div>
+            </div>
+            <sc-for list="{{ sumRows }}" as="sr" hint-placeholder-count="6">
+              <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-top:1px solid {{ sr.sep }};font-size:13.5px"><span style="min-width:0;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sr.name }}</span><span style="flex:0 0 auto;color:{{ sr.fg }}">{{ sr.fns }}</span></div>
+            </sc-for>
+            <span style="flex:1 1 auto"></span>
+            <sc-if value="{{ sumMore }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ toggleSum }}" style="align-self:flex-start;margin-top:10px;border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer">{{ sumMoreLabel }}</button></sc-if>
+          </section>
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <section data-as-anim="1" style="border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:20px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .12s backwards">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h2 style="margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)">Technicians</h2><button type="button" onClick="{{ edit3 }}" style="border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer">Edit</button></div>
+              <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ selCards }}" as="tc" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;background:var(--lc-inner)"><span style="flex:0 0 auto;width:40px;height:40px;border-radius:14px;background:{{ tc.bg }}"></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tc.name }}</span><span style="font-size:12px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ tc.foot }}</span></span></div></sc-for></div>
+              </sc-if>
+              <sc-if value="{{ noSel }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(251,191,36,.08);color:var(--amb);font-size:13.5px;font-weight:500"><span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:14px;background:rgba(251,191,36,.16);font-weight:700">?</span>No technician assigned. Shows as Setup incomplete.</div>
+              </sc-if>
+            </section>
+            <section data-as-anim="1" style="flex:1 1 auto;display:flex;flex-direction:column;border-radius:28px;background:var(--sc-card);box-shadow:var(--sc-sh);padding:20px;animation:asRise .45s cubic-bezier(.2,.8,.2,1) .16s backwards">
+              <h2 style="margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:14px">Status</h2>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ statusOpts }}" as="so" hint-placeholder-count="2">
+                  <button type="button" onClick="{{ so.pick }}" disabled="{{ so.disabled }}" style="{{ so.style }}">
+                    <span style="{{ so.radio }}"></span>
+                    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;text-align:left"><span style="font-size:15px;font-weight:600">{{ so.label }}</span><span style="font-size:13px;line-height:1.45;color:var(--t2)">{{ so.help }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+      </div>
+
+      <div style="flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:12px 12px 12px 22px;border-radius:24px;background:var(--sc-card);box-shadow:var(--sc-sh)">
+        <span style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--t2);white-space:nowrap">{{ stepCounter }}<span style="display:flex;gap:4px"><sc-for list="{{ stepPips }}" as="pp" hint-placeholder-count="4"><span style="height:6px;border-radius:3px;width:{{ pp.w }};background:{{ pp.bg }};transition:width .35s cubic-bezier(.2,.8,.2,1),background .35s"></span></sc-for></span></span>
+        <span style="flex:1 1 auto;min-width:0;font-size:12.5px;color:var(--t3);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ barHint }}</span>
+        <sc-if value="{{ showBackBtn }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ prev }}" style="height:44px;padding:0 20px;border-radius:999px;border:1px solid rgba(var(--w),0.12);background:transparent;color:var(--t1);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s" style-hover="background:var(--s2)">Back</button></sc-if>
+        <button data-dark="1" type="button" onClick="{{ next }}" disabled="{{ nextDisabled }}" style="{{ nextStyle }}">{{ nextLabel }}<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ nextIcon }}"></path></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ fnPopOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeFnPop }}" style="position:fixed;inset:0;z-index:70"></div>
+    <div data-dark="0" style="{{ fnPopStyle }}">
+      <label style="display:flex;align-items:center;gap:8px;height:38px;margin-bottom:4px;padding:0 12px;border-radius:12px;background:rgba(var(--w),.05)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color:var(--t3)"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+        <input type="text" value="{{ fnQ }}" onChange="{{ onFnQ }}" autoFocus="{{ true }}" placeholder="Search wash functions" style="flex:1;min-width:0;height:100%;border:0;background:transparent;outline:none;color:var(--t1);font-size:13.5px"/>
+      </label>
+      <div data-as-scroll="1" style="max-height:260px;overflow-y:auto;scrollbar-width:none">
+        <sc-for list="{{ fnOpts }}" as="fo" hint-placeholder-count="8">
+          <button type="button" onClick="{{ fo.pick }}" disabled="{{ fo.disabled }}" style="{{ fo.style }}">{{ fo.name }}<span style="font-size:11.5px;color:var(--t3)">{{ fo.note }}</span></button>
+        </sc-for>
+        <sc-if value="{{ fnEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:12px;font-size:13px;color:var(--t3)">No wash functions match.</div></sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePanel }}" style="position:fixed;inset:0;z-index:80;background:var(--pn-scrim);backdrop-filter:blur(14px) saturate(.9);-webkit-backdrop-filter:blur(14px) saturate(.9);animation:asFade .4s ease both"></div>
+    <aside role="dialog" aria-modal="true" aria-label="Add product" style="position:fixed;top:16px;right:16px;bottom:16px;z-index:81;width:min(560px,calc(100vw - 32px));display:flex;flex-direction:column;isolation:isolate;overflow:hidden;border-radius:32px;background:var(--pn-bg);backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);box-shadow:var(--pn-sh);color:var(--pn-ink);font-family:'AppNumerals','Urbanist',system-ui,sans-serif;animation:asPnIn .6s cubic-bezier(.2,.8,.2,1) both">
+      <span aria-hidden="true" style="position:absolute;z-index:-1;top:-180px;right:-120px;width:520px;height:420px;border-radius:50%;background:var(--pn-glow);filter:blur(10px);pointer-events:none;animation:asPnGlow 14s ease-in-out infinite alternate"></span>
+      <span aria-hidden="true" style="position:absolute;z-index:-1;inset:0;border-radius:inherit;background:linear-gradient(180deg,var(--pn-sheen),transparent 42%);pointer-events:none"></span>
+      <div style="flex:none;display:flex;align-items:center;gap:16px;padding:24px 24px 18px;animation:asRise .5s cubic-bezier(.2,.8,.2,1) 80ms both">
+        <span data-dark="1" aria-hidden="true" style="flex:none;display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 14px 30px -14px rgba(59,15,122,.8);color:#fff"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z"></path></svg></span>
+        <div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px">
+          <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--pn-ink3)">Product master</span>
+          <span style="font:600 28px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ apTitle }}</span>
+          <span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ apSub }}</span>
+        </div>
+        <button type="button" onClick="{{ closePanel }}" aria-label="Close" style="flex:none;align-self:flex-start;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:0;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);cursor:pointer;transition:background .2s,transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="background:var(--pn-tileh);transform:rotate(90deg)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+      <div data-as-scroll="1" style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:2px 24px 24px;display:flex;flex-direction:column;gap:12px">
+        <section style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:asRise .5s cubic-bezier(.2,.8,.2,1) 130ms both">
+          <span style="display:flex;align-items:center;gap:10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:0;background:{{ apN1Bg }};color:{{ apN1Fg }}">1</span>Product<sc-if value="{{ apCollapsed }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ apBrowse }}" style="margin-left:auto;border:0;background:transparent;padding:0;color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:0;text-transform:none;cursor:pointer">Change</button></sc-if></span>
+          <sc-if value="{{ apNotCollapsed }}" hint-placeholder-val="{{ true }}"><label style="display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:16px;background:var(--pn-inner);box-shadow:inset 0 0 0 1px var(--pn-line)">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="color:var(--pn-ink3)"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+            <input type="text" value="{{ apQ }}" onChange="{{ onApQ }}" placeholder="Search products" style="flex:1;min-width:0;height:100%;border:0;background:transparent;outline:none;color:var(--pn-ink);font:400 14px 'AppNumerals','Urbanist',system-ui,sans-serif"/>
+          </label></sc-if>
+          <div data-as-scroll="1" style="max-height:264px;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:4px">
+            <sc-for list="{{ apList }}" as="al" hint-placeholder-count="6"><button type="button" onClick="{{ al.pick }}" style="{{ al.style }}" style-hover="background:var(--pn-tileh)"><span style="{{ al.icon }}">{{ al.ini }}</span><span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ al.name }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ al.code }}</span></span><sc-if value="{{ al.hasNote }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;padding:3px 9px;border-radius:999px;background:rgba(251,191,36,.12);color:var(--amb);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ al.note }}</span></sc-if><sc-if value="{{ al.on }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;animation:asCheck .3s both"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span></sc-if></button></sc-for>
+          </div>
+        </section>
+        <sc-if value="{{ apHasPick }}" hint-placeholder-val="{{ false }}">
+          <section data-as-anim="1" style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:asRise .4s cubic-bezier(.2,.8,.2,1) both">
+            <span style="display:flex;align-items:center;gap:10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:0;background:{{ apN2Bg }};color:{{ apN2Fg }}">2</span>Container size</span>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><sc-for list="{{ apSizes }}" as="as" hint-placeholder-count="3"><button type="button" onClick="{{ as.pick }}" disabled="{{ as.disabled }}" style="{{ as.style }}"><span style="font:600 15px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ as.label }}</span><span style="max-width:100%;font:400 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ as.num }}</span></button></sc-for></div>
+            <sc-if value="{{ apIs25 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:4px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">Secondary max</span><div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--pn-inner)"><sc-for list="{{ apSecs }}" as="sx" hint-placeholder-count="2"><button type="button" onClick="{{ sx.pick }}" style="{{ sx.style }}">{{ sx.label }}</button></sc-for></div></div>
+            </sc-if>
+          </section>
+          <section data-as-anim="1" style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:24px;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);animation:asRise .4s cubic-bezier(.2,.8,.2,1) .06s both">
+            <span style="display:flex;align-items:center;gap:10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:0;background:{{ apN3Bg }};color:{{ apN3Fg }}">3</span>Wash functions<span style="margin-left:auto;letter-spacing:0;text-transform:none;font-weight:500;font-size:12px">{{ apFnCount }}</span></span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ apFns }}" as="af" hint-placeholder-count="10"><button type="button" onClick="{{ af.toggle }}" style="{{ af.style }}">{{ af.name }}</button></sc-for></div>
+          </section>
+        </sc-if>
+      </div>
+      <div style="flex:none;display:flex;gap:10px;padding:16px 24px 24px;box-shadow:0 -1px 0 var(--pn-line)">
+        <button type="button" onClick="{{ closePanel }}" style="height:50px;padding:0 24px;border-radius:999px;border:0;background:var(--pn-tile);box-shadow:inset 0 0 0 1px var(--pn-line);color:var(--pn-ink);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;transition:background .2s" style-hover="background:var(--pn-tileh)">Cancel</button>
+        <button data-dark="1" type="button" onClick="{{ apAdd }}" disabled="{{ apDisabled }}" style="{{ apAddStyle }}">{{ apAddLabel }}</button>
+      </div>
+    </aside>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(6,4,12,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:asFade .22s both"></div>
+      <div role="dialog" aria-modal="true" style="position:relative;width:min(460px,100%);display:flex;flex-direction:column;gap:6px;padding:26px;border-radius:30px;background:rgba(var(--g1),.94);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);border:1px solid rgba(var(--w),.12);box-shadow:0 40px 90px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);animation:asModal .32s cubic-bezier(.2,.8,.2,1) both">
+        <span style="{{ mIconStyle }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ mIcon }}"></path></svg></span>
+        <span style="margin-top:12px;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.3">{{ mTitle }}</span>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:var(--t2)">{{ mBody }}</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:18px">
+          <sc-for list="{{ mButtons }}" as="mb" hint-placeholder-count="2"><button type="button" onClick="{{ mb.run }}" style="{{ mb.style }}">{{ mb.label }}</button></sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="position:fixed;left:50%;bottom:96px;z-index:100;display:flex;align-items:center;gap:14px;padding:12px 14px 12px 18px;border-radius:999px;background:rgba(var(--g1),.96);border:1px solid rgba(var(--w),.12);box-shadow:0 20px 44px -16px var(--k55);color:var(--t1);font-size:13.5px;font-weight:600;white-space:nowrap;transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translateX(-50%) translateY({{ toastY }});pointer-events:{{ toastPe }}">
+    <span style="display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(139,92,246,.2);color:var(--pa)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span>
+    {{ toast }}
+    <sc-if value="{{ hasUndo }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ undo }}" style="height:30px;padding:0 14px;border-radius:999px;border:0;background:rgba(139,92,246,.18);color:var(--pa);font-size:13px;font-weight:700;cursor:pointer">Undo</button></sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const WF = ["Presoak 1", "Presoak 2", "Low pH presoak", "CTA 1", "CTA 2", "Duck Bath", "Bug prep", "Triple foam", "Lava arch", "Ceramic", "Tire shine", "Dry aid", "Air care"];
+const MASTER = [["Duck Bath", "DB215"], ["Excel Hi pH Touchless Presoak", "EX301"], ["Excel Lo pH Presoak", "EX302"], ["Excel Hi pH Wheel Cleaner", "EX310"], ["Foamy Film Penetrate", "FF120"], ["Bug B", "BB140"], ["Triple Foam", "TF330"], ["Silky Shine", "SS410"], ["Lava Seal", "LS520"], ["Lava Lo Shine", "LL521"], ["Blue Brilliance ECO", "DG210"], ["Duck Rinse", "DR216"], ["Machine Shine", "MS430"], ["Excel Ceramic Sealant", "EC610"]];
+const DEF = { "Duck Bath": "Presoak 1", "Excel Hi pH Touchless Presoak": "Presoak 2", "Excel Lo pH Presoak": "Low pH presoak", "Excel Hi pH Wheel Cleaner": "CTA 1", "Foamy Film Penetrate": "CTA 2", "Bug B": "Bug prep", "Triple Foam": "Triple foam", "Silky Shine": "Tire shine", "Lava Seal": "Lava arch", "Lava Lo Shine": "Lava arch", "Blue Brilliance ECO": "Dry aid", "Duck Rinse": "Dry aid", "Machine Shine": "Air care", "Excel Ceramic Sealant": "Ceramic" };
+const code = n => (MASTER.find(m => m[0] === n) || [n, "XX000"])[1];
+const pnum = (n, z) => code(n) + "-" + z;
+const P = (name, size, fns, sec) => ({ name, size, fns, sec: sec == null ? null : sec });
+const PRESETS = {
+  std5: { name: "Standard 5 gal", size: "5 gal", stores: 132, rows: MASTER.map(m => P(m[0], 5, [DEF[m[0]]])) },
+  std15: { name: "Standard 15 gal", size: "15 gal", stores: 21, rows: MASTER.map(m => P(m[0], 15, [DEF[m[0]]])) },
+  ca5: { name: "5 gal California", size: "5 gal", stores: 18, region: "Southern California", rows: [P("Duck Bath", 5, ["Presoak 1", "Duck Bath"]), P("Excel Hi pH Touchless Presoak", 5, ["Presoak 2"]), P("Excel Lo pH Presoak", 5, ["Low pH presoak"]), P("Excel Hi pH Wheel Cleaner", 5, ["CTA 1", "CTA 2"]), P("Foamy Film Penetrate", 5, ["Presoak 2"]), P("Bug B", 2.5, ["Bug prep"], 20), P("Triple Foam", 5, ["Triple foam"]), P("Silky Shine", 2.5, []), P("Lava Seal", 5, ["Lava arch"]), P("Lava Lo Shine", 5, ["Lava arch"]), P("Duck Rinse", 5, ["Dry aid"]), P("Machine Shine", 5, ["Air care"]), P("Excel Ceramic Sealant", 5, ["Ceramic"]), P("Duck Rinse", 15, ["Dry aid"]), P("Triple Foam", 15, ["Triple foam"]), P("Lava Seal", 15, ["Lava arch"])] }
+};
+const ORDER = ["ca5", "std5", "std15"];
+const TECHS = [
+  { i: 0, name: "James Carter", reg: ["Texas", "Utah"], n: 14, ph: "(801) 555-0142" },
+  { i: 1, name: "Daniel Reyes", reg: ["Texas"], n: 11, ph: "(361) 555-0118" },
+  { i: 6, name: "Raj Shah", reg: ["Southern California"], n: 9, ph: "(951) 555-0107" },
+  { i: 3, name: "Kevin Tran", reg: ["Sacramento"], n: 12, ph: "(916) 555-0131" },
+  { i: 2, name: "Mario Lopez", reg: ["Utah", "Southern California"], n: 13, ph: "(801) 555-0166" },
+  { i: 4, name: "Sam Mitchell", reg: ["Sacramento"], n: 8, ph: "(916) 555-0174" },
+  { i: 5, name: "Luis Ortega", reg: ["Texas"], n: 10, ph: "(210) 555-0159" }
+];
+const slug = n => n.toLowerCase().replace(/\s+/g, "-");
+const photo = n => "url(assets/people/" + slug(n) + ".png) center/cover no-repeat";
+const email = n => n.toLowerCase().replace(/\s+/g, ".") + "@dontdrivedirty.com";
+const STATES = ["AZ", "CA", "CO", "NV", "TX", "UT"];
+const TZS = ["Pacific (PT)", "Mountain (MT)", "Arizona (MST)", "Central (CT)", "Eastern (ET)"];
+const TZ_OF = { CA: "Pacific (PT)", NV: "Pacific (PT)", UT: "Mountain (MT)", CO: "Mountain (MT)", AZ: "Arizona (MST)", TX: "Central (CT)" };
+const SUGG = [["10380 Magnolia Ave", "Riverside", "CA", "92505"], ["10380 Magnolia Ave", "Corona", "CA", "92879"], ["1038 Magnolia St", "South Pasadena", "CA", "91030"], ["4602 Airline Rd", "Corpus Christi", "TX", "78412"], ["1234 Car Wash Way", "Eagle Mountain", "UT", "84005"], ["2150 Sunrise Blvd", "Rancho Cordova", "CA", "95670"], ["9450 S State St", "Sandy", "UT", "84070"]];
+const RESERVED = { "4520": "Dan Whitfield" };
+const regionOf = no => { const n = parseInt(no, 10); if (!/^\d{4}$/.test(no || "")) return null; const h = Math.floor(n / 100); if (h >= 51 && h <= 53) return ["Utah", "51xx to 53xx"]; if (h === 26) return ["Sacramento", "26xx"]; if (h >= 44 && h <= 47) return ["Southern California", "44xx to 47xx"]; return null; };
+const I = { check: "M5 12.5l4.5 4.5L19 7", warn: "M12 7v6M12 17h.01", dash: "M7 12h10", next: "M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08", plus: "M6 12h12M12 18V6", box: "M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z", trash: "M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14", leave: "M8.9 7.56c.31-3.6 2.16-5.07 6.21-5.07h.13c4.47 0 6.26 1.79 6.26 6.26v6.52c0 4.47-1.79 6.26-6.26 6.26h-.13c-4.02 0-5.87-1.45-6.2-4.99M15 12H3.62M5.85 8.65L2.5 12l3.35 3.35", swap: "M16.96 6.17L21 10.2l-4.04 4.04M3 10.2h18M7.04 17.83L3 13.8l4.04-4.04M21 13.8H3" };
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const PRI = { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 44, padding: "0 22px", border: 0, borderRadius: 999, background: "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: "#fff", font: "600 14px " + F, cursor: "pointer", boxShadow: "0 10px 26px rgba(109,40,217,.4)", whiteSpace: "nowrap" };
+const SEC = { height: 44, padding: "0 18px", borderRadius: 999, border: "1px solid rgba(var(--w),0.12)", background: "transparent", color: "var(--t1)", font: "600 14px " + F, cursor: "pointer", whiteSpace: "nowrap" };
+const DAN = Object.assign({}, PRI, { background: "#ef4444", boxShadow: "0 10px 26px rgba(239,68,68,.3)" });
+const seg = (on, h) => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", height: h || 34, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13px " + F, color: on ? "#fff" : "var(--t2)", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "transparent", boxShadow: on ? "0 6px 16px -6px rgba(109,40,217,.7)" : "none", transition: "all .2s" });
+const mini = on => Object.assign(seg(on, 26), { padding: "0 9px", fontSize: 12 });
+let UID = 0;
+const nid = () => "r" + (++UID) + "_" + Date.now().toString(36);
+const blankF = () => ({ no: "", name: "", street: "", city: "", state: "", zip: "", tz: "", tzAuto: false, match: [] });
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    const dr = p.draft && p.draft.data;
+    this.state = Object.assign({ step: 1, done: [], f: blankF(), touched: {}, checking: false, preset: null, rows: [], edits: 0, picker: true, reorder: false, dragId: null, overId: null, techs: [], skipped: false, techQ: "", techF: "all", status: "Active", statusSet: false, matchQ: "", suggOpen: false, fnPop: null, fnQ: "", panel: null, modal: null, toast: "", undo: null, sumOpen: false, savedAt: p.draft ? p.draft.edited : null }, dr ? JSON.parse(JSON.stringify(dr)) : {});
+    this.draftId = p.draft ? p.draft.id : "d" + Date.now().toString(36);
+    this.saved = dr ? this.snap(this.state) : this.snap(this.state);
+    this.matchRef = React.createRef();
+    this.shellRef = React.createRef();
+    this.scrollRef = React.createRef();
+    this.tableRef = React.createRef();
+  }
+  componentDidMount() {
+    if (this.props.prefetch) return;
+    this.writeHash();
+    this.measure = () => { const el = this.shellRef.current; if (!el) return; const top = el.getBoundingClientRect().top + (window.scrollY || 0); const h = Math.floor(innerHeight - top - 16); const fit = innerWidth >= 1100 && h >= 460; if (fit !== this.state.fit || Math.abs(h - (this.state.shellH || 0)) > 1) this.setState({ fit, shellH: h }); };
+    window.addEventListener("resize", this.measure);
+    requestAnimationFrame(this.measure); setTimeout(this.measure, 300); setTimeout(this.measure, 900);
+    this.onScroll = () => { if (this.state.fnPop) this.setState({ fnPop: null }); };
+    window.addEventListener("scroll", this.onScroll, true);
+    this.onKey = e => { if (e.key === "Escape") this.setState({ fnPop: null, panel: null, modal: null }); };
+    document.addEventListener("keydown", this.onKey);
+    this.scrollTop();
+  }
+  componentDidUpdate() { if (this.props.prefetch) return; const on = !!(this.state.panel || this.state.modal); if (on !== this._pn) { this._pn = on; if (on) document.documentElement.setAttribute("data-aspn", "1"); else document.documentElement.removeAttribute("data-aspn"); } }
+  componentWillUnmount() { if (this.props.prefetch) return; document.documentElement.removeAttribute("data-aspn"); window.removeEventListener("resize", this.measure); window.removeEventListener("scroll", this.onScroll, true); document.removeEventListener("keydown", this.onKey); clearTimeout(this.tt); clearTimeout(this.ct); }
+  snap(s) { return JSON.stringify({ f: s.f, preset: s.preset, rows: s.rows, techs: s.techs, skipped: s.skipped, status: s.status }); }
+  data() { const s = this.state; return { step: s.step, done: s.done, f: s.f, preset: s.preset, rows: s.rows, edits: s.edits, picker: s.picker, techs: s.techs, skipped: s.skipped, status: s.status, statusSet: s.statusSet }; }
+  writeHash() { try { history.replaceState(null, "", "#add-store" + (this.state.f.no ? "=" + this.state.f.no : "")); } catch (e) {} }
+  scrollTop() { requestAnimationFrame(() => { const el = this.scrollRef.current; if (el && this.state.fit) el.scrollTo({ top: 0, behavior: "smooth" }); else window.scrollTo({ top: 0, behavior: "smooth" }); }); }
+  say(msg, undo) { clearTimeout(this.tt); this.setState({ toast: msg, undo: undo || null }); this.tt = setTimeout(() => this.setState({ toast: "", undo: null }), undo ? 5000 : 2600); }
+  setF(k, v) { this.setState(s => ({ f: Object.assign({}, s.f, { [k]: v }) }), () => { if (k === "no") this.writeHash(); }); }
+  touch(k) { this.setState(s => ({ touched: Object.assign({}, s.touched, { [k]: true }) })); }
+  persist(silent) {
+    const s = this.state, d = { id: this.draftId, no: s.f.no, name: s.f.name, step: s.step, edited: Date.now(), data: this.data() };
+    if (this.props.onSaveDraft) this.props.onSaveDraft(d, silent);
+    this.saved = this.snap(s); this.setState({ savedAt: d.edited });
+  }
+  dirty() { return this.snap(this.state) !== this.saved; }
+  exit() { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} if (this.props.onExit) this.props.onExit(); }
+  goStep(n) {
+    const s = this.state, done = s.done.includes(s.step) ? s.done : s.done.concat([s.step]);
+    this.setState({ step: n, done, fnPop: null, reorder: false }, () => { if (this.state.f.no) this.persist(true); });
+    this.scrollTop();
+  }
+  applyPreset(k) {
+    const rows = k === "empty" ? [] : PRESETS[k].rows.map(r => ({ id: nid(), name: r.name, size: r.size, num: pnum(r.name, r.size), fns: r.fns.slice(), sec: r.sec, src: "Preset" }));
+    this.setState({ preset: k, rows, edits: 0, picker: false, reorder: false }, () => { if (!this.state.statusSet) this.setState({ status: rows.length ? "Active" : "Inactive" }); });
+  }
+  editRow(id, patch) { this.setState(s => ({ rows: s.rows.map(r => r.id === id ? Object.assign({}, r, patch, { src: "Custom" }) : r), edits: s.edits + 1 })); }
+
+  renderVals() {
+    const s = this.state, f = s.f, t = s.touched, step = s.step;
+    const existing = new Set((this.props.existing || []).map(String).concat(["7401"]));
+    const reg = regionOf(f.no);
+    let numState = "";
+    if (f.no) numState = !/^[A-Za-z0-9]+$/.test(f.no) ? "bad" : s.checking ? "checking" : existing.has(f.no) ? "taken" : RESERVED[f.no] ? "reserved" : "ok";
+    const nameErr = !f.name.trim() ? "Enter a store name" : f.name.length > 80 ? "Use 80 characters or fewer" : "";
+    const zipErr = !/^\d{5}$/.test(f.zip);
+    const valid1 = numState === "ok" && !nameErr && !!f.street.trim() && !!f.city.trim() && !!f.state && !zipErr && !!f.tz;
+    const rowBad = r => !r.fns.length || (r.size === 2.5 && !r.sec);
+    const noFnN = s.rows.filter(r => !r.fns.length).length, noSecN = s.rows.filter(r => r.size === 2.5 && !r.sec).length;
+    const valid2 = s.preset !== null && !noFnN && !noSecN;
+    const valid = [valid1, valid2, true, valid1 && valid2];
+    const lines = s.rows.reduce((a, r) => a + r.fns.length, 0);
+    const pName = s.preset === "empty" ? "Started empty" : s.preset ? PRESETS[s.preset].name : "";
+    const isCustom = s.preset && s.preset !== "empty" && s.edits > 0;
+    const inp = (err, extra) => Object.assign({ width: "100%", height: 48, padding: "0 16px", borderRadius: 14, background: "rgba(var(--w),0.04)", border: "1px solid " + (err ? "rgba(248,113,113,.65)" : "rgba(var(--w),0.12)"), color: "var(--t1)", font: "500 14.5px " + F, outline: "none", transition: "border-color .2s,box-shadow .2s", animation: err ? "asShake .35s" : "none" }, extra || {});
+    const out = {};
+
+    // steps
+    const LBL = ["Store details", "Products", "Technicians", "Review & create"];
+    const reachable = n => { for (let k = 1; k < n; k++) if (!valid[k - 1]) return false; return true; };
+    out.steps = LBL.map((label, i) => {
+      const n = i + 1, cur = step === n, done = s.done.includes(n);
+      let st = "todo";
+      if (cur) st = "cur"; else if (n === 3 && s.skipped && !s.techs.length && done) st = "skip"; else if (done && valid[i]) st = "done"; else if (done && !valid[i]) st = "attn";
+      const locked = !cur && !(reachable(n) && (done || n <= Math.max(step, ...s.done, 0) + 1));
+      const C = { cur: ["linear-gradient(180deg,#8b5cf6,#6d28d9)", "#fff", "0 6px 16px -6px rgba(109,40,217,.8)"], done: ["rgba(139,92,246,.18)", "var(--pa)", "none"], attn: ["rgba(251,191,36,.16)", "var(--amb)", "none"], skip: ["rgba(var(--w),.08)", "var(--t3)", "none"], todo: ["transparent", "var(--t3)", "inset 0 0 0 1.5px rgba(var(--w),.16)"] }[st];
+      return {
+        n, label, locked, hasLine: i < 3, isNum: st === "cur" || st === "todo", isIcon: st === "done" || st === "attn" || st === "skip", icon: st === "done" ? I.check : st === "attn" ? I.warn : I.dash,
+        sub: { cur: "Current", done: "Complete", attn: "Needs attention", skip: "Skipped", todo: "Not started" }[st],
+        subFg: st === "attn" ? "var(--amb)" : st === "cur" ? "var(--pa)" : "var(--t3)", labelFg: st === "todo" ? "var(--t2)" : "var(--t1)",
+        line: i === 3 ? "transparent" : (done && valid[i] ? "rgba(139,92,246,.55)" : "rgba(var(--w),.1)"),
+        dot: { position: "relative", zIndex: 1, flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "50%", background: C[0], color: C[1], boxShadow: C[2], font: "700 13px " + F, transition: "all .35s cubic-bezier(.2,.8,.2,1)" },
+        go: () => { if (!locked && !cur) this.goStep(n); },
+        rowStyle: { position: "relative", display: "flex", alignItems: "center", gap: 14, width: "100%", padding: 10, border: 0, borderRadius: 18, background: cur ? "rgba(139,92,246,.1)" : "transparent", color: "var(--t1)", cursor: locked ? "not-allowed" : cur ? "default" : "pointer", opacity: locked ? .55 : 1, transition: "background .25s" }
+      };
+    });
+    out.stepPips = [1, 2, 3, 4].map(n => ({ w: n === step ? "22px" : "6px", bg: n === step ? "var(--pa)" : n < step || s.done.includes(n) ? "rgba(139,92,246,.5)" : "rgba(var(--w),.16)" }));
+    out.stepCounter = "Step " + step + " of 4";
+    out.isStep1 = step === 1; out.isStep2 = step === 2; out.isStep3 = step === 3; out.isStep4 = step === 4;
+
+    // layout
+    const wide = innerWidth >= 1100, fit = !!s.fit;
+    const cols = wide ? (innerWidth < 1320 ? "296px" : "340px") + " minmax(0,1fr)" : "minmax(0,1fr)";
+    out.shellRef = this.shellRef; out.scrollRef = this.scrollRef;
+    out.shellStyle = fit ? { display: "grid", gridTemplateColumns: cols, gap: 22, height: s.shellH, alignItems: "stretch" } : { display: "grid", gridTemplateColumns: cols, gap: 22, alignItems: "start" };
+    out.asideStyle = fit ? { display: "flex", flexDirection: "column", gap: 14, minWidth: 0, minHeight: 0, overflow: "hidden" } : wide ? { display: "flex", flexDirection: "column", gap: 14, minWidth: 0 } : { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))", gap: 14 };
+    out.rightStyle = fit ? { minWidth: 0, minHeight: 0, display: "flex", flexDirection: "column", gap: 14 } : { minWidth: 0, display: "flex", flexDirection: "column", gap: 16 };
+    out.scrollStyle = fit ? { flex: "1 1 auto", minHeight: 0, overflowY: "auto", overflowX: "hidden", scrollbarWidth: "none", display: "flex", flexDirection: "column", gap: 16, margin: "0 -8px", padding: "0 8px 24px" } : { display: "flex", flexDirection: "column", gap: 16 };
+
+    // preview
+    const sel = TECHS.filter(x => s.techs.includes(x.i));
+    Object.assign(out, {
+      pvNo: f.no || "Store number", pvNoFg: f.no ? "var(--t1)" : "rgba(var(--w),.42)",
+      pvName: f.name || "Store name", pvNameFg: f.name ? "var(--t1)" : "rgba(var(--w),.42)",
+      pvAddr: f.street ? [f.street, f.city, (f.state + " " + f.zip).trim()].filter(Boolean).join(", ") : "Address", pvAddrFg: f.street ? "rgba(var(--w),.86)" : "rgba(var(--w),.42)",
+      pvTz: f.tz || "Time zone", pvTzFg: f.tz ? "rgba(var(--w),.78)" : "rgba(var(--w),.42)",
+      pvHasProducts: !!s.preset, pvProducts: s.rows.length + (s.rows.length === 1 ? " product" : " products") + " · " + (s.preset === "empty" ? "No preset" : isCustom ? "Customised" : pName),
+      pvHasTechs: sel.length > 0, pvTechs: sel.slice(0, 4).map(x => ({ name: x.name, bg: photo(x.name) })), pvTechLine: sel.length === 1 ? sel[0].name : sel.length + " technicians"
+    });
+    out.savedLine = s.savedAt ? "Draft saved " + new Date(s.savedAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : "";
+
+    // step 1
+    const showNoErr = numState === "bad" || numState === "taken" || numState === "reserved";
+    Object.assign(out, {
+      vNo: f.no, vName: f.name, vStreet: f.street, vCity: f.city, vState: f.state, vZip: f.zip, vTz: f.tz, stateKey: "st" + f.state, tzKey: "tz" + f.tz, vMatch: s.matchQ,
+      onNo: e => { const v = e.target.value.replace(/\s+/g, ""); this.setF("no", v); this.setState({ checking: !!v }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ checking: false }), 380); },
+      blurNo: () => this.touch("no"),
+      noStyle: inp(showNoErr || (t.no && !f.no), { paddingRight: 120, fontSize: 16, fontWeight: 600, letterSpacing: ".02em" }),
+      noChecking: numState === "checking", noOk: numState === "ok",
+      noTag: numState === "checking" ? "Checking" : numState === "ok" ? "Available" : "", noTagFg: numState === "ok" ? "var(--lc-ok)" : "var(--t3)",
+      noHasErr: showNoErr || (t.no && !f.no), noTaken: numState === "taken",
+      noErr: numState === "bad" ? "Use letters and digits only, no spaces." : numState === "taken" ? "Store " + f.no + " already exists." : numState === "reserved" ? "Store " + f.no + " is in a draft by " + RESERVED[f.no] + "." : "Enter a store number",
+      viewTaken: e => { e.preventDefault(); if (this.props.onOpenStore) this.props.onOpenStore(f.no); },
+      onName: e => this.setF("name", e.target.value), blurName: () => this.touch("name"),
+      nameStyle: inp(t.name && !!nameErr), nameCount: f.name.length + " / 80", nameCountFg: f.name.length > 80 ? "#f87171" : "var(--t3)",
+      nameHelp: t.name && nameErr ? nameErr : "Use the name the store is known by, e.g. Riverside Magnolia.", nameHelpFg: t.name && nameErr ? "#f87171" : "var(--t3)",
+      regionText: reg ? reg[0] + " (" + reg[1] + ")" : f.no ? "not matched" : "enter a store number", regionFg: reg ? "var(--t1)" : "var(--t3)"
+    });
+    const q = f.street.trim().toLowerCase();
+    const sugg = q.length >= 2 ? SUGG.filter(x => (x[0] + " " + x[1]).toLowerCase().includes(q) && !(x[0] === f.street && x[1] === f.city)).slice(0, 5) : [];
+    const autoTz = st => TZ_OF[st] || "";
+    Object.assign(out, {
+      onStreet: e => { this.setF("street", e.target.value); this.setState({ suggOpen: true }); },
+      focusStreet: () => this.setState({ suggOpen: true }), blurStreet: () => { this.touch("street"); setTimeout(() => this.setState({ suggOpen: false }), 120); },
+      showSugg: s.suggOpen && sugg.length > 0,
+      sugg: sugg.map(x => ({ street: x[0], rest: x[1] + ", " + x[2] + " " + x[3], pick: e => { e.preventDefault(); this.setState(z => ({ suggOpen: false, f: Object.assign({}, z.f, { street: x[0], city: x[1], state: x[2], zip: x[3] }, z.f.tz && !z.f.tzAuto ? {} : { tz: autoTz(x[2]), tzAuto: true }) })); } })),
+      streetStyle: inp(t.street && !f.street.trim()), streetHasErr: t.street && !f.street.trim(),
+      onCity: e => this.setF("city", e.target.value), blurCity: () => this.touch("city"), cityStyle: inp(t.city && !f.city.trim()),
+      onState: e => { const v = e.target.value; this.setState(z => ({ f: Object.assign({}, z.f, { state: v }, z.f.tz && !z.f.tzAuto ? {} : { tz: autoTz(v), tzAuto: !!autoTz(v) }) })); }, blurState: () => this.touch("state"),
+      stateStyle: inp(t.state && !f.state, { appearance: "none", paddingRight: 34, cursor: "pointer" }), stateOpts: STATES,
+      onZip: e => this.setF("zip", e.target.value.replace(/\D/g, "").slice(0, 5)), blurZip: () => this.touch("zip"), zipStyle: inp(t.zip && zipErr, { fontVariantNumeric: "tabular-nums" }),
+      cszHasErr: (t.city && !f.city.trim()) || (t.state && !f.state) || (t.zip && zipErr),
+      cszErr: t.city && !f.city.trim() ? "Enter the city" : t.state && !f.state ? "Pick a state" : "ZIP code must be 5 digits",
+      onTz: e => this.setState(z => ({ f: Object.assign({}, z.f, { tz: e.target.value, tzAuto: false }) })), tzStyle: inp(false, { appearance: "none", paddingRight: 34, cursor: "pointer" }), tzOpts: TZS, tzAuto: !!f.tzAuto && !!f.tz,
+      mapReady: !!(f.street.trim() && f.city.trim() && f.state), mapEmpty: !(f.street.trim() && f.city.trim() && f.state),
+      mapLine1: f.street, mapLine2: f.city + ", " + f.state + " " + f.zip,
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([f.street, f.city, f.state, f.zip].join(" ")),
+      matchRef: this.matchRef, focusMatch: () => this.matchRef.current && this.matchRef.current.focus(),
+      matchChips: f.match.map((m, i) => ({ name: m, remove: e => { e.stopPropagation(); this.setF("match", f.match.filter((_, k) => k !== i)); } })),
+      matchPh: f.match.length ? "Add another name" : "e.g. Riverside Magnolia",
+      onMatch: e => this.setState({ matchQ: e.target.value }),
+      keyMatch: e => {
+        if (e.key === "Enter") { e.preventDefault(); const v = s.matchQ.trim(); if (v && !f.match.some(m => m.toLowerCase() === v.toLowerCase())) this.setF("match", f.match.concat([v])); this.setState({ matchQ: "" }); }
+        else if (e.key === "Backspace" && !s.matchQ && f.match.length) this.setF("match", f.match.slice(0, -1));
+      }
+    });
+
+    // step 2
+    const suggested = reg && reg[0] === "Southern California" ? "ca5" : null;
+    const cardBase = on => ({ display: "flex", flexDirection: "column", alignItems: "stretch", minHeight: 196, padding: 18, borderRadius: 24, border: "1px solid " + (on ? "rgba(167,139,250,.6)" : "transparent"), background: on ? "rgba(139,92,246,.1)" : "var(--lc-inner)", boxShadow: on ? "0 0 0 4px rgba(139,92,246,.12)" : "none", color: "var(--t1)", textAlign: "left", cursor: "pointer", transition: "all .25s cubic-bezier(.2,.8,.2,1)" });
+    const ic = on => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "rgba(139,92,246,.14)", color: on ? "#fff" : "var(--pa)", transition: "all .25s" });
+    const keys = suggested ? ["ca5", "std5", "std15"] : ["std5", "std15", "ca5"];
+    const pick = k => () => { if (s.preset === k) { this.setState({ picker: false }); return; } if (s.preset !== null && s.edits > 0) this.setState({ modal: { kind: "replace", k } }); else this.applyPreset(k); };
+    out.presetCards = keys.map(k => { const p = PRESETS[k], on = s.preset === k; const names = [...new Set(p.rows.map(r => r.name))]; return { name: p.name, meta: p.size + " · " + p.rows.length + " products · " + p.stores + " stores", preview: names.slice(0, 3).join(", ") + " +" + (names.length - 3) + " more", suggested: k === suggested && !on, selected: on, icon: I.box, iconStyle: ic(on), style: cardBase(on), pick: pick(k) }; })
+      .concat([{ name: "Start empty", meta: "No preset", preview: "Build the list product by product.", suggested: false, selected: s.preset === "empty", icon: I.plus, iconStyle: ic(s.preset === "empty"), style: cardBase(s.preset === "empty"), pick: pick("empty") }]);
+    out.presetMini = keys.map(k => ({ k, name: PRESETS[k].name, meta: PRESETS[k].size + " · " + PRESETS[k].rows.length + " products" })).concat([{ k: "empty", name: "Start empty", meta: "No preset" }]).map(x => { const on = s.preset === x.k; return { name: x.name, meta: x.meta, selected: on, suggested: x.k === suggested && !on, icon: x.k === "empty" ? I.plus : I.box, iconStyle: Object.assign(ic(on), { flex: "0 0 auto", width: 34, height: 34, borderRadius: 11 }), pick: pick(x.k), style: { display: "flex", alignItems: "center", gap: 10, minWidth: 0, padding: "8px 12px 8px 8px", border: 0, borderRadius: 16, background: on ? "rgba(139,92,246,.12)" : "var(--lc-inner)", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.55)" : "none", color: "var(--t1)", textAlign: "left", cursor: "pointer", transition: "background .2s,box-shadow .2s" } }; });
+    out.showPicker = s.preset === null; out.pickerClosable = s.preset !== null && s.picker;
+    out.closePicker = () => this.setState({ picker: false });
+    out.hasPreset = s.preset !== null;
+    out.basedOnLabel = s.preset === "empty" ? "Starting point:" : "Based on preset:"; out.presetName = s.preset === "empty" ? "Empty list" : pName;
+    out.isCustom = !!isCustom;
+    out.resetPreset = () => this.setState({ modal: { kind: "replace", k: s.preset, reset: true } });
+    out.changePreset = () => this.setState({ picker: true, reorder: false });
+    out.notReorder = !s.reorder; out.reorder = s.reorder;
+    out.startReorder = () => this.setState({ reorder: true, fnPop: null }); out.doneReorder = () => this.setState({ reorder: false });
+    out.noRows = s.rows.length === 0; out.hasRows = s.rows.length > 0;
+    out.zeroNotice = s.preset !== null && s.rows.length === 0;
+    out.openAdd = () => this.setState({ panel: { q: "", pick: null, size: 5, fns: [], sec: null } });
+    out.tableRef = this.tableRef;
+    const move = (id, dir) => this.setState(z => { const r = z.rows.slice(), i = r.findIndex(x => x.id === id), j = i + dir; if (j < 0 || j >= r.length) return null; const [m] = r.splice(i, 1); r.splice(j, 0, m); return { rows: r, edits: z.edits + 1 }; });
+    out.rowsView = s.rows.map((r, i) => {
+      const over = s.reorder && s.overId === r.id && s.dragId && s.dragId !== r.id;
+      const openPop = idx => e => { const b = e.currentTarget.getBoundingClientRect(); this.setState({ fnPop: { id: r.id, idx, x: b.left, y: b.bottom + 6 }, fnQ: "" }); };
+      return {
+        idx: i + 1, name: r.name, num: r.num, reorder: s.reorder, notReorder: !s.reorder, draggable: s.reorder,
+        sizes: [2.5, 5, 15].map(z => ({ label: String(z), style: mini(r.size === z), pick: () => { if (r.size !== z) this.editRow(r.id, { size: z, num: pnum(r.name, z), sec: z === 2.5 ? r.sec : null }); } })),
+        fns: r.fns.map((fn, k) => ({ name: fn, removable: r.fns.length >= 2, open: openPop(k), remove: () => this.editRow(r.id, { fns: r.fns.filter((_, j) => j !== k) }), style: { display: "inline-flex", alignItems: "center", gap: 6, height: 30, padding: "0 10px 0 12px", borderRadius: 999, background: s.fnPop && s.fnPop.id === r.id && s.fnPop.idx === k ? "rgba(139,92,246,.22)" : "rgba(139,92,246,.12)", color: "var(--t1)", font: "500 12.5px " + F, whiteSpace: "nowrap", transition: "background .15s" } })),
+        noFn: !r.fns.length, hasFn: r.fns.length > 0 && r.fns.length < WF.length, addFn: openPop("add"),
+        is25: r.size === 2.5, not25: r.size !== 2.5, secMissing: r.size === 2.5 && !r.sec,
+        secWrap: { display: "inline-flex", gap: 2, padding: 3, borderRadius: 999, background: "var(--lc-inner)", width: "max-content", boxShadow: r.size === 2.5 && !r.sec ? "0 0 0 1px rgba(248,113,113,.6)" : "none" },
+        secs: [10, 20].map(z => ({ label: z + " gal", style: mini(r.sec === z), pick: () => this.editRow(r.id, { sec: z }) })),
+        src: r.src, srcStyle: { display: "inline-flex", padding: "3px 10px", borderRadius: 999, font: "600 12px " + F, whiteSpace: "nowrap", background: r.src === "Custom" ? "rgba(251,191,36,.14)" : "rgba(var(--w),.07)", color: r.src === "Custom" ? "var(--amb)" : "var(--t2)" },
+        remove: () => { const prev = s.rows, pe = s.edits; this.setState({ rows: s.rows.filter(x => x.id !== r.id), edits: s.edits + 1 }); this.say(r.name + " removed", () => this.setState({ rows: prev, edits: pe })); },
+        up: () => move(r.id, -1), down: () => move(r.id, 1),
+        dragStart: e => { if (!s.reorder) return; try { e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", r.id); } catch (er) {} this.setState({ dragId: r.id }); },
+        dragOver: e => { if (!s.reorder) return; e.preventDefault(); if (s.overId !== r.id) this.setState({ overId: r.id }); },
+        drop: e => { if (!s.reorder) return; e.preventDefault(); const from = s.dragId; if (!from || from === r.id) return; this.setState(z => { const a = z.rows.slice(), fi = a.findIndex(x => x.id === from); const [m] = a.splice(fi, 1); a.splice(a.findIndex(x => x.id === r.id), 0, m); return { rows: a, dragId: null, overId: null, edits: z.edits + 1 }; }); },
+        dragEnd: () => this.setState({ dragId: null, overId: null }),
+        rowStyle: { display: "grid", gridTemplateColumns: "52px minmax(190px,1.3fr) 104px 156px minmax(250px,1.7fr) 128px 84px 56px", gap: 12, alignItems: "center", minHeight: 60, padding: "10px 22px", borderTop: "1px solid " + (over ? "rgba(167,139,250,.8)" : "var(--lc-iline)"), font: "500 13.5px " + F, background: s.dragId === r.id ? "rgba(139,92,246,.08)" : rowBad(r) ? "rgba(248,113,113,.035)" : "transparent", opacity: s.dragId === r.id ? .5 : 1, cursor: s.reorder ? "grab" : "default", transition: "background .2s,opacity .2s", animation: "asRise .4s cubic-bezier(.2,.8,.2,1) " + Math.min(i * 22, 300) + "ms backwards" }
+      };
+    });
+    out.countProducts = s.rows.length + (s.rows.length === 1 ? " product" : " products");
+    out.countLines = lines + (lines === 1 ? " wash function line" : " wash function lines");
+
+    // fn popover
+    const fp = s.fnPop, fr = fp ? s.rows.find(r => r.id === fp.id) : null;
+    out.fnPopOpen = !!fr;
+    if (fr) {
+      const fq = s.fnQ.trim().toLowerCase(), cur = fp.idx === "add" ? null : fr.fns[fp.idx];
+      const opts = WF.filter(w => !fq || w.toLowerCase().includes(fq));
+      out.fnPopStyle = { position: "fixed", left: Math.min(fp.x, innerWidth - 260), top: Math.min(fp.y, innerHeight - 340), zIndex: 71, width: 244, padding: 6, borderRadius: 18, background: "rgba(var(--g1),.96)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(var(--w),.12)", boxShadow: "0 24px 50px var(--k55)", transformOrigin: "top left", animation: "asPop .2s cubic-bezier(.22,.9,.24,1)" };
+      out.fnOpts = opts.map(w => { const used = fr.fns.includes(w) && w !== cur, on = w === cur; return { name: w, note: on ? "Current" : used ? "Already used" : "", disabled: used, style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, width: "100%", padding: "9px 12px", border: 0, borderRadius: 12, background: on ? "rgba(139,92,246,.16)" : "transparent", color: used ? "var(--t3)" : "var(--t1)", font: (on ? 600 : 500) + " 13.5px " + F, textAlign: "left", cursor: used ? "not-allowed" : "pointer", opacity: used ? .55 : 1 }, pick: () => { if (used) return; const fns = fr.fns.slice(); if (fp.idx === "add") fns.push(w); else fns[fp.idx] = w; this.editRow(fr.id, { fns }); this.setState({ fnPop: null }); } }; });
+      out.fnEmpty = opts.length === 0;
+    }
+    out.fnQ = s.fnQ; out.onFnQ = e => this.setState({ fnQ: e.target.value }); out.closeFnPop = () => this.setState({ fnPop: null });
+
+    // add product panel
+    const pn = s.panel;
+    out.panelOpen = !!pn; out.closePanel = () => this.setState({ panel: null });
+    if (pn) {
+      const pq = pn.q.trim().toLowerCase(), upd = x => this.setState(z => ({ panel: Object.assign({}, z.panel, x) }));
+      const has = (n, z) => s.rows.some(r => r.name === n && r.size === z);
+      out.apQ = pn.q; out.onApQ = e => upd({ q: e.target.value });
+      const collapsed = !!pn.pick && !pn.browse && !pq;
+      out.apCollapsed = collapsed; out.apNotCollapsed = !collapsed; out.apBrowse = () => upd({ browse: true });
+      out.apList = MASTER.filter(m => collapsed ? m[0] === pn.pick : (!pq || m[0].toLowerCase().includes(pq))).map(m => { const on = pn.pick === m[0], sizes = s.rows.filter(r => r.name === m[0]).map(r => r.size + " gal"); return { on, ini: m[0].split(/\s+/).filter(w => /^[A-Z]/.test(w)).slice(0, 2).map(w => w[0]).join(""), icon: { flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 13, background: on ? "linear-gradient(158deg,#8b5cf6,#5b21b6)" : "var(--pn-tileh)", color: on ? "#fff" : "var(--pn-ink2)", font: "700 12px 'AppNumerals','Urbanist',system-ui,sans-serif", transition: "background .2s" }, hasNote: !!sizes.length, name: m[0], code: m[1], note: sizes.length ? "Already added · " + sizes.join(", ") : "", style: { display: "flex", alignItems: "center", gap: 12, width: "100%", padding: "8px 10px 8px 8px", border: 0, borderRadius: 18, background: on ? "rgba(139,92,246,.14)" : "transparent", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.45)" : "none", color: "var(--pn-ink)", textAlign: "left", cursor: "pointer", transition: "background .18s,box-shadow .18s" }, pick: () => { const z = [5, 15, 2.5].find(x => !has(m[0], x)) || 5; upd({ pick: m[0], size: z, fns: DEF[m[0]] ? [DEF[m[0]]] : [], sec: null, browse: false, q: "" }); } }; });
+      out.apHasPick = !!pn.pick;
+      out.apSizes = [2.5, 5, 15].map(z => { const dis = pn.pick && has(pn.pick, z), on = pn.size === z; return { label: z + " gal", num: dis ? "Already added" : pn.pick ? pnum(pn.pick, z) : "", disabled: !!dis, pick: () => !dis && upd({ size: z, sec: z === 2.5 ? pn.sec : null }), style: { minWidth: 0, display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", gap: 3, padding: "12px 14px", borderRadius: 18, border: 0, boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.55)" : "inset 0 0 0 1px var(--pn-line)", background: on ? "rgba(139,92,246,.14)" : "var(--pn-inner)", color: "var(--pn-ink)", cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .45 : 1, transition: "all .2s" } }; });
+      out.apIs25 = pn.size === 2.5;
+      out.apSecs = [10, 20].map(z => ({ label: z + " gal", style: seg(pn.sec === z, 32), pick: () => upd({ sec: z }) }));
+      out.apFns = WF.map(w => { const on = pn.fns.includes(w); return { name: w, toggle: () => upd({ fns: on ? pn.fns.filter(x => x !== w) : pn.fns.concat([w]) }), style: { height: 34, padding: "0 13px", borderRadius: 999, border: 0, boxShadow: on ? "0 6px 16px -8px rgba(109,40,217,.8)" : "inset 0 0 0 1px var(--pn-line)", background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "var(--pn-inner)", color: on ? "#fff" : "var(--pn-ink2)", font: (on ? 600 : 500) + " 13px " + F, whiteSpace: "nowrap", cursor: "pointer", transition: "all .18s" } }; });
+      const dis = !pn.pick || !pn.fns.length || (pn.size === 2.5 && !pn.sec) || has(pn.pick, pn.size);
+      out.apDisabled = dis; out.apAddLabel = pn.pick ? "Add " + pn.pick : "Add to list";
+      const nb = (done, cur) => done ? ["linear-gradient(180deg,#8b5cf6,#6d28d9)", "#fff"] : cur ? ["rgba(139,92,246,.2)", "var(--pa)"] : ["var(--pn-tileh)", "var(--pn-ink3)"];
+      const n1 = nb(!!pn.pick, !pn.pick), n2 = nb(!!pn.pick && (pn.size !== 2.5 || !!pn.sec), !!pn.pick), n3 = nb(pn.fns.length > 0, !!pn.pick);
+      Object.assign(out, { apN1Bg: n1[0], apN1Fg: n1[1], apN2Bg: n2[0], apN2Fg: n2[1], apN3Bg: n3[0], apN3Fg: n3[1], apTitle: pn.pick || "Add product", apSub: pn.pick ? pnum(pn.pick, pn.size) + " · " + pn.size + " gal" + (pn.fns.length ? " · " + pn.fns.join(", ") : "") : "Pick a product, its size and wash functions", apFnCount: pn.fns.length ? pn.fns.length + " selected" : "Pick at least 1" });
+      out.apAddStyle = Object.assign({}, PRI, { flex: 1, height: 50, opacity: dis ? .45 : 1, cursor: dis ? "not-allowed" : "pointer", boxShadow: dis ? "none" : PRI.boxShadow, overflow: "hidden", textOverflow: "ellipsis" });
+      out.apAdd = () => { if (dis) return; const r = { id: nid(), name: pn.pick, size: pn.size, num: pnum(pn.pick, pn.size), fns: pn.fns.slice(), sec: pn.size === 2.5 ? pn.sec : null, src: "Custom" }; this.setState(z => ({ rows: z.rows.concat([r]), edits: z.edits + 1, panel: null }), () => { if (!this.state.statusSet) this.setState({ status: "Active" }); const el = this.tableRef.current; if (el) el.scrollIntoView ? null : null; }); this.say(pn.pick + " added"); };
+    }
+
+    // step 3
+    const tq = s.techQ.trim().toLowerCase();
+    let list = TECHS.filter(x => !tq || x.name.toLowerCase().includes(tq) || x.reg.join(" ").toLowerCase().includes(tq));
+    if (s.techF === "region") list = list.filter(x => reg && x.reg.includes(reg[0]));
+    if (s.techF === "fewest") list = list.slice().sort((a, b) => a.n - b.n);
+    Object.assign(out, {
+      techQ: s.techQ, onTechQ: e => this.setState({ techQ: e.target.value }),
+      techFilters: [["all", "All"], ["region", "Same region"], ["fewest", "Fewest stores"]].map(([k, l]) => ({ label: l, style: seg(s.techF === k), pick: () => this.setState({ techF: k }) })),
+      techRows: list.map(x => { const on = s.techs.includes(x.i); return { name: x.name, email: email(x.name), regions: x.reg.join(", "), stores: x.n + " stores", bg: photo(x.name), toggle: () => this.setState(z => ({ techs: on ? z.techs.filter(v => v !== x.i) : z.techs.concat([x.i]), skipped: false })),
+        box: { flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center", width: 22, height: 22, borderRadius: 7, border: "1.5px solid " + (on ? "transparent" : "rgba(var(--w),.24)"), background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "transparent", color: on ? "#fff" : "transparent", transition: "all .18s" },
+        style: { display: "flex", alignItems: "center", gap: 14, width: "100%", padding: "12px 18px", border: 0, borderTop: "1px solid var(--lc-iline)", background: on ? "rgba(139,92,246,.07)" : "transparent", color: "var(--t1)", cursor: "pointer", transition: "background .15s" } }; }),
+      techEmpty: list.length === 0,
+      hasSel: sel.length > 0, noSel: sel.length === 0, selCount: sel.length,
+      selCards: sel.map(x => ({ name: x.name, email: email(x.name), phone: x.ph, stores: x.n + " stores", foot: x.n + " stores · " + x.reg.join(", "), mailHref: "mailto:" + email(x.name), telHref: "tel:" + x.ph.replace(/\D/g, ""), bg: photo(x.name), remove: () => this.setState(z => ({ techs: z.techs.filter(v => v !== x.i) })) })),
+      canSkip: !sel.length && !s.skipped, skip: () => { this.setState({ skipped: true }); this.goStep(4); },
+      showSkipWarn: !sel.length && s.skipped, showSelHint: !sel.length && !s.skipped
+    });
+
+    // step 4
+    const issues = [];
+    if (!valid1) issues.push({ text: numState === "taken" || numState === "reserved" ? "The store number is already in use" : "Store details are incomplete", link: "Go to Details", go: () => this.goStep(1), block: true });
+    if (s.preset === null) issues.push({ text: "Choose a starting point for the product list", link: "Go to Products", go: () => this.goStep(2), block: true });
+    if (noFnN) issues.push({ text: noFnN + (noFnN === 1 ? " product has" : " products have") + " no wash function", link: "Go to Products", go: () => this.goStep(2), block: true });
+    if (noSecN) issues.push({ text: noSecN + (noSecN === 1 ? " product needs" : " products need") + " a secondary max", link: "Go to Products", go: () => this.goStep(2), block: true });
+    if (!sel.length) issues.push({ text: "No technician assigned. The store will show as Setup incomplete", link: "Go to Technicians", go: () => this.goStep(3), block: false });
+    if (s.preset !== null && !s.rows.length) issues.push({ text: "No products. The store can only be created as Inactive", link: "Go to Products", go: () => this.goStep(2), block: false });
+    const blocking = issues.some(x => x.block);
+    out.hasIssues = issues.length > 0;
+    out.issues = issues.map(x => ({ text: x.text, link: x.link, go: x.go, bg: x.block ? "rgba(248,113,113,.07)" : "rgba(251,191,36,.07)", iconBg: x.block ? "rgba(248,113,113,.16)" : "rgba(251,191,36,.16)", fg: x.block ? "#f87171" : "var(--amb)", icon: x.block ? "M7 7l10 10M17 7L7 17" : I.warn }));
+    const sepAt = i => i ? "var(--lc-iline)" : "transparent";
+    out.sumDetails = [["Number", f.no || "Not set"], ["Name", f.name || "Not set"], ["Address", f.street ? f.street + ", " + f.city + ", " + f.state + " " + f.zip : "Not set"], ["Time zone", f.tz || "Not set"], ["Region", reg ? reg[0] : "Not matched"], ["Matching", f.match.length ? f.match.join(", ") : "None"]].map(([k, v], i) => ({ k, v, sep: sepAt(i), fg: v === "Not set" ? "#f87171" : "var(--t1)" }));
+    out.sumPreset = s.preset === null ? "No starting point yet" : s.preset === "empty" ? "Started empty" : pName;
+    out.sumCount = String(s.rows.length); out.sumLines = String(lines);
+    out.sumRows = (s.sumOpen ? s.rows : s.rows.slice(0, 6)).map((r, i) => ({ name: r.name + " · " + r.size + " gal", fns: r.fns.length ? r.fns.join(", ") : "No function", fg: r.fns.length ? "var(--t3)" : "#f87171", sep: i ? "var(--lc-iline)" : "transparent" }));
+    out.sumMore = s.rows.length > 6; out.sumMoreLabel = s.sumOpen ? "Show less" : "Show all " + s.rows.length;
+    out.toggleSum = () => this.setState({ sumOpen: !s.sumOpen });
+    out.edit1 = () => this.goStep(1); out.edit2 = () => this.goStep(2); out.edit3 = () => this.goStep(3);
+    const zero = s.rows.length === 0, status = zero ? "Inactive" : s.status;
+    out.statusOpts = [["Active", "Technicians see this store right away and store users can request access."], ["Inactive", "Set up now, go live later. Hidden from technicians and store users."]].map(([k, h]) => { const on = status === k, dis = k === "Active" && zero; return { label: k, help: dis ? "Add at least 1 product to make this store active." : h, disabled: dis, pick: () => !dis && this.setState({ status: k, statusSet: true }),
+      style: { display: "flex", alignItems: "flex-start", gap: 14, width: "100%", padding: "16px 18px", borderRadius: 22, border: "1px solid " + (on ? "rgba(167,139,250,.6)" : "transparent"), background: on ? "rgba(139,92,246,.1)" : "var(--lc-inner)", boxShadow: on ? "0 0 0 4px rgba(139,92,246,.12)" : "none", color: "var(--t1)", cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .5 : 1, transition: "all .22s" },
+      radio: { flex: "0 0 auto", width: 20, height: 20, marginTop: 1, borderRadius: "50%", border: on ? "6px solid #8b5cf6" : "1.5px solid rgba(var(--w),.3)", background: on ? "#fff" : "transparent", transition: "all .2s" } }; });
+
+    // bottom bar
+    const nextDis = step === 1 ? !valid1 : step === 2 ? !valid2 : step === 4 ? blocking : false;
+    out.showBackBtn = step > 1; out.prev = () => this.goStep(step - 1);
+    out.nextLabel = step === 4 ? "Create store" : "Continue"; out.nextIcon = step === 4 ? I.check : I.next;
+    out.nextDisabled = nextDis;
+    out.nextStyle = Object.assign({}, PRI, { height: 48, padding: "0 22px 0 24px", opacity: nextDis ? .4 : 1, cursor: nextDis ? "not-allowed" : "pointer", boxShadow: nextDis ? "none" : PRI.boxShadow, transition: "opacity .25s,transform .2s,filter .15s" });
+    out.barHint = step === 1 ? (valid1 ? "Looks good" : "Fill the required fields to continue") : step === 2 ? (s.preset === null ? "Choose a starting point" : valid2 ? out.countProducts + " · " + out.countLines : "Fix the highlighted rows to continue") : step === 3 ? (sel.length ? sel.length + " selected" : "Optional step") : (blocking ? "Fix the items above to create the store" : "Creates as " + status);
+    out.next = () => {
+      if (nextDis) return;
+      if (step < 4) { this.goStep(step + 1); return; }
+      const d = { no: /^\d+$/.test(f.no) ? +f.no : f.no, f, rows: s.rows, preset: s.preset, presetName: s.preset === "empty" ? "No preset" : pName, custom: !!isCustom, techs: s.techs.slice(), status, draftId: this.draftId };
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+      if (this.props.onCreate) this.props.onCreate(d);
+    };
+
+    // leaving
+    out.back = () => { if (!f.no || !this.dirty()) { this.exit(); return; } this.setState({ modal: { kind: "leave" } }); };
+    out.saveDraft = () => { this.persist(false); this.exit(); };
+    out.discard = () => this.setState({ modal: { kind: "discard" } });
+
+    // modal
+    const m = s.modal;
+    out.modalOpen = !!m; out.closeModal = () => this.setState({ modal: null });
+    if (m) {
+      const close = () => this.setState({ modal: null });
+      const iconBox = c => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, borderRadius: 16, background: c[0], color: c[1] });
+      if (m.kind === "replace") Object.assign(out, { mIcon: I.swap, mIconStyle: iconBox(["rgba(139,92,246,.16)", "var(--pa)"]), mTitle: m.reset ? "Reset to " + pName + "?" : "Replace the product list?", mBody: "Your " + s.edits + (s.edits === 1 ? " edit" : " edits") + " will be lost.", mButtons: [{ label: "Cancel", style: SEC, run: close }, { label: m.reset ? "Reset" : "Replace", style: PRI, run: () => { this.setState({ modal: null }); this.applyPreset(m.k); } }] });
+      if (m.kind === "leave") Object.assign(out, { mIcon: I.leave, mIconStyle: iconBox(["rgba(251,191,36,.16)", "var(--amb)"]), mTitle: "Leave without saving?", mBody: "Your changes since the last save will be lost.", mButtons: [{ label: "Stay", style: SEC, run: close }, { label: "Leave without saving", style: SEC, run: () => { this.setState({ modal: null }); this.exit(); } }, { label: "Save draft and leave", style: PRI, run: () => { this.setState({ modal: null }); this.persist(false); this.exit(); } }] });
+      if (m.kind === "discard") Object.assign(out, { mIcon: I.trash, mIconStyle: iconBox(["rgba(248,113,113,.16)", "#f87171"]), mTitle: "Discard this draft?", mBody: "This can't be undone.", mButtons: [{ label: "Cancel", style: SEC, run: close }, { label: "Discard", style: DAN, run: () => { this.setState({ modal: null }); if (this.props.onDiscard) this.props.onDiscard(this.draftId); this.exit(); } }] });
+    }
+
+    out.toast = s.toast; out.toastOp = s.toast ? 1 : 0; out.toastY = s.toast ? "0px" : "12px"; out.toastPe = s.toast ? "auto" : "none";
+    out.hasUndo = !!s.undo; out.undo = () => { const u = s.undo; this.setState({ toast: "", undo: null }); if (u) u(); };
+    return out;
+  }
+}
+</script>
+</body>
+</html>
