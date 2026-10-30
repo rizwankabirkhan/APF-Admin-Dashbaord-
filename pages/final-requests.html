@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--pa)}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--w:255,255,255;--pl:167,139,250;--g1:26,21,38;--k55:rgba(0,0,0,.55)}
+:root[data-theme=light]{--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--w:30,24,58;--pl:124,58,237;--g1:255,255,255;--k55:rgba(50,38,100,0.176)}
+:root[data-theme=light] [data-dark="1"]{--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--w:255,255,255;--pl:167,139,250;--g1:26,21,38;--k55:rgba(0,0,0,.55)}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+:root{--pn-field:rgba(8,6,14,.5);--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-tile:rgba(232,224,248,.045)}
+:root[data-theme=light]{--pn-field:#ffffff;--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-tile:rgba(255,255,255,.7)}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
+[data-zr]{position:relative;height:1px;margin:14px 0 6px;pointer-events:none}
+[data-zr-line]{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--zr-line) 18%,var(--zr-mid) 50%,var(--zr-line) 82%,transparent)}
+[data-zr-glow]{position:absolute;left:30%;right:30%;top:-10px;height:21px;background:radial-gradient(closest-side,var(--zr-glow),transparent);filter:blur(4px)}
+:root{--zr-line:rgba(196,181,253,.10);--zr-mid:rgba(196,181,253,.34);--zr-glow:rgba(139,92,246,.22)}
+:root[data-theme=light]{--zr-line:rgba(91,33,182,.08);--zr-mid:rgba(91,33,182,.26);--zr-glow:rgba(139,92,246,.14)}
+@keyframes scRise{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes scPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes scArrow{0%{transform:none;opacity:1}42%{transform:translate(130%,-130%);opacity:0}43%{transform:translate(-130%,130%);opacity:0}100%{transform:none;opacity:1}}
+[data-st="0"]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-st="0"]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+@keyframes pdPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pdFade{from{opacity:0}to{opacity:1}}
+@keyframes pdModal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes rqOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes rqRow{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes rqHl{0%,100%{box-shadow:inset 0 0 0 0 rgba(167,139,250,0)}25%,70%{box-shadow:inset 0 0 0 2px rgba(167,139,250,.6)}}
+@keyframes rqDone{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:none}}
+@keyframes rqLive{0%{box-shadow:0 0 0 0 color-mix(in oklab,currentColor 45%,transparent)}70%,100%{box-shadow:0 0 0 6px transparent}}
+@keyframes rqBar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+[data-rq-row]{transition:background .2s}
+[data-rq-row]:hover{background:transparent}
+[data-rq-sq]:focus-within{flex-basis:300px!important;box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.5)!important;color:var(--pa)!important}
+[data-rq-live="1"]{animation:rqLive 2.2s ease-out infinite}
+[data-rq-pk]::-webkit-scrollbar{width:0}
+[data-rq-scroll]{scrollbar-width:thin;scrollbar-color:rgba(var(--w),.14) transparent}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div data-screen-label="Requests" style="{{ rqRoot }}">
+<div style="width:100%;max-width:1760px;padding:8px 24px 48px;display:flex;flex-direction:column;gap:20px">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px">
+    <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Requests</h1>
+    <button type="button" onClick="{{ doExport }}" style="display:inline-flex;align-items:center;gap:9px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid var(--sc-line);background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t1);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s" style-hover="border-color:rgba(var(--pl),.45)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11v6l2-2M9 17l-2-2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z"></path></svg>Export</button>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="3">
+      <button type="button" onClick="{{ t.apply }}" data-dark="{{ t.dark }}" data-st="{{ t.dark }}" style="{{ t.style }}" style-hover="translate:0 -2px;box-shadow:{{ t.shHover }}">
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:230px;height:230px;top:-90px;left:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.920) 0%,rgba(176,107,255,0.791) 10%,rgba(176,107,255,0.607) 22%,rgba(176,107,255,0.423) 34%,rgba(176,107,255,0.267) 46%,rgba(176,107,255,0.147) 58%,rgba(176,107,255,0.069) 70%,rgba(176,107,255,0.023) 82%,rgba(176,107,255,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:210px;height:210px;bottom:-95px;right:-30px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.820) 0%,rgba(231,118,214,0.705) 10%,rgba(231,118,214,0.541) 22%,rgba(231,118,214,0.377) 34%,rgba(231,118,214,0.238) 46%,rgba(231,118,214,0.131) 58%,rgba(231,118,214,0.061) 70%,rgba(231,118,214,0.021) 82%,rgba(231,118,214,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s .05s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span style="{{ t.iconStyle }}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="{{ t.icSw }}" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.d }}"></path></svg></span>
+          <span data-act="1" style="{{ t.arrowStyle }}"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+        </span>
+        <span style="flex:1 1 auto;min-height:24px"></span>
+        <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="display:block;font:600 15px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ t.labelColor }};transition:color .25s">{{ t.label }}</span>
+          <span style="display:block;font:400 12px/1.35 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ t.subColor }};transition:color .3s">{{ t.sub }}</span>
+          <span style="display:block;margin-top:10px;font:400 52px/.9 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:{{ t.valColor }}">{{ t.value }}</span>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div data-zr="1" aria-hidden="true"><span data-zr-line="1"></span><span data-zr-glow="1"></span></div>
+
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <label data-rq-sq="1" style="display:flex;align-items:center;gap:8px;flex:0 1 270px;min-width:210px;height:44px;padding:0 7px 0 15px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t3);cursor:text;transition:flex-basis .35s cubic-bezier(.2,.8,.2,1),box-shadow .2s"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ q }}" onChange="{{ onQ }}" placeholder="Search store number or city" style="flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/><sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQ }}" aria-label="Clear search" style="flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if></label>
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+      <div data-pop="" style="position:relative">
+        <button type="button" onClick="{{ f.toggle }}" style="{{ f.btn }}">{{ f.label }}<sc-if value="{{ f.hasN }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#7c3aed;color:#fff;font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ f.n }}</span></sc-if><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--t3);transition:transform .25s;transform:{{ f.chev }}"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+        <sc-if value="{{ f.isOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:230px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both">
+          <div data-rq-pk="1" style="max-height:280px;overflow-y:auto">
+            <sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}"><span style="{{ o.box }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span></button></sc-for>
+          </div>
+          <sc-if value="{{ f.hasN }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ f.clear }}" style="display:block;width:100%;margin-top:4px;padding:9px 11px;border:0;border-top:1px solid var(--lc-iline);background:transparent;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;cursor:pointer">Clear</button></sc-if>
+        </div></sc-if>
+      </div>
+    </sc-for>
+    <sc-for list="{{ chips }}" as="c" hint-placeholder-count="0"><button type="button" onClick="{{ c.remove }}" style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;border:0;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;animation:rqOpen .25s both">{{ c.label }}<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-for>
+    <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearAll }}" style="border:0;background:transparent;padding:0 6px;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer">Clear all</button></sc-if>
+    <span style="flex:1 1 auto"></span>
+    <div style="flex:none;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge)">
+      <sc-for list="{{ segs }}" as="sg" hint-placeholder-count="2"><button type="button" onClick="{{ sg.go }}" style="{{ sg.style }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ sg.d }}"></path></svg>{{ sg.label }}</button></sc-for>
+    </div>
+  </div>
+
+  <section style="position:relative;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden;animation:scRise .7s cubic-bezier(.2,.8,.2,1) .25s both">
+    <div data-rq-scroll="1" style="overflow-x:auto">
+      <div style="min-width:1060px">
+
+        <sc-if value="{{ showHead }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ headStyle }}"><sc-for list="{{ head }}" as="h" hint-placeholder-count="7"><span style="{{ h.st }}">{{ h.l }}</span></sc-for></div>
+        </sc-if>
+
+        <sc-if value="{{ isLcOpen }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ lcRows }}" as="r" hint-placeholder-count="5">
+            <div style="border-top:1px solid var(--lc-iline);animation:rqRow .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}">
+              <div data-rq-row="1" onClick="{{ r.toggle }}" style="display:grid;grid-template-columns:34px minmax(190px,1.3fr) 104px minmax(150px,1fr) minmax(200px,1.4fr) minmax(140px,1fr) 96px 168px;gap:14px;align-items:center;padding:14px 22px;cursor:pointer;animation:{{ r.hl }}">
+                <span style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:{{ r.chevBg }};color:{{ r.chevFg }};transition:background .2s,color .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .3s cubic-bezier(.2,.8,.2,1);transform:{{ r.chev }}"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
+                <button type="button" onClick="{{ r.openStore }}" style="display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--t1)">
+                  <span style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span>
+                  <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ r.no }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.city }}</span></span>
+                </button>
+                <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ r.week }}</span>
+                <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ r.when }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.by }}</span></span>
+                <span style="display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden"><sc-for list="{{ r.chips }}" as="pc" hint-placeholder-count="2"><span style="{{ pc.st }}">{{ pc.l }}</span></sc-for></span>
+                <span style="display:flex;align-items:center;gap:8px;min-width:0">
+                  <sc-if value="{{ r.hasTech }}" hint-placeholder-val="{{ true }}"><span style="flex:none;display:flex;padding-left:8px"><sc-for list="{{ r.av }}" as="a" hint-placeholder-count="1"><span style="width:26px;height:26px;margin-left:-8px;border-radius:50%;background:{{ a }};box-shadow:0 0 0 2px var(--lc-ring)"></span></sc-for></span><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.techs }}</span></sc-if>
+                  <sc-if value="{{ r.noTech }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-warnbg);color:var(--lc-warn);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">No technician</span></sc-if>
+                </span>
+                <span><span style="{{ r.waitSt }}"><i data-rq-live="{{ r.live }}" style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.wait }}</span></span>
+                <span style="display:flex;justify-content:flex-end"><sc-if value="{{ r.showAll }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.ackAll }}" style="{{ ackBtn }}" style-hover="background:rgba(var(--pl),.1);border-color:rgba(var(--pl),.45);color:var(--pa)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Acknowledge all</button></sc-if><sc-if value="{{ r.showCount }}" hint-placeholder-val="{{ true }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ r.countLine }}</span></sc-if></span>
+              </div>
+              <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                <div style="margin:-2px 22px 16px 70px;padding:4px 16px;border-radius:20px;background:var(--lc-inner);animation:rqOpen .3s cubic-bezier(.2,.8,.2,1) both">
+                  <sc-if value="{{ r.reopened }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:8px;padding:12px 0 2px;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pa)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.55 21.67C18.84 20.54 22 16.64 22 12c0-5.52-4.44-10-10-10C5.33 2 2 7.56 2 7.56m0 0V3m0 4.56h4.44M2 12c0 5.52 4.48 10 10 10"></path></svg>{{ r.reopenLine }}</div></sc-if>
+                  <sc-for list="{{ r.lines }}" as="ln" hint-placeholder-count="2">
+                    <div style="display:grid;grid-template-columns:34px minmax(220px,1.4fr) minmax(190px,1.1fr) minmax(210px,1.2fr) 150px;gap:14px;align-items:center;padding:13px 0;border-top:1px solid {{ ln.sep }};opacity:{{ ln.op }};transition:opacity .3s">
+                      <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:{{ ln.icBg }};color:{{ ln.icFg }};transition:background .3s,color .3s"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ ln.icD }}"></path></svg></span>
+                      <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ln.name }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);font-variant-numeric:tabular-nums">{{ ln.meta }}</span></span>
+                      <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Last counted</span><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ ln.last }}</span></span>
+                      <span style="min-width:0">
+                        <sc-if value="{{ ln.hasShip }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px 0 10px;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icTruck }}"></path></svg>{{ ln.ship }}</span></sc-if>
+                      </span>
+                      <span style="display:flex;justify-content:flex-end">
+                        <sc-if value="{{ ln.pending }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ ln.ack }}" style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s" style-hover="background:rgba(var(--pl),.1);border-color:rgba(var(--pl),.45)">Acknowledge</button></sc-if>
+                        <sc-if value="{{ ln.done }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;flex-direction:column;align-items:flex-end;gap:3px;animation:rqDone .45s cubic-bezier(.2,.8,.2,1) both"><span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-okbg);color:var(--lc-ok);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Acknowledged</span><span style="font:400 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ ln.doneBy }}</span></span></sc-if>
+                      </span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isHist }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ histRows }}" as="r" hint-placeholder-count="5">
+            <div data-rq-row="1" style="position:relative;z-index:{{ r.z }};display:grid;grid-template-columns:minmax(180px,1.2fr) minmax(170px,1.2fr) minmax(140px,1fr) 104px minmax(160px,1.1fr) minmax(150px,1fr) 150px 44px;gap:14px;align-items:center;padding:14px 22px;border-top:1px solid var(--lc-iline);animation:rqRow .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}">
+              <button type="button" onClick="{{ r.openStore }}" style="display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--t1)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ r.no }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.city }}</span></span></button>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.product }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ r.productSub }}</span></span>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ r.rep }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.repBy }}</span></span>
+              <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ r.closed }}</span>
+              <span style="display:flex;align-items:center;gap:9px;min-width:0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:{{ r.av }};box-shadow:0 0 0 2px var(--lc-ring)"></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.by }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ r.where }}</span></span></span>
+              <span style="font:400 13px/1.4 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.noteFg }};min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.note }}</span>
+              <span><span style="{{ r.stSt }}"><i style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.status }}</span></span>
+              <span style="display:flex;justify-content:flex-end">
+                <sc-if value="{{ r.canMenu }}" hint-placeholder-val="{{ false }}"><div data-pop="" style="position:relative"><button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                  <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;min-width:180px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both"><button type="button" onClick="{{ r.reopen }}" style="display:flex;width:100%;align-items:center;gap:10px;padding:10px 11px;border:0;border-radius:12px;background:transparent;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.55 21.67C18.84 20.54 22 16.64 22 12c0-5.52-4.44-10-10-10C5.33 2 2 7.56 2 7.56m0 0V3m0 4.56h4.44M2 12c0 5.52 4.48 10 10 10"></path></svg>Reopen</button></div></sc-if>
+                </div></sc-if>
+              </span>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isZeroOpen }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ zeroRows }}" as="r" hint-placeholder-count="2">
+            <div data-rq-row="1" style="display:grid;grid-template-columns:minmax(190px,1.2fr) minmax(180px,1.1fr) minmax(170px,1.1fr) minmax(170px,1fr) minmax(210px,1.2fr) 96px 150px;gap:14px;align-items:center;padding:16px 22px;border-top:1px solid var(--lc-iline);animation:{{ r.anim }}">
+              <button type="button" onClick="{{ r.openStore }}" style="display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--t1)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ r.no }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.city }}</span></span></button>
+              <span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--lc-badbg);color:var(--lc-bad)"><span style="font:700 13px 'AppNumerals','Urbanist',system-ui,sans-serif">0</span></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.product }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ r.size }}</span></span></span>
+              <span style="display:flex;align-items:center;gap:9px;min-width:0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:{{ r.av }};box-shadow:0 0 0 2px var(--lc-ring)"></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.by }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ r.role }}</span></span></span>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ r.when }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">During the weekly count</span></span>
+              <span style="min-width:0">
+                <sc-if value="{{ r.hasShip }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:8px;max-width:100%;height:30px;padding:0 12px 0 10px;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="{{ icTruck }}"></path></svg><span style="overflow:hidden;text-overflow:ellipsis">{{ r.ship }}</span></span></sc-if>
+                <sc-if value="{{ r.noShip }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px 0 10px;border-radius:999px;background:var(--lc-warnbg);color:var(--lc-warn);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12zM11.99 17h.01"></path></svg>None scheduled</span></sc-if>
+              </span>
+              <span><span style="{{ r.waitSt }}"><i data-rq-live="{{ r.live }}" style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.wait }}</span></span>
+              <span style="display:flex;justify-content:flex-end"><button type="button" onClick="{{ r.ack }}" style="{{ ackBtn }}" style-hover="background:rgba(var(--pl),.1);border-color:rgba(var(--pl),.45);color:var(--pa)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Acknowledge</button></span>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isSupOpen }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ supRows }}" as="r" hint-placeholder-count="2">
+            <div data-rq-row="1" style="display:grid;grid-template-columns:minmax(190px,1.2fr) minmax(210px,1.3fr) 150px minmax(260px,1.8fr) 96px 176px;gap:14px;align-items:center;padding:16px 22px;border-top:1px solid var(--lc-iline);animation:{{ r.anim }}">
+              <button type="button" onClick="{{ r.openStore }}" style="display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--t1)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ r.no }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.city }}</span></span></button>
+              <span style="display:flex;align-items:center;gap:9px;min-width:0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:{{ r.av }};box-shadow:0 0 0 2px var(--lc-ring)"></span><span style="min-width:0;display:flex;flex-direction:column;gap:3px;align-items:flex-start"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ r.by }} <span style="color:var(--t3)">· {{ r.role }}</span></span><sc-if value="{{ r.byTech }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">Requested by technician</span></sc-if></span></span>
+              <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ r.when }}</span>
+              <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0"><sc-for list="{{ r.items }}" as="it" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 6px 0 12px;border-radius:999px;background:var(--lc-chip);color:var(--t1);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ it.name }}<span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:20px;padding:0 6px;border-radius:999px;background:rgba(var(--pl),.16);color:var(--pa);font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif">× {{ it.qty }}</span></span></sc-for></span>
+              <span><span style="{{ r.waitSt }}"><i data-rq-live="{{ r.live }}" style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.wait }}</span></span>
+              <span style="display:flex;justify-content:flex-end"><button type="button" onClick="{{ r.handle }}" style="{{ ackBtn }}" style-hover="background:rgba(var(--pl),.1);border-color:rgba(var(--pl),.45);color:var(--pa)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Mark as handled</button></span>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isSupHist }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ supHistRows }}" as="r" hint-placeholder-count="3">
+            <div data-rq-row="1" style="display:grid;grid-template-columns:minmax(180px,1.1fr) minmax(180px,1.1fr) 130px minmax(230px,1.6fr) minmax(150px,1fr) 110px minmax(150px,1fr);gap:14px;align-items:center;padding:14px 22px;border-top:1px solid var(--lc-iline);animation:rqRow .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}">
+              <button type="button" onClick="{{ r.openStore }}" style="display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--t1)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums">{{ r.no }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.city }}</span></span></button>
+              <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.by }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ r.role }}</span></span>
+              <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ r.when }}</span>
+              <span style="font:500 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);min-width:0">{{ r.items }}</span>
+              <span style="display:flex;align-items:center;gap:9px;min-width:0"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:{{ r.av }};box-shadow:0 0 0 2px var(--lc-ring)"></span><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.hBy }}</span></span>
+              <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ r.hOn }}</span>
+              <span style="font:400 13px/1.4 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.noteFg }};min-width:0">{{ r.note }}</span>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:64px 24px 70px;text-align:center;animation:rqOpen .4s both">
+            <span style="position:relative;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;border:1px solid var(--sc-line);color:var(--pa)"><span aria-hidden="true" style="position:absolute;inset:-18px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.22),transparent);filter:blur(6px)"></span><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ emptyIc }}"></path></svg></span>
+            <span style="font:600 17px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1)">{{ emptyTitle }}</span>
+            <sc-if value="{{ hasEmptySub }}" hint-placeholder-val="{{ true }}"><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ emptySub }}</span></sc-if>
+            <sc-if value="{{ emptyClear }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearAll }}" style="margin-top:6px;display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Clear filters</button></sc-if>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:190;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:var(--pn-scrim);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pdFade .25s both"></div>
+    <div role="dialog" aria-modal="true" style="position:relative;width:min(480px,100%);display:flex;flex-direction:column;gap:16px;padding:24px 24px 22px;border-radius:30px;background:var(--pn-bg);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);box-shadow:var(--pn-sh);animation:pdModal .32s cubic-bezier(.2,.8,.2,1) both">
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <span style="flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:{{ mIcBg }};color:{{ mIcFg }}"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ mIc }}"></path></svg></span>
+        <span style="flex:1;min-width:0;padding-top:9px;font:500 20px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--pn-ink)">{{ mTitle }}</span>
+      </div>
+      <sc-if value="{{ mHasList }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;padding:4px 14px;border-radius:18px;background:var(--pn-tile)">
+          <sc-for list="{{ mList }}" as="ml" hint-placeholder-count="2"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid {{ ml.sep }}"><span style="flex:1 1 auto;min-width:0;font:600 13.5px/1.4 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ ml.name }}</span><span style="flex:none;font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);white-space:nowrap;font-variant-numeric:tabular-nums">{{ ml.meta }}</span></div></sc-for>
+        </div>
+      </sc-if>
+      <label style="display:flex;flex-direction:column;gap:7px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ mNoteLabel }} <span style="color:var(--pn-ink3)">(optional)</span></span><textarea value="{{ mNote }}" onChange="{{ mOnNote }}" rows="2" placeholder="{{ mPh }}" style="resize:none;padding:12px 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--pn-ink);font:500 14px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;outline:none"></textarea></label>
+      <div style="display:flex;align-items:flex-start;gap:9px;font:400 13px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;color:var(--pn-ink3)"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM12 8v5M11.99 16h.01"></path></svg>{{ mHelp }}</div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:2px">
+        <button type="button" onClick="{{ closeModal }}" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--pn-ink);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Cancel</button>
+        <button data-dark="1" type="button" onClick="{{ mRun }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 22px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="filter:brightness(1.08)">{{ mLabel }}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<div style="position:fixed;left:50%;bottom:28px;z-index:200;display:flex;align-items:center;gap:10px;overflow:hidden;padding:10px 10px 10px 12px;border-radius:999px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translate(-50%,{{ toastY }});pointer-events:{{ toastPe }}">
+  <span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--lc-okbg);color:var(--lc-ok)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+  <span style="padding-right:{{ toastPr }}">{{ toast }}</span>
+  <sc-if value="{{ hasUndo }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ undo }}" style="height:30px;padding:0 14px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Undo</button><span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(var(--pl),.6);transform-origin:left;animation:rqBar 10s linear both"></span></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const ME = "Dan Whitfield";
+const IC = {
+  shop: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12z",
+  drop: "M12.61 2.21a.98.98 0 00-1.22 0C9.49 3.66 3.88 8.39 3.91 13.9c0 4.46 3.63 8.1 8.1 8.1s8.1-3.63 8.1-8.09c.01-5.43-5.61-10.24-7.5-11.7zM8.5 14.5c.5 1.6 1.9 2.7 3.5 2.7",
+  box: "M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z",
+  bag: "M7.5 7.67V6.7c0-2.25 1.81-4.46 4.06-4.67a4.5 4.5 0 014.94 4.48v1.38M9 22h6c4.02 0 4.74-1.61 4.95-3.57l.75-6C20.97 9.99 20.27 8 16 8H8c-4.27 0-4.97 1.99-4.7 4.43l.75 6C4.26 20.39 4.98 22 9 22zM15.5 12h.01M8.5 12h.01",
+  truck: "M15 2v10c0 1.1-.9 2-2 2H2V6c0-2.21 1.79-4 4-4h9zM22 14v3c0 1.66-1.34 3-3 3h-1c0-1.1-.9-2-2-2s-2 .9-2 2h-4c0-1.1-.9-2-2-2s-2 .9-2 2H5c-1.66 0-3-1.34-3-3v-3h11c1.1 0 2-.9 2-2V5h1.84c.72 0 1.38.39 1.74 1.01L20.29 9H19c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3zM8 22a2 2 0 100-4 2 2 0 000 4zM16 22a2 2 0 100-4 2 2 0 000 4zM22 12v2h-3c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1.29L22 12z",
+  check: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM7.75 12l2.83 2.83 5.67-5.66",
+  open: "M2 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zM12 8v4l2.5 2.5",
+  hist: "M14.55 21.67C18.84 20.54 22 16.64 22 12c0-5.52-4.44-10-10-10C5.33 2 2 7.56 2 7.56m0 0V3m0 4.56h4.44M2 12c0 5.52 4.48 10 10 10M12 8v4l2.5 1.5",
+  reopen: "M14.55 21.67C18.84 20.54 22 16.64 22 12c0-5.52-4.44-10-10-10C5.33 2 2 7.56 2 7.56m0 0V3m0 4.56h4.44M2 12c0 5.52 4.48 10 10 10",
+  search: "M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2M9 9l5 5M14 9l-5 5"
+};
+const TECH_PICS = new Set(["james-carter", "daniel-reyes", "kevin-tran", "luis-ortega", "mario-lopez", "sam-mitchell", "raj-shah", "dan-whitfield"]);
+const av = n => { const k = String(n || "").toLowerCase().trim().replace(/\s+/g, "-"); return TECH_PICS.has(k) ? "url(assets/people/" + k + ".png) center/cover no-repeat,#2a2239" : "var(--np) center/cover no-repeat,var(--lc-chip)"; };
+const STORES = {
+  "7401": ["Corpus Christi - TX", ["Kevin Tran"]], "5231": ["Herriman - UT", ["Raj Shah"]], "6101": ["Henderson - NV", ["Raj Shah"]], "1234": ["Eagle Mountain - UT", ["James Carter"]], "7406": ["Kingsville - TX", []],
+  "7417": ["Corpus Christi - TX", ["Kevin Tran"]], "5820": ["Pueblo - CO", ["Mario Lopez"]], "7435": ["Corpus Christi - TX", ["Kevin Tran"]], "3647": ["Bakersfield - CA", ["Raj Shah"]], "4161": ["Santa Clarita - CA", ["Raj Shah"]],
+  "5302": ["Orem - UT", ["James Carter"]], "7412": ["San Antonio - TX", ["Kevin Tran"]], "6140": ["Henderson - NV", ["Luis Ortega"]]
+};
+const PROD = { "Duck Bath": "DB215-5", "Duck Rinse": "DWX213-5", "Blue Brilliance ECO": "DG228-5", "Excel Hi pH Wheel Cleaner": "EX223W-5", "Lava Lo Shine": "PS313-5", "Silky Shine": "WX224-5", "Bug B": "BB205-5", "Weather X-Treme": "XX221-5" };
+const STATES = ["UT", "TX", "CA", "CO", "NV"];
+const TECHS = ["James Carter", "Mario Lopez", "Raj Shah", "Kevin Tran", "Luis Ortega", "Sam Mitchell", "Daniel Reyes"];
+const p = (name, last, ship, ack) => ({ name, num: PROD[name], size: "5 gal", last, ship: ship || "", ack: ack || null });
+const seed = () => ({
+  lc: [
+    { id: "r1", no: "7401", week: "Wk of 13 Oct", when: "Wed 16 Oct, 14:05", by: "Olivia Grant", days: 2, prods: [p("Duck Bath", "1 unopened · Mon 14 Oct", "On the way: Wed 16 Oct · UPS Ground"), p("Duck Rinse", "1 unopened · Mon 14 Oct", "", { by: "Kevin Tran", where: "in the app", at: "Thu 17 Oct", note: "Order 17652 shipped" })] },
+    { id: "r2", no: "5231", week: "Wk of 13 Oct", when: "Wed 16 Oct, 09:30", by: "Marcus Bell", days: 2, prods: [p("Blue Brilliance ECO", "0 unopened · 25% open · Mon 14 Oct", "On the way: Fri 18 Oct · FedEx Freight")] },
+    { id: "r3", no: "6101", week: "Wk of 13 Oct", when: "Tue 15 Oct, 16:45", by: "Priya Nair", days: 3, prods: [p("Excel Hi pH Wheel Cleaner", "1 unopened · Mon 14 Oct"), p("Lava Lo Shine", "0 unopened · 50% open · Mon 14 Oct"), p("Silky Shine", "1 unopened · Mon 14 Oct", "On the way: Mon 21 Oct · UPS Ground")] },
+    { id: "r4", no: "1234", week: "Wk of 13 Oct", when: "Thu 17 Oct, 08:10", by: "Ava Reed", days: 1, prods: [p("Duck Bath", "1 unopened · Mon 14 Oct")] },
+    { id: "r5", no: "7406", week: "Wk of 13 Oct", when: "Thu 17 Oct, 12:00", by: "Tyler Brooks", days: 1, prods: [p("Bug B", "0 unopened · 25% open · Mon 14 Oct")] }
+  ],
+  lcHist: [
+    { id: "h0", no: "7401", product: "Duck Rinse", rep: "Wed 16 Oct, 14:05", repBy: "Olivia Grant", closed: "Thu 17 Oct", by: "Kevin Tran", where: "in the app", note: "Order 17652 shipped", status: "ack", days: 1 },
+    { id: "h1", no: "7435", product: "Duck Bath", rep: "Mon 14 Oct, 10:12", repBy: "Leah Moss", closed: "Tue 15 Oct", by: "Kevin Tran", where: "in the app", note: "Order 17640 shipped", status: "ack", days: 3 },
+    { id: "h2", no: "3647", product: "Silky Shine", rep: "Wed 9 Oct, 15:40", repBy: "Nora Price", closed: "Mon 14 Oct", by: ME, where: "portal", note: "Store says it never arrived", status: "reopened", days: 4 },
+    { id: "h3", no: "3647", product: "Silky Shine", rep: "Mon 14 Oct, 09:00", repBy: ME, closed: "Tue 15 Oct", by: "Raj Shah", where: "in the app", note: "Resent on order 17648", status: "ack", days: 3 },
+    { id: "h4", no: "5302", product: "Duck Rinse", rep: "Fri 11 Oct, 11:30", repBy: "Owen Hart", closed: "Sat 12 Oct", by: ME, where: "portal", note: "", status: "ack", days: 6 }
+  ],
+  zero: [
+    { id: "z1", no: "5231", product: "Duck Bath", by: "Marcus Bell", role: "Store user", when: "Mon 14 Oct, 09:40", ship: "Wed 16 Oct · includes Duck Bath", days: 4 },
+    { id: "z2", no: "7417", product: "Weather X-Treme", by: "Kevin Tran", role: "Technician", when: "Tue 15 Oct, 13:15", ship: "", days: 3 }
+  ],
+  zeroHist: [
+    { id: "zh1", no: "4161", product: "Duck Rinse", rep: "Mon 7 Oct, 09:10", repBy: "Grace Lin · Store user", closed: "Mon 14 Oct", by: "System", where: "count on Mon 14 Oct", note: "", status: "restocked", days: 4 },
+    { id: "zh2", no: "7412", product: "Lava Lo Shine", rep: "Mon 7 Oct, 10:25", repBy: "Kevin Tran · Technician", closed: "Tue 8 Oct", by: "Kevin Tran", where: "in the app", note: "Order 17611 shipped", status: "ack", days: 10 },
+    { id: "zh3", no: "6140", product: "Duck Bath", rep: "Mon 30 Sep, 08:55", repBy: "Tyler Brooks · Store user", closed: "Tue 1 Oct", by: ME, where: "portal", note: "Added to Wed delivery", status: "ack", days: 17 }
+  ],
+  sup: [
+    { id: "s1", no: "6101", by: "Priya Nair", role: "Store user", tech: false, when: "Tue 15 Oct, 11:20", items: [["Towel Renew", 2], ["Vinegar", 1]], days: 3 },
+    { id: "s2", no: "5820", by: "Mario Lopez", role: "Technician", tech: true, when: "Wed 16 Oct, 15:05", items: [["Showroom Cleaner", 1], ["Windshield Washer Concentrate", 2]], days: 2 }
+  ],
+  supHist: [
+    { id: "sh1", no: "7401", by: "Olivia Grant", role: "Store user", when: "Thu 10 Oct", items: "Towel Renew × 3", hBy: ME, hOn: "Fri 11 Oct", note: "On order 17630", days: 7 },
+    { id: "sh2", no: "5231", by: "Raj Shah", role: "Technician", when: "Tue 8 Oct", items: "Vinegar × 2 · Showroom Cleaner × 1", hBy: ME, hOn: "Wed 9 Oct", note: "", days: 9 }
+  ]
+});
+const cityOf = no => (STORES[no] || ["Unknown store", []])[0];
+const techsOf = no => (STORES[no] || ["", []])[1];
+const stateOf = no => cityOf(no).slice(-2);
+const dayW = d => d + (d === 1 ? " day" : " days");
+const tag = (bg, fg) => ({ display: "inline-flex", alignItems: "center", gap: 6, height: 26, padding: "0 10px", borderRadius: 999, background: bg, color: fg, font: "600 12px " + F, whiteSpace: "nowrap" });
+const waitSt = d => tag(d >= 3 ? "var(--lc-warnbg)" : "var(--lc-chip)", d >= 3 ? "var(--lc-warn)" : "var(--lc-ink2)");
+const segSt = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 36, padding: "0 15px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13px " + F, color: on ? "#fff" : "var(--t3)", background: on ? "#7c3aed" : "transparent", transition: "background .25s,color .25s" });
+const pillBtn = on => ({ display: "inline-flex", alignItems: "center", gap: 8, height: 44, padding: "0 14px 0 16px", border: 0, borderRadius: 999, background: "var(--lc-flat)", boxShadow: on ? "var(--lc-edge),inset 0 0 0 1px rgba(var(--pl),.4)" : "var(--lc-edge)", color: "var(--t1)", font: "600 13.5px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const optSt = on => ({ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "9px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13.5px " + F, color: "var(--t1)", background: on ? "rgba(var(--pl),.12)" : "transparent" });
+const boxSt = (on, round) => ({ flex: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: round ? 999 : 6, border: "1.5px solid " + (on ? "#7c3aed" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "transparent", transition: "all .15s" });
+const ACK_BTN = { display: "inline-flex", alignItems: "center", gap: 7, height: 36, padding: "0 15px 0 12px", borderRadius: 999, border: "1px solid var(--sc-line)", background: "transparent", color: "var(--t1)", font: "600 13px " + F, whiteSpace: "nowrap", cursor: "pointer", transition: "background .2s,border-color .2s,color .2s" };
+const clone = o => JSON.parse(JSON.stringify(o));
+const now = () => { const d = new Date(); return "Today, " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+
+class Component extends DCLogic {
+  state = { D: seed(), tab: "lc", seg: { lc: "open", zero: "open", sup: "open" }, q: "", f: { state: [], tech: [], prod: [], date: [] }, pop: null, exp: {}, menu: null, modal: null, toast: "", undoOn: false, undoKey: 0, hl: null };
+
+  componentDidMount() {
+    this.onDoc = e => { if ((this.state.pop || this.state.menu) && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ pop: null, menu: null }); };
+    this.onKey = e => { if (e.key === "Escape") this.setState({ modal: null, pop: null, menu: null }); };
+    document.addEventListener("mousedown", this.onDoc); document.addEventListener("keydown", this.onKey);
+    this.report(); this.applyFocus();
+  }
+  componentWillUnmount() { document.removeEventListener("mousedown", this.onDoc); document.removeEventListener("keydown", this.onKey); clearTimeout(this.tt); clearTimeout(this.ht); }
+  componentDidUpdate() { this.report(); this.applyFocus(); }
+  applyFocus() {
+    const fo = this.props.focus; if (!fo || fo.ts === this.lastFocus) return; this.lastFocus = fo.ts;
+    const seg = Object.assign({}, this.state.seg); if (fo.tab) seg[fo.tab] = "open";
+    this.setState({ tab: fo.tab || this.state.tab, seg, q: fo.store || "", hl: fo.id || null, exp: fo.id ? Object.assign({}, this.state.exp, { [fo.id]: true }) : this.state.exp });
+    clearTimeout(this.ht); this.ht = setTimeout(() => this.setState({ hl: null }), 2600);
+  }
+  openN(D) { return D.lc.length + D.zero.length + D.sup.length; }
+  report() { const n = this.openN(this.state.D); if (n !== this.lastN) { this.lastN = n; if (this.props.onCount) this.props.onCount(n); } }
+  say(msg, undo) { clearTimeout(this.tt); this.setState(s => ({ toast: msg, undoOn: !!undo, undoKey: s.undoKey + 1 })); this.tt = setTimeout(() => this.setState({ toast: "", undoOn: false }), undo ? 10000 : 2800); }
+  commit(D, msg, undo) { this.prev = undo ? clone(this.state.D) : null; this.setState({ D, modal: null, menu: null }); this.say(msg, undo); }
+  openStore(no) { if (this.props.onOpenStore) this.props.onOpenStore(no); else this.say("Opens store " + no + "."); }
+
+  match(no, prods, days) {
+    const s = this.state, f = s.f, q = s.q.trim().toLowerCase();
+    if (q && !(no.includes(q) || cityOf(no).toLowerCase().includes(q))) return false;
+    if (f.state.length && !f.state.includes(stateOf(no))) return false;
+    if (f.tech.length && !techsOf(no).some(t => f.tech.includes(t))) return false;
+    if (f.prod.length && prods && !prods.some(x => f.prod.includes(x))) return false;
+    if (f.date.length) { const lim = f.date.includes("30") ? 30 : 7; if (days > lim) return false; }
+    return true;
+  }
+
+  runModal() {
+    const m = this.state.modal; if (!m) return;
+    const D = clone(this.state.D), note = (m.note || "").trim();
+    if (m.kind === "ack") {
+      const r = D.lc.find(x => x.id === m.rid); if (!r) return;
+      r.prods.forEach(pr => { if (m.names.includes(pr.name) && !pr.ack) { pr.ack = { by: ME, where: "portal", at: "Today", note }; D.lcHist.unshift({ id: "h" + Date.now() + pr.name, no: r.no, product: pr.name, rep: r.when, repBy: r.by, closed: "Today", by: ME, where: "portal", note, status: "ack", days: 0 }); } });
+      const done = r.prods.every(pr => pr.ack);
+      if (done) D.lc = D.lc.filter(x => x.id !== r.id);
+      this.commit(D, done ? "Acknowledged. Moved to history." : "Acknowledged.", true); return;
+    }
+    if (m.kind === "zack") {
+      const z = D.zero.find(x => x.id === m.zid); if (!z) return;
+      D.zero = D.zero.filter(x => x.id !== z.id);
+      D.zeroHist.unshift({ id: "zh" + Date.now(), no: z.no, product: z.product, rep: z.when, repBy: z.by + " · " + z.role, closed: "Today", by: ME, where: "portal", note, status: "ack", days: 0 });
+      this.commit(D, "Acknowledged. Moved to history.", true); return;
+    }
+    if (m.kind === "handle") {
+      const r = D.sup.find(x => x.id === m.sid); if (!r) return;
+      D.sup = D.sup.filter(x => x.id !== r.id);
+      D.supHist.unshift({ id: "sh" + Date.now(), no: r.no, by: r.by, role: r.role, when: r.when.split(",")[0], items: r.items.map(([n, q]) => n + " × " + q).join(" · "), hBy: ME, hOn: "Today", note, days: 0 });
+      this.commit(D, "Request handled. " + r.no + " has been notified.", false); return;
+    }
+    if (m.kind === "reopen") {
+      const list = m.src === "zero" ? D.zeroHist : D.lcHist, h = list.find(x => x.id === m.hid); if (!h) return;
+      h.status = "reopened"; h.note = note || h.note;
+      if (m.src === "zero") D.zero.unshift({ id: "z" + Date.now(), no: h.no, product: h.product, by: ME, role: "Admin", when: now(), ship: "", days: 0, reopened: true });
+      else D.lc.unshift({ id: "r" + Date.now(), no: h.no, week: "Wk of 13 Oct", when: now(), by: "Reopened by " + ME, days: 0, reopened: true, reason: note, prods: [p(h.product, "Not counted since")] });
+      this.commit(D, "Reopened.", false); return;
+    }
+  }
+
+  renderVals() {
+    const s = this.state, D = s.D, tab = s.tab, seg = s.seg[tab];
+    const out = {
+      rqRoot: { position: "relative", isolation: "isolate", overflowX: "clip", minHeight: "100vh", fontFamily: F, color: "var(--t1)" },
+      icShop: IC.shop, icTruck: IC.truck, ackBtn: ACK_BTN,
+      q: s.q, hasQ: !!s.q, onQ: e => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: "" }),
+      doExport: () => { const n = out.resultLine; this.say("Exported " + n + " to Excel."); },
+      toast: s.toast, toastOp: s.toast ? 1 : 0, toastY: s.toast ? "0px" : "10px", toastPe: s.toast && s.undoOn ? "auto" : "none", toastPr: s.undoOn ? "4px" : "8px",
+      hasUndo: s.undoOn && !!this.prev, undoKey: String(s.undoKey), undo: () => { if (this.prev) { this.setState({ D: this.prev }); this.prev = null; } clearTimeout(this.tt); this.setState({ toast: "", undoOn: false }); }
+    };
+
+    const lcStores = new Set(D.lc.map(r => r.no)).size;
+    const TD = [["lc", "Last container", String(lcStores), "Stores waiting for acknowledgement", IC.drop], ["zero", "Zero reported", String(D.zero.length), "Products confirmed empty", IC.box], ["sup", "Site supplies", String(D.sup.length), "Requests to handle", IC.bag]];
+    out.tiles = TD.map(([k, label, value, sub, d], i) => {
+      const on = tab === k;
+      return { label, value, sub, d, icSw: on ? 2 : 1.6, apply: () => this.setState({ tab: k, pop: null, menu: null }),
+        shHover: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 30px 50px -24px var(--k55)" : "var(--sc-shh)",
+        valColor: on ? "#fff" : (+value > 0 && k !== "sup" ? "var(--lc-warn)" : "var(--sc-acc)"), subColor: on ? "rgba(255,255,255,0.78)" : "var(--sc-ink3)", labelColor: on ? "#fff" : "var(--sc-acc)",
+        dark: on ? "1" : "0", blobOp: on ? 1 : 0, blobScale: on ? 1 : 0.6,
+        style: { position: "relative", isolation: "isolate", overflow: "hidden", display: "flex", flexDirection: "column", width: "100%", minWidth: 0, minHeight: 200, textAlign: "left", padding: "18px 20px 20px", borderRadius: 28, animation: "scRise .85s cubic-bezier(.2,.8,.2,1) " + (0.12 + i * 0.09).toFixed(2) + "s both", cursor: "pointer", font: "inherit", color: "var(--t1)", background: on ? "linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%)" : "var(--sc-card)", boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 20px 40px -24px var(--k55)" : "var(--sc-sh)", border: "1.5px solid transparent", transition: "background .35s,box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1)" },
+        iconStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", width: 40, height: 40, borderRadius: 999, border: "1px solid " + (on ? "rgba(255,255,255,0.3)" : "var(--sc-line)"), background: on ? "rgba(255,255,255,0.12)" : "transparent", color: on ? "#fff" : "var(--sc-ink)", transition: "background .3s,border-color .3s,color .3s" },
+        arrowStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", overflow: "hidden", width: 36, height: 36, borderRadius: 999, border: on ? "0" : "1px solid var(--sc-actb)", background: on ? "#fff" : "var(--sc-actbg)", color: on ? "#2e1065" : "var(--sc-actfg)", transition: "background .3s,color .3s" } };
+    });
+
+    out.tabs = [["lc", "Last container", lcStores], ["zero", "Zero reported", D.zero.length], ["sup", "Site supplies", D.sup.length]].map(([k, label, n]) => { const on = tab === k, warn = n > 0; return { label, n: String(n), go: () => this.setState({ tab: k, pop: null, menu: null }), style: Object.assign(segSt(on), { height: 38, padding: "0 12px 0 16px", gap: 8, fontSize: 13.5 }), nStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 22, height: 22, padding: "0 7px", borderRadius: 999, font: "700 11.5px " + F, background: on ? "rgba(255,255,255,.2)" : warn ? "var(--lc-warnbg)" : "var(--lc-chip)", color: on ? "#fff" : warn ? "var(--lc-warn)" : "var(--lc-ink2)" } }; });
+    out.tabTitle = { lc: "Last container", zero: "Zero reported", sup: "Site supplies" }[tab];
+    out.segs = [["open", "Open", IC.open], ["hist", "History", IC.reopen]].map(([k, label, d]) => ({ label, d, go: () => this.setState({ seg: Object.assign({}, s.seg, { [tab]: k }), menu: null }), style: segSt(seg === k) }));
+
+    const FD = [["state", "State", STATES.map(x => [x, x])], ["tech", "Technician", TECHS.map(x => [x, x])], ["prod", "Product", Object.keys(PROD).map(x => [x, x])], ["date", "Date", [["7", "Last 7 days"], ["30", "Last 30 days"]]]].filter(x => !(tab === "sup" && x[0] === "prod"));
+    out.filters = FD.map(([k, label, opts]) => {
+      const sel = s.f[k], isOpen = s.pop === k, round = k === "date";
+      return { label, n: String(sel.length), hasN: sel.length > 0, isOpen, chev: isOpen ? "rotate(180deg)" : "none", btn: pillBtn(isOpen || sel.length > 0),
+        toggle: () => this.setState({ pop: isOpen ? null : k, menu: null }), clear: () => this.setState({ f: Object.assign({}, s.f, { [k]: [] }) }),
+        opts: opts.map(([v, l]) => { const on = sel.includes(v); return { label: l, style: optSt(on), box: boxSt(on, round), toggle: () => this.setState({ f: Object.assign({}, s.f, { [k]: round ? (on ? [] : [v]) : on ? sel.filter(x => x !== v) : sel.concat([v]) }) }) }; }) };
+    });
+    const LAB = { state: v => v, tech: v => v, prod: v => v, date: v => v === "7" ? "Last 7 days" : "Last 30 days" };
+    out.chips = [];
+    Object.keys(s.f).forEach(k => { if (tab === "sup" && k === "prod") return; s.f[k].forEach(v => out.chips.push({ label: LAB[k](v), remove: () => this.setState({ f: Object.assign({}, s.f, { [k]: s.f[k].filter(x => x !== v) }) }) })); });
+    out.hasChips = out.chips.length > 0;
+    out.clearAll = () => this.setState({ f: { state: [], tech: [], prod: [], date: [] }, q: "" });
+
+    const modalFor = m => this.setState({ modal: Object.assign({ note: "" }, m), menu: null });
+    out.isLcOpen = tab === "lc" && seg === "open"; out.isZeroOpen = tab === "zero" && seg === "open"; out.isSupOpen = tab === "sup" && seg === "open";
+    out.isHist = seg === "hist" && tab !== "sup"; out.isSupHist = tab === "sup" && seg === "hist";
+    let count = 0, unit = "";
+
+    if (out.isLcOpen) {
+      const rows = D.lc.filter(r => this.match(r.no, r.prods.map(x => x.name), r.days)).sort((a, b) => b.days - a.days);
+      count = new Set(rows.map(r => r.no)).size; unit = count === 1 ? "store" : "stores";
+      out.lcRows = rows.map((r, i) => {
+        const open = !!s.exp[r.id], pend = r.prods.filter(x => !x.ack), techs = techsOf(r.no);
+        const chips = r.prods.slice(0, 2).map(x => ({ l: x.name, st: Object.assign(tag(x.ack ? "var(--lc-okbg)" : "var(--lc-chip)", x.ack ? "var(--lc-ok)" : "var(--t1)"), { overflow: "hidden", textOverflow: "ellipsis", maxWidth: 150, display: "inline-block", lineHeight: "26px" }) }));
+        if (r.prods.length > 2) chips.push({ l: "+" + (r.prods.length - 2), st: tag("rgba(var(--pl),.14)", "var(--pa)") });
+        return { delay: (0.05 * i).toFixed(2) + "s", hl: s.hl === r.id || (s.hl && s.q === r.no) ? "rqHl 2.4s ease both" : "none", no: r.no, city: cityOf(r.no), week: r.week, when: r.when, by: r.by, chips, av: techs.map(av), techs: techs.join(", "), hasTech: techs.length > 0, noTech: !techs.length,
+          wait: dayW(r.days), waitSt: waitSt(r.days), live: r.days >= 3 ? "1" : "0", open, chev: open ? "rotate(90deg)" : "none", chevBg: open ? "rgba(var(--pl),.14)" : "transparent", chevFg: open ? "var(--pa)" : "var(--t3)",
+          toggle: () => this.setState({ exp: Object.assign({}, s.exp, { [r.id]: !open }) }),
+          openStore: e => { e.stopPropagation(); this.openStore(r.no); },
+          showAll: open && pend.length > 1, showCount: !open, countLine: pend.length + (pend.length === 1 ? " to acknowledge" : " to acknowledge"),
+          ackAll: e => { e.stopPropagation(); modalFor({ kind: "ack", rid: r.id, names: pend.map(x => x.name), no: r.no }); },
+          reopened: !!r.reopened, reopenLine: "Reopened by " + ME + (r.reason ? " · " + r.reason : ""),
+          lines: r.prods.map((x, j) => ({ name: x.name, meta: x.size + " · " + x.num, last: x.last, hasShip: !!x.ship, ship: x.ship, pending: !x.ack, done: !!x.ack, doneBy: x.ack ? x.ack.by + " · " + x.ack.where : "", sep: j ? "var(--lc-iline)" : "transparent", op: x.ack ? .72 : 1,
+            icD: x.ack ? IC.check : IC.drop, icBg: x.ack ? "var(--lc-okbg)" : "rgba(var(--pl),.14)", icFg: x.ack ? "var(--lc-ok)" : "var(--pa)",
+            ack: e => { e.stopPropagation(); modalFor({ kind: "ack", rid: r.id, names: [x.name], no: r.no }); } })) };
+      });
+      out.head = [["", 0], ["Store"], ["Work week"], ["Reported"], ["Products"], ["Technicians"], ["Waiting"], ["", 1]].map(([l, r2]) => ({ l, st: { textAlign: r2 === 1 ? "right" : "left" } }));
+      out.headStyle = { display: "grid", gridTemplateColumns: "34px minmax(190px,1.3fr) 104px minmax(150px,1fr) minmax(200px,1.4fr) minmax(140px,1fr) 96px 168px", gap: 14, alignItems: "center", height: 48, padding: "0 22px", background: "var(--lc-inner)", borderBottom: "1px solid var(--lc-iline)", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--t3)", whiteSpace: "nowrap" };
+    }
+    if (out.isZeroOpen) {
+      const rows = D.zero.filter(z => this.match(z.no, [z.product], z.days)).sort((a, b) => (a.ship ? 1 : 0) - (b.ship ? 1 : 0) || b.days - a.days);
+      count = rows.length; unit = count === 1 ? "product" : "products";
+      out.zeroRows = rows.map((z, i) => ({ delay: (0.05 * i).toFixed(2) + "s", anim: "rqRow .5s cubic-bezier(.2,.8,.2,1) " + (0.05 * i).toFixed(2) + "s both" + (s.hl && (s.hl === z.id || s.q === z.no) ? ",rqHl 2.4s ease .3s both" : ""), no: z.no, city: cityOf(z.no), product: z.product, size: "5 gal · " + PROD[z.product], by: z.by, role: z.role, av: av(z.by), when: z.when, hasShip: !!z.ship, noShip: !z.ship, ship: z.ship,
+        wait: dayW(z.days), waitSt: waitSt(z.days), live: z.days >= 3 ? "1" : "0", openStore: () => this.openStore(z.no),
+        ack: () => modalFor({ kind: "zack", zid: z.id, names: [z.product], no: z.no }) }));
+      out.head = ["Store", "Product", "Confirmed by", "When", "Next shipment", "Waiting", ""].map(l => ({ l, st: {} }));
+      out.headStyle = { display: "grid", gridTemplateColumns: "minmax(190px,1.2fr) minmax(180px,1.1fr) minmax(170px,1.1fr) minmax(170px,1fr) minmax(210px,1.2fr) 96px 150px", gap: 14, alignItems: "center", height: 48, padding: "0 22px", background: "var(--lc-inner)", borderBottom: "1px solid var(--lc-iline)", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--t3)", whiteSpace: "nowrap" };
+    }
+    if (out.isSupOpen) {
+      const rows = D.sup.filter(r => this.match(r.no, null, r.days)).sort((a, b) => b.days - a.days);
+      count = rows.length; unit = count === 1 ? "request" : "requests";
+      out.supRows = rows.map((r, i) => ({ delay: (0.05 * i).toFixed(2) + "s", anim: "rqRow .5s cubic-bezier(.2,.8,.2,1) " + (0.05 * i).toFixed(2) + "s both" + (s.hl && (s.hl === r.id || s.q === r.no) ? ",rqHl 2.4s ease .3s both" : ""), no: r.no, city: cityOf(r.no), by: r.by, role: r.role, byTech: r.tech, av: av(r.by), when: r.when, items: r.items.map(([name, qty]) => ({ name, qty: String(qty) })),
+        wait: dayW(r.days), waitSt: waitSt(r.days), live: r.days >= 3 ? "1" : "0", openStore: () => this.openStore(r.no),
+        handle: () => modalFor({ kind: "handle", sid: r.id, no: r.no, summary: r.items.map(([n, q]) => n + " × " + q).join(" · ") + " for " + r.no + " " + cityOf(r.no) }) }));
+      out.head = ["Store", "Requested by", "When", "Items", "Waiting", ""].map(l => ({ l, st: {} }));
+      out.headStyle = { display: "grid", gridTemplateColumns: "minmax(190px,1.2fr) minmax(210px,1.3fr) 150px minmax(260px,1.8fr) 96px 176px", gap: 14, alignItems: "center", height: 48, padding: "0 22px", background: "var(--lc-inner)", borderBottom: "1px solid var(--lc-iline)", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--t3)", whiteSpace: "nowrap" };
+    }
+    if (out.isHist) {
+      const src = tab === "zero" ? "zero" : "lc", list = src === "zero" ? D.zeroHist : D.lcHist;
+      const rows = list.filter(h => this.match(h.no, [h.product], h.days));
+      count = rows.length; unit = count === 1 ? "item" : "items";
+      const ST = { ack: ["Acknowledged", tag("var(--lc-okbg)", "var(--lc-ok)")], reopened: ["Reopened", tag("rgba(var(--pl),.14)", "var(--pa)")], restocked: ["Restocked in count", tag("var(--lc-chip)", "var(--lc-ink2)")] };
+      out.histRows = rows.map((h, i) => ({ delay: (0.04 * i).toFixed(2) + "s", no: h.no, city: cityOf(h.no), product: h.product, productSub: src === "zero" ? "Zero · 5 gal" : "Last container · 5 gal", rep: h.rep, repBy: h.repBy, closed: h.closed,
+        by: h.by, where: h.by === "System" ? h.where : h.where === "portal" ? "Portal" : "In the app", av: h.by === "System" ? "var(--lc-chip)" : av(h.by),
+        note: h.note || "No note", noteFg: h.note ? "var(--t2)" : "var(--t3)", status: ST[h.status][0], stSt: ST[h.status][1],
+        canMenu: h.status === "ack", menuOpen: s.menu === h.id, z: s.menu === h.id ? 5 : 0, toggleMenu: () => this.setState({ menu: s.menu === h.id ? null : h.id, pop: null }),
+        reopen: () => modalFor({ kind: "reopen", hid: h.id, src, names: [h.product], no: h.no }), openStore: () => this.openStore(h.no) }));
+      out.head = ["Store", "Product", "Reported", "Closed", "Closed by", "Note", "Status", ""].map(l => ({ l, st: {} }));
+      out.headStyle = { display: "grid", gridTemplateColumns: "minmax(180px,1.2fr) minmax(170px,1.2fr) minmax(140px,1fr) 104px minmax(160px,1.1fr) minmax(150px,1fr) 150px 44px", gap: 14, alignItems: "center", height: 48, padding: "0 22px", background: "var(--lc-inner)", borderBottom: "1px solid var(--lc-iline)", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--t3)", whiteSpace: "nowrap" };
+    }
+    if (out.isSupHist) {
+      const rows = D.supHist.filter(h => this.match(h.no, null, h.days));
+      count = rows.length; unit = count === 1 ? "request" : "requests";
+      out.supHistRows = rows.map((h, i) => ({ delay: (0.04 * i).toFixed(2) + "s", no: h.no, city: cityOf(h.no), by: h.by, role: h.role, when: h.when, items: h.items, hBy: h.hBy, av: av(h.hBy), hOn: h.hOn, note: h.note || "No note", noteFg: h.note ? "var(--t2)" : "var(--t3)", openStore: () => this.openStore(h.no) }));
+      out.head = ["Store", "Requested by", "When", "Items", "Handled by", "Handled on", "Note"].map(l => ({ l, st: {} }));
+      out.headStyle = { display: "grid", gridTemplateColumns: "minmax(180px,1.1fr) minmax(180px,1.1fr) 130px minmax(230px,1.6fr) minmax(150px,1fr) 110px minmax(150px,1fr)", gap: 14, alignItems: "center", height: 48, padding: "0 22px", background: "var(--lc-inner)", borderBottom: "1px solid var(--lc-iline)", font: "600 11px " + F, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--t3)", whiteSpace: "nowrap" };
+    }
+    ["lcRows", "zeroRows", "supRows", "histRows", "supHistRows", "head"].forEach(k => { if (!out[k]) out[k] = []; });
+    if (!out.headStyle) out.headStyle = {};
+    out.resultLine = count + " " + unit;
+
+    const filtered = out.hasChips || !!s.q.trim();
+    out.isEmpty = count === 0; out.showHead = count > 0;
+    const EM = { lc: ["No stores are waiting", "Last container reports from stores appear here.", IC.drop], zero: ["No products at zero", "Products confirmed empty in a count appear here.", IC.box], sup: ["No requests to handle", "Site supply requests from stores appear here.", IC.bag] };
+    if (filtered) { out.emptyTitle = "No requests match these filters"; out.emptySub = ""; out.emptyIc = IC.search; out.emptyClear = true; }
+    else if (seg === "hist") { out.emptyTitle = "Nothing here yet"; out.emptySub = ""; out.emptyIc = IC.hist; out.emptyClear = false; }
+    else { out.emptyTitle = EM[tab][0]; out.emptySub = EM[tab][1]; out.emptyIc = IC.check; out.emptyClear = false; }
+    out.hasEmptySub = !!out.emptySub;
+
+    const m = s.modal;
+    out.modalOpen = !!m; out.closeModal = () => this.setState({ modal: null }); out.mRun = () => this.runModal();
+    Object.assign(out, { mTitle: "", mHasList: false, mList: [], mNote: "", mOnNote: () => {}, mPh: "", mHelp: "", mLabel: "", mNoteLabel: "Note", mIc: IC.check, mIcBg: "rgba(var(--pl),.16)", mIcFg: "var(--pa)" });
+    if (m) {
+      out.mNote = m.note; out.mOnNote = e => this.setState({ modal: Object.assign({}, s.modal, { note: e.target.value }) });
+      if (m.kind === "ack" || m.kind === "zack") {
+        const many = m.names.length > 1;
+        out.mTitle = many ? "Acknowledge " + m.names.length + " products at " + m.no + "?" : "Acknowledge " + m.names[0] + " at " + m.no + "?";
+        out.mHasList = many; out.mList = m.names.map((n, i) => ({ name: n, meta: "5 gal · " + PROD[n], sep: i ? "var(--pn-line, rgba(232,224,248,.07))" : "transparent" }));
+        out.mPh = "e.g. Order 17652 shipped"; out.mHelp = "This closes the report. The store isn't notified."; out.mLabel = "Acknowledge"; out.mIc = m.kind === "zack" ? IC.box : IC.drop;
+      } else if (m.kind === "handle") {
+        out.mTitle = "Mark this request as handled?"; out.mHasList = true; out.mList = [{ name: m.summary, meta: "", sep: "transparent" }];
+        out.mPh = "e.g. Added to order 17660"; out.mHelp = "The store will be notified: Added to your next shipment."; out.mLabel = "Mark as handled"; out.mIc = IC.bag;
+      } else if (m.kind === "reopen") {
+        out.mTitle = "Reopen " + m.names[0] + " at " + m.no + "?"; out.mNoteLabel = "Reason";
+        out.mPh = "e.g. Store says it never arrived"; out.mHelp = "It goes back to Open and the store's technicians are notified."; out.mLabel = "Reopen"; out.mIc = IC.reopen; out.mIcBg = "var(--lc-warnbg)"; out.mIcFg = "var(--lc-warn)";
+      }
+    }
+    return out;
+  }
+}
+</script>
+</body>
+</html>

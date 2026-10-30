@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--pa)}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+select option{background:#181322;color:#eeeef3}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+:root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-onink:#17131f;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-onink:#ffffff;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-hov:0 0 0 1px rgba(232,224,248,.1),0 18px 34px -22px rgba(0,0,0,.75);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-hov:0 0 0 1px rgba(26,22,37,.09),0 18px 34px -22px rgba(60,30,110,.3);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+:root{--pn-field:rgba(8,6,14,.5);--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-glow:radial-gradient(closest-side,rgba(150,120,255,.34),rgba(120,90,230,.12) 55%,transparent);--pn-sheen:rgba(232,224,248,.05);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-line:rgba(232,224,248,.07);--pn-tile:rgba(232,224,248,.045);--pn-tileh:rgba(232,224,248,.09);--pn-inner:rgba(10,8,18,.35);--pn-track:rgba(232,224,248,.08);--pn-win:rgba(167,139,250,.36);--pn-ring:#1d1729;--pn-redbg:rgba(248,113,113,.09);--pn-rededge:rgba(248,113,113,.22);--pn-cta:#f1edf8;--pn-ctafg:#17131f;--pn-hero:#f1edf8;--pn-herofg:#17131f}
+:root[data-theme=light]{--pn-field:#ffffff;--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-glow:radial-gradient(closest-side,rgba(168,140,245,.32),rgba(184,160,246,.12) 55%,transparent);--pn-sheen:rgba(255,255,255,.4);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-line:rgba(26,22,37,.07);--pn-tile:rgba(255,255,255,.7);--pn-tileh:#f1edf8;--pn-inner:#f6f3fb;--pn-track:rgba(26,22,37,.08);--pn-win:rgba(124,58,237,.22);--pn-ring:#ffffff;--pn-redbg:#fde8e3;--pn-rededge:rgba(210,61,34,.2);--pn-cta:#1a1625;--pn-ctafg:#ffffff;--pn-hero:#1a1625;--pn-herofg:#ffffff}
+[data-img]:hover [data-ov],[data-img]:focus-within [data-ov]{opacity:1;transform:none}
+[data-img]:hover [data-imgel]{transform:translateY(-6px) scale(1.02)}
+[data-img]:hover [data-shadow]{transform:translateX(-50%) scale(.86);opacity:.75}
+@keyframes pdSpin{to{transform:rotate(360deg)}}
+@keyframes pdImgIn{from{opacity:0;transform:scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pdRise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes pdPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pdFade{from{opacity:0}to{opacity:1}}
+@keyframes pdModal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pdOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes pnIn{from{opacity:0;transform:translateX(48px) scale(.975);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pnRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+[data-pd-right]::-webkit-scrollbar{display:none}
+[data-screen-label=Products][data-dt="1"]{min-height:0!important}
+[data-screen-label=Products][data-dt="1"]>div{padding-bottom:0!important}
+[data-pd-right]>*,[data-pd-aside]>*,[data-hero]>*{flex-shrink:0}
+@media (max-height:880px){[data-hero] [data-img]{height:196px!important}[data-hero] [data-imgel]{height:180px!important;top:4px!important}}
+[data-pd-aside]::-webkit-scrollbar{display:none}
+:root[data-ovl="1"] header[data-tb]{z-index:0!important}
+[data-row]:hover{background:rgba(var(--w),.025)}
+[data-tile]:hover [data-act] svg{animation:pdArrow .62s cubic-bezier(.7,0,.2,1)}
+@keyframes pdArrow{0%{transform:none}45%{transform:translate(140%,-140%)}46%{transform:translate(-140%,140%)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@keyframes pdBar{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+[data-sq]:focus-within{flex-basis:300px!important;box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.5)!important;color:var(--pa)!important}
+[data-sq] input::placeholder{color:var(--t3);opacity:1}
+@keyframes sqPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes scPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes scArrow{0%{transform:none;opacity:1}42%{transform:translate(130%,-130%);opacity:0}43%{transform:translate(-130%,130%);opacity:0}100%{transform:none;opacity:1}}
+[data-st="0"]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-st="0"]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+[data-zr]{position:relative;height:1px;margin:14px 0 6px;pointer-events:none}
+[data-zr-line]{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--zr-line) 18%,var(--zr-mid) 50%,var(--zr-line) 82%,transparent)}
+[data-zr-glow]{position:absolute;left:30%;right:30%;top:-10px;height:21px;background:radial-gradient(closest-side,var(--zr-glow),transparent);filter:blur(4px)}
+:root{--zr-line:rgba(196,181,253,.10);--zr-mid:rgba(196,181,253,.34);--zr-glow:rgba(139,92,246,.22)}
+:root[data-theme=light]{--zr-line:rgba(91,33,182,.08);--zr-mid:rgba(91,33,182,.26);--zr-glow:rgba(139,92,246,.14)}
+@keyframes upBar{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@keyframes upCheck{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+@keyframes upPop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:none}}
+[data-urow]:hover{background:rgba(var(--w),.03)}
+[data-fx]:hover{background:rgba(var(--w),.025)}
+@keyframes usHl{0%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.0)}30%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.7)}100%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,0)}}
+@keyframes usIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+[data-lc]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-lc]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+@keyframes scRise{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+[data-cl="1"]{cursor:pointer}
+[data-cl="1"]:hover{background:rgba(var(--w),.05)}
+[data-us-row]:hover{background:rgba(var(--w),.03)}
+[data-us-pk]::-webkit-scrollbar{width:0}
+@keyframes upLive{0%{box-shadow:0 0 0 4px #4a1596,0 0 0 4px rgba(52,210,123,.55)}70%{box-shadow:0 0 0 4px #4a1596,0 0 0 13px rgba(52,210,123,0)}100%{box-shadow:0 0 0 4px #4a1596,0 0 0 13px rgba(52,210,123,0)}}
+[data-up-live="1"]{animation:upLive 2.2s ease-out infinite}
+@media (prefers-reduced-motion:reduce){[data-up-live]{animation:none!important}}
+[data-up-scroll]>*,[data-up-scroll] section{flex-shrink:0}[data-up-scroll]{scrollbar-width:thin;scrollbar-color:rgba(var(--w),.14) transparent}[data-up-scroll]::-webkit-scrollbar{width:6px}[data-up-scroll]::-webkit-scrollbar-thumb{background:rgba(var(--w),.14);border-radius:6px}
+[data-fit="1"]>aside{position:relative!important;top:0!important}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
+</style>
+</helmet>
+<div data-screen-label="Users" style="{{ usRoot }}">
+<div style="width:100%;max-width:1760px;padding:8px 24px 48px;display:flex;flex-direction:column;gap:20px">
+
+<sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px">
+    <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Users</h1>
+    <div data-pop="" style="position:relative"><button data-dark="1" type="button" onClick="{{ addRun }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px 0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:filter .15s,transform .12s" style-hover="filter:brightness(1.08)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>Add user<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="margin-left:2px;opacity:.8;transition:transform .25s;transform:{{ addChev }}"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+      <sc-if value="{{ addOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;min-width:270px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both">
+        <sc-for list="{{ addOpts }}" as="ao" hint-placeholder-count="3"><button type="button" onClick="{{ ao.run }}" style="display:flex;width:100%;align-items:center;gap:12px;padding:10px;border:0;border-radius:12px;background:transparent;text-align:left;cursor:pointer" style-hover="background:var(--lc-chip)"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--lc-chip);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" fill-rule="evenodd"><path d="{{ ao.d }}" fill-rule="evenodd"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap">{{ ao.label }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ ao.sub }}</span></span></button></sc-for>
+      </div></sc-if></div>
+  </div>
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+      <button type="button" onClick="{{ t.apply }}" data-dark="{{ t.dark }}" data-st="{{ t.dark }}" style="{{ t.style }}" style-hover="translate:0 -2px;box-shadow:{{ t.shHover }}">
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:230px;height:230px;top:-90px;left:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.920) 0%,rgba(176,107,255,0.791) 10%,rgba(176,107,255,0.607) 22%,rgba(176,107,255,0.423) 34%,rgba(176,107,255,0.267) 46%,rgba(176,107,255,0.147) 58%,rgba(176,107,255,0.069) 70%,rgba(176,107,255,0.023) 82%,rgba(176,107,255,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:210px;height:210px;bottom:-95px;right:-30px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.820) 0%,rgba(231,118,214,0.705) 10%,rgba(231,118,214,0.541) 22%,rgba(231,118,214,0.377) 34%,rgba(231,118,214,0.238) 46%,rgba(231,118,214,0.131) 58%,rgba(231,118,214,0.061) 70%,rgba(231,118,214,0.021) 82%,rgba(231,118,214,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s .05s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:{{ t.blobOp }};transform:scale({{ t.blobScale }})"></span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span style="{{ t.iconStyle }}">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="{{ t.icFill }}" stroke="currentColor" stroke-width="{{ t.icSw }}" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.d }}"></path></svg>
+          </span>
+          <span data-act="1" style="{{ t.arrowStyle }}"><svg viewBox="0 0 24 24" width="{{ t.arrowSz }}" height="{{ t.arrowSz }}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.arrowD }}"></path></svg></span>
+        </span>
+        <span style="flex:1 1 auto;min-height:24px"></span>
+        <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="display:block;font:600 15px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ t.labelColor }};transition:color .25s">{{ t.label }}</span>
+          <span style="display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;font:400 12px/1.35 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ t.subColor }};transition:color .3s">{{ t.sub }}</span>
+          <span style="display:block;margin-top:10px;font:400 52px/.9 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:{{ t.valColor }}">{{ t.value }}</span>
+        </span>
+      </button>
+    </sc-for>
+
+  </div>
+  <div data-zr="1" aria-hidden="true"><span data-zr-line="1"></span><span data-zr-glow="1"></span></div>
+  <div style="display:flex;gap:2px;width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:4px;border-radius:999px;background:rgba(var(--g1),0.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(var(--w),0.06);box-shadow:0 20px 40px -24px var(--k55)">
+      <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4"><button type="button" onClick="{{ tb.go }}" style="{{ tb.style }}" style-hover="color:var(--t1)">{{ tb.label }}<sc-if value="{{ tb.hasN }}" hint-placeholder-val="{{ true }}"><span style="{{ tb.nStyle }}">{{ tb.n }}</span></sc-if></button></sc-for>
+    </div>
+
+  <sc-if value="{{ hasToolbar }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <sc-if value="{{ isReq }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><sc-for list="{{ reqSegs }}" as="sg" hint-placeholder-count="2"><button type="button" onClick="{{ sg.go }}" style="{{ sg.style }}">{{ sg.label }}</button></sc-for></div></sc-if>
+      <label data-sq="1" style="display:flex;align-items:center;gap:8px;flex:0 1 260px;min-width:200px;height:44px;padding:0 7px 0 15px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--t3);cursor:text;transition:flex-basis .35s cubic-bezier(.2,.8,.2,1),box-shadow .2s"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ q }}" onChange="{{ onQ }}" placeholder="Search by name or email" style="flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/><sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQ }}" aria-label="Clear search" style="flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if></label>
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+        <div data-pop="" style="position:relative">
+          <button type="button" onClick="{{ f.toggle }}" style="{{ f.btn }}">{{ f.label }}<sc-if value="{{ f.hasN }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#7c3aed;color:#fff;font:700 11px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ f.n }}</span></sc-if><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--t3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+          <sc-if value="{{ f.isOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;left:0;min-width:240px">
+            <sc-if value="{{ f.searchable }}" hint-placeholder-val="{{ false }}"><label style="display:flex;align-items:center;gap:8px;height:38px;margin:2px 2px 6px;padding:0 12px;border-radius:12px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ f.sq }}" onChange="{{ f.onSq }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label></sc-if>
+            <div data-us-pk="1" style="max-height:280px;overflow-y:auto">
+              <sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}"><span style="{{ o.box }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ o.note }}</span></button></sc-for>
+            </div>
+            <sc-if value="{{ f.hasN }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ f.clear }}" style="display:block;width:100%;margin-top:4px;padding:9px 11px;border:0;border-top:1px solid var(--lc-iline);background:transparent;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;cursor:pointer">Clear</button></sc-if>
+          </div></sc-if>
+        </div>
+      </sc-for>
+      <sc-if value="{{ hasTechChip }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearTechChip }}" style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;border:0;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer">{{ techChip }}<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+      <span style="flex:1 1 auto"></span>
+      <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ resultLine }}</span>
+      <sc-if value="{{ hasVT }}" hint-placeholder-val="{{ true }}"><div style="display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);border:0">
+        <button type="button" onClick="{{ setGrid }}" aria-label="Grid view" style="{{ gridBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3zM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3z"></path></svg>Grid</button>
+        <button type="button" onClick="{{ setList }}" aria-label="List view" style="{{ listBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"></path></svg>List</button>
+      </div></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ techGrid }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px">
+      <sc-for list="{{ techRows }}" as="r" hint-placeholder-count="7">
+        <div data-lc="1" onClick="{{ r.open }}" style="position:relative;display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--sc-ink);cursor:pointer;transition:box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1);animation:scRise .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}" style-hover="translate:0 -2px;box-shadow:var(--lc-hov)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="{{ r.pill }}"><i style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in oklab,currentColor 22%,transparent)"></i>{{ r.status }}</span>
+            <div data-pop="" style="position:relative;flex:none">
+              <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+              <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+              </div></sc-if>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;min-width:0;padding:0 2px">
+            <span style="flex:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ r.avBg }};color:var(--lc-ink2);font:700 18px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring),0 0 0 3px rgba(var(--pl),.3);opacity:{{ r.avOp }}">{{ r.ini }}</span>
+            <div style="flex:1 1 0;width:0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px">
+              <span style="max-width:100%;width:100%;font:600 22px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);display:block;white-space:normal;overflow:hidden;max-height:2.3em">{{ r.name }}</span>
+              <span style="max-width:100%;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.lineFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.line }}</span>
+            </div>
+          </div>
+          <div style="border-radius:20px;background:var(--lc-inner);padding:4px 14px">
+            <sc-for list="{{ r.cRows }}" as="c" hint-placeholder-count="3">
+              <div data-cl="{{ c.cl }}" onClick="{{ c.go }}" title="{{ c.tip }}" style="display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;margin:0 -8px;padding:11px 8px;border-radius:12px;box-shadow:0 -1px 0 {{ c.sep }};transition:background .2s">
+                <span style="width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ c.mBg }};color:{{ c.mFg }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.mD }}"></path></svg></span>
+                <span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ c.lFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.text }}</span>
+                <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ c.meta }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 auto;margin-top:-16px"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:2px">
+            <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ r.footNote }}</span>
+            <span data-act="1" style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--sc-actbg);border:1px solid var(--sc-actb);color:var(--sc-actfg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ techNoMatch }}" hint-placeholder-val="{{ false }}"><section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:48px 24px;text-align:center"><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No technicians match</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Try another search or clear the filters.</span></div></section></sc-if>
+    <sc-if value="{{ techEmpty }}" hint-placeholder-val="{{ false }}"><section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No technicians yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Add a technician and choose their stores.</span><button type="button" onClick="{{ addTech }}" style="margin-top:6px;display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Add technician</button></div></section></sc-if>
+  </sc-if>
+
+  <sc-if value="{{ techList }}" hint-placeholder-val="{{ false }}">
+    <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+      <sc-if value="{{ hasTechRows }}" hint-placeholder-val="{{ true }}"><div style="min-width:0"><div style="min-width:0">
+        <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.4fr) 140px 96px 96px 140px 120px 40px;gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Name</span><span>Email</span><span>Phone</span><span>Stores</span><span>States</span><span>Status</span><span>Last active</span><span></span></div>
+        <sc-for list="{{ techRows }}" as="r" hint-placeholder-count="7">
+          <div data-us-row="1" onClick="{{ r.open }}" style="display:grid;gap:14px;align-items:center;padding:12px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;grid-template-columns:minmax(0,1.5fr) minmax(0,1.4fr) 140px 96px 96px 140px 120px 40px">
+            <span style="display:flex;align-items:center;gap:11px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:{{ r.avBg }};color:var(--lc-ink2);font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring)">{{ r.ini }}</span><span style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span></span></span>
+            <span style="color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.email }}</span>
+            <span style="color:var(--t2);white-space:nowrap">{{ r.phone }}</span>
+            <span style="color:var(--t1);font-weight:500;white-space:nowrap">{{ r.stores }}</span>
+            <span style="color:var(--t2);white-space:nowrap">{{ r.states }}</span>
+            <span><span style="{{ r.pill }}"><i style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.status }}</span></span>
+            <span style="color:var(--t3);white-space:nowrap">{{ r.last }}</span>
+            <div data-pop="" style="position:relative;flex:none;justify-self:end">
+                <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                  <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+                </div></sc-if>
+              </div>
+          </div>
+        </sc-for>
+      </div></div></sc-if>
+      <sc-if value="{{ techEmpty }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No technicians yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Add a technician and choose their stores.</span><button type="button" onClick="{{ addRun }}" style="margin-top:6px;display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Add technician</button></div></sc-if>
+      <sc-if value="{{ techNoMatch }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No technicians match</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Try another search or clear the filters.</span></div></sc-if>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ storeGrid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px">
+      <sc-for list="{{ userCards }}" as="r" hint-placeholder-count="8">
+        <div data-lc="1" onClick="{{ r.open }}" style="position:relative;display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--sc-ink);cursor:pointer;transition:box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1);animation:scRise .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}" style-hover="translate:0 -2px;box-shadow:var(--lc-hov)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="{{ r.pill }}"><i style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in oklab,currentColor 22%,transparent)"></i>{{ r.status }}</span>
+            <div data-pop="" style="position:relative;flex:none">
+              <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+              <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+              </div></sc-if>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;min-width:0;padding:0 2px">
+            <span style="flex:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ r.avBg }};color:var(--lc-ink2);font:700 18px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring),0 0 0 3px rgba(var(--pl),.3);opacity:{{ r.avOp }}">{{ r.ini }}</span>
+            <div style="flex:1 1 0;width:0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px">
+              <span style="max-width:100%;width:100%;font:600 22px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);display:block;white-space:normal;overflow:hidden;max-height:2.3em">{{ r.name }}</span>
+              <span style="max-width:100%;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.lineFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.line }}</span>
+            </div>
+          </div>
+          <div style="border-radius:20px;background:var(--lc-inner);padding:4px 14px">
+            <sc-for list="{{ r.cRows }}" as="c" hint-placeholder-count="3">
+              <div data-cl="{{ c.cl }}" onClick="{{ c.go }}" title="{{ c.tip }}" style="display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;margin:0 -8px;padding:11px 8px;border-radius:12px;box-shadow:0 -1px 0 {{ c.sep }};transition:background .2s">
+                <span style="width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ c.mBg }};color:{{ c.mFg }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.mD }}"></path></svg></span>
+                <span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ c.lFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.text }}</span>
+                <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ c.meta }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 auto;margin-top:-16px"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:2px">
+            <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ r.footNote }}</span>
+            <span data-act="1" style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--sc-actbg);border:1px solid var(--sc-actb);color:var(--sc-actfg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ userNoMatch }}" hint-placeholder-val="{{ false }}"><section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:48px 24px;text-align:center"><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No store users match</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Try another search or clear the filters.</span></div></section></sc-if>
+    <sc-if value="{{ hasPager }}" hint-placeholder-val="{{ false }}"><section style="border-radius:999px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden"><sc-if value="{{ hasPager }}" hint-placeholder-val="{{ true }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 22px;border-top:0"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ pageLine }}</span><span style="display:flex;gap:6px"><button type="button" onClick="{{ pgPrev }}" disabled="{{ pgPrevDis }}" aria-label="Previous page" style="{{ pgPrevSt }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg></button><button type="button" onClick="{{ pgNext }}" disabled="{{ pgNextDis }}" aria-label="Next page" style="{{ pgNextSt }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></button></span></div></sc-if></section></sc-if>
+  </sc-if>
+
+  <sc-if value="{{ storeList }}" hint-placeholder-val="{{ false }}">
+    <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+      <sc-if value="{{ hasUserRows }}" hint-placeholder-val="{{ true }}"><div style="min-width:0"><div style="min-width:0">
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.5fr) 140px 150px 120px 170px 120px 40px;gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Name</span><span>Email</span><span>Phone</span><span>Stores</span><span>Status</span><span>Approved by</span><span>Last active</span><span></span></div>
+        <sc-for list="{{ userRows }}" as="r" hint-placeholder-count="10">
+          <div data-us-row="1" onClick="{{ r.open }}" style="display:grid;gap:14px;align-items:center;padding:12px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;grid-template-columns:minmax(0,1.4fr) minmax(0,1.5fr) 140px 150px 120px 170px 120px 40px">
+            <span style="display:flex;align-items:center;gap:11px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:{{ r.avBg }};color:var(--lc-ink2);font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring)">{{ r.ini }}</span><span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span></span>
+            <span style="color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.email }}</span>
+            <span style="color:var(--t2);white-space:nowrap">{{ r.phone }}</span>
+            <span title="{{ r.storesTip }}" style="display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap"><span style="font-weight:500;color:var(--t1)">{{ r.store1 }}</span><sc-if value="{{ r.hasMore }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ r.more }}</span></sc-if></span>
+            <span><span style="{{ r.pill }}"><i style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.status }}</span></span>
+            <span style="color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.by }}</span>
+            <span style="color:var(--t3);white-space:nowrap">{{ r.last }}</span>
+            <div data-pop="" style="position:relative;flex:none;justify-self:end">
+                <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                  <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+                </div></sc-if>
+              </div>
+          </div>
+        </sc-for>
+      </div></div></sc-if>
+      <sc-if value="{{ userNoMatch }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No store users match</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Try another search or clear the filters.</span></div></sc-if>
+      <sc-if value="{{ hasPager }}" hint-placeholder-val="{{ true }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px 14px 22px;border-top:1px solid var(--lc-iline)"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ pageLine }}</span><span style="display:flex;gap:6px"><button type="button" onClick="{{ pgPrev }}" disabled="{{ pgPrevDis }}" aria-label="Previous page" style="{{ pgPrevSt }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg></button><button type="button" onClick="{{ pgNext }}" disabled="{{ pgNextDis }}" aria-label="Next page" style="{{ pgNextSt }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></button></span></div></sc-if>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ adminLine }}</span><div style="display:none">
+        <button type="button" onClick="{{ setGrid }}" aria-label="Grid view" style="{{ gridBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3zM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3zM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3z"></path></svg>Grid</button>
+        <button type="button" onClick="{{ setList }}" aria-label="List view" style="{{ listBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"></path></svg>List</button>
+      </div></div>
+  </sc-if>
+  <sc-if value="{{ adminGrid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px">
+      <sc-for list="{{ adminCards }}" as="r" hint-placeholder-count="3">
+        <div data-lc="1" onClick="{{ r.open }}" style="position:relative;display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--sc-ink);cursor:pointer;transition:box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1);animation:scRise .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}" style-hover="translate:0 -2px;box-shadow:var(--lc-hov)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="{{ r.pill }}"><i style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in oklab,currentColor 22%,transparent)"></i>{{ r.status }}</span>
+            <div data-pop="" style="position:relative;flex:none">
+              <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+              <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+              </div></sc-if>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;min-width:0;padding:0 2px">
+            <span style="flex:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ r.avBg }};color:var(--lc-ink2);font:700 18px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring),0 0 0 3px rgba(var(--pl),.3);opacity:{{ r.avOp }}">{{ r.ini }}</span>
+            <div style="flex:1 1 0;width:0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px">
+              <span style="max-width:100%;width:100%;font:600 22px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);display:block;white-space:normal;overflow:hidden;max-height:2.3em">{{ r.name }}</span>
+              <span style="max-width:100%;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.lineFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.line }}</span>
+            </div>
+          </div>
+          <div style="border-radius:20px;background:var(--lc-inner);padding:4px 14px">
+            <sc-for list="{{ r.cRows }}" as="c" hint-placeholder-count="3">
+              <div data-cl="{{ c.cl }}" onClick="{{ c.go }}" title="{{ c.tip }}" style="display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;margin:0 -8px;padding:11px 8px;border-radius:12px;box-shadow:0 -1px 0 {{ c.sep }};transition:background .2s">
+                <span style="width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ c.mBg }};color:{{ c.mFg }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.mD }}"></path></svg></span>
+                <span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ c.lFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.text }}</span>
+                <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ c.meta }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 auto;margin-top:-16px"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:2px">
+            <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap">{{ r.footNote }}</span>
+            <span data-act="1" style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--sc-actbg);border:1px solid var(--sc-actb);color:var(--sc-actfg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ adminList }}" hint-placeholder-val="{{ false }}">
+    <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+      <div style="min-width:0"><div style="min-width:0">
+        <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1.6fr) 130px 170px 130px 40px;gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Name</span><span>Email</span><span>Status</span><span>Added by</span><span>Last active</span><span></span></div>
+        <sc-for list="{{ adminRows }}" as="r" hint-placeholder-count="3">
+          <div data-us-row="1" style="display:grid;gap:14px;align-items:center;padding:12px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;cursor:default;grid-template-columns:minmax(0,1.4fr) minmax(0,1.6fr) 130px 170px 130px 40px">
+            <span style="display:flex;align-items:center;gap:11px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:{{ r.avBg }};color:var(--lc-ink2);font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring)">{{ r.ini }}</span><span style="font-weight:600;color:var(--t1);white-space:nowrap">{{ r.name }}</span><sc-if value="{{ r.you }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif">You</span></sc-if></span>
+            <span style="color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.email }}</span>
+            <span><span style="{{ r.pill }}"><i style="width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ r.status }}</span></span>
+            <span style="color:var(--t2);white-space:nowrap">{{ r.by }}</span>
+            <span style="color:var(--t3);white-space:nowrap">{{ r.last }}</span>
+            <div data-pop="" style="position:relative;flex:none;justify-self:end">
+                <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+                  <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+                </div></sc-if>
+              </div>
+          </div>
+        </sc-for>
+      </div></div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ reqList }}" hint-placeholder-val="{{ false }}">
+    <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+      <sc-if value="{{ hasReqCards }}" hint-placeholder-val="{{ true }}"><div style="min-width:0"><div style="min-width:0">
+        <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.6fr) 180px 270px;gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Person</span><span>Store</span><span>Requested</span><span style="text-align:right">Decision</span></div>
+        <sc-for list="{{ reqCards }}" as="c" hint-placeholder-count="3"><sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="2"><div style="border-top:1px solid var(--lc-iline)">
+          <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.6fr) 180px 270px;gap:14px;align-items:center;padding:12px 22px;font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">
+            <span style="display:flex;align-items:center;gap:11px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:{{ c.avBg }};color:var(--lc-ink2);font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring)">{{ c.ini }}</span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ c.kind }}</span></span></span>
+            <span style="display:flex;align-items:center;gap:10px;min-width:0"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:{{ r.mkBg }};color:{{ r.mkFg }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.mkD }}"></path></svg></span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.subFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.sub }}</span></span></span>
+            <span style="color:var(--t3);white-space:nowrap">{{ c.whenShort }}</span>
+            <span style="display:flex;align-items:center;gap:8px;justify-self:end">
+                    <sc-if value="{{ r.showMatched }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ r.reject }}" style="{{ r.rejSt }}">Reject</button><button type="button" onClick="{{ r.approve }}" style="{{ r.appSt }}">Approve</button></sc-if>
+                    <sc-if value="{{ r.showUnmatched }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.reject }}" style="{{ r.rejSt }}">Reject</button><button type="button" onClick="{{ r.pickToggle }}" style="{{ r.pickSt }}">Pick store</button></sc-if>
+                    <sc-if value="{{ r.decided }}" hint-placeholder-val="{{ false }}"><span style="{{ r.resPill }}"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.resD }}"></path></svg>{{ r.res }}</span><sc-if value="{{ r.canUndo }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.undo }}" style="border:0;background:transparent;padding:4px 2px;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Undo</button></sc-if></sc-if>
+                  </span>
+          </div>
+          <sc-if value="{{ r.rejOpen }}" hint-placeholder-val="{{ false }}"><div data-pop="" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 22px 12px auto;max-width:640px;padding:12px;border-radius:16px;background:var(--lc-flat);box-shadow:var(--lc-edge);animation:pdPop .2s both"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);margin-right:4px">Reason (optional)</span><sc-for list="{{ r.reasons }}" as="rs" hint-placeholder-count="3"><button type="button" onClick="{{ rs.pick }}" style="{{ rs.style }}">{{ rs.label }}</button></sc-for><span style="flex:1"></span><button type="button" onClick="{{ r.rejCancel }}" style="border:0;background:transparent;padding:6px 8px;color:var(--t2);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Cancel</button><button type="button" onClick="{{ r.rejConfirm }}" style="{{ r.rejConfSt }}">Reject</button></div></sc-if>
+                <sc-if value="{{ r.pickOpen }}" hint-placeholder-val="{{ false }}"><div data-pop="" style="margin:0 22px 12px auto;max-width:640px;padding:6px;border-radius:16px;background:var(--lc-flat);box-shadow:var(--lc-edge);animation:pdPop .2s both"><label style="display:flex;align-items:center;gap:8px;height:38px;margin:2px 2px 6px;padding:0 12px;border-radius:12px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ r.pq }}" onChange="{{ r.onPq }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label><div data-us-pk="1" style="max-height:220px;overflow-y:auto"><sc-for list="{{ r.pickList }}" as="pk" hint-placeholder-count="4"><button type="button" onClick="{{ pk.pick }}" style="{{ pk.style }}"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ pk.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ pk.note }}</span></button></sc-for></div></div></sc-if>
+        </div></sc-for></sc-for>
+      </div></div></sc-if>
+      <sc-if value="{{ reqEmpty }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:48px 24px;text-align:center"><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No requests waiting</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">New access requests from the app will appear here.</span></div></sc-if>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ reqGrid }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ reqCards }}" as="c" hint-placeholder-count="3">
+        <section style="{{ c.cardStyle }}">
+          <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+            <span style="flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:{{ c.avBg }};color:var(--lc-ink2);font:700 15px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 2px var(--lc-ring)">{{ c.ini }}</span>
+            <div style="flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:4px">
+              <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font:600 17px/1.25 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--t1);white-space:nowrap">{{ c.name }}</span><sc-if value="{{ c.existing }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">Existing user · asking for more stores</span></sc-if></span>
+              <span style="font:400 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.contact }}</span>
+              <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ c.when }}</span>
+            </div>
+            <sc-if value="{{ c.hasBulk }}" hint-placeholder-val="{{ true }}"><div style="display:flex;align-items:center;gap:16px;padding-top:4px"><button type="button" onClick="{{ c.rejectAll }}" style="border:0;background:transparent;padding:4px 0;color:var(--t2);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap" style-hover="color:var(--lc-bad)">Reject all</button><button type="button" onClick="{{ c.approveAll }}" style="border:0;background:transparent;padding:4px 0;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Approve all</button></div></sc-if>
+          </div>
+          <div style="margin-top:16px;border-radius:20px;background:var(--lc-inner);padding:2px 14px">
+            <sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="2">
+              <div style="border-top:1px solid {{ r.sep }}">
+                <div style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0">
+                  <span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:{{ r.mkBg }};color:{{ r.mkFg }}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.mkD }}"></path></svg></span>
+                  <span style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px">
+                    <span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</span>
+                    <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.subFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.sub }}</span>
+                  </span>
+                  <span style="display:flex;align-items:center;gap:8px;justify-self:end">
+                    <sc-if value="{{ r.showMatched }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ r.reject }}" style="{{ r.rejSt }}">Reject</button><button type="button" onClick="{{ r.approve }}" style="{{ r.appSt }}">Approve</button></sc-if>
+                    <sc-if value="{{ r.showUnmatched }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.reject }}" style="{{ r.rejSt }}">Reject</button><button type="button" onClick="{{ r.pickToggle }}" style="{{ r.pickSt }}">Pick store</button></sc-if>
+                    <sc-if value="{{ r.decided }}" hint-placeholder-val="{{ false }}"><span style="{{ r.resPill }}"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.resD }}"></path></svg>{{ r.res }}</span><sc-if value="{{ r.canUndo }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.undo }}" style="border:0;background:transparent;padding:4px 2px;color:var(--pa);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Undo</button></sc-if></sc-if>
+                  </span>
+                </div>
+                <sc-if value="{{ r.rejOpen }}" hint-placeholder-val="{{ false }}"><div data-pop="" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px 48px;padding:12px;border-radius:16px;background:var(--lc-flat);box-shadow:var(--lc-edge);animation:pdPop .2s both"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);margin-right:4px">Reason (optional)</span><sc-for list="{{ r.reasons }}" as="rs" hint-placeholder-count="3"><button type="button" onClick="{{ rs.pick }}" style="{{ rs.style }}">{{ rs.label }}</button></sc-for><span style="flex:1"></span><button type="button" onClick="{{ r.rejCancel }}" style="border:0;background:transparent;padding:6px 8px;color:var(--t2);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Cancel</button><button type="button" onClick="{{ r.rejConfirm }}" style="{{ r.rejConfSt }}">Reject</button></div></sc-if>
+                <sc-if value="{{ r.pickOpen }}" hint-placeholder-val="{{ false }}"><div data-pop="" style="margin:0 0 12px 48px;padding:6px;border-radius:16px;background:var(--lc-flat);box-shadow:var(--lc-edge);animation:pdPop .2s both"><label style="display:flex;align-items:center;gap:8px;height:38px;margin:2px 2px 6px;padding:0 12px;border-radius:12px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ r.pq }}" onChange="{{ r.onPq }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label><div data-us-pk="1" style="max-height:220px;overflow-y:auto"><sc-for list="{{ r.pickList }}" as="pk" hint-placeholder-count="4"><button type="button" onClick="{{ pk.pick }}" style="{{ pk.style }}"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ pk.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ pk.note }}</span></button></sc-for></div></div></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ c.allDone }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:8px;margin-top:12px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--lc-ok)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ c.summary }}<span style="color:var(--t3)">· moves to Resolved shortly</span></div></sc-if>
+        </section>
+      </sc-for>
+      <sc-if value="{{ reqEmpty }}" hint-placeholder-val="{{ false }}"><section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden"><sc-if value="{{ reqEmpty }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No requests waiting</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">New access requests from the app will appear here.</span></div></sc-if></section></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isResolved }}" hint-placeholder-val="{{ false }}">
+    <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+      <div style="min-width:0"><div style="min-width:0">
+        <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr) 130px minmax(0,1.2fr) 160px minmax(0,1fr);gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Person</span><span>Store</span><span>Result</span><span>Decided by</span><span>When</span><span>Reason</span></div>
+        <sc-for list="{{ resRows }}" as="r" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr) 130px minmax(0,1.2fr) 160px minmax(0,1fr);gap:14px;align-items:center;padding:12px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">
+            <span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.person }}</span>
+            <span style="color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.store }}</span>
+            <span><span style="{{ r.pill }}">{{ r.res }}</span></span>
+            <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="color:var(--t1);white-space:nowrap">{{ r.by }}</span><span style="font-size:12px;color:var(--t3);white-space:nowrap">{{ r.role }}</span></span>
+            <span style="color:var(--t3);white-space:nowrap">{{ r.when }}</span>
+            <span style="color:var(--t2)">{{ r.reason }}</span>
+          </div>
+        </sc-for>
+      </div></div>
+      <sc-if value="{{ resEmpty }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">Nothing resolved yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Decided requests will appear here.</span></div></sc-if>
+    </section>
+  </sc-if>
+</sc-if>
+
+<sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:18px;padding-top:4px;animation:pdRise .5s cubic-bezier(.2,.8,.2,1) both">
+    <div style="display:flex;align-items:center;gap:10px"><button type="button" onClick="{{ back }}" style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 15px 0 11px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>Users</button></div>
+    <div ref="{{ dFitRef }}" data-fit="{{ dFitOn }}" style="{{ dFitStyle }}">
+    <aside data-dark="1" style="position:sticky;top:84px;flex-shrink:0;align-self:flex-start;isolation:isolate;overflow:hidden;flex:0 0 340px;max-width:100%;display:flex;flex-direction:column;gap:18px;padding:18px 18px 18px;border-radius:28px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.24),0 20px 40px -24px var(--k55);color:#fff;animation:pdRise .55s cubic-bezier(.2,.8,.2,1) both">
+      <span aria-hidden="true" style="position:absolute;z-index:-1;width:230px;height:230px;top:-90px;left:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.920) 0%,rgba(176,107,255,0.791) 10%,rgba(176,107,255,0.607) 22%,rgba(176,107,255,0.423) 34%,rgba(176,107,255,0.267) 46%,rgba(176,107,255,0.147) 58%,rgba(176,107,255,0.069) 70%,rgba(176,107,255,0.023) 82%,rgba(176,107,255,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:1"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:210px;height:210px;bottom:-95px;right:-30px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.820) 0%,rgba(231,118,214,0.705) 10%,rgba(231,118,214,0.541) 22%,rgba(231,118,214,0.377) 34%,rgba(231,118,214,0.238) 46%,rgba(231,118,214,0.131) 58%,rgba(231,118,214,0.061) 70%,rgba(231,118,214,0.021) 82%,rgba(231,118,214,0.000) 96%);filter:blur(14px);pointer-events:none;transition:opacity .4s .05s,transform .6s cubic-bezier(.2,.8,.2,1);opacity:1"></span>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <span style="flex:1 1 auto;display:flex;align-items:center;gap:8px;min-width:0;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);color:#fff"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="{{ dRoleD }}"></path></svg></span>{{ dRole }}</span>
+        <div data-pop="" style="position:relative;flex:none;display:flex;align-items:center;gap:8px">
+          <button type="button" onClick="{{ dEdit }}" aria-label="{{ dEditLabel }}" title="{{ dEditLabel }}" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer" style-hover="background:rgba(255,255,255,.16)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15"></path></svg></button>
+          <button type="button" onClick="{{ dm.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer" style-hover="background:rgba(255,255,255,.16)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+          <sc-if value="{{ dm.menuOpen }}" hint-placeholder-val="{{ false }}"><div data-dark="0" style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:220px">
+            <sc-for list="{{ dm.menu }}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+          </div></sc-if>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:6px 0 2px;text-align:center">
+        <span style="position:relative;flex:none;width:104px;height:104px"><span style="width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ dAvBg }};color:#fff;font:700 32px 'AppNumerals','Urbanist',system-ui,sans-serif;box-shadow:0 0 0 4px rgba(255,255,255,.14),0 0 0 5px rgba(255,255,255,.28),0 22px 40px -18px rgba(0,0,0,.6)">{{ dIni }}</span><span title="{{ dStatus }}" aria-label="{{ dStatus }}" data-up-live="{{ dLive }}" style="position:absolute;right:4px;bottom:6px;width:20px;height:20px;border-radius:50%;background:{{ dDot }};box-shadow:0 0 0 4px #4a1596"></span></span>
+        <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;max-width:100%">
+                    <span style="width:100%;font:500 26px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:#fff;text-align:center;display:block;white-space:normal;overflow-wrap:break-word;text-wrap:balance">{{ dName }}</span>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:6px"><span style="{{ dStPill }}"><i data-live="{{ dLive }}" style="width:7px;height:7px;border-radius:50%;background:{{ dDot }};color:{{ dDot }}"></i>{{ dStatus }}</span><sc-if value="{{ dWash }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:999px;background:rgba(255,255,255,.08);font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.82);white-space:nowrap"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16z"></path></svg>Edits wash functions</span></sc-if></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:{{ dStatCols }};gap:8px">
+        <sc-for list="{{ dStats }}" as="st" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 6px 12px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 14px 30px -18px rgba(20,4,50,.6)"><span style="font:300 26px/1 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:#fff">{{ st.v }}</span><span style="max-width:100%;font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ st.k }}</span></div></sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;margin:0 -12px -12px;border-radius:22px;padding:4px 16px;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 14px 30px -18px rgba(20,4,50,.6)">
+        <sc-for list="{{ dContact }}" as="c" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:12px;padding:10px 0;box-shadow:{{ c.sep }}">
+          <span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);color:#fff"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.d }}"></path></svg></span>
+          <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.66)">{{ c.k }}</span><span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.v }}</span></span>
+          <sc-if value="{{ c.canCopy }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ c.copy }}" aria-label="Copy" title="Copy" style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:0;border-radius:50%;background:transparent;color:rgba(255,255,255,.8);cursor:pointer" style-hover="background:rgba(255,255,255,.12);color:#fff"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.cd }}"></path></svg></button></sc-if>
+        </div></sc-for>
+      </div>
+    </aside>
+    <div style="{{ dRightStyle }}">
+    <div style="flex:none;display:flex;gap:2px;width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:4px;border-radius:999px;background:rgba(var(--g1),0.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(var(--w),0.06);box-shadow:0 20px 40px -24px var(--k55)">
+      <sc-for list="{{ dTabs }}" as="tb" hint-placeholder-count="4"><button type="button" onClick="{{ tb.go }}" style="{{ tb.style }}" style-hover="color:var(--t1)">{{ tb.label }}<sc-if value="{{ tb.hasN }}" hint-placeholder-val="{{ true }}"><span style="{{ tb.nStyle }}">{{ tb.n }}</span></sc-if></button></sc-for>
+    </div>
+    <div data-up-scroll="1" style="{{ dScrollStyle }}">
+    <sc-if value="{{ dIsStores }}" hint-placeholder-val="{{ true }}">
+      <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 18px 8px 22px"><span style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);white-space:nowrap">Stores</h2><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--lc-chip);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-ink2)">{{ dStoreN }}</span><sc-if value="{{ dHasOver }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ dClearOver }}" style="{{ dOverSt }}"><i style="width:6px;height:6px;border-radius:50%;background:var(--lc-warn)"></i>{{ dOverLabel }}<sc-if value="{{ dOverOn }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if></button></sc-if></span><button type="button" onClick="{{ dEditStores }}" style="display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap" style-hover="background:var(--lc-chip)">{{ dStoresBtn }}</button></div>
+        <sc-if value="{{ dHasStores }}" hint-placeholder-val="{{ true }}"><div style="min-width:0"><div style="min-width:0">
+          <div style="display:grid;grid-template-columns:{{ dCols }};gap:14px;padding:8px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><sc-for list="{{ dHead }}" as="h" hint-placeholder-count="4"><span>{{ h }}</span></sc-for><span></span></div>
+          <sc-for list="{{ dStores }}" as="s" hint-placeholder-count="6">
+            <div data-us-row="1" style="display:grid;grid-template-columns:{{ dCols }};gap:14px;align-items:center;padding:11px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">
+              <span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.store }}</span>
+              <sc-for list="{{ s.cells }}" as="c" hint-placeholder-count="4"><span style="min-width:0;display:flex"><span style="{{ c.st }}"><sc-if value="{{ c.dot }}" hint-placeholder-val="{{ false }}"><i style="flex:none;width:6px;height:6px;border-radius:50%;background:currentColor"></i></sc-if>{{ c.t }}</span></span></sc-for>
+              <button type="button" onClick="{{ s.remove }}" aria-label="Remove" style="justify-self:end;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-badbg);color:var(--lc-bad)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+            </div>
+          </sc-for>
+        </div></div></sc-if>
+        <sc-if value="{{ dNoStores }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No stores yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Use Edit stores to choose the stores this person can see.</span></div></sc-if>
+        <div style="height:8px"></div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ dIsReqs }}" hint-placeholder-val="{{ false }}">
+      <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+        <sc-if value="{{ dHasReqs }}" hint-placeholder-val="{{ true }}"><div data-up-scroll="1" style="min-width:0"><div style="min-width:0">
+          <div style="display:grid;grid-template-columns:170px minmax(0,1.3fr) 120px minmax(0,1fr) minmax(0,1fr);gap:14px;padding:16px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Requested on</span><span>Store</span><span>Result</span><span>Decided by</span><span>Reason</span></div>
+          <sc-for list="{{ dReqs }}" as="r" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:170px minmax(0,1.3fr) 120px minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:center;padding:12px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"><span style="color:var(--t3);white-space:nowrap">{{ r.when }}</span><span style="font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.store }}</span><span><span style="{{ r.pill }}">{{ r.res }}</span></span><span style="color:var(--t2);white-space:nowrap">{{ r.by }}</span><span style="color:var(--t2)">{{ r.reason }}</span></div></sc-for>
+        </div></div></sc-if>
+        <sc-if value="{{ dNoReqs }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title);white-space:nowrap">No requests</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">This person was added directly by an admin.</span></div></sc-if>
+        <div style="height:8px"></div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ dIsAct }}" hint-placeholder-val="{{ false }}">
+      <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden;padding:8px 22px">
+        <sc-for list="{{ dAct }}" as="a" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr);gap:14px;align-items:center;padding:12px 0;border-top:1px solid {{ a.sep }};font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"><span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ a.d }}"></path></svg></span><span style="color:var(--t3);white-space:nowrap">{{ a.when }}</span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="color:var(--t1);font-weight:500">{{ a.text }}</span><span style="font-size:12.5px;color:var(--t3)">{{ a.who }}</span></span></div></sc-for>
+        <sc-if value="{{ dNoAct }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No activity yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Changes to this person will appear here.</span></div></sc-if>
+      </section>
+    </sc-if>
+    </div>
+    </div>
+    </div>
+  </div>
+</sc-if>
+</div>
+
+<sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closePanel }}" style="position:fixed;inset:0;z-index:180;background:var(--pn-scrim);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:pdFade .25s both"></div>
+  <aside role="dialog" aria-modal="true" style="{{ pBox }}">
+    <span aria-hidden="true" style="position:absolute;z-index:-1;top:-120px;right:-100px;width:360px;height:360px;background:var(--pn-glow);pointer-events:none"></span>
+    <div style="flex:none;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:24px 24px 14px">
+      <div style="flex:1 1 auto;display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3)">{{ pEyebrow }}</span><span style="font:500 24px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--pn-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pTitle }}</span></div>
+      <button type="button" onClick="{{ closePanel }}" aria-label="Close" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--pn-ink);cursor:pointer"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div data-us-pk="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:4px 24px 20px;display:flex;flex-direction:column;gap:18px">
+      <sc-if value="{{ pHasHelper }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;padding:12px 14px;border-radius:16px;background:var(--pn-tile);font:500 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pa)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM12 8v5M11.99 16h.01"></path></svg>{{ pHelper }}</div></sc-if>
+      <sc-for list="{{ pFields }}" as="fd" hint-placeholder-count="3">
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ fd.label }}<span style="color:var(--lc-bad)">{{ fd.req }}</span></span>
+          <input type="{{ fd.type }}" value="{{ fd.value }}" onChange="{{ fd.onChange }}" onBlur="{{ fd.onBlur }}" placeholder="{{ fd.ph }}" style="{{ fd.style }}"/>
+          <sc-if value="{{ fd.hasErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-bad)">{{ fd.errPre }}<sc-if value="{{ fd.hasLink }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ fd.link }}" style="border:0;background:transparent;padding:0;color:var(--lc-bad);font:700 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-decoration:underline;cursor:pointer">{{ fd.linkName }}</button>.</sc-if></span></sc-if>
+          <sc-if value="{{ fd.hasHint }}" hint-placeholder-val="{{ false }}"><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ fd.hint }}</span></sc-if>
+        </label>
+      </sc-for>
+      <sc-if value="{{ pHasVia }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Send sign-in link by<span style="color:var(--lc-bad)"> *</span></span><div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ pVia }}" as="v" hint-placeholder-count="3"><button type="button" onClick="{{ v.pick }}" style="{{ v.style }}">{{ v.label }}</button></sc-for></div></div></sc-if>
+      <sc-if value="{{ pHasWash }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ pToggleWash }}" style="display:flex;align-items:flex-start;gap:12px;padding:14px;border:0;border-radius:16px;background:var(--pn-tile);text-align:left;cursor:pointer"><span style="{{ pWashBox }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="display:flex;flex-direction:column;gap:3px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Can edit wash functions</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">Lets this technician change a store's wash functions in the app.</span></span></button></sc-if>
+      <sc-if value="{{ pHasStores }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;flex-direction:column;gap:3px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Stores<span style="color:var(--lc-bad)">{{ pStoresReq }}</span></span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ pStoresHelp }}</span></div>
+          <label style="display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ pSq }}" onChange="{{ pOnSq }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ pStChips }}" as="sc" hint-placeholder-count="6"><button type="button" onClick="{{ sc.pick }}" style="{{ sc.style }}">{{ sc.label }}</button></sc-for></div>
+          <div style="display:flex;align-items:center;gap:14px;padding:2px 2px 0"><span style="flex:1;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ pSelFg }}">{{ pSelLine }}</span><button type="button" onClick="{{ pSelAll }}" style="border:0;background:transparent;padding:2px 0;color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Select all shown</button><button type="button" onClick="{{ pClear }}" style="border:0;background:transparent;padding:2px 0;color:var(--pn-ink2);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Clear</button></div>
+          <div data-us-pk="1" style="max-height:330px;overflow-y:auto;border-radius:18px;background:var(--pn-inner);padding:4px">
+            <sc-for list="{{ pList }}" as="o" hint-placeholder-count="8"><button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}"><span style="{{ o.box }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ o.subFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.sub }}</span></span></button></sc-for>
+            <sc-if value="{{ pListEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:18px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);text-align:center">No stores match.</div></sc-if>
+          </div>
+          <sc-if value="{{ pStoresErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-bad)">Pick at least one store.</span></sc-if>
+        </div>
+      </sc-if>
+    </div>
+    <div style="flex:none;display:flex;justify-content:flex-end;gap:10px;padding:16px 24px 22px;border-top:1px solid var(--pn-line)">
+      <button type="button" onClick="{{ closePanel }}" style="{{ secBtn }}">Cancel</button>
+      <button data-dark="1" type="button" onClick="{{ pRun }}" style="{{ pBtn }}">{{ pLabel }}</button>
+    </div>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:190;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:var(--pn-scrim);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pdFade .25s both"></div>
+    <div role="dialog" aria-modal="true" style="position:relative;width:min(480px,100%);display:flex;flex-direction:column;gap:16px;padding:26px 24px 22px;border-radius:30px;background:var(--pn-bg);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);box-shadow:var(--pn-sh);animation:pdModal .32s cubic-bezier(.2,.8,.2,1) both">
+      <span style="font:500 21px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--pn-ink)">{{ mTitle }}</span>
+      <sc-for list="{{ mLines }}" as="ml" hint-placeholder-count="1"><span style="font:400 14px/1.55 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ ml }}</span></sc-for>
+      <sc-if value="{{ mHasWarn }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:8px;padding:13px 14px;border-radius:16px;background:var(--lc-warnbg)"><span style="display:flex;align-items:center;gap:8px;font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-warn)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12zM11.99 17h.01"></path></svg>{{ mWarn }}</span><sc-if value="{{ mHasWarnList }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ mWarnList }}" as="w" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-flat);color:var(--t1);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ w }}</span></sc-for></div></sc-if></div></sc-if>
+      <sc-if value="{{ mHasType }}" hint-placeholder-val="{{ false }}"><label style="display:flex;flex-direction:column;gap:7px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">Type <b style="color:var(--pn-ink)">{{ mTypeWant }}</b> to confirm</span><input type="text" value="{{ mTyped }}" onChange="{{ mOnType }}" style="{{ mTypeSt }}"/></label></sc-if>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px">
+        <button type="button" onClick="{{ closeModal }}" style="{{ secBtn }}">Cancel</button>
+        <button data-dark="1" type="button" onClick="{{ mRun }}" style="{{ mBtn }}">{{ mLabel }}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<div style="position:fixed;left:50%;bottom:28px;z-index:200;display:flex;align-items:center;gap:10px;padding:12px 18px 12px 12px;border-radius:999px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;pointer-events:none;transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translate(-50%,{{ toastY }})"><span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--lc-okbg);color:var(--lc-ok)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{{ toast }}</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const ME = "James Carter";
+const tag = (bg, fg) => ({ display: "inline-flex", alignItems: "center", gap: 6, height: 26, padding: "0 10px", borderRadius: 999, background: bg, color: fg, font: "600 12px " + F, whiteSpace: "nowrap" });
+const PILL = { active: tag("var(--lc-okbg)", "var(--lc-ok)"), invited: tag("rgba(var(--pl),.14)", "var(--pa)"), expired: tag("var(--lc-warnbg)", "var(--lc-warn)"), deactivated: tag("var(--lc-chip)", "var(--lc-ink2)"), approved: tag("var(--lc-okbg)", "var(--lc-ok)"), rejected: tag("var(--lc-badbg)", "var(--lc-bad)"), pending: tag("var(--lc-warnbg)", "var(--lc-warn)") };
+const ST_L = { active: "Active", invited: "Invited", expired: "Invite expired", deactivated: "Deactivated" };
+const primary = dis => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 44, padding: "0 20px", border: 0, borderRadius: 999, background: dis ? "rgba(var(--w),.08)" : "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: dis ? "var(--t3)" : "#fff", boxShadow: dis ? "none" : "inset 0 1px 0 rgba(255,255,255,.24)", font: "600 14px " + F, whiteSpace: "nowrap", cursor: dis ? "not-allowed" : "pointer", transition: "filter .15s" });
+const secondary = () => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 44, padding: "0 20px", borderRadius: 999, border: "1px solid var(--sc-line)", background: "transparent", color: "var(--t1)", font: "600 14px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const danger = () => Object.assign(primary(false), { background: "#ef4444", boxShadow: "none" });
+const small = (kind) => ({ display: "inline-flex", alignItems: "center", height: 34, padding: "0 14px", borderRadius: 999, border: kind === "p" ? 0 : "1px solid var(--sc-line)", background: kind === "p" ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : kind === "d" ? "#ef4444" : "transparent", color: kind === "s" ? "var(--t1)" : "#fff", boxShadow: kind === "p" ? "inset 0 1px 0 rgba(255,255,255,.24)" : "none", font: "600 13px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const circ = dis => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 34, height: 34, borderRadius: "50%", border: "1px solid var(--sc-line)", background: "transparent", color: dis ? "var(--t3)" : "var(--t1)", opacity: dis ? .45 : 1, cursor: dis ? "default" : "pointer", flex: "none" });
+const optSt = on => ({ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "9px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13.5px " + F, color: "var(--t1)", background: on ? "rgba(var(--pl),.12)" : "transparent" });
+const boxSt = (on, round) => ({ flex: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: round ? 999 : 6, border: "1.5px solid " + (on ? "#7c3aed" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "transparent", transition: "all .15s" });
+const pillBtn = on => ({ display: "inline-flex", alignItems: "center", gap: 8, height: 44, padding: "0 14px 0 16px", border: 0, borderRadius: 999, background: "var(--lc-flat)", boxShadow: on ? "var(--lc-edge),inset 0 0 0 1px rgba(var(--pl),.4)" : "var(--lc-edge)", color: "var(--t1)", font: "600 13.5px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const chipSt = on => ({ display: "inline-flex", alignItems: "center", height: 32, padding: "0 13px", borderRadius: 999, border: "1px solid " + (on ? "transparent" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "var(--t2)", font: "600 12.5px " + F, cursor: "pointer", whiteSpace: "nowrap", transition: "background .2s,color .2s" });
+const fieldSt = err => ({ width: "100%", height: 46, padding: "0 14px", borderRadius: 14, border: "1px solid " + (err ? "var(--lc-bad)" : "var(--sc-line)"), background: "var(--pn-field)", color: "var(--t1)", font: "500 14px " + F, outline: "none" });
+const segSt = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 36, padding: "0 15px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13px " + F, color: on ? "#fff" : "var(--t3)", background: on ? "#7c3aed" : "transparent", transition: "background .25s,color .25s" });
+const ICB = { tech: "M12 2C9.38 2 7.25 4.13 7.25 6.75c0 2.57 2.01 4.65 4.63 4.74.08-.01.16-.01.22 0h.07a4.738 4.738 0 004.58-4.74C16.75 4.13 14.62 2 12 2zM17.08 14.15c-2.79-1.86-7.34-1.86-10.15 0-1.27.85-1.97 2-1.97 3.23s.7 2.37 1.96 3.21C8.32 21.53 10.16 22 12 22c1.84 0 3.68-.47 5.08-1.41 1.26-.85 1.96-1.99 1.96-3.23-.01-1.23-.7-2.37-1.96-3.21z", store: "M9 2C6.38 2 4.25 4.13 4.25 6.75c0 2.57 2.01 4.65 4.63 4.74.08-.01.16-.01.22 0h.07a4.738 4.738 0 004.58-4.74C13.75 4.13 11.62 2 9 2zM14.08 14.15c-2.79-1.86-7.34-1.86-10.15 0-1.27.85-1.97 2-1.97 3.23s.7 2.37 1.96 3.21C5.32 21.53 7.16 22 9 22c1.84 0 3.68-.47 5.08-1.41 1.26-.85 1.96-1.99 1.96-3.23-.01-1.23-.7-2.37-1.96-3.21zM19.99 7.34c.16 1.94-1.22 3.64-3.13 3.87h-.05c-.06 0-.12 0-.17.02-.97.05-1.86-.26-2.53-.83 1.03-.92 1.62-2.3 1.5-3.8a4.65 4.65 0 00-.77-2.18 3.5 3.5 0 015.15 2.92zM21.99 16.59c-.08.97-.7 1.81-1.74 2.38-1 .55-2.26.81-3.51.78.72-.65 1.14-1.46 1.22-2.32.1-1.24-.49-2.43-1.67-3.38-.67-.53-1.45-.95-2.3-1.26 2.21-.64 4.99-.21 6.7 1.17.92.74 1.39 1.67 1.3 2.63z", admin: "M10.96 2.06L5.46 4.12C4.41 4.52 3.55 5.76 3.55 6.89v8.1c0 .81.53 1.88 1.18 2.36l5.5 4.11c.97.73 2.56.73 3.53 0l5.5-4.11c.65-.49 1.18-1.55 1.18-2.36v-8.1c0-1.12-.86-2.37-1.91-2.76l-5.5-2.06c-.56-.21-1.48-.21-2.07-.01zM12 7.1a2.15 2.15 0 100 4.3 2.15 2.15 0 000-4.3zM8.35 16.25c0-1.65 1.63-2.95 3.65-2.95s3.65 1.3 3.65 2.95c0 .3-.22.5-.5.5h-6.3c-.28 0-.5-.2-.5-.5z" };
+const IC = {
+  tech: "M12.12 12.78a.963.963 0 00-.24 0 3.27 3.27 0 01-3.16-3.27c0-1.81 1.46-3.28 3.28-3.28a3.276 3.276 0 01.12 6.55zM18.74 19.38A9.934 9.934 0 0112 22c-2.6 0-4.96-.99-6.74-2.62.1-.94.7-1.86 1.77-2.58 2.74-1.82 7.22-1.82 9.94 0 1.07.72 1.67 1.64 1.77 2.58zM12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z",
+  store: "M9.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C4.56 3.99 6.54 2 9 2a4.435 4.435 0 01.16 8.87zM16.41 4c1.94 0 3.5 1.57 3.5 3.5 0 1.89-1.5 3.43-3.37 3.5M4.16 14.56c-2.42 1.62-2.42 4.26 0 5.87 2.75 1.84 7.26 1.84 10.01 0 2.42-1.62 2.42-4.26 0-5.87-2.74-1.83-7.25-1.83-10.01 0zM18.34 20c.72-.15 1.4-.44 1.96-.87 1.56-1.17 1.56-3.1 0-4.27-.55-.42-1.22-.7-1.93-.86",
+  req: "M18.5 19.5h-4M16.5 21.5v-4M12.16 10.87c-.1-.01-.22-.01-.33 0a4.42 4.42 0 01-4.27-4.43C7.56 3.99 9.54 2 12 2a4.435 4.435 0 01.16 8.87zM12 21.81c-1.82 0-3.63-.46-5.01-1.38-2.42-1.62-2.42-4.26 0-5.87 2.75-1.84 7.26-1.84 10.01 0",
+  inv: "M17 20.5H7c-3 0-5-1.5-5-5v-7c0-3.5 2-5 5-5h10c3 0 5 1.5 5 5v7c0 3.5-2 5-5 5zM17 9l-3.13 2.5c-1.03.82-2.72.82-3.75 0L7 9",
+  shop: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12z",
+  warn: "M12 9v5M12 21.41H5.94c-3.47 0-4.92-2.48-3.24-5.51l3.12-5.62L8.76 5c1.78-3.21 4.7-3.21 6.48 0l2.94 5.29 3.12 5.62c1.68 3.03.22 5.51-3.24 5.51H12zM11.99 17h.01",
+  add: "M6 12h12M12 18V6", rm: "M6 6l12 12M18 6L6 18", ok: "M5 12.5l4.5 4.5L19 7.5", mail: "M17 20.5H7c-3 0-5-1.5-5-5v-7c0-3.5 2-5 5-5h10c3 0 5 1.5 5 5v7c0 3.5-2 5-5 5zM17 9l-3.13 2.5c-1.03.82-2.72.82-3.75 0L7 9", edit: "M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15"
+};
+const PEOPLE = new Set(["james-carter","daniel-reyes","kevin-tran","luis-ortega","mario-lopez","sam-mitchell","raj-shah","dan-whitfield","leo-santos"]);
+const slug = n => n.toLowerCase().replace(/\s+/g, "-");
+const av = n => { const k = slug(n); return PEOPLE.has(k) ? { avBg: "url(assets/people/" + k + ".png) center/cover no-repeat,var(--lc-chip)", ini: "" } : { avBg: "var(--np) center/cover no-repeat", ini: "" }; };
+const LIST = {
+  UT: [[1234,"Eagle Mountain"],[5112,"Ogden"],[5131,"Layton"],[5231,"Sandy"],[5240,"Provo"],[5302,"Orem"],[5418,"St George"],[5420,"Lehi"],[5507,"Draper"],[5611,"Logan"],[5702,"Murray"],[5815,"Midvale"],[5903,"Bountiful"],[5960,"Kaysville"]],
+  TX: [[7401,"Corpus Christi"],[7406,"Kingsville"],[7412,"San Antonio"],[7413,"Laredo"],[7415,"Austin"],[7417,"Corpus Christi"],[7420,"Waco"],[7422,"El Paso"],[7425,"Houston"],[7430,"Round Rock"],[7433,"Killeen"],[7436,"McAllen"],[7440,"Victoria"],[7444,"Brownsville"],[7448,"Harlingen"],[7452,"Temple"],[7455,"Bryan"],[7461,"Edinburg"],[7466,"Beeville"],[7470,"Alice"]],
+  CA: [[8101,"Bakersfield"],[8104,"Fresno"],[8110,"Riverside"],[8116,"Modesto"],[8121,"Visalia"],[8125,"Merced"],[8130,"Clovis"],[8134,"Tulare"],[8140,"Hanford"]],
+  CO: [[3101,"Denver"],[3105,"Aurora"],[3112,"Pueblo"],[3118,"Boulder"],[3124,"Greeley"],[3130,"Loveland"],[3137,"Longmont"],[3142,"Castle Rock"]],
+  NV: [[6101,"Las Vegas"],[6107,"Reno"],[6112,"Sparks"],[6118,"Carson City"],[6125,"North Las Vegas"],[6140,"Henderson"],[6146,"Mesquite"],[6151,"Boulder City"],[6158,"Fernley"],[6163,"Elko"],[6170,"Pahrump"],[6177,"Winnemucca"]]
+};
+const STATES = ["UT","TX","CA","CO","NV"];
+const STORES = []; STATES.forEach(s => LIST[s].forEach(([no, c]) => STORES.push({ no, st: s, name: no + " " + c + " - " + s })));
+const SBY = {}; STORES.forEach(x => SBY[x.no] = x);
+const sname = no => SBY[no] ? SBY[no].name : String(no);
+const DAYS = ["Mon 14 Oct","Sun 13 Oct","Sat 12 Oct","Fri 11 Oct","Thu 10 Oct","Wed 9 Oct","Tue 8 Oct","Mon 7 Oct","Fri 4 Oct","Mon 30 Sep"];
+const ASSIGN = ["2 Sep","9 Sep","16 Sep","23 Sep","30 Sep","7 Oct"];
+function makeData() {
+  const pick = (s, a, b) => LIST[s].slice(a, b + 1).map(x => x[0]);
+  const T0 = [
+    ["James Carter","(801) 555-0142","active",true,"Mon 14 Oct",[pick("UT",0,5),pick("TX",9,16)]],
+    ["Mario Lopez","(719) 555-0187","active",false,"Mon 14 Oct",[pick("CO",0,7),pick("UT",7,10)]],
+    ["Raj Shah","(702) 555-0114","active",false,"Fri 11 Oct",[pick("CA",0,5),pick("NV",0,6),pick("UT",6,6),pick("UT",11,12)]],
+    ["Kevin Tran","(361) 555-0129","active",false,"Fri 11 Oct",[pick("TX",0,8)]],
+    ["Luis Ortega","(775) 555-0163","deactivated",false,"Tue 8 Oct",[pick("NV",1,11)]],
+    ["Sam Mitchell","(210) 555-0175","invited",false,"Not signed in",[pick("TX",9,18)]],
+    ["Daniel Reyes","(512) 555-0198","expired",false,"Not signed in",[]]
+  ];
+  const techs = T0.map(([name, phone, status, wash, last, groups], i) => ({ id: "t" + i, name, email: slug(name).replace("-", ".") + "@apformulators.com", phone, status, wash, last, via: "email", he: "He", his: "His", never: status === "invited" || status === "expired", since: { "Sam Mitchell": "Mon 14 Oct", "Daniel Reyes": "Mon 21 Oct", "Luis Ortega": "Tue 8 Oct" }[name] || "Mon 7 Oct", stores: [].concat.apply([], groups).map((no, k) => ({ no, on: ASSIGN[(k + i) % 6], by: (k + i) % 3 ? "Dan Whitfield" : ME })) }));
+  const FIRST = ["Olivia","Marcus","Priya","Ethan","Noah","Ava","Liam","Mia","Caleb","Zoe","Owen","Ella","Jack","Grace","Ryan","Chloe","Aiden","Lily","Mason","Nora","Logan","Hannah","Lucas","Leah","Wyatt","Ruby","Henry","Isla","Dylan","Maya"];
+  const LAST = ["Grant","Bell","Nair","Hayes","Ward","Cole","Reed","Fox","Lane","Price","Hart","Stone","Dean","Shaw","Moss","Webb","Ross","Pierce","Hale","Burke","Frost","Wade","Blair","Quinn","Doyle","Marsh","Kemp","Lowe","Rhodes","Vance"];
+  const FEM = new Set(["Olivia","Priya","Ava","Mia","Zoe","Ella","Grace","Chloe","Lily","Nora","Hannah","Leah","Ruby","Isla","Maya","Emily"]);
+  const techOf = no => techs.filter(t => t.stores.some(s => s.no === no)).map(t => t.name);
+  const users = [];
+  const mk = (name, stores, status, by, last) => { const fn = name.split(" ")[0]; users.push({ id: "u" + users.length, name, email: slug(name).replace("-", ".") + "@dontdrivedirty.com", phone: "(" + [801,361,702,719,210][users.length % 5] + ") 555-" + String(1000 + (users.length * 37) % 9000).slice(0, 4), status, last, via: "email", he: FEM.has(fn) ? "She" : "He", his: FEM.has(fn) ? "Her" : "His", never: status === "invited", stores: stores.map((no, k) => ({ no, on: DAYS[(users.length + k) % 10], by: by || (techOf(no)[0] || "Dan Whitfield") })), reqs: [] }); };
+  mk("Olivia Grant", [7401, 7417], "active", ME, "Mon 14 Oct");
+  mk("Marcus Bell", [5231], "active", "Raj Shah", "Sun 13 Oct");
+  mk("Priya Nair", [6101], "invited", "Admin " + ME, "Not signed in");
+  let i = 3;
+  while (users.length < 248) { const n = FIRST[i % 30] + " " + LAST[(i * 7 + Math.floor(i / 30)) % 30]; i++; if (users.some(u => u.name === n)) continue; const a = STORES[(i * 13) % STORES.length].no, b = STORES[(i * 29 + 5) % STORES.length].no; mk(n, i % 4 === 0 && a !== b ? [a, b] : [a], users.length === 120 ? "deactivated" : "active", null, DAYS[i % 10]); }
+  { const ab = users.find(u => u.name === "Aiden Blair"); if (ab) { ab.stores = [{ no: 7466, on: "Tue 8 Oct", by: "Sam Mitchell" }]; ab.reqs = [{ when: "Mon 7 Oct, 16:20", no: 7466, res: "approved", by: "Sam Mitchell", reason: "" }]; } }
+  users[0].reqs = [{ when: "Thu 3 Oct, 08:40", no: 7401, res: "approved", by: ME, reason: "" }, { when: "Thu 3 Oct, 08:40", no: 7417, res: "approved", by: ME, reason: "" }];
+  users[1].reqs = [{ when: "Tue 1 Oct, 17:02", no: 5231, res: "approved", by: "Raj Shah", reason: "" }, { when: "Sun 13 Oct, 18:40", no: 5418, res: "pending", by: "", reason: "" }];
+  const admins = [{ id: "a0", name: ME, email: "james.carter@apformulators.com", status: "active", by: "Dan Whitfield", last: "Mon 14 Oct", you: true }, { id: "a1", name: "Dan Whitfield", email: "dan.whitfield@apformulators.com", status: "active", by: "Leo Santos", last: "Fri 11 Oct" }, { id: "a2", name: "Leo Santos", email: "leo.santos@apformulators.com", status: "active", by: "System", last: "Wed 9 Oct" }];
+  const reqs = [
+    { id: "r0", name: "Emily Parker", email: "emily.parker@dontdrivedirty.com", phone: "(361) 555-0101", at: "Mon 14 Oct, 09:12", existing: false, rows: [{ id: "a", no: 7401 }, { id: "b", no: 7406 }, { id: "c", no: null, typed: "7499 Laredo" }] },
+    { id: "r1", name: "Marcus Bell", email: "marcus.bell@dontdrivedirty.com", phone: users[1].phone, at: "Sun 13 Oct, 18:40", existing: true, userId: "u1", rows: [{ id: "a", no: 5418 }] },
+    { id: "r2", name: "Tyler Brooks", email: "tyler.brooks@dontdrivedirty.com", phone: "(702) 555-0156", at: "Sat 12 Oct, 11:05", existing: false, rows: [{ id: "a", no: 6140 }, { id: "b", no: 6146 }] }
+  ];
+  const resolved = [
+    { person: "Ryan Hayes", no: 7412, res: "approved", by: "Kevin Tran", role: "Technician, in the app", when: "Fri 11 Oct, 14:20", reason: "" },
+    { person: "Nora Webb", no: 5302, res: "rejected", by: "Dan Whitfield", role: "Admin", when: "Thu 10 Oct, 09:05", reason: "Not at this store" },
+    { person: "Ethan Cole", no: 6118, res: "approved", by: "Luis Ortega", role: "Technician, in the app", when: "Wed 9 Oct, 16:48", reason: "" },
+    { person: "Ava Reed", no: 3105, res: "approved", by: "Mario Lopez", role: "Technician, in the app", when: "Tue 8 Oct, 10:31", reason: "" }
+  ];
+  const act = [
+    { pid: "t0", when: "Mon 14 Oct, 10:02", who: "Admin Dan Whitfield", text: "Assigned 7417 Corpus Christi - TX", d: IC.add },
+    { pid: "t0", when: "Fri 11 Oct, 16:30", who: "James Carter, in the app", text: "Approved Olivia Grant for 7401", d: IC.ok },
+    { pid: "t0", when: "Mon 30 Sep, 09:15", who: "Admin Dan Whitfield", text: "Turned on Can edit wash functions", d: IC.edit },
+    { pid: "t0", when: "Mon 2 Sep, 08:00", who: "Admin Dan Whitfield", text: "Created account and sent invite", d: IC.mail },
+    { pid: "t2", when: "Fri 11 Oct, 16:30", who: "Raj Shah, in the app", text: "Approved Marcus Bell for 5231", d: IC.ok },
+    { pid: "t3", when: "Fri 11 Oct, 14:20", who: "Kevin Tran, in the app", text: "Approved Ryan Hayes for 7412", d: IC.ok },
+    { pid: "t5", when: "Mon 7 Oct, 11:40", who: "Admin " + ME, text: "Sent invite", d: IC.mail },
+    { pid: "t6", when: "Mon 30 Sep, 15:10", who: "Admin " + ME, text: "Sent invite", d: IC.mail },
+    { pid: "u0", when: "Thu 3 Oct, 09:02", who: "Admin " + ME, text: "Approved for 7401 and 7417", d: IC.ok },
+    { pid: "u2", when: "Mon 7 Oct, 12:05", who: "Admin " + ME, text: "Added by admin, invite sent", d: IC.mail }
+  ];
+  return { techs, users, admins, reqs, resolved, act };
+}
+const OVERDUE = new Set([8104, 8110, 5302, 7448]);
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const lastVisit = no => { const dd = OVERDUE.has(no) ? 31 + (no % 9) : 3 + (no % 22); const d = new Date(2024, 9, 14 - dd); return { days: dd, label: WD[d.getDay()] + " " + d.getDate() + " " + MON[d.getMonth()], over: dd > 30 }; };
+const isSettled = (r, now) => r.rows.every(x => x.res) && now - Math.max.apply(null, r.rows.map(x => x.at || 0)) >= 10000;
+const emailOk = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const phoneOk = p => p.replace(/\D/g, "").length === 10;
+const nowLabel = () => { const d = new Date(); return "Today, " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+
+const vseg = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 34, padding: "0 14px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: "600 13px " + F, background: on ? "var(--lc-chip)" : "transparent", color: on ? "var(--lc-title)" : "var(--t3)", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.28)" : "none", transition: "background .2s,color .2s" });
+const VKEY = "apf.users.view", VKEY2 = "apf.users.views";
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { views: (() => { try { const j = JSON.parse(localStorage.getItem(VKEY2) || "null"); if (j) return j; const o = localStorage.getItem(VKEY); return o ? { tech: o } : {}; } catch (e) { return {}; } })(), dOver: false, tab: "tech", view: "list", who: null, did: null, dtab: "stores", q: "", f: {}, sq: "", sort: "name", open: null, menuFor: null, page: 0, reqSeg: "pending", tileOn: null, tview: (() => { try { return localStorage.getItem(VKEY) || "grid"; } catch (e) { return "grid"; } })(), panel: null, modal: null, toast: "", rej: null, pick: null, now: Date.now(), hl: null, D: makeData() }; }
+  dFit = React.createRef();
+  fitD() { const el = this.dFit.current; if (!el) return; const top = Math.max(0, el.getBoundingClientRect().top); const h = Math.max(420, Math.round(innerHeight - top - 49)); if (Math.abs(h - (this.state.dH || 0)) > 1) this.setState({ dH: h }); }
+  componentDidMount() {
+    this.onFit = () => this.fitD(); addEventListener("resize", this.onFit); this.fitT = setInterval(this.onFit, 400);
+    this.onDoc = e => { if ((this.state.open || this.state.menuFor || this.state.rej || this.state.pick) && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ open: null, menuFor: null, rej: null, pick: null }); };
+    this.onKey = e => { if (e.key === "Escape") this.setState({ panel: null, modal: null, open: null, menuFor: null, rej: null, pick: null }); };
+    document.addEventListener("mousedown", this.onDoc); document.addEventListener("keydown", this.onKey);
+    this.iv = setInterval(() => { const D = this.state.D; if (D.reqs.some(r => r.rows.some(x => x.at && Date.now() - x.at < 11000))) this.setState({ now: Date.now() }); }, 1000);
+    this.report();
+  }
+  componentWillUnmount() { removeEventListener("resize", this.onFit); clearInterval(this.fitT); document.removeEventListener("mousedown", this.onDoc); document.removeEventListener("keydown", this.onKey); clearInterval(this.iv); clearTimeout(this.tt); }
+  componentDidUpdate() { this.report(); if (this.props.focus && this.props.focus !== this.lastFocus) { this.lastFocus = this.props.focus; this.setState({ view: "list", tab: "req", reqSeg: "pending", hl: "r0", f: {}, q: "" }); } }
+  report() { const n = this.pendingN(); if (n !== this.lastN) { this.lastN = n; if (this.props.onCount) this.props.onCount(n); } }
+  pendingN() { const now = this.state.now; return this.state.D.reqs.filter(r => !isSettled(r, now)).reduce((a, r) => a + r.rows.filter(x => !x.res).length, 0); }
+  say(m) { clearTimeout(this.tt); this.setState({ toast: m }); this.tt = setTimeout(() => this.setState({ toast: "" }), 2800); }
+  mut(fn, extra) { const D = this.state.D; fn(D); this.setState(Object.assign({ D: Object.assign({}, D) }, extra || {})); }
+  log(pid, text, d) { this.state.D.act.unshift({ pid, when: nowLabel(), who: "Admin " + ME, text, d: d || IC.edit }); }
+  person(who, id) { const D = this.state.D; return who === "tech" ? D.techs.find(t => t.id === id) : who === "admin" ? D.admins.find(a => a.id === id) : D.users.find(u => u.id === id); }
+  techsOf(no, exceptId) { return this.state.D.techs.filter(t => t.status !== "deactivated" && t.id !== exceptId && t.stores.some(s => s.no === no)); }
+  setTab(t) { this.setState({ tab: t, f: {}, q: "", page: 0, open: null, tileOn: null, sort: "name", reqSeg: "pending" }); }
+  openDetail(who, id) { this.setState({ view: "detail", who, did: id, dtab: "stores", dOver: false, menuFor: null }); try { window.scrollTo(0, 0); } catch (e) {} }
+  findEmail(email, selfId) { const e = email.trim().toLowerCase(); if (!e) return null; const D = this.state.D; const all = D.techs.map(x => ["tech", x]).concat(D.users.map(x => ["user", x]), D.admins.map(x => ["admin", x])); const hit = all.find(([, x]) => x.email.toLowerCase() === e && x.id !== selfId); return hit ? { who: hit[0], p: hit[1] } : null; }
+
+  openPanel(kind, mode, id, preset) {
+    const p = id ? this.person(kind === "store" ? "user" : kind, id) : null;
+    const f = p ? { name: p.name, email: p.email, phone: p.phone || "", via: p.via || "email", wash: !!p.wash, stores: (p.stores || []).map(s => s.no) } : { name: "", email: "", phone: "", via: "email", wash: false, stores: preset || [] };
+    this.setState({ panel: { kind, mode, id, f, orig: p ? p.email : "", touched: {}, tried: false, sq: "", sst: "All" }, menuFor: null, modal: null });
+  }
+  openStoresPanel(who, id) { const p = this.person(who, id); this.setState({ panel: { kind: "stores", who, id, f: { stores: p.stores.map(s => s.no) }, sq: "", sst: "All", touched: {}, tried: false }, menuFor: null }); }
+  updP(patch) { this.setState(s => ({ panel: Object.assign({}, s.panel, patch) })); }
+  updF(patch) { this.setState(s => ({ panel: Object.assign({}, s.panel, { f: Object.assign({}, s.panel.f, patch) }) })); }
+
+  errs(p) {
+    const f = p.f, e = {};
+    if (p.kind === "stores") return e;
+    if (!f.name.trim()) e.name = { t: "Enter a full name." };
+    if (!f.email.trim()) e.email = { t: "Enter an email." };
+    else if (!emailOk(f.email.trim())) e.email = { t: "Enter a valid email." };
+    else if (p.kind === "store" && !/@dontdrivedirty\.com$/i.test(f.email.trim())) e.email = { t: "Use a @dontdrivedirty.com email." };
+    else { const hit = this.findEmail(f.email, p.id); if (hit) e.email = { t: "This email already belongs to ", link: hit }; }
+    if (p.kind !== "admin" && !phoneOk(f.phone)) e.phone = { t: f.phone.trim() ? "Enter a 10-digit US phone number." : "Enter a phone number." };
+    if (p.kind === "admin" && f.phone.trim() && !phoneOk(f.phone)) e.phone = { t: "Enter a 10-digit US phone number." };
+    if (p.kind === "store" && !f.stores.length) e.stores = { t: "Pick at least one store." };
+    return e;
+  }
+  savePanel() {
+    const p = this.state.panel, e = this.errs(p);
+    if (Object.keys(e).length) { this.updP({ tried: true }); return; }
+    const f = p.f, nm = f.name.trim(), stamp = { on: "Today", by: ME };
+    if (p.kind === "stores") {
+      const per = this.person(p.who, p.id), before = per.stores.map(s => s.no);
+      this.mut(D => { per.stores = f.stores.map(no => per.stores.find(s => s.no === no) || Object.assign({ no }, stamp)); const add = f.stores.filter(n => !before.includes(n)).length, rm = before.filter(n => !f.stores.includes(n)).length; if (add || rm) this.log(p.id, (add ? "Added " + add + " store" + (add > 1 ? "s" : "") : "") + (add && rm ? ", removed " + rm : rm ? "Removed " + rm + " store" + (rm > 1 ? "s" : "") : ""), IC.shop); }, { panel: null });
+      this.say("Stores updated."); return;
+    }
+    if (p.mode === "edit") {
+      const per = this.person(p.kind === "store" ? "user" : p.kind, p.id), changed = per.email.toLowerCase() !== f.email.trim().toLowerCase();
+      this.mut(D => { Object.assign(per, { name: nm, email: f.email.trim(), phone: f.phone.trim(), via: f.via }); if (p.kind === "tech") { per.wash = f.wash; per.stores = f.stores.map(no => per.stores.find(s => s.no === no) || Object.assign({ no }, stamp)); } if (p.kind === "store") per.stores = f.stores.map(no => per.stores.find(s => s.no === no) || Object.assign({ no }, stamp)); this.log(p.id, "Edited details", IC.edit); }, { panel: null });
+      this.say(changed ? "Saved. New sign-in link sent to " + f.email.trim() + "." : "Changes saved."); return;
+    }
+    this.mut(D => {
+      if (p.kind === "tech") { const id = "t" + Date.now(); D.techs.push({ id, name: nm, email: f.email.trim(), phone: f.phone.trim(), status: "invited", wash: f.wash, last: "Not signed in", via: f.via, he: "He", his: "His", never: true, stores: f.stores.map(no => Object.assign({ no }, stamp)) }); D.act.unshift({ pid: id, when: nowLabel(), who: "Admin " + ME, text: "Created account and sent invite", d: IC.mail }); }
+      if (p.kind === "store") { const id = "u" + Date.now(); D.users.unshift({ id, name: nm, email: f.email.trim(), phone: f.phone.trim(), status: "invited", last: "Not signed in", via: f.via, he: "They", his: "Their", never: true, stores: f.stores.map(no => ({ no, on: "Today", by: "Admin " + ME })), reqs: [] }); D.act.unshift({ pid: id, when: nowLabel(), who: "Admin " + ME, text: "Added by admin, invite sent", d: IC.mail }); }
+      if (p.kind === "admin") D.admins.push({ id: "a" + Date.now(), name: nm, email: f.email.trim(), status: "invited", by: ME, last: "Not signed in" });
+    }, { panel: null });
+    this.say("Invite sent to " + nm + ".");
+  }
+
+  menuFor(who, p) {
+    const it = (label, run, dis, tip, red) => ({ label, tip: tip || "", run: e => { e.stopPropagation(); if (!dis) { this.setState({ menuFor: null }); run(); } }, style: Object.assign(optSt(false), { color: dis ? "var(--t3)" : red ? "var(--lc-bad)" : "var(--t1)", cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .6 : 1 }) });
+    const m = [];
+    if (who === "admin") {
+      const activeAdmins = this.state.D.admins.filter(a => a.status === "active").length;
+      if (p.status === "invited") m.push(it("Resend invite", () => this.say("Invite sent again.")));
+      else m.push(it("Send password reset", () => this.setState({ modal: { kind: "reset", who, id: p.id } })));
+      if (p.status === "deactivated") m.push(it("Reactivate", () => this.setState({ modal: { kind: "react", who, id: p.id } })));
+      else m.push(it("Deactivate", () => this.setState({ modal: { kind: "deact", who, id: p.id } }), p.you || (p.status === "active" && activeAdmins <= 1), p.you ? "You can't deactivate yourself." : "There must be at least one admin.", true));
+      return m;
+    }
+    const kind = who === "tech" ? "tech" : "store";
+    m.push(it("Edit", () => this.openPanel(kind, "edit", p.id)));
+    m.push(it(who === "tech" ? "Edit stores" : "Manage stores", () => this.openStoresPanel(who, p.id)));
+    if (p.status === "invited" || p.status === "expired") m.push(it("Resend invite", () => this.mut(() => { p.status = "invited"; this.log(p.id, "Invite sent again", IC.mail); }, {}) || this.say("Invite sent again.")));
+    if (p.status === "active") m.push(it("Send password reset", () => this.setState({ modal: { kind: "reset", who, id: p.id } })));
+    if (p.status === "deactivated") m.push(it("Reactivate", () => this.setState({ modal: { kind: "react", who, id: p.id } })));
+    else m.push(it("Deactivate", () => this.setState({ modal: { kind: "deact", who, id: p.id } }), false, "", true));
+    if (p.never) m.push(it("Delete", () => this.setState({ modal: { kind: "delete", who, id: p.id, typed: "" } }), false, "", true));
+    return m;
+  }
+
+  decide(r, row, res, reason) {
+    this.mut(D => {
+      row.res = res; row.at = Date.now(); row.reason = reason || ""; row.by = ME;
+      if (res === "approved") {
+        if (r.existing) { const u = D.users.find(x => x.id === r.userId); if (u && !u.stores.some(s => s.no === row.no)) { u.stores.push({ no: row.no, on: "Today", by: "Admin " + ME }); row.added = true; } }
+        else { let u = D.users.find(x => x.reqId === r.id); if (!u) { u = { id: "u" + Date.now(), reqId: r.id, name: r.name, email: r.email, phone: r.phone, status: "invited", last: "Not signed in", via: "email", he: "They", his: "Their", never: true, stores: [], reqs: [] }; D.users.unshift(u); row.created = true; } u.stores.push({ no: row.no, on: "Today", by: "Admin " + ME }); row.added = true; }
+      }
+    }, { rej: null, now: Date.now() });
+    if (res === "approved") this.say(r.name + " approved for " + row.no + "." + (row.created ? " Sign-in link sent." : ""));
+    else this.say("Request for " + (row.no || row.typed) + " rejected.");
+  }
+  undo(r, row) {
+    this.mut(D => {
+      if (row.res === "approved" && row.added) { const u = r.existing ? D.users.find(x => x.id === r.userId) : D.users.find(x => x.reqId === r.id); if (u) { u.stores = u.stores.filter(s => s.no !== row.no); if (row.created && !u.stores.length) D.users.splice(D.users.indexOf(u), 1); else if (row.created) { const other = r.rows.find(x => x !== row && x.res === "approved"); if (other) other.created = true; } } }
+      row.res = null; row.at = null; row.added = false; row.created = false;
+    }, { now: Date.now() });
+  }
+
+  runModal() {
+    const m = this.state.modal; if (!m) return;
+    const p = this.person(m.who, m.id);
+    if (m.kind === "reset") { this.mut(() => this.log(p.id, "Sent password reset link", IC.mail), { modal: null }); this.say("Password reset link sent to " + p.name + "."); return; }
+    if (m.kind === "deact") { this.mut(() => { p.status = "deactivated"; this.log(p.id, "Deactivated", IC.rm); }, { modal: null }); this.say(p.name + " deactivated."); return; }
+    if (m.kind === "react") { this.mut(() => { p.status = p.never ? "invited" : "active"; this.log(p.id, "Reactivated", IC.ok); }, { modal: null }); this.say(p.name + " reactivated."); return; }
+    if (m.kind === "delete") { if ((m.typed || "").trim().toLowerCase() !== p.email.toLowerCase()) return; this.mut(D => { const arr = m.who === "tech" ? D.techs : D.users; arr.splice(arr.indexOf(p), 1); }, { modal: null, view: "list" }); this.say(p.name + " deleted."); return; }
+    if (m.kind === "rmstore") {
+      const last = m.who === "user" && p.stores.length === 1;
+      this.mut(() => { p.stores = p.stores.filter(s => s.no !== m.no); if (last) p.status = "deactivated"; this.log(p.id, "Removed " + sname(m.no) + (last ? " and deactivated" : ""), IC.rm); }, { modal: null });
+      this.say(last ? p.name + " removed and deactivated." : "Removed " + m.no + " from " + p.name + ".");
+    }
+  }
+
+  renderVals() {
+    const s = this.state, D = s.D, now = s.now;
+    const out = { toast: s.toast, toastOp: s.toast ? 1 : 0, toastY: s.toast ? "0px" : "10px", secBtn: secondary(), q: s.q, hasQ: !!s.q, onQ: e => this.setState({ q: e.target.value, page: 0 }), clearQ: () => this.setState({ q: "", page: 0 }) };
+    const pendN = this.pendingN();
+    const liveT = D.techs.filter(t => t.status !== "deactivated"), liveU = D.users.filter(u => u.status !== "deactivated");
+    const invN = D.techs.concat(D.users).filter(x => x.status === "invited" || x.status === "expired").length;
+    out.showList = s.view === "list"; out.showDetail = s.view === "detail";
+
+    // tiles
+    const TD = [["tech", "Technicians", String(liveT.length), liveT.filter(t => t.status === "active").length + " active · " + liveT.filter(t => t.status !== "active").length + " not signed in", IC.tech], ["store", "Store users", String(liveU.length), liveU.filter(u => u.status === "active").length + " active · " + liveU.filter(u => u.status !== "active").length + " not signed in", IC.store], ["req", "Access requests", String(pendN), "Waiting for approval", IC.req], ["inv", "Invites pending", String(invN), "Not signed in yet", IC.inv]];
+    out.tiles = TD.map(([k, label, value, sub, d], i) => {
+      const on = s.tileOn === k;
+      return { label, value, sub, d, on, icFill: "none", icSw: on ? 2 : 1.6,
+        apply: () => { if (on) { this.setState({ tileOn: null, f: {} }); return; } if (k === "inv") { const t = D.techs.some(x => x.status === "invited" || x.status === "expired") ? "tech" : "store"; this.setState({ tab: t, f: { status: ["invited", "expired"] }, q: "", page: 0, tileOn: k }); } else this.setState({ tab: k, f: k === "req" ? {} : { status: ["active"] }, q: "", page: 0, reqSeg: "pending", tileOn: k }); },
+        shHover: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 30px 50px -24px var(--k55)" : "var(--sc-shh)", arrowSz: on ? 16 : 13,
+        valColor: on ? "#fff" : (k === "req" && +value > 0 ? "var(--lc-warn)" : "var(--sc-acc)"), subColor: on ? "rgba(255,255,255,0.78)" : "var(--sc-ink3)", labelColor: on ? "#fff" : "var(--sc-acc)",
+        dark: on ? "1" : "0", blobOp: on ? 1 : 0, blobScale: on ? 1 : 0.6, arrowD: on ? "M7 7l10 10M17 7L7 17" : "M7 17L17 7M8 7h9v9",
+        style: { position: "relative", isolation: "isolate", overflow: "hidden", display: "flex", flexDirection: "column", width: "100%", minWidth: 0, minHeight: 200, textAlign: "left", padding: "18px 20px 20px", borderRadius: 28, animation: "scRise .85s cubic-bezier(.2,.8,.2,1) " + (0.17 + i * 0.09).toFixed(2) + "s both", cursor: "pointer", font: "inherit", color: "var(--t1)", background: on ? "linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%)" : "var(--sc-card)", boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 20px 40px -24px var(--k55)" : "var(--sc-sh)", border: "1.5px solid transparent", transition: "background .35s,box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1)" },
+        iconStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", width: 40, height: 40, borderRadius: 999, border: "1px solid " + (on ? "rgba(255,255,255,0.3)" : "var(--sc-line)"), background: on ? "rgba(255,255,255,0.12)" : "transparent", color: on ? "#fff" : "var(--sc-ink)", transition: "background .3s,border-color .3s,color .3s" },
+        arrowStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", overflow: "hidden", width: 36, height: 36, borderRadius: 999, border: on ? "0" : "1px solid var(--sc-actb)", background: on ? "#fff" : "var(--sc-actbg)", color: on ? "#2e1065" : "var(--sc-actfg)", transition: "background .3s,color .3s,transform .45s cubic-bezier(.34,1.56,.64,1)", transform: on ? "rotate(90deg)" : "none" } };
+    });
+
+    // tabs
+    const TB = [["tech", "Technicians", liveT.length], ["store", "Store users", liveU.length], ["req", "Access requests", pendN], ["admin", "Admins", D.admins.length]];
+    out.tabs = TB.map(([k, label, n]) => { const on = s.tab === k, warn = k === "req" && n > 0; return { label, n: String(n), hasN: true, go: () => this.setTab(k), style: Object.assign(segSt(on), { height: 38, padding: "0 12px 0 16px", gap: 8, fontSize: 13.5 }), nStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 22, height: 22, padding: "0 7px", borderRadius: 999, font: "700 11.5px " + F, background: on ? "rgba(255,255,255,.2)" : warn ? "var(--lc-warnbg)" : "var(--lc-chip)", color: on ? "#fff" : warn ? "var(--lc-warn)" : "var(--lc-ink2)" } }; });
+    out.isTech = s.tab === "tech"; out.isStore = s.tab === "store"; out.isAdmin = s.tab === "admin"; out.isReq = s.tab === "req";
+    out.isPending = out.isReq && s.reqSeg === "pending"; out.isResolved = out.isReq && s.reqSeg === "resolved";
+    out.hasToolbar = s.tab !== "admin";
+    out.hasAdd = true; out.addOpen = s.open === "add"; out.addChev = s.open === "add" ? "rotate(180deg)" : "none";
+    out.addTech = () => this.openPanel("tech", "add");
+    out.addOpts = [["tech", "Technician", "Uses the app for their assigned stores", ICB.tech], ["store", "Store user", "Approved for one or more stores", ICB.store], ["admin", "Admin", "Full access to this portal", ICB.admin]].map(([k, label, sub, d]) => ({ label, sub, d, run: () => { this.setState({ open: null }); this.openPanel(k, "add"); } })); out.addLabel = { tech: "Add technician", store: "Add store user", admin: "Add admin" }[s.tab] || "";
+    out.addRun = () => this.setState({ open: s.open === "add" ? null : "add" });
+    out.reqSegs = [["pending", "Pending (" + pendN + ")"], ["resolved", "Resolved"]].map(([k, label]) => ({ label, style: segSt(s.reqSeg === k), go: () => this.setState({ reqSeg: k }) }));
+
+    // filters
+    const sel = k => s.f[k] || [];
+    const tog = (k, v, single) => () => this.setState(z => { const cur = z.f[k] || []; const nx = single ? [v] : cur.includes(v) ? cur.filter(x => x !== v) : cur.concat([v]); return { f: Object.assign({}, z.f, { [k]: nx }), page: 0, tileOn: null }; });
+    const mkF = (k, label, opts, o2) => { const n = sel(k).length, isOpen = s.open === k; return Object.assign({ label, n: String(n), hasN: n > 0, isOpen, searchable: false, sq: s.sq, onSq: e => this.setState({ sq: e.target.value }), toggle: () => this.setState({ open: isOpen ? null : k, sq: "" }), clear: () => this.setState(z => ({ f: Object.assign({}, z.f, { [k]: [] }), page: 0, tileOn: null })), btn: pillBtn(n > 0 || isOpen),
+      opts: opts.map(([v, l, note]) => { const on = sel(k).includes(v); return { label: l, note: note || "", toggle: tog(k, v), style: optSt(on), box: boxSt(on) }; }) }, o2 || {}); };
+    const storeOpts = () => { const q = s.sq.trim().toLowerCase(); const pool = STORES.filter(x => !q || x.name.toLowerCase().includes(q)); const chosen = sel("store"); return chosen.map(no => SBY[no]).concat(pool.filter(x => !chosen.includes(x.no))).slice(0, 60).map(x => [x.no, x.name]); };
+    const STAT = [["active", "Active"], ["invited", "Invited"], ["expired", "Invite expired"], ["deactivated", "Deactivated"]];
+    const SORTS = s.tab === "tech" ? [["name", "Name"], ["most", "Most stores"], ["last", "Last active"]] : [["name", "Name"], ["last", "Last active"]];
+    const sortF = { label: "Sort: " + (SORTS.find(x => x[0] === s.sort) || SORTS[0])[1], n: "0", hasN: false, isOpen: s.open === "sort", searchable: false, sq: "", onSq: () => {}, clear: () => {}, toggle: () => this.setState({ open: s.open === "sort" ? null : "sort" }), btn: pillBtn(s.open === "sort"), opts: SORTS.map(([v, l]) => ({ label: l, note: "", toggle: () => this.setState({ sort: v, open: null }), style: optSt(s.sort === v), box: boxSt(s.sort === v, true) })) };
+    if (s.tab === "tech") out.filters = [mkF("status", "Status", STAT), mkF("state", "State", STATES.map(x => [x, x])), mkF("store", "Store", storeOpts(), { searchable: true }), sortF];
+    else if (s.tab === "store") out.filters = [mkF("status", "Status", STAT), mkF("store", "Store", storeOpts(), { searchable: true }), sortF];
+    else if (s.tab === "req") out.filters = [mkF("store", "Store", storeOpts(), { searchable: true })];
+    else out.filters = [];
+
+    const q = s.q.trim().toLowerCase();
+    const mq = p => !q || p.name.toLowerCase().includes(q) || p.email.toLowerCase().includes(q);
+    const stF = p => sel("status").length ? sel("status").includes(p.status) : p.status !== "deactivated";
+    const storeF = p => !sel("store").length || p.stores.some(x => sel("store").includes(x.no));
+    const DORD = d => { const i = DAYS.indexOf(d); return i < 0 ? 99 : i; };
+    const sorter = (a, b) => s.sort === "most" ? b.stores.length - a.stores.length : s.sort === "last" ? DORD(a.last) - DORD(b.last) : a.name.localeCompare(b.name);
+    const openMenu = (key) => e => { e.stopPropagation(); this.setState({ menuFor: s.menuFor === key ? null : key }); };
+
+    // technicians
+    const tl = D.techs.filter(t => mq(t) && stF(t) && storeF(t) && (!sel("state").length || t.stores.some(x => sel("state").includes(SBY[x.no].st)))).sort((a, b) => (a.status === "deactivated") - (b.status === "deactivated") || sorter(a, b));
+    const MKS = { ok: ["var(--lc-okbg)", "var(--lc-ok)", "M5 12.5l4.5 4.5L19 7.5"], warn: ["var(--lc-warnbg)", "var(--lc-warn)", "M12 6v7M12 17.5v.5"], bad: ["var(--lc-badbg)", "var(--lc-bad)", "M7 7l10 10M17 7L7 17"], mute: ["var(--lc-chip)", "var(--sc-ink3)", "M7 12h10"], bad: ["var(--lc-badbg)", "var(--lc-bad)", "M7 7l10 10M17 7L7 17"] };
+    const crow = (k, text, meta, i) => ({ cl: "0", tip: "", go: () => {}, mBg: MKS[k][0], mFg: MKS[k][1], mD: MKS[k][2], text, meta, lFg: k === "mute" ? "var(--lc-ink2)" : "var(--sc-ink)", sep: i ? "var(--lc-iline)" : "transparent" });
+    out.techRows = tl.map((t, ti) => { const sts = [...new Set(t.stores.map(x => SBY[x.no].st))]; const solo = t.stores.filter(x => !this.techsOf(x.no, t.id).length).length;
+      const dead = t.status === "deactivated", none = !t.stores.length || dead;
+      const over = t.stores.filter(x => OVERDUE.has(x.no)).length;
+      const reqN = none ? 0 : D.reqs.filter(r => !isSettled(r, now)).reduce((a, r) => a + r.rows.filter(x => !x.res && x.no && t.stores.some(y => y.no === x.no)).length, 0);
+      const r1 = t.status === "active" ? crow("ok", "Signed in", t.last, 0) : t.status === "invited" ? crow("warn", "Invite sent", "Sent " + t.since, 0) : t.status === "expired" ? crow("bad", "Invite expired", "Expired " + t.since, 0) : crow("mute", "Deactivated", "Since " + t.since, 0);
+      const r2 = none ? crow("mute", "No stores", "", 1) : over ? Object.assign(crow("warn", "Service overdue", over + (over === 1 ? " store" : " stores"), 1), { cl: "1", tip: "Show overdue stores", go: e => { e.stopPropagation(); this.setState({ view: "detail", who: "tech", did: t.id, dtab: "stores", dOver: true, menuFor: null }); try { window.scrollTo(0, 0); } catch (er) {} } }) : crow("ok", "Visits up to date", t.stores.length + (t.stores.length === 1 ? " store" : " stores"), 1);
+      const r3 = none ? crow("mute", "No stores", "", 2) : reqN ? Object.assign(crow("warn", "Requests waiting", reqN + (reqN === 1 ? " request" : " requests"), 2), { cl: "1", tip: "Show these requests", go: e => { e.stopPropagation(); this.setState({ tab: "req", reqSeg: "pending", f: { tech: [t.id] }, q: "", page: 0, tileOn: null, menuFor: null }); } }) : crow("ok", "No requests waiting", "", 2);
+      const cRows = [r1, r2, r3];
+      const stl = sts.length > 3 ? sts.slice(0, 3).join(", ") + " +" + (sts.length - 3) : sts.join(", ");
+      return Object.assign(av(t.name), { cRows, delay: (0.05 + ti * 0.06).toFixed(2) + "s", line: t.stores.length ? stl + " · " + t.stores.length + (t.stores.length === 1 ? " store" : " stores") : "No stores assigned", lineFg: t.stores.length ? "var(--lc-ink2)" : "var(--lc-warn)", avOp: dead ? .55 : 1, footNote: dead ? "Deactivated" : "", name: t.name, wash: t.wash, email: t.email, phone: t.phone, stores: t.stores.length + (t.stores.length === 1 ? " store" : " stores"), states: sts.length ? sts.join(", ") : "None", status: ST_L[t.status], pill: PILL[t.status], last: t.last, open: () => this.openDetail("tech", t.id), menuOpen: s.menuFor === t.id, toggleMenu: openMenu(t.id), menu: s.menuFor === t.id ? this.menuFor("tech", t) : [] }); });
+    const vk = s.tab, vw = k => (s.views || {})[k] === "list" ? "list" : "grid", isGrid = vw(vk) === "grid";
+    out.techGrid = out.isTech && vw("tech") === "grid"; out.techList = out.isTech && vw("tech") === "list"; out.gridBtn = vseg(isGrid); out.listBtn = vseg(!isGrid);
+    out.storeGrid = out.isStore && vw("store") === "grid"; out.storeList = out.isStore && vw("store") === "list";
+    out.adminGrid = false; out.adminList = out.isAdmin;
+    out.reqGrid = out.isPending && vw("req") === "grid"; out.reqList = out.isPending && vw("req") === "list";
+    out.hasVT = !out.isResolved && !out.isAdmin;
+    const setV = v => { const nv = Object.assign({}, s.views || {}, { [vk]: v }); try { localStorage.setItem(VKEY2, JSON.stringify(nv)); } catch (e) {} this.setState({ views: nv, menuFor: null }); }; out.setGrid = () => setV("grid"); out.setList = () => setV("list");
+    const acct = (p, i) => { const dt = p.since || (p.last && /\d/.test(p.last) ? p.last : "Mon 14 Oct"); return p.status === "active" ? crow("ok", "Signed in", p.last, i) : p.status === "invited" ? crow("warn", "Invite sent", "Sent " + dt, i) : p.status === "expired" ? crow("bad", "Invite expired", "Expired " + dt, i) : crow("mute", "Deactivated", "Since " + dt, i); };
+    out.hasTechRows = tl.length > 0; out.techEmpty = !D.techs.length; out.techNoMatch = D.techs.length > 0 && !tl.length;
+
+    // store users
+    const ul = D.users.filter(u => mq(u) && stF(u) && storeF(u)).sort(sorter);
+    const PER = 25, pages = Math.max(1, Math.ceil(ul.length / PER)), pg = Math.min(s.page, pages - 1);
+    out.userRows = ul.slice(pg * PER, pg * PER + PER).map(u => Object.assign(av(u.name), { name: u.name, email: u.email, phone: u.phone, store1: u.stores[0] ? sname(u.stores[0].no) : "No stores", hasMore: u.stores.length > 1, more: "+" + (u.stores.length - 1), storesTip: u.stores.map(x => sname(x.no)).join(", "), status: ST_L[u.status], pill: PILL[u.status], by: u.stores[0] ? u.stores[0].by : "", last: u.last, open: () => this.openDetail("user", u.id), menuOpen: s.menuFor === u.id, toggleMenu: openMenu(u.id), menu: s.menuFor === u.id ? this.menuFor("user", u) : [] }));
+    const usl = ul.slice(pg * PER, pg * PER + PER);
+    out.userCards = out.userRows.map((r, i) => { const u = usl[i], dead = u.status === "deactivated", n = u.stores.length;
+      const wait = D.reqs.filter(x => !isSettled(x, now) && x.email === u.email).reduce((a, x) => a + x.rows.filter(y => !y.res).length, 0);
+      const r2 = !n || dead ? crow("mute", "No stores", "", 1) : crow("ok", "Approved for stores", n + (n === 1 ? " store" : " stores"), 1);
+      const r3 = dead ? crow("mute", "No requests", "", 2) : wait ? Object.assign(crow("warn", "Request waiting", wait + (wait === 1 ? " store" : " stores"), 2), { cl: "1", tip: "Show this request", go: e => { e.stopPropagation(); this.setState({ tab: "req", reqSeg: "pending", q: u.name, f: {}, page: 0, tileOn: null, menuFor: null }); } }) : crow("ok", "No requests waiting", "", 2);
+      return Object.assign({}, r, { cRows: [acct(u, 0), r2, r3], line: n ? sname(u.stores[0].no) + (n > 1 ? " +" + (n - 1) : "") : "No stores", lineFg: n ? "var(--lc-ink2)" : "var(--lc-warn)", avOp: dead ? .55 : 1, footNote: u.by ? "Approved by " + u.by : "", delay: (0.05 + i * 0.04).toFixed(2) + "s" }); });
+    out.hasUserRows = ul.length > 0; out.userNoMatch = !ul.length; out.hasPager = pages > 1;
+    out.pageLine = ul.length ? (pg * PER + 1) + " to " + Math.min(ul.length, pg * PER + PER) + " of " + ul.length : "";
+    out.pgPrev = () => this.setState({ page: Math.max(0, pg - 1) }); out.pgNext = () => this.setState({ page: Math.min(pages - 1, pg + 1) }); out.pgPrevDis = pg === 0; out.pgNextDis = pg >= pages - 1; out.pgPrevSt = circ(pg === 0); out.pgNextSt = circ(pg >= pages - 1);
+
+    // admins
+    out.adminRows = D.admins.map(a => Object.assign(av(a.name), { name: a.name, you: !!a.you, email: a.email, status: ST_L[a.status], pill: PILL[a.status], by: a.by, last: a.last, menuOpen: s.menuFor === a.id, toggleMenu: openMenu(a.id), menu: s.menuFor === a.id ? this.menuFor("admin", a) : [] }));
+
+    out.adminLine = D.admins.length + " admins";
+    out.adminCards = out.adminRows.map((r, i) => { const a = D.admins[i]; return Object.assign({}, r, { open: () => {}, cRows: [acct(a, 0), crow("mute", a.you ? "This is you" : "Added by", a.you ? "" : a.by, 1)], line: a.email, lineFg: "var(--lc-ink2)", avOp: a.status === "deactivated" ? .55 : 1, footNote: a.you ? "You" : "", delay: (0.05 + i * 0.06).toFixed(2) + "s" }); });
+    // access requests
+    const REASONS = ["Not at this store", "Duplicate request", "Other"];
+    const ft = sel("tech").length ? D.techs.find(t => t.id === sel("tech")[0]) : null, techF = new Set(ft ? ft.stores.map(x => x.no) : []);
+    out.hasTechChip = s.tab === "req" && !!ft; out.techChip = ft ? ft.name + "'s stores" : ""; out.clearTechChip = () => this.setState(z => ({ f: Object.assign({}, z.f, { tech: [] }) }));
+    const pend = D.reqs.filter(r => !isSettled(r, now) && (!q || r.name.toLowerCase().includes(q) || r.email.toLowerCase().includes(q)) && (!sel("store").length || r.rows.some(x => sel("store").includes(x.no))) && (!sel("tech").length || r.rows.some(x => !x.res && x.no && techF.has(x.no))));
+    out.hasReqCards = pend.length > 0;
+    out.reqCards = pend.map(r => {
+      const allDone = r.rows.every(x => x.res), ap = r.rows.filter(x => x.res === "approved").length;
+      return Object.assign(av(r.name), { kind: r.existing ? "Existing user" : "New person", whenShort: r.at, name: r.name, existing: r.existing, contact: r.email + " · " + r.phone, when: "Requested " + r.at, hasBulk: !allDone,
+        approveAll: () => { r.rows.filter(x => !x.res && x.no).forEach(x => this.decide(r, x, "approved")); },
+        rejectAll: () => { r.rows.filter(x => !x.res).forEach(x => this.decide(r, x, "rejected")); },
+        allDone, summary: ap ? "Approved for " + ap + " of " + r.rows.length + (r.rows.length === 1 ? " store" : " stores") : "Rejected for all stores",
+        cardStyle: { position: "relative", padding: 20, borderRadius: 28, background: "var(--lc-flat)", boxShadow: "var(--lc-edge)", animation: s.hl === r.id ? "usHl 2.4s ease 1 both" : "pdRise .6s cubic-bezier(.2,.8,.2,1) both" },
+        rows: r.rows.map((x, i) => {
+          const techs = x.no ? this.techsOf(x.no).map(t => t.name) : [];
+          const rejOpen = s.rej && s.rej.r === r.id && s.rej.x === x.id, pickOpen = s.pick && s.pick.r === r.id && s.pick.x === x.id;
+          const pq = pickOpen ? s.pick.q.trim().toLowerCase() : "";
+          return { sep: i ? "var(--lc-iline)" : "transparent", label: x.no ? sname(x.no) : "\u2018" + x.typed + "\u2019", sub: x.no ? (techs.length ? "Technicians: " + techs.join(", ") : "No technician") : "We couldn't match this to a store.", subFg: x.no && techs.length ? "var(--t3)" : "var(--lc-warn)",
+            mkBg: x.no ? "var(--lc-chip)" : "var(--lc-warnbg)", mkFg: x.no ? "var(--lc-ink2)" : "var(--lc-warn)", mkD: x.no ? IC.shop : IC.warn,
+            showMatched: !x.res && !!x.no, showUnmatched: !x.res && !x.no, decided: !!x.res, res: x.res === "approved" ? "Approved" : "Rejected", resPill: x.res === "approved" ? PILL.approved : PILL.rejected, resD: x.res === "approved" ? IC.ok : IC.rm,
+            canUndo: !!x.at && now - x.at < 10000, undo: () => this.undo(r, x),
+            approve: () => this.decide(r, x, "approved"), reject: () => this.setState({ rej: rejOpen ? null : { r: r.id, x: x.id, reason: "" }, pick: null }),
+            rejSt: small("s"), appSt: small("p"), pickSt: small("p"), pickToggle: () => this.setState({ pick: pickOpen ? null : { r: r.id, x: x.id, q: "" }, rej: null }),
+            rejOpen, reasons: REASONS.map(l => ({ label: l, style: chipSt(rejOpen && s.rej.reason === l), pick: () => this.setState({ rej: Object.assign({}, s.rej, { reason: s.rej.reason === l ? "" : l }) }) })),
+            rejCancel: () => this.setState({ rej: null }), rejConfirm: () => this.decide(r, x, "rejected", s.rej && s.rej.reason), rejConfSt: small("d"),
+            pickOpen, pq: pickOpen ? s.pick.q : "", onPq: e => this.setState({ pick: Object.assign({}, s.pick, { q: e.target.value }) }),
+            pickList: pickOpen ? STORES.filter(z => !pq || z.name.toLowerCase().includes(pq)).sort((a, b) => (b.name.includes(String(x.typed || "").split(" ").slice(1).join(" ")) ? 1 : 0) - (a.name.includes(String(x.typed || "").split(" ").slice(1).join(" ")) ? 1 : 0)).slice(0, 40).map(z => ({ label: z.name, note: this.techsOf(z.no).length ? "" : "No technician", style: optSt(false), pick: () => this.mut(() => { x.no = z.no; }, { pick: null }) })) : [] };
+        }) });
+    });
+    out.reqEmpty = !pend.length;
+    const settled = [];
+    D.reqs.filter(r => isSettled(r, now)).forEach(r => r.rows.forEach(x => settled.push({ person: r.name, no: x.no, typed: x.typed, res: x.res, by: ME, role: "Admin", when: "Today", reason: x.reason || "" })));
+    out.resRows = settled.concat(D.resolved).filter(x => !q || x.person.toLowerCase().includes(q)).map(x => ({ person: x.person, store: x.no ? sname(x.no) : "\u2018" + x.typed + "\u2019", res: x.res === "approved" ? "Approved" : "Rejected", pill: x.res === "approved" ? PILL.approved : PILL.rejected, by: x.by, role: x.role, when: x.when, reason: x.reason || "" }));
+    out.resEmpty = !out.resRows.length;
+    out.resultLine = s.tab === "tech" ? tl.length + (tl.length === 1 ? " technician" : " technicians") : s.tab === "store" ? ul.length + (ul.length === 1 ? " store user" : " store users") : s.reqSeg === "pending" ? (() => { const sn = pend.reduce((a, r) => a + r.rows.filter(x => !x.res).length, 0); return sn + (sn === 1 ? " store" : " stores") + " · " + pend.length + (pend.length === 1 ? " person" : " people"); })() : out.resRows.length + " decisions";
+
+    // detail
+    const dp = s.view === "detail" ? this.person(s.who, s.did) : null;
+    if (dp) {
+      const isT = s.who === "tech";
+      Object.assign(out, { back: () => this.setState({ view: "list", menuFor: null }), dRole: isT ? "Technician" : "Store user", dName: dp.name, dStatus: ST_L[dp.status], dPill: PILL[dp.status], dWash: isT && dp.wash, dMeta: dp.email + " · " + dp.phone + " · " + (dp.never ? "Not signed in yet" : "Last active " + dp.last), dAvBg: av(dp.name).avBg, dIni: av(dp.name).ini, dEditLabel: isT ? "Edit technician" : "Edit store user",
+        dRoleD: isT ? ICB.tech : ICB.store, dLive: dp.status === "active" ? "1" : "0", dNotActive: false,
+        dDot: { active: "#34d27b", invited: "#7c3aed", expired: "#d97706", deactivated: "#8b8797" }[dp.status],
+        dStats: (() => { const ov = dp.stores.filter(x => OVERDUE.has(x.no)).length; const open = D.reqs.filter(r => !isSettled(r, now)); const rw = open.reduce((a, r) => a + r.rows.filter(x => !x.res && x.no && dp.stores.some(y => y.no === x.no)).length, 0); const rq = open.filter(r => r.email === dp.email).reduce((a, r) => a + r.rows.filter(x => !x.res).length, 0); return (isT ? [[dp.stores.length, dp.stores.length === 1 ? "Store" : "Stores"], [ov, "Overdue"], [rw, "Requests"]] : [[dp.stores.length, dp.stores.length === 1 ? "Store" : "Stores"], [rq, "Requests"]]).map(([v, k], i) => ({ v: String(v), k, sep: i ? "inset 1px 0 0 rgba(255,255,255,.1)" : "none" })); })(),
+        dContact: [["Email", dp.email, "M17 20.5H7c-3 0-5-1.5-5-5v-7c0-3.5 2-5 5-5h10c3 0 5 1.5 5 5v7c0 3.5-2 5-5 5zM17 9l-3.13 2.5c-1.03.82-2.72.82-3.75 0L7 9", true], ["Phone", dp.phone, "M21.97 18.33c0 .36-.08.73-.25 1.09-.17.36-.39.7-.68 1.02-.49.54-1.03.93-1.64 1.18-.6.25-1.25.38-1.95.38-1.02 0-2.11-.24-3.26-.73s-2.3-1.15-3.44-1.98a28.75 28.75 0 01-3.28-2.8 28.42 28.42 0 01-2.79-3.27c-.82-1.14-1.48-2.28-1.96-3.41C2.24 8.67 2 7.58 2 6.54c0-.68.12-1.33.36-1.93.24-.61.62-1.17 1.15-1.67C4.15 2.31 4.85 2 5.59 2c.28 0 .56.06.81.18.26.12.49.3.67.56l2.32 3.27c.18.25.31.48.4.7.09.21.14.42.14.61 0 .24-.07.48-.21.71-.13.23-.32.47-.56.71l-.76.79c-.11.11-.16.24-.16.4 0 .08.01.15.03.23.03.08.06.14.08.2.18.33.49.76.93 1.28.45.52.93 1.05 1.45 1.58.54.53 1.06 1.02 1.59 1.47.52.44.95.74 1.29.92.05.02.11.05.18.08.08.03.16.04.25.04.17 0 .3-.06.41-.17l.76-.75c.25-.25.49-.44.72-.56.23-.14.46-.21.71-.21.19 0 .39.04.61.13.22.09.45.22.7.39l3.31 2.35c.26.18.44.39.55.64.1.25.16.5.16.78z", true], [dp.never ? "Sign-in" : "Last active", dp.never ? "Not signed in yet" : dp.last, "M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1", false]].map(([k, v, d, cp], i) => ({ k, v, d, canCopy: cp, cd: "M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9zM22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z", sep: i ? "0 -1px 0 rgba(255,255,255,.12)" : "none", copy: () => { try { navigator.clipboard.writeText(v); } catch (e) {} this.say(k + " copied"); } })),
+        dEdit: () => this.openPanel(isT ? "tech" : "store", "edit", dp.id), dStatCols: "repeat(" + (isT ? 3 : 2) + ",minmax(0,1fr))",
+        dStPill: { display: "inline-flex", alignItems: "center", gap: 6, height: 28, padding: "0 11px 0 9px", borderRadius: 999, background: "rgba(255,255,255,.14)", boxShadow: "inset 0 0 0 1px rgba(255,255,255,.22)", color: "#fff", font: "600 12px " + F, whiteSpace: "nowrap" },
+        dm: { menuOpen: s.menuFor === "dm", toggleMenu: openMenu("dm"), menu: s.menuFor === "dm" ? this.menuFor(s.who, dp).filter(x => x.label !== "Edit") : [] } });
+      const DT = isT ? [["stores", "Stores"], ["act", "Activity"]] : [["stores", "Stores"], ["reqs", "Requests"], ["act", "Activity"]];
+      out.dTabs = DT.map(([k, label]) => ({ label, n: "", hasN: false, nStyle: {}, go: () => this.setState({ dtab: k }), style: Object.assign(segSt(s.dtab === k), { height: 38, padding: "0 16px", fontSize: 13.5 }) }));
+      out.dIsStores = s.dtab === "stores"; out.dIsReqs = s.dtab === "reqs"; out.dIsAct = s.dtab === "act";
+      out.dStoreN = String(dp.stores.length); out.dStoresBtn = isT ? "Edit stores" : "Add store"; out.dEditStores = () => this.openStoresPanel(s.who, dp.id);
+      out.dHead = isT ? ["Store", "Other technicians", "Last service visit", "Assigned on", "Assigned by"] : ["Store", "Approved on", "Approved by"];
+      out.dCols = isT ? "minmax(0,1.4fr) minmax(0,1.2fr) minmax(0,1.2fr) minmax(0,.8fr) minmax(0,1fr) 36px" : "minmax(0,1.6fr) minmax(0,1fr) minmax(0,1.2fr) 36px";
+      const ovN = dp.stores.filter(x => OVERDUE.has(x.no)).length;
+      out.dHasOver = isT; out.dClearOver = () => this.setState({ dOver: !s.dOver }); out.dOverLabel = "Overdue · " + ovN;
+      out.dOverSt = { display: "inline-flex", alignItems: "center", gap: 7, height: 30, padding: s.dOver ? "0 9px 0 12px" : "0 12px", borderRadius: 999, border: s.dOver ? "1px solid transparent" : "1px solid var(--sc-line)", background: s.dOver ? "var(--lc-warnbg)" : "transparent", color: s.dOver ? "var(--lc-warn)" : "var(--lc-ink2)", font: "600 12.5px " + F, whiteSpace: "nowrap", cursor: "pointer", transition: "background .2s,color .2s" }; out.dOverOn = !!s.dOver;
+      out.dStores = dp.stores.filter(x => !(isT && s.dOver) || OVERDUE.has(x.no)).map(x => { const others = isT ? this.techsOf(x.no, dp.id).map(t => t.name) : null; const lv = lastVisit(x.no); const pl = { display: "inline-flex", alignItems: "center", gap: 6, maxWidth: "100%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "var(--t2)" };
+        const cells = isT ? [{ t: others.length ? others.join(", ") : "None", st: Object.assign({}, pl, { color: others.length ? "var(--t2)" : "var(--t3)" }), dot: false }, { t: lv.over ? lv.label + " · " + lv.days + " days" : lv.label, st: lv.over ? Object.assign({}, pl, { alignSelf: "center", height: 26, padding: "0 10px 0 8px", borderRadius: 999, background: "var(--lc-warnbg)", color: "var(--lc-warn)", font: "600 12.5px " + F, justifySelf: "start" }) : pl, dot: lv.over }, { t: x.on, st: pl, dot: false }, { t: x.by, st: pl, dot: false }] : [{ t: x.on, st: pl, dot: false }, { t: x.by, st: pl, dot: false }];
+        return { store: sname(x.no), cells, remove: () => this.setState({ modal: { kind: "rmstore", who: s.who, id: dp.id, no: x.no } }) }; });
+      out.dHasStores = dp.stores.length > 0; out.dNoStores = !dp.stores.length;
+      out.dReqs = isT ? [] : (dp.reqs || []).map(r => ({ when: r.when, store: sname(r.no), res: r.res === "approved" ? "Approved" : r.res === "rejected" ? "Rejected" : "Pending", pill: PILL[r.res], by: r.by || "Waiting", reason: r.reason || "" }));
+      out.dNoReqs = !isT && !out.dReqs.length;
+      out.dAct = D.act.filter(a => a.pid === dp.id).map((a, i) => ({ when: a.when, who: a.who, text: a.text, d: a.d, sep: i ? "var(--lc-iline)" : "transparent" }));
+      out.dNoAct = !out.dAct.length; out.dHasReqs = !out.dNoReqs;
+      const wide = innerWidth >= 1100, H = this.state.dH;
+      out.dFitRef = this.dFit; out.dFitOn = wide && H ? "1" : "0";
+      out.usRoot = { position: "relative", isolation: "isolate", overflowX: "clip", minHeight: wide && H ? 0 : "100vh", fontFamily: "'AppNumerals','Urbanist',system-ui,sans-serif", color: "var(--t1)" };
+      out.dFitStyle = wide && H ? { display: "flex", gap: 18, alignItems: "stretch", height: H, minHeight: 0, overflow: "hidden" } : { display: "flex", gap: 18, alignItems: "flex-start", flexWrap: "wrap" };
+      out.dRightStyle = wide && H ? { flex: "1 1 0", minWidth: 0, minHeight: 0, display: "flex", flexDirection: "column", gap: 18, animation: "pdRise .55s cubic-bezier(.2,.8,.2,1) .06s both" } : { flex: "999 1 520px", minWidth: 0, display: "flex", flexDirection: "column", gap: 18, animation: "pdRise .55s cubic-bezier(.2,.8,.2,1) .06s both" };
+      out.dScrollStyle = wide && H ? { flex: "1 1 auto", minHeight: 0, overflowY: "auto", overscrollBehavior: "contain", borderRadius: 28, display: "flex", flexDirection: "column", gap: 18 } : { display: "flex", flexDirection: "column", gap: 18 };
+    } else Object.assign(out, { dFitOn: "0", usRoot: { position: "relative", isolation: "isolate", overflowX: "clip", minHeight: "100vh", fontFamily: "'AppNumerals','Urbanist',system-ui,sans-serif", color: "var(--t1)" }, dFitRef: this.dFit, dFitStyle: {}, dRightStyle: {}, dScrollStyle: {}, dTabs: [], dStores: [], dHead: [], dReqs: [], dAct: [], dm: { menu: [] } });
+
+    // panel
+    const p = s.panel, narrow = typeof window !== "undefined" && window.innerWidth < 640;
+    out.panelOpen = !!p; out.closePanel = () => this.setState({ panel: null });
+    out.pBox = { position: "fixed", top: narrow ? 0 : 16, right: narrow ? 0 : 16, bottom: narrow ? 0 : 16, left: narrow ? 0 : "auto", zIndex: 181, width: narrow ? "100%" : "min(540px,calc(100vw - 32px))", display: "flex", flexDirection: "column", isolation: "isolate", overflow: "hidden", borderRadius: narrow ? 0 : 30, background: "var(--pn-bg)", backdropFilter: "blur(30px) saturate(1.4)", WebkitBackdropFilter: "blur(30px) saturate(1.4)", boxShadow: "var(--pn-sh)", color: "var(--pn-ink)", animation: "pnIn .5s cubic-bezier(.2,.8,.2,1) both" };
+    Object.assign(out, { pFields: [], pVia: [], pList: [], pStChips: [], pHasVia: false, pHasWash: false, pHasStores: false, pHasHelper: false });
+    if (p) {
+      const e = this.errs(p), show = k => (p.tried || p.touched[k]) && e[k];
+      const fld = (k, label, req, type, ph, hint) => { const er = show(k); return { label, req: req ? " *" : "", type, ph, value: p.f[k], onChange: ev => this.updF({ [k]: ev.target.value }), onBlur: () => this.updP({ touched: Object.assign({}, p.touched, { [k]: true }) }), style: fieldSt(!!er), hasErr: !!er, errPre: er ? er.t : "", hasLink: !!(er && er.link), linkName: er && er.link ? er.link.p.name : "", link: () => { if (er && er.link && er.link.who !== "admin") { this.setState({ panel: null }); this.openDetail(er.link.who, er.link.p.id); } }, hasHint: !!hint && !er, hint: hint || "" }; };
+      const titles = { tech: ["Technician", p.mode === "edit" ? "Edit technician" : "Add technician"], store: ["Store user", p.mode === "edit" ? "Edit store user" : "Add store user"], admin: ["Admin", "Add admin"], stores: ["Stores", p.who === "tech" ? "Edit stores" : "Manage stores"] };
+      out.pEyebrow = titles[p.kind][0]; out.pTitle = titles[p.kind][1];
+      if (p.kind === "stores") out.pEyebrow = this.person(p.who, p.id).name;
+      const emailHint = p.mode === "edit" && p.f.email.trim().toLowerCase() !== (p.orig || "").toLowerCase() ? "We'll send a new sign-in link to this address." : "";
+      if (p.kind !== "stores") out.pFields = [fld("name", "Full name", true, "text", "e.g. Daniel Reyes"), fld("email", "Email", true, "email", p.kind === "store" ? "name@dontdrivedirty.com" : "name@apformulators.com", emailHint), fld("phone", "Phone", p.kind !== "admin", "tel", "(801) 555-0100")];
+      out.pHasHelper = p.kind === "admin"; out.pHelper = "Admins can see and change everything in this portal.";
+      out.pHasVia = p.kind === "tech" || p.kind === "store";
+      out.pVia = [["email", "Email"], ["sms", "SMS"], ["both", "Both"]].map(([v, l]) => ({ label: l, style: chipSt(p.f.via === v), pick: () => this.updF({ via: v }) }));
+      out.pHasWash = p.kind === "tech"; out.pWashBox = Object.assign(boxSt(p.f.wash), { marginTop: 1 }); out.pToggleWash = () => this.updF({ wash: !p.f.wash });
+      out.pHasStores = p.kind !== "admin";
+      if (out.pHasStores) {
+        const forTech = p.kind === "tech" || (p.kind === "stores" && p.who === "tech");
+        const sq = p.sq.trim().toLowerCase(), shown = STORES.filter(x => (p.sst === "All" || x.st === p.sst) && (!sq || x.name.toLowerCase().includes(sq)));
+        const selS = p.f.stores, n = selS.length;
+        out.pStoresReq = p.kind === "store" ? " *" : ""; out.pStoresHelp = forTech ? "This technician will only see the stores you tick." : "This person will only see the stores you tick.";
+        out.pSq = p.sq; out.pOnSq = ev => this.updP({ sq: ev.target.value });
+        out.pStChips = ["All"].concat(STATES).map(x => ({ label: x, style: chipSt(p.sst === x), pick: () => this.updP({ sst: x }) }));
+        out.pSelLine = n ? n + (n === 1 ? " store selected" : " stores selected") : forTech ? "You can assign stores later." : "No stores selected";
+        out.pSelFg = n ? "var(--pn-ink)" : "var(--pn-ink3)";
+        out.pSelAll = () => this.updF({ stores: [...new Set(selS.concat(shown.map(x => x.no)))] });
+        out.pClear = () => this.updF({ stores: [] });
+        const selfId = p.kind === "stores" ? p.id : p.id;
+        out.pList = shown.map(x => { const on = selS.includes(x.no), tn = this.techsOf(x.no, forTech ? selfId : null).map(t => t.name); return { label: x.no + " · " + x.name.replace(x.no + " ", ""), sub: tn.length ? tn.join(", ") : "No technician", subFg: tn.length ? "var(--pn-ink3)" : "var(--lc-warn)", toggle: () => this.updF({ stores: on ? selS.filter(v => v !== x.no) : selS.concat([x.no]) }), style: Object.assign(optSt(on), { alignItems: "center", padding: "10px 12px" }), box: boxSt(on) }; });
+        out.pListEmpty = !shown.length; out.pStoresErr = !!show("stores");
+      }
+      out.pLabel = p.kind === "stores" ? "Save stores" : p.mode === "edit" ? "Save changes" : "Send invite";
+      out.pBtn = primary(false); out.pRun = () => this.savePanel();
+    }
+
+    // modal
+    const m = s.modal;
+    out.modalOpen = !!m; out.closeModal = () => this.setState({ modal: null });
+    Object.assign(out, { mLines: [], mHasWarn: false, mHasWarnList: false, mWarnList: [], mHasType: false, mBtn: primary(false), mRun: () => this.runModal() });
+    if (m) {
+      const per = this.person(m.who, m.id), he = per.he || "They", his = (per.his || "Their").toLowerCase(), isT = m.who === "tech";
+      if (m.kind === "reset") Object.assign(out, { mTitle: "Send a password reset link to " + per.name + "?", mLines: ["We'll send it by " + ({ email: "email", sms: "SMS", both: "email and SMS" }[per.via || "email"]) + ". Admins never see or set passwords."], mLabel: "Send link" });
+      if (m.kind === "react") Object.assign(out, { mTitle: "Reactivate " + per.name + "?", mLines: [he + " can sign in again and " + his + " previous stores come back."], mLabel: "Reactivate" });
+      if (m.kind === "deact") {
+        if (isT) { const orphan = per.stores.filter(x => !this.techsOf(x.no, per.id).length).map(x => sname(x.no)); Object.assign(out, { mTitle: "Deactivate " + per.name + "?", mLines: [he + "'ll be signed out and won't be able to sign in. " + per.his + " visits and history are kept."], mHasWarn: orphan.length > 0, mWarn: orphan.length + (orphan.length === 1 ? " store will have no technician:" : " stores will have no technician:"), mHasWarnList: true, mWarnList: orphan, mLabel: "Deactivate", mBtn: danger() }); }
+        else if (m.who === "admin") Object.assign(out, { mTitle: "Deactivate " + per.name + "?", mLines: ["They'll be signed out of the portal. Their history is kept."], mLabel: "Deactivate", mBtn: danger() });
+        else Object.assign(out, { mTitle: "Deactivate " + per.name + "?", mLines: [he + "'ll be signed out and lose access to " + his + " " + per.stores.length + (per.stores.length === 1 ? " store" : " stores") + ". " + per.his + " history is kept."], mLabel: "Deactivate", mBtn: danger() });
+      }
+      if (m.kind === "delete") { const ok = (m.typed || "").trim().toLowerCase() === per.email.toLowerCase(); Object.assign(out, { mTitle: "Delete " + per.name + "?", mLines: [per.name + " never signed in and has no history, so the account can be deleted. This can't be undone."], mHasType: true, mTypeWant: per.email, mTyped: m.typed || "", mOnType: ev => this.setState({ modal: Object.assign({}, m, { typed: ev.target.value }) }), mTypeSt: fieldSt(false), mLabel: "Delete", mBtn: ok ? danger() : primary(true) }); }
+      if (m.kind === "rmstore") {
+        const last = !isT && per.stores.length === 1, alone = isT && !this.techsOf(m.no, per.id).length;
+        if (isT) Object.assign(out, { mTitle: "Remove " + sname(m.no) + " from " + per.name + "?", mLines: [he + "'ll no longer see this store in the app."], mHasWarn: alone, mWarn: m.no + " will have no technician.", mLabel: "Remove", mBtn: danger() });
+        else Object.assign(out, { mTitle: "Remove " + per.name + " from " + m.no + "?", mLines: [last ? "This is " + per.name + "'s only store. Removing it will deactivate " + his + " account." : he + "'ll no longer see this store in the app."], mLabel: last ? "Remove and deactivate" : "Remove", mBtn: danger() });
+      }
+    }
+    return out;
+  }
+}
+
+</script>
+</body>
+</html>

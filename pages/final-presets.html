@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--pa)}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+select option{background:#181322;color:#eeeef3}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+:root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-onink:#17131f;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-onink:#ffffff;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-hov:0 0 0 1px rgba(232,224,248,.1),0 18px 34px -22px rgba(0,0,0,.75);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-hov:0 0 0 1px rgba(26,22,37,.09),0 18px 34px -22px rgba(60,30,110,.3);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+:root{--pn-field:rgba(8,6,14,.5);--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-glow:radial-gradient(closest-side,rgba(150,120,255,.34),rgba(120,90,230,.12) 55%,transparent);--pn-sheen:rgba(232,224,248,.05);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-line:rgba(232,224,248,.07);--pn-tile:rgba(232,224,248,.045);--pn-tileh:rgba(232,224,248,.09);--pn-inner:rgba(10,8,18,.35);--pn-track:rgba(232,224,248,.08);--pn-win:rgba(167,139,250,.36);--pn-ring:#1d1729;--pn-redbg:rgba(248,113,113,.09);--pn-rededge:rgba(248,113,113,.22);--pn-cta:#f1edf8;--pn-ctafg:#17131f;--pn-hero:#f1edf8;--pn-herofg:#17131f}
+:root[data-theme=light]{--pn-field:#ffffff;--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-glow:radial-gradient(closest-side,rgba(168,140,245,.32),rgba(184,160,246,.12) 55%,transparent);--pn-sheen:rgba(255,255,255,.4);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-line:rgba(26,22,37,.07);--pn-tile:rgba(255,255,255,.7);--pn-tileh:#f1edf8;--pn-inner:#f6f3fb;--pn-track:rgba(26,22,37,.08);--pn-win:rgba(124,58,237,.22);--pn-ring:#ffffff;--pn-redbg:#fde8e3;--pn-rededge:rgba(210,61,34,.2);--pn-cta:#1a1625;--pn-ctafg:#ffffff;--pn-hero:#1a1625;--pn-herofg:#ffffff}
+[data-img]:hover [data-ov],[data-img]:focus-within [data-ov]{opacity:1;transform:none}
+[data-img]:hover [data-imgel]{transform:translateY(-6px) scale(1.02)}
+[data-img]:hover [data-shadow]{transform:translateX(-50%) scale(.86);opacity:.75}
+@keyframes pdSpin{to{transform:rotate(360deg)}}
+@keyframes pdImgIn{from{opacity:0;transform:scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pdRise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes pdPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pdFade{from{opacity:0}to{opacity:1}}
+@keyframes pdModal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pdOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes pnIn{from{opacity:0;transform:translateX(48px) scale(.975);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pnRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+[data-pd-right]::-webkit-scrollbar{display:none}
+[data-screen-label=Products][data-dt="1"]{min-height:0!important}
+[data-screen-label=Products][data-dt="1"]>div{padding-bottom:0!important}
+[data-pd-right]>*,[data-pd-aside]>*,[data-hero]>*{flex-shrink:0}
+@media (max-height:880px){[data-hero] [data-img]{height:196px!important}[data-hero] [data-imgel]{height:180px!important;top:4px!important}}
+[data-pd-aside]::-webkit-scrollbar{display:none}
+:root[data-ovl="1"] header[data-tb]{z-index:0!important}
+[data-row]:hover{background:rgba(var(--w),.025)}
+[data-tile]:hover [data-act] svg{animation:pdArrow .62s cubic-bezier(.7,0,.2,1)}
+@keyframes pdArrow{0%{transform:none}45%{transform:translate(140%,-140%)}46%{transform:translate(-140%,140%)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@keyframes pdBar{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+[data-sq]:focus-within{flex-basis:300px!important;box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.5)!important;color:var(--pa)!important}
+[data-sq] input::placeholder{color:var(--t3);opacity:1}
+@keyframes sqPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes scPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes scArrow{0%{transform:none;opacity:1}42%{transform:translate(130%,-130%);opacity:0}43%{transform:translate(-130%,130%);opacity:0}100%{transform:none;opacity:1}}
+[data-st="0"]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-st="0"]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+[data-zr]{position:relative;height:1px;margin:14px 0 6px;pointer-events:none}
+[data-zr-line]{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--zr-line) 18%,var(--zr-mid) 50%,var(--zr-line) 82%,transparent)}
+[data-zr-glow]{position:absolute;left:30%;right:30%;top:-10px;height:21px;background:radial-gradient(closest-side,var(--zr-glow),transparent);filter:blur(4px)}
+:root{--zr-line:rgba(196,181,253,.10);--zr-mid:rgba(196,181,253,.34);--zr-glow:rgba(139,92,246,.22)}
+:root[data-theme=light]{--zr-line:rgba(91,33,182,.08);--zr-mid:rgba(91,33,182,.26);--zr-glow:rgba(139,92,246,.14)}
+@keyframes upBar{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@keyframes upCheck{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+@keyframes upPop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.08)}100%{opacity:1;transform:none}}
+[data-urow]:hover{background:rgba(var(--w),.03)}
+[data-fx]:hover{background:rgba(var(--w),.025)}
+@keyframes usHl{0%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.0)}30%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,.7)}100%{box-shadow:var(--lc-edge),0 0 0 2px rgba(167,139,250,0)}}
+@keyframes usIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+[data-lc]:hover [data-act]{animation:scPulse .6s cubic-bezier(.2,.8,.2,1)}
+[data-lc]:hover [data-act] svg{animation:scArrow .62s cubic-bezier(.7,0,.2,1)}
+@keyframes scRise{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+[data-cl="1"]{cursor:pointer}
+[data-cl="1"]:hover{background:rgba(var(--w),.05)}
+[data-us-row]:hover{background:rgba(var(--w),.03)}
+[data-us-pk]::-webkit-scrollbar{width:0}
+@keyframes upLive{0%{box-shadow:0 0 0 4px #4a1596,0 0 0 4px rgba(52,210,123,.55)}70%{box-shadow:0 0 0 4px #4a1596,0 0 0 13px rgba(52,210,123,0)}100%{box-shadow:0 0 0 4px #4a1596,0 0 0 13px rgba(52,210,123,0)}}
+[data-up-live="1"]{animation:upLive 2.2s ease-out infinite}
+@media (prefers-reduced-motion:reduce){[data-up-live]{animation:none!important}}
+[data-up-scroll]>*,[data-up-scroll] section{flex-shrink:0}[data-up-scroll]{scrollbar-width:thin;scrollbar-color:rgba(var(--w),.14) transparent}[data-up-scroll]::-webkit-scrollbar{width:6px}[data-up-scroll]::-webkit-scrollbar-thumb{background:rgba(var(--w),.14);border-radius:6px}
+[data-fit="1"]>aside{position:relative!important;top:0!important}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
+</style>
+</helmet>
+<div data-screen-label="Presets" style="display:flex;flex-direction:column;gap:20px;min-width:0;font-family:'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1)">
+
+<sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+        <div data-lc="1" onClick="{{ r.open }}" style="position:relative;display:flex;flex-direction:column;gap:16px;min-width:0;padding:18px 18px 16px;border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);color:var(--sc-ink);cursor:pointer;transition:box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1);animation:scRise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ r.delay }}" style-hover="translate:0 -2px;box-shadow:var(--lc-hov)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.icon }}"></path></svg></span>
+            <div data-pop="" style="position:relative;flex:none">
+              <button type="button" onClick="{{ r.toggleMenu }}" aria-label="Preset actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+              <sc-if value="{{ r.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:210px">
+              <sc-for list="{{ r.menu }}" as="mi" hint-placeholder-count="5"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+            </div></sc-if>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;min-width:0;padding:0 2px">
+            <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--sc-ink3)">Preset · {{ r.size }}</span>
+            <span style="font:600 22px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span>
+            <span style="font:400 13px/1.4 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.desc }}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ r.stats }}" as="st" hint-placeholder-count="3">
+              <sc-if value="{{ st.plain }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border-radius:999px;background:var(--lc-chip);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-ink2);white-space:nowrap"><b style="color:{{ st.fg }}">{{ st.v }}</b>{{ st.k }}</span></sc-if><sc-if value="{{ st.warn }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px 0 10px;border-radius:999px;background:var(--lc-warnbg);color:var(--lc-warn);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap"><i style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in oklab,currentColor 22%,transparent)"></i>{{ st.v }} {{ st.k }}</span></sc-if>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span title="{{ r.updTip }}" style="min-width:0;font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--sc-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Updated {{ r.updated }}</span>
+            <span data-act="1" style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;background:var(--sc-actbg);border:1px solid var(--sc-actb);color:var(--sc-actfg)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}"><section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge)"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:56px 24px;text-align:center"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icPreset }}"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title);white-space:nowrap">{{ emptyTitle }}</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ emptySub }}</span><sc-if value="{{ emptyCreate }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ openCreate }}" style="margin-top:6px;display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Create preset</button></sc-if></div></section></sc-if>
+</sc-if>
+
+<sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:18px;padding-top:4px;animation:pdRise .5s cubic-bezier(.2,.8,.2,1) both">
+    <div style="display:flex;align-items:center;gap:10px"><button type="button" onClick="{{ back }}" style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 15px 0 11px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>Products &amp; standards</button></div>
+    <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+      <aside data-dark="1" style="position:sticky;top:84px;isolation:isolate;overflow:hidden;flex:0 0 340px;max-width:100%;display:flex;flex-direction:column;gap:18px;padding:18px;border-radius:28px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.24),0 20px 40px -24px var(--k55);color:#fff;animation:pdRise .55s cubic-bezier(.2,.8,.2,1) both">
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:230px;height:230px;top:-90px;left:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.920) 0%,rgba(176,107,255,0.607) 22%,rgba(176,107,255,0.267) 46%,rgba(176,107,255,0.069) 70%,rgba(176,107,255,0.000) 96%);filter:blur(14px);pointer-events:none"></span>
+        <span aria-hidden="true" style="position:absolute;z-index:-1;width:210px;height:210px;bottom:-95px;right:-30px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.820) 0%,rgba(231,118,214,0.541) 22%,rgba(231,118,214,0.238) 46%,rgba(231,118,214,0.061) 70%,rgba(231,118,214,0.000) 96%);filter:blur(14px);pointer-events:none"></span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span style="flex:1 1 auto;display:flex;align-items:center;gap:8px;min-width:0;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);color:#fff"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icPreset }}"></path></svg></span>Preset</span>
+          <div data-pop="" style="position:relative;flex:none;display:flex;align-items:center;gap:8px">
+            <button type="button" onClick="{{ dEdit }}" aria-label="Edit details" title="Edit details" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer" style-hover="background:rgba(255,255,255,.16)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15"></path></svg></button>
+            <button type="button" onClick="{{ dToggleMenu }}" aria-label="More actions" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer" style-hover="background:rgba(255,255,255,.16)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+            <sc-if value="{{ dMenuOpen }}" hint-placeholder-val="{{ false }}"><div data-dark="0" style="position:absolute;top:calc(100% + 8px);z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both;right:0;min-width:200px">
+              <sc-for list="{{ dMenu }}" as="mi" hint-placeholder-count="2"><button type="button" onClick="{{ mi.run }}" title="{{ mi.tip }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+            </div></sc-if>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding:4px 2px 0">
+          <span style="display:inline-flex;align-self:flex-start;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:#fff;color:#2e1065;font:700 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ dSize }}</span>
+          <span style="font:500 28px/1.12 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:#fff;text-wrap:balance;overflow-wrap:break-word">{{ dName }}</span>
+          <sc-if value="{{ dHasDesc }}" hint-placeholder-val="{{ true }}"><span style="font:400 13.5px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.78);text-wrap:pretty">{{ dDesc }}</span></sc-if>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+          <sc-for list="{{ dStats }}" as="st" hint-placeholder-count="3"><button type="button" onClick="{{ st.go }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 6px 12px;border:0;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 14px 30px -18px rgba(20,4,50,.6);color:#fff;cursor:pointer;font:inherit" style-hover="background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(255,255,255,.08))"><span style="font:300 26px/1 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:#fff">{{ st.v }}</span><span style="max-width:100%;font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ st.k }}</span></button></sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;margin:0 -12px -12px;border-radius:22px;padding:4px 16px;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 14px 30px -18px rgba(20,4,50,.6)">
+          <sc-for list="{{ dInfo }}" as="c" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:12px;padding:10px 0;box-shadow:{{ c.sep }}">
+            <span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);color:#fff"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.d }}"></path></svg></span>
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,.66)">{{ c.k }}</span><span style="font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.v }}</span></span>
+          </div></sc-for>
+        </div>
+      </aside>
+
+      <div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div style="flex:none;display:flex;gap:2px;width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;padding:4px;border-radius:999px;background:rgba(var(--g1),0.82);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(var(--w),0.06);box-shadow:0 20px 40px -24px var(--k55)">
+            <sc-for list="{{ dTabs }}" as="tb" hint-placeholder-count="3"><button type="button" onClick="{{ tb.go }}" style="{{ tb.style }}" style-hover="color:var(--t1)">{{ tb.label }}<span style="{{ tb.nStyle }}">{{ tb.n }}</span></button></sc-for>
+          </div>
+          <button data-dark="1" type="button" onClick="{{ openApply }}" style="display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px 0 16px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="filter:brightness(1.08)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icApply }}"></path></svg>Apply to stores</button>
+        </div>
+
+        <sc-if value="{{ dIsProducts }}" hint-placeholder-val="{{ true }}">
+          <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 16px 8px 22px">
+              <span style="display:flex;align-items:center;gap:10px;min-width:0"><h2 style="margin:0;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);white-space:nowrap">Products</h2><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--lc-chip);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-ink2)">{{ pCount }}</span><sc-if value="{{ reorder }}" hint-placeholder-val="{{ false }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">Drag rows to change the order</span></sc-if></span>
+              <div style="display:flex;align-items:center;gap:8px">
+                <button type="button" onClick="{{ toggleReorder }}" style="{{ reorderBtn }}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M6 12h12M10 17h4"></path></svg>{{ reorderLabel }}</button>
+                <button type="button" onClick="{{ openAddProduct }}" style="display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 15px 0 12px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>Add product</button>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:40px minmax(0,1.6fr) 104px 70px minmax(0,1.7fr) 116px 74px;gap:12px;padding:8px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>#</span><span>Product</span><span>Number</span><span>Size</span><span>Wash functions</span><span>Secondary</span><span></span></div>
+            <sc-for list="{{ lines }}" as="l" hint-placeholder-count="10">
+              <div draggable="{{ l.drag }}" onDragStart="{{ l.dragStart }}" onDragOver="{{ l.dragOver }}" onDrop="{{ l.drop }}" onDragEnd="{{ l.dragEnd }}" style="{{ l.rowSt }}">
+                <span style="display:flex;align-items:center;gap:4px;color:var(--t3);font-weight:600"><sc-if value="{{ l.drag }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="flex:none;cursor:grab"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg></sc-if>{{ l.ord }}</span>
+                <span style="min-width:0;display:flex;align-items:center;gap:8px"><span style="min-width:0;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:{{ l.strike }}">{{ l.name }}</span><sc-if value="{{ l.hasMark }}" hint-placeholder-val="{{ false }}"><span style="{{ l.markSt }}">{{ l.mark }}</span></sc-if></span>
+                <span style="color:var(--t2);white-space:nowrap;text-decoration:{{ l.strike }}">{{ l.num }}</span>
+                <span style="color:var(--t2);white-space:nowrap">{{ l.size }}</span>
+                <span style="min-width:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                  <sc-for list="{{ l.fns }}" as="c" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 14px;line-height:1;border-radius:999px;background:var(--lc-chip);color:var(--t1);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ c.label }}<sc-if value="{{ c.canRm }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ c.rm }}" aria-label="Remove wash function" style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:-8px;border:0;border-radius:50%;background:transparent;color:var(--t3);cursor:pointer" style-hover="background:rgba(var(--w),.08);color:var(--t1)"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if></span></sc-for>
+                  <sc-if value="{{ l.canEdit }}" hint-placeholder-val="{{ true }}"><div data-pop="" style="position:relative">
+                    <button type="button" onClick="{{ l.toggleFn }}" aria-label="Add wash function" style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px dashed var(--sc-line);background:transparent;color:var(--t2);cursor:pointer" style-hover="background:var(--lc-chip);color:var(--t1)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg></button>
+                    <sc-if value="{{ l.fnOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);left:0;z-index:40;width:220px;max-height:260px;overflow-y:auto;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both">
+                      <sc-for list="{{ l.fnOpts }}" as="o" hint-placeholder-count="5"><button type="button" onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for>
+                    </div></sc-if>
+                  </div></sc-if>
+                </span>
+                <span style="display:flex">
+                  <sc-if value="{{ l.hasSec }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--lc-inner)"><sc-for list="{{ l.secOpts }}" as="o" hint-placeholder-count="2"><button type="button" onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for></span></sc-if>
+                  <sc-if value="{{ l.noSec }}" hint-placeholder-val="{{ true }}"><span style="color:var(--t3)">None</span></sc-if>
+                </span>
+                <span style="display:flex;align-items:center;justify-content:flex-end;gap:6px">
+                  <sc-if value="{{ l.isRemoved }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ l.undo }}" style="border:0;background:transparent;padding:0 4px;color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Undo</button></sc-if>
+                  <sc-if value="{{ l.canEdit }}" hint-placeholder-val="{{ true }}">
+                    <div data-pop="" style="position:relative">
+                      <button type="button" onClick="{{ l.toggleMenu }}" aria-label="Line actions" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                      <sc-if value="{{ l.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;min-width:200px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both">
+                        <sc-for list="{{ l.menu }}" as="mi" hint-placeholder-count="2"><button type="button" onClick="{{ mi.run }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+                      </div></sc-if>
+                    </div>
+                    <button type="button" onClick="{{ l.remove }}" aria-label="Remove" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-badbg);color:var(--lc-bad)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+                  </sc-if>
+                </span>
+              </div>
+            </sc-for>
+            <sc-if value="{{ noLines }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:48px 24px;text-align:center;border-top:1px solid var(--lc-iline)"><span style="font:500 17px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">No products yet</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Add the products every store on this preset should count.</span></div></sc-if>
+            <div style="height:10px"></div>
+          </section>
+          <sc-if value="{{ dirty }}" hint-placeholder-val="{{ false }}">
+            <div style="position:sticky;bottom:20px;z-index:30;display:flex;justify-content:center;pointer-events:none">
+              <div style="pointer-events:auto;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;border-radius:999px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .25s both">
+                <span style="display:flex;align-items:center;gap:8px;font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap"><i style="width:8px;height:8px;border-radius:50%;background:var(--lc-warn)"></i>{{ dirtyLine }}</span>
+                <button type="button" onClick="{{ discard }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Discard</button>
+                <button data-dark="1" type="button" onClick="{{ reviewSave }}" style="height:40px;padding:0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Review and save</button>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ dIsStores }}" hint-placeholder-val="{{ false }}">
+          <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 16px 10px 16px">
+              <label style="display:flex;align-items:center;gap:8px;flex:0 1 240px;min-width:180px;height:40px;padding:0 12px 0 14px;border-radius:999px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ sq }}" onChange="{{ onSq }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label>
+              <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ sStates }}" as="c" hint-placeholder-count="6"><button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for></div>
+              <button type="button" onClick="{{ toggleCustOnly }}" style="{{ custOnlySt }}"><span style="{{ custOnlyBox }}"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Customised only</button>
+              <span style="flex:1 1 auto"></span>
+              <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;padding-right:6px">{{ sLine }}</span>
+            </div>
+            <sc-if value="{{ hasSRows }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:minmax(0,1.6fr) 70px minmax(0,1.4fr) 140px 40px;gap:14px;padding:8px 22px 10px;font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap"><span>Store</span><span>State</span><span>Status</span><span>Applied on</span><span></span></div>
+              <sc-for list="{{ sRows }}" as="s" hint-placeholder-count="8">
+                <div data-us-row="1" style="display:grid;grid-template-columns:minmax(0,1.6fr) 70px minmax(0,1.4fr) 140px 40px;gap:14px;align-items:center;padding:11px 22px;border-top:1px solid var(--lc-iline);font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;background:{{ s.bg }}">
+                  <button type="button" onClick="{{ s.openStore }}" style="justify-self:start;max-width:100%;border:0;background:transparent;padding:0;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" style-hover="color:var(--pa)">{{ s.store }}</button>
+                  <span style="color:var(--t2)">{{ s.state }}</span>
+                  <span style="display:flex"><button type="button" onClick="{{ s.openDiff }}" style="{{ s.pill }}"><i style="flex:none;width:6px;height:6px;border-radius:50%;background:currentColor"></i>{{ s.status }}</button></span>
+                  <span style="color:var(--t3);white-space:nowrap">{{ s.applied }}</span>
+                  <div data-pop="" style="position:relative;justify-self:end">
+                    <button type="button" onClick="{{ s.toggleMenu }}" aria-label="Actions" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--lc-ink2);cursor:pointer" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+                    <sc-if value="{{ s.menuOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);right:0;z-index:40;min-width:210px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:pdPop .2s both">
+                      <sc-for list="{{ s.menu }}" as="mi" hint-placeholder-count="3"><button type="button" onClick="{{ mi.run }}" style="{{ mi.style }}">{{ mi.label }}</button></sc-for>
+                    </div></sc-if>
+                  </div>
+                </div>
+              </sc-for>
+              <sc-if value="{{ sMore }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:center;padding:12px 0 4px;border-top:1px solid var(--lc-iline)"><button type="button" onClick="{{ showAllStores }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">{{ sMoreLabel }}</button></div></sc-if>
+            </sc-if>
+            <sc-if value="{{ noSRows }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:52px 24px;text-align:center;border-top:1px solid var(--lc-iline)"><span style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:20px;background:linear-gradient(158deg,rgba(var(--pl),.22),rgba(var(--pl),.08));color:var(--pa)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span><span style="font:500 19px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title);white-space:nowrap">{{ sEmptyTitle }}</span><span style="font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ sEmptySub }}</span></div></sc-if>
+            <div style="height:8px"></div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ dIsAct }}" hint-placeholder-val="{{ false }}">
+          <section style="border-radius:28px;background:var(--lc-flat);box-shadow:var(--lc-edge);overflow:hidden;padding:8px 22px">
+            <sc-for list="{{ dAct }}" as="a" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:36px 150px minmax(0,1fr);gap:14px;align-items:center;padding:12px 0;border-top:1px solid {{ a.sep }};font:400 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;background:{{ a.bg }};animation:{{ a.anim }}"><span style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ a.d }}"></path></svg></span><span style="color:var(--t3);white-space:nowrap">{{ a.when }}</span><span style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="color:var(--t1);font-weight:500">{{ a.text }}</span><span style="font-size:12.5px;color:var(--t3)">{{ a.who }}</span></span></div></sc-for>
+          </section>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closePanel }}" style="position:fixed;inset:0;z-index:180;background:var(--pn-scrim);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:pdFade .25s both"></div>
+  <aside role="dialog" aria-modal="true" style="{{ pBox }}">
+    <span aria-hidden="true" style="position:absolute;z-index:-1;top:-120px;right:-100px;width:360px;height:360px;background:var(--pn-glow);pointer-events:none"></span>
+    <div style="flex:none;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:24px 24px 14px">
+      <div style="flex:1 1 auto;display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--pn-ink3);white-space:nowrap">{{ pEyebrow }}</span><span style="font:500 24px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--pn-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pTitle }}</span></div>
+      <button type="button" onClick="{{ closePanel }}" aria-label="Close" style="flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--pn-ink);cursor:pointer"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div data-us-pk="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:4px 24px 20px;display:flex;flex-direction:column;gap:18px">
+
+      <sc-if value="{{ pIsForm }}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:7px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Preset name<span style="color:var(--lc-bad)"> *</span></span><input type="text" value="{{ fName }}" onChange="{{ onFName }}" maxLength="60" placeholder="Standard 5 gal California" style="{{ fNameSt }}"/><sc-if value="{{ fNameErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-bad)">{{ fNameErrText }}</span></sc-if></label>
+        <label style="display:flex;flex-direction:column;gap:7px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Description</span><input type="text" value="{{ fDesc }}" onChange="{{ onFDesc }}" maxLength="120" placeholder="For markets where water softening isn't allowed" style="{{ fDescSt }}"/><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ fDescCount }}</span></label>
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Container size<span style="color:var(--lc-bad)"> *</span></span><div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ fSizes }}" as="z" hint-placeholder-count="4"><button type="button" onClick="{{ z.pick }}" style="{{ z.style }}">{{ z.label }}</button></sc-for></div><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">Used as the default size when you add products.</span></div>
+        <sc-if value="{{ fHasStart }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Start from<span style="color:var(--lc-bad)"> *</span></span>
+            <sc-for list="{{ fStarts }}" as="o" hint-placeholder-count="3">
+              <div style="{{ o.wrap }}">
+                <button type="button" onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:12px;width:100%;padding:0;border:0;background:transparent;text-align:left;cursor:pointer"><span style="{{ o.radio }}"></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ o.label }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ o.sub }}</span></span></button>
+                <sc-if value="{{ o.hasSel }}" hint-placeholder-val="{{ false }}"><div style="position:relative;margin:12px 0 0 30px"><select value="{{ o.val }}" onChange="{{ o.onSel }}" style="width:100%;height:44px;padding:0 40px 0 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;appearance:none;outline:none;cursor:pointer"><sc-for list="{{ o.opts }}" as="op" hint-placeholder-count="4"><option value="{{ op.v }}">{{ op.l }}</option></sc-for></select><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:16px;top:16px;color:var(--t3);pointer-events:none"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></div></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ fIsEdit }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;padding:12px 14px;border-radius:16px;background:var(--pn-tile);font:500 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pa)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM12 8v5M11.99 16h.01"></path></svg>A new name shows everywhere this preset appears: store Products tabs, Add store and Activity.</div></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ pIsPick }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ pkIsReplace }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:18px;background:var(--pn-tile)"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)">Replacing line {{ pkOrd }}</span><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ pkOld }}</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">The new product keeps this line's order and wash functions.</span></div></sc-if>
+        <label style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ pkQ }}" onChange="{{ onPkQ }}" placeholder="Search the product list" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label>
+        <div data-us-pk="1" style="max-height:300px;overflow-y:auto;border-radius:18px;background:var(--pn-inner);padding:4px">
+          <sc-for list="{{ pkList }}" as="o" hint-placeholder-count="8"><button type="button" onClick="{{ o.pick }}" style="{{ o.style }}"><span style="{{ o.box }}"></span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.sub }}</span></span><sc-if value="{{ o.inList }}" hint-placeholder-val="{{ false }}"><span style="flex:none;font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">In this preset</span></sc-if></button></sc-for>
+          <sc-if value="{{ pkEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:18px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);text-align:center">No products match.</div></sc-if>
+        </div>
+        <sc-if value="{{ pkHasProd }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Size</span><div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ pkSizes }}" as="z" hint-placeholder-count="3"><button type="button" onClick="{{ z.pick }}" style="{{ z.style }}">{{ z.label }}</button></sc-for></div><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">Product number <b style="color:var(--pn-ink)">{{ pkNum }}</b></span></div>
+          <sc-if value="{{ pkIsAdd }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Wash functions</span><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ pkFns }}" as="c" hint-placeholder-count="6"><button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for></div><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">Filled with the product's defaults. Tap to change.</span></div></sc-if>
+          <sc-if value="{{ pkErr }}" hint-placeholder-val="{{ false }}"><span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-bad)">{{ pkErrText }}</span></sc-if>
+        </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ pIsDiff }}" hint-placeholder-val="{{ false }}">
+        <span style="font:400 13.5px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ dfIntro }}</span>
+        <sc-for list="{{ dfRows }}" as="r" hint-placeholder-count="2">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:20px;background:var(--pn-tile)">
+            <span style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">{{ r.name }}</span><sc-if value="{{ r.kept }}" hint-placeholder-val="{{ false }}"><span style="{{ r.keptSt }}">Kept</span></sc-if></span>
+            <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 12px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"><span style="color:var(--pn-ink3)">Store</span><span style="color:var(--pn-ink)">{{ r.store }}</span><span style="color:var(--pn-ink3)">Preset</span><span style="color:var(--pn-ink2)">{{ r.preset }}</span></div>
+            <div style="display:flex;gap:8px"><button type="button" onClick="{{ r.keep }}" style="{{ r.keepSt }}">Keep custom</button><button type="button" onClick="{{ r.reset }}" style="{{ r.resetSt }}">Reset to preset</button></div>
+          </div>
+        </sc-for>
+      </sc-if>
+
+      <sc-if value="{{ pIsApply }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px"><sc-for list="{{ apSteps }}" as="st" hint-placeholder-count="2"><span style="display:flex;align-items:center;gap:8px;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ st.fg }};white-space:nowrap"><span style="{{ st.dot }}">{{ st.n }}</span>{{ st.label }}</span><sc-if value="{{ st.line }}" hint-placeholder-val="{{ true }}"><span style="width:34px;height:1px;background:var(--pn-line)"></span></sc-if></sc-for></div>
+        <sc-if value="{{ apStep1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ apStates }}" as="c" hint-placeholder-count="6"><button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button></sc-for></div>
+          <div style="display:flex;flex-direction:column;gap:7px"><span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Store number range</span><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input type="text" inputMode="numeric" value="{{ apFrom }}" onChange="{{ onApFrom }}" placeholder="From" style="{{ fieldPlain }}"/><input type="text" inputMode="numeric" value="{{ apTo }}" onChange="{{ onApTo }}" placeholder="To" style="{{ fieldPlain }}"/></div><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">Stores are grouped by number in each market.</span></div>
+          <label style="display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--t3)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ apQ }}" onChange="{{ onApQ }}" placeholder="Search store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label>
+          <div style="display:flex;align-items:center;gap:14px;padding:2px 2px 0"><span style="flex:1;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ apSelFg }}">{{ apSelLine }}</span><button type="button" onClick="{{ apSelAll }}" style="border:0;background:transparent;padding:2px 0;color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap">Select all shown</button><button type="button" onClick="{{ apClear }}" style="border:0;background:transparent;padding:2px 0;color:var(--pn-ink2);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">Clear</button></div>
+          <div data-us-pk="1" style="max-height:360px;overflow-y:auto;border-radius:18px;background:var(--pn-inner);padding:4px">
+            <sc-for list="{{ apList }}" as="o" hint-placeholder-count="8"><button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}"><span style="{{ o.box }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ o.sub }}</span></span><sc-if value="{{ o.cust }}" hint-placeholder-val="{{ false }}"><span style="flex:none;display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;background:var(--lc-warnbg);color:var(--lc-warn);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif">Customised</span></sc-if></button></sc-for>
+            <sc-if value="{{ apEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:18px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3);text-align:center">No stores match these filters.</div></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ apStep2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;border-radius:20px;background:var(--pn-tile);padding:4px 16px">
+            <sc-for list="{{ apSum }}" as="r" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid {{ r.sep }}"><span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);color:var(--pn-ink)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.d }}"></path></svg></span><span style="font:{{ r.font }};color:var(--pn-ink)">{{ r.text }}</span></div></sc-for>
+          </div>
+          <sc-if value="{{ apHasCust }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ apToggleKeep }}" style="display:flex;align-items:flex-start;gap:12px;padding:14px;border:0;border-radius:16px;background:var(--pn-tile);text-align:left;cursor:pointer"><span style="{{ apKeepBox }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="display:flex;flex-direction:column;gap:3px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)">Keep each store's custom changes</span><span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ apCustHelp }}</span></span></button></sc-if>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:20px;background:var(--pn-inner)">
+            <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)">Preview one store</span>
+            <div style="position:relative"><select value="{{ apPrev }}" onChange="{{ onApPrev }}" style="width:100%;height:44px;padding:0 40px 0 14px;border-radius:14px;border:1px solid var(--sc-line);background:var(--pn-field);color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;appearance:none;outline:none;cursor:pointer"><sc-for list="{{ apPrevOpts }}" as="op" hint-placeholder-count="4"><option value="{{ op.v }}">{{ op.l }}</option></sc-for></select><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:16px;top:16px;color:var(--t3);pointer-events:none"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px"><sc-for list="{{ apPrevStats }}" as="ps" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:16px;background:var(--pn-tile)"><span style="font:300 26px/1 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ ps.fg }}">{{ ps.v }}</span><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)">{{ ps.k }}</span></div></sc-for></div>
+            <span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ apPrevLine }}</span>
+          </div>
+          <span style="display:flex;align-items:center;gap:8px;font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink3)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1"></path></svg>Stores see the new list from their next count.</span>
+        </sc-if>
+      </sc-if>
+    </div>
+    <div style="flex:none;display:flex;justify-content:flex-end;gap:10px;padding:16px 24px 22px;border-top:1px solid var(--pn-line)">
+      <sc-if value="{{ pHasBack }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ pBack }}" style="{{ secBtn }}">Back</button></sc-if>
+      <span style="flex:1 1 auto"></span>
+      <button type="button" onClick="{{ closePanel }}" style="{{ secBtn }}">{{ pCancelLabel }}</button>
+      <sc-if value="{{ pHasRun }}" hint-placeholder-val="{{ true }}"><button data-dark="1" type="button" onClick="{{ pRun }}" style="{{ pBtn }}">{{ pLabel }}</button></sc-if>
+    </div>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:190;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:var(--pn-scrim);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pdFade .25s both"></div>
+    <div role="dialog" aria-modal="true" style="position:relative;width:min(540px,100%);max-height:calc(100vh - 40px);overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding:26px 24px 22px;border-radius:30px;background:var(--pn-bg);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);box-shadow:var(--pn-sh);animation:pdModal .32s cubic-bezier(.2,.8,.2,1) both">
+      <span style="font:500 21px/1.3 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--pn-ink)">{{ mTitle }}</span>
+      <sc-if value="{{ mHasChanges }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)">Changes</span>
+          <div style="display:flex;flex-direction:column;border-radius:18px;background:var(--pn-tile);padding:4px 14px">
+            <sc-for list="{{ mChanges }}" as="c" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid {{ c.sep }};font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)"><span style="{{ c.signSt }}">{{ c.sign }}</span><span style="min-width:0">{{ c.text }}</span></div></sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ mHasImpact }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--pn-ink3)">Impact</span>
+          <div style="display:flex;flex-direction:column;gap:10px;border-radius:18px;background:var(--pn-tile);padding:14px">
+            <span style="display:flex;align-items:center;gap:10px;font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pa)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="{{ icShop }}"></path></svg>{{ mStoresLine }}</span>
+            <sc-if value="{{ mHasKept }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:flex-start;gap:10px;font:500 13.5px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--lc-warn)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16z"></path></svg><span>{{ mKeptLine }} <button type="button" onClick="{{ mToggleKept }}" style="border:0;background:transparent;padding:0;color:var(--pa);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer">{{ mKeptBtn }}</button></span></span></sc-if>
+            <sc-if value="{{ mShowKept }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex-wrap:wrap;padding-left:26px"><sc-for list="{{ mKeptList }}" as="k" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-flat);color:var(--t1);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ k }}</span></sc-for></div></sc-if>
+            <span style="display:flex;align-items:flex-start;gap:10px;font:500 13.5px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1"></path></svg>Stores see the new list from their next count. Counts in progress aren't changed.</span>
+          </div>
+        </div>
+      </sc-if>
+      <sc-for list="{{ mLines }}" as="ml" hint-placeholder-count="1"><span style="font:400 14px/1.55 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">{{ ml }}</span></sc-for>
+      <sc-if value="{{ mHasType }}" hint-placeholder-val="{{ false }}"><label style="display:flex;flex-direction:column;gap:7px"><span style="font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pn-ink2)">Type <b style="color:var(--pn-ink)">{{ mTypeWant }}</b> to confirm</span><input type="text" value="{{ mTyped }}" onChange="{{ mOnType }}" style="{{ fieldPlain }}"/></label></sc-if>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:4px">
+        <button type="button" onClick="{{ closeModal }}" style="{{ secBtn }}">Cancel</button>
+        <button data-dark="1" type="button" onClick="{{ mRun }}" style="{{ mBtn }}">{{ mLabel }}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<div style="position:fixed;left:50%;bottom:28px;z-index:200;display:flex;align-items:center;gap:10px;padding:12px 18px 12px 12px;border-radius:999px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;pointer-events:none;transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translate(-50%,{{ toastY }})"><span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--lc-okbg);color:var(--lc-ok)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{{ toast }}</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const tag = (bg, fg) => ({ display: "inline-flex", alignItems: "center", gap: 6, height: 26, padding: "0 10px", borderRadius: 999, background: bg, color: fg, font: "600 12px " + F, whiteSpace: "nowrap" });
+const PILL = { active: tag("var(--lc-okbg)", "var(--lc-ok)"), invited: tag("rgba(var(--pl),.14)", "var(--pa)"), expired: tag("var(--lc-warnbg)", "var(--lc-warn)"), deactivated: tag("var(--lc-chip)", "var(--lc-ink2)"), approved: tag("var(--lc-okbg)", "var(--lc-ok)"), rejected: tag("var(--lc-badbg)", "var(--lc-bad)"), pending: tag("var(--lc-warnbg)", "var(--lc-warn)") };
+const ST_L = { active: "Active", invited: "Invited", expired: "Invite expired", deactivated: "Deactivated" };
+const primary = dis => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 44, padding: "0 20px", border: 0, borderRadius: 999, background: dis ? "rgba(var(--w),.08)" : "linear-gradient(180deg,#8b5cf6,#6d28d9)", color: dis ? "var(--t3)" : "#fff", boxShadow: dis ? "none" : "inset 0 1px 0 rgba(255,255,255,.24)", font: "600 14px " + F, whiteSpace: "nowrap", cursor: dis ? "not-allowed" : "pointer", transition: "filter .15s" });
+const secondary = () => ({ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, height: 44, padding: "0 20px", borderRadius: 999, border: "1px solid var(--sc-line)", background: "transparent", color: "var(--t1)", font: "600 14px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const danger = () => Object.assign(primary(false), { background: "#ef4444", boxShadow: "none" });
+const small = (kind) => ({ display: "inline-flex", alignItems: "center", height: 34, padding: "0 14px", borderRadius: 999, border: kind === "p" ? 0 : "1px solid var(--sc-line)", background: kind === "p" ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : kind === "d" ? "#ef4444" : "transparent", color: kind === "s" ? "var(--t1)" : "#fff", boxShadow: kind === "p" ? "inset 0 1px 0 rgba(255,255,255,.24)" : "none", font: "600 13px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const circ = dis => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 34, height: 34, borderRadius: "50%", border: "1px solid var(--sc-line)", background: "transparent", color: dis ? "var(--t3)" : "var(--t1)", opacity: dis ? .45 : 1, cursor: dis ? "default" : "pointer", flex: "none" });
+const optSt = on => ({ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "9px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13.5px " + F, color: "var(--t1)", background: on ? "rgba(var(--pl),.12)" : "transparent" });
+const boxSt = (on, round) => ({ flex: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: round ? 999 : 6, border: "1.5px solid " + (on ? "#7c3aed" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "transparent", transition: "all .15s" });
+const pillBtn = on => ({ display: "inline-flex", alignItems: "center", gap: 8, height: 44, padding: "0 14px 0 16px", border: 0, borderRadius: 999, background: "var(--lc-flat)", boxShadow: on ? "var(--lc-edge),inset 0 0 0 1px rgba(var(--pl),.4)" : "var(--lc-edge)", color: "var(--t1)", font: "600 13.5px " + F, whiteSpace: "nowrap", cursor: "pointer" });
+const chipSt = on => ({ display: "inline-flex", alignItems: "center", height: 32, padding: "0 13px", borderRadius: 999, border: "1px solid " + (on ? "transparent" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "var(--t2)", font: "600 12.5px " + F, cursor: "pointer", whiteSpace: "nowrap", transition: "background .2s,color .2s" });
+const fieldSt = err => ({ width: "100%", height: 46, padding: "0 14px", borderRadius: 14, border: "1px solid " + (err ? "var(--lc-bad)" : "var(--sc-line)"), background: "var(--pn-field)", color: "var(--t1)", font: "500 14px " + F, outline: "none" });
+const segSt = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 36, padding: "0 15px", border: 0, borderRadius: 999, cursor: "pointer", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13px " + F, color: on ? "#fff" : "var(--t3)", background: on ? "#7c3aed" : "transparent", transition: "background .25s,color .25s" });
+
+const ME = "Dan Whitfield";
+const IC = {
+  preset: "M13.01 2.92l5.9 2.62c1.7.75 1.7 1.99 0 2.74l-5.9 2.62c-.67.3-1.77.3-2.44 0L4.67 8.28c-1.7-.75-1.7-1.99 0-2.74l5.9-2.62c.67-.3 1.77-.3 2.44 0zM3 11c0 .84.63 1.81 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.77-.34 1.4-1.31 1.4-2.15M3 16c0 .93.55 1.77 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.85-.38 1.4-1.22 1.4-2.15",
+  shop: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21.48-4.8H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12zM12 17c-1.67 0-2.5.83-2.5 2.5V22h5v-2.5c0-1.67-.83-2.5-2.5-2.5z",
+  edit: "M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16zM11.89 5.05a6.13 6.13 0 005.45 5.15M3 22h18",
+  clock: "M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1",
+  box: "M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07M9.93 2.48L4.59 5.44C3.38 6.11 2.39 7.79 2.39 9.17v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.17c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.15-.63-3.01-.63-4.15.01z",
+  apply: "M7.4 6.32l8.49-2.83c3.81-1.27 5.88.81 4.62 4.62l-2.83 8.49c-1.9 5.71-5.02 5.71-6.92 0l-.84-2.52-2.52-.84c-5.71-1.9-5.71-5.01 0-6.92zM10.11 13.65l3.58-3.59",
+  swap: "M3.58 5.16h12.84c1.54 0 2.78 1.24 2.78 2.78v3.08M6.62 2L3.58 5.04l3.04 3.04M19.2 18.84H6.36c-1.54 0-2.78-1.24-2.78-2.78v-3.08M16.38 22l3.04-3.04-3.04-3.04",
+  cal: "M8 2v3M16 2v3M3.5 9.09h17M21 8.5V17c0 3-1.5 5-5 5H8c-3.5 0-5-2-5-5V8.5c0-3 1.5-5 5-5h8c3.5 0 5 2 5 5z",
+  plus: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM8 12h8M12 16V8",
+  minus: "M6 12h12", none: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM8 12h8"
+};
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const p2 = n => String(n).padStart(2, "0");
+const fmtD = d => DOW[d.getDay()] + " " + d.getDate() + " " + MON[d.getMonth()];
+const fmtDT = d => fmtD(d) + ", " + p2(d.getHours()) + ":" + p2(d.getMinutes());
+const At = (m, day, h, mi) => new Date(2024, m, day, h == null ? 9 : h, mi || 0);
+const nowD = () => { const r = new Date(); return new Date(2024, 9, 16, r.getHours(), r.getMinutes()); };
+const short = n => n.replace("AP Air Care Online ", "");
+const PM = [
+  ["Bug B", "BB205", ["Bug Juice"]], ["Excel Hi pH Touchless Presoak", "EX224", ["Presoak 1"]], ["Excel Low pH Presoak", "EX214", ["Presoak 2"]],
+  ["Excel Hi pH Wheel Cleaner", "EX223W", ["CTA 1", "CTA 2"]], ["Duck Bath", "DB215", ["Duck Bath"]],
+  ["Low pH Ultra Tropical Triple Shine Blue", "WX220B", ["Triple Foam Blue"]], ["Low pH Ultra Tropical Triple Shine Yellow", "WX220Y", ["Triple Foam Yellow"]], ["Low pH Ultra Tropical Triple Shine Red", "WX220R", ["Triple Foam Red"]],
+  ["Lava Lo Shine", "PS313", ["Shine"]], ["Silky Shine", "WX224", ["Seal"]], ["Weather X-Treme", "XX221", ["Weather Protectant"]], ["Excel Ceramic Sealant", "EX226", ["Ceramic"]],
+  ["Duck Rinse", "DWX213", ["Drying Agent"]], ["Blue Brilliance ECO", "DG228", ["Tire Shine"]], ["AP Air Care Online Cherry", "OLC", ["Scent 1"]],
+  ["AP Air Care Online Pumpkin Spice", "OLPS", ["Scent 1"]], ["Foamy Film Penetrate", "PS216", ["CTA 1", "CTA 2"]], ["AP Air Care Online Bubble Gum", "OLBG", ["Scent 2"]], ["Lava Seal", "LS310", ["Lava"]]
+];
+const FNS = ["Bug Juice", "Presoak 1", "Presoak 2", "CTA 1", "CTA 2", "Duck Bath", "Triple Foam Blue", "Triple Foam Yellow", "Triple Foam Red", "Shine", "Seal", "Weather Protectant", "Ceramic", "Drying Agent", "Tire Shine", "Lava", "Scent 1", "Scent 2"];
+const pm = n => PM.find(x => x[0] === n);
+const pnum = (n, z) => (pm(n) ? pm(n)[1] : "XX") + "-" + z;
+let LID = 0;
+const L = (n, z, fns, sec) => ({ id: "l" + (++LID), p: n, size: z, fns: (fns || pm(n)[2]).slice(), sec: z === 2.5 ? (sec || 10) : null });
+const STD = PM.slice(0, 15).map(m => m[0]);
+const BIG2 = ["Duck Bath", "Excel Hi pH Wheel Cleaner", "Blue Brilliance ECO"];
+const mkStd = z => STD.map(n => L(n, z, null, z === 2.5 ? (BIG2.includes(n) ? 20 : 10) : null));
+const cloneL = l => ({ id: "l" + (++LID), p: l.p, size: l.size, fns: l.fns.slice(), sec: l.sec });
+const lineText = l => l.p + " · " + l.size + " gal · " + l.fns.join(", ");
+const keyOf = l => l.p + "|" + l.size + "|" + l.fns.join(",");
+
+function build() {
+  const s5 = mkStd(5), s15 = mkStd(15), ca = mkStd(5), s25 = mkStd(2.5);
+  ca[3] = L("Foamy Film Penetrate", 5); ca[4] = L("Duck Bath", 5, ["Presoak 1", "Duck Bath"]);
+  const P = [
+    { id: "std5", name: "Standard 5 gal", desc: "Default setup for 5 gal stores", size: "5 gal", lines: s5, created: At(7, 5), updated: At(9, 1, 9, 15), by: ME },
+    { id: "std15", name: "Standard 15 gal", desc: "Default setup for 15 gal stores", size: "15 gal", lines: s15, created: At(7, 5, 9, 30), updated: At(8, 23, 14, 10), by: ME },
+    { id: "ca5", name: "Standard 5 gal California", desc: "For markets where water softening isn't allowed", size: "5 gal", lines: ca, created: At(9, 2, 9, 40), updated: At(9, 11, 15, 2), by: ME },
+    { id: "std25", name: "Standard 2.5 gal", desc: "Ready for the move to 2.5 gal", size: "2.5 gal", lines: s25, created: At(9, 14, 8, 30), updated: At(9, 14, 8, 30), by: ME }
+  ];
+  const S = [], add = (no, city, st, preset, applied) => S.push({ no, city, st, preset, applied: applied || At(8, 2, 11, 40), custom: [], own: null });
+  const TXC = ["Corpus Christi", "Harlingen", "Brownsville", "McAllen", "Laredo", "Kingsville", "Victoria", "Alice", "Portland", "Robstown", "Weslaco", "Edinburg", "Mission", "Pharr", "Rockport", "Sinton"];
+  for (let i = 0; i < 40; i++) { const no = 7401 + i; add(no, no === 7417 ? "Corpus Christi" : TXC[i % TXC.length], "TX", "std5"); }
+  const UTN = [1234, 5112, 5231, 5240, 5302, 5418, 5420, 5507, 5611, 5702, 5815], UTC = ["Eagle Mountain", "Ogden", "Sandy", "Provo", "Orem", "St George", "Lehi", "Draper", "Logan", "Murray", "Midvale", "Bountiful", "Lindon", "Spanish Fork", "Cedar City", "Tooele", "Kaysville", "Riverton", "Payson", "Heber"];
+  for (let n = 5120, k = 0; UTN.length < 38; n += 29, k++) if (!UTN.includes(n) && n !== 5131) UTN.push(n);
+  UTN.forEach((no, i) => add(no, UTC[i % UTC.length], "UT", "std5"));
+  const NVN = [6101, 6108, 6115, 6122, 6129, 6140, 6147, 6154, 6161, 6168, 6175, 6182], NVC = ["Las Vegas", "Reno", "Sparks", "Carson City", "Elko", "Henderson", "Mesquite", "Boulder City", "Fernley", "Fallon", "Pahrump", "Winnemucca"];
+  NVN.forEach((no, i) => add(no, NVC[i], "NV", "std5"));
+  const CAC = ["Bakersfield", "Fresno", "Visalia", "Modesto", "Stockton", "Merced", "Hanford", "Tulare", "Delano", "Porterville", "Madera", "Turlock", "Lodi", "Clovis", "Selma", "Reedley", "Ceres", "Manteca"];
+  for (let i = 0; i < 34; i++) { const none = [5, 11, 17, 23, 29, 33].includes(i); add(4401 + i * 12, CAC[i % CAC.length], "CA", none ? null : "std5"); }
+  for (let i = 0; i < 32; i++) add(4801 + i * 6, CAC[(i + 7) % CAC.length], "CA", "ca5", At(9, 11, 15, 2));
+  const COC = ["Denver", "Aurora", "Lakewood", "Boulder", "Fort Collins", "Pueblo", "Greeley", "Longmont", "Loveland", "Littleton", "Arvada", "Westminster", "Thornton", "Parker"];
+  for (let i = 0; i < 14; i++) add(6201 + i * 11, COC[i], "CO", "std15", At(7, 12));
+  add(5131, "Layton", "UT", null); add(7466, "Beeville", "TX", null);
+  S.sort((a, b) => a.no - b.no);
+  const st = no => S.find(x => x.no === no), ln = (p, i) => P.find(x => x.id === p).lines[i];
+  st(7401).custom = [{ line: ln("std5", 14).id, p: "AP Air Care Online Cherry", fns: ["Scent 1", "Scent 2"] }, { line: ln("std5", 4).id, p: "Duck Bath", fns: ["Presoak 1", "Duck Bath"] }];
+  st(7417).custom = [{ line: ln("std5", 14).id, p: "AP Air Care Online Cherry", fns: ["Scent 1", "Scent 2"] }];
+  st(4413).custom = [{ line: ln("std5", 4).id, p: "Duck Bath", fns: ["Presoak 1", "Duck Bath"] }];
+  st(6212).custom = [{ line: ln("std15", 8).id, p: "Lava Lo Shine", fns: ["Shine", "Lava"] }];
+  [4801, 4813, 4825, 4837, 4849].forEach((no, i) => { st(no).custom = [i % 2 ? { line: ln("ca5", 12).id, p: "Duck Rinse", fns: ["Drying Agent", "Seal"] } : { line: ln("ca5", 9).id, p: "Silky Shine", fns: ["Seal", "Tire Shine"] }]; });
+  const act = {
+    std5: [{ at: At(9, 1, 9, 15), text: "Changed Excel Hi pH Wheel Cleaner to CTA 1, CTA 2", sub: "118 stores updated", d: IC.edit }, { at: At(8, 2, 11, 40), text: "Applied to 118 stores", sub: "", d: IC.apply }, { at: At(7, 5, 9, 0), text: "Created preset", sub: "Copied from 7401 Corpus Christi - TX", d: IC.preset }],
+    std15: [{ at: At(8, 23, 14, 10), text: "Changed Lava Lo Shine to Shine", sub: "14 stores updated, 1 kept custom", d: IC.edit }, { at: At(7, 12, 10, 5), text: "Applied to 14 stores (6201 to 6344)", sub: "", d: IC.apply }, { at: At(7, 5, 9, 30), text: "Created preset", sub: "Copied from Standard 5 gal", d: IC.preset }],
+    ca5: [{ at: At(9, 11, 15, 2), text: "Applied to 32 stores (4801 to 4987)", sub: "", d: IC.apply }, { at: At(9, 2, 10, 5), text: "Replaced Excel Hi pH Wheel Cleaner with Foamy Film Penetrate", sub: "No stores updated", d: IC.swap }, { at: At(9, 2, 9, 40), text: "Created preset", sub: "Copied from Standard 5 gal", d: IC.preset }],
+    std25: [{ at: At(9, 14, 8, 30), text: "Created preset", sub: "Copied from Standard 5 gal", d: IC.preset }]
+  };
+  P.forEach(p => { p.act = act[p.id].map(a => Object.assign({ who: ME }, a)); });
+  return { P, S };
+}
+const DB = (window.__apfPresetsDB = window.__apfPresetsDB || build());
+const NOPRE = mkStd(5).slice(0, 12);
+
+const menuSt = (dis, bad) => ({ display: "flex", width: "100%", alignItems: "center", padding: "10px 12px", border: 0, borderRadius: 12, background: "transparent", color: dis ? "var(--t3)" : bad ? "var(--lc-bad)" : "var(--t1)", font: "500 13.5px " + F, textAlign: "left", cursor: dis ? "not-allowed" : "pointer", opacity: dis ? .55 : 1, whiteSpace: "nowrap" });
+const markSt = k => tag(k === "add" ? "var(--lc-okbg)" : k === "rm" ? "var(--lc-badbg)" : "var(--lc-warnbg)", k === "add" ? "var(--lc-ok)" : k === "rm" ? "var(--lc-bad)" : "var(--lc-warn)");
+const miniSeg = on => ({ display: "inline-flex", alignItems: "center", height: 28, padding: "0 11px", border: 0, borderRadius: 999, background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "var(--t3)", font: (on ? 700 : 600) + " 12px " + F, cursor: "pointer", whiteSpace: "nowrap" });
+const radioSt = on => ({ flex: "none", width: 18, height: 18, borderRadius: 999, border: on ? "5px solid #7c3aed" : "1.5px solid var(--sc-line)", background: on ? "#fff" : "transparent", transition: "all .15s" });
+
+class Component extends DCLogic {
+  state = { v: 0, q: "", size: [], sort: "name", tile: null, pop: null, detail: null, dtab: "products", draft: null, reorder: false, dragId: null, overId: null, sq: "", sst: "All", custOnly: false, sAll: false, panel: null, modal: null, toast: "" };
+  componentDidMount() {
+    this.onDoc = e => { if (this.state.pop && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ pop: null }); };
+    this.onKey = e => { if (e.key === "Escape") this.setState({ pop: null, panel: null, modal: null }); };
+    document.addEventListener("mousedown", this.onDoc); document.addEventListener("keydown", this.onKey);
+    if (this.props.onCount) this.props.onCount(DB.P.length);
+    const r = this.props.openReq || window.__apfPresetReq; if (r) this.handleReq(r);
+  }
+  componentWillUnmount() { document.removeEventListener("mousedown", this.onDoc); document.removeEventListener("keydown", this.onKey); clearTimeout(this.tt); }
+  componentDidUpdate(prev, ps) {
+    if (this.props.createTick && this.props.createTick !== prev.createTick) this.openForm("create");
+    const r = this.props.openReq; if (r && (!prev.openReq || r.ts !== prev.openReq.ts)) this.handleReq(r);
+    this.reportDetail();
+  }
+  reportDetail() {
+    const v = !!this.state.detail;
+    if (this._lastDet !== v) { this._lastDet = v; if (this.props.onDetail) this.props.onDetail(v); }
+  }
+  handleReq(r) {
+    if (this.lastReq === r.ts) return; this.lastReq = r.ts;
+    const p = DB.P.find(x => x.name.toLowerCase() === String(r.name || "").toLowerCase()) || DB.P.find(x => String(r.name || "").toLowerCase().includes(x.name.toLowerCase().replace("standard ", "")));
+    if (p) this.openDetail(p.id, "products"); else this.say("Opened Presets");
+  }
+  say(m) { clearTimeout(this.tt); this.setState({ toast: m }); this.tt = setTimeout(() => this.setState({ toast: "" }), 2800); }
+  bump(extra) { this.setState(Object.assign({ v: this.state.v + 1 }, extra || {})); if (this.props.onCount) this.props.onCount(DB.P.length); }
+  P(id) { return DB.P.find(x => x.id === id); }
+  storesOf(id) { return DB.S.filter(x => x.preset === id); }
+  log(p, text, sub, d) { p.act.unshift({ at: nowD(), text, sub: sub || "", who: ME, d: d || IC.edit, fresh: true }); p.updated = nowD(); p.by = ME; }
+  openDetail(id, tab) { this.setState({ detail: id, dtab: tab || "products", draft: null, reorder: false, pop: null, sq: "", sst: "All", custOnly: tab === "cust", sAll: false }); if (tab === "cust") this.setState({ dtab: "stores" }); try { window.scrollTo({ top: 0 }); } catch (e) {} }
+  back() { if (this.state.draft && this.dirtyN() > 0 && !confirm("Discard unsaved changes?")) return; this.setState({ detail: null, draft: null, reorder: false, pop: null }); try { window.scrollTo({ top: 0 }); } catch (e) {} }
+  eff(p, custom) { return (p ? p.lines : []).map(l => { const c = (custom || []).find(c => c.line === l.id); return c ? Object.assign({}, l, { p: c.p, fns: c.fns }) : l; }); }
+  current(st) { return st.preset ? this.eff(this.P(st.preset), st.custom) : (st.own || NOPRE); }
+  mapCustom(st, target) { const old = this.P(st.preset); if (!old) return []; return st.custom.map(c => { const ol = old.lines.find(l => l.id === c.line); const tl = ol && target.lines.find(l => l.p === ol.p && l.size === ol.size); return tl ? { line: tl.id, p: c.p, fns: c.fns } : null; }).filter(Boolean); }
+  diffCount(a, b) { const ka = a.map(keyOf), kb = b.map(keyOf); return { add: kb.filter(k => !ka.includes(k)).length, rm: ka.filter(k => !kb.includes(k)).length, keep: kb.filter(k => ka.includes(k)).length }; }
+
+  draftOf() { const s = this.state, p = this.P(s.detail); return s.draft || p.lines.map(l => Object.assign({}, l, { fns: l.fns.slice() })); }
+  edit(fn) { const d = this.draftOf(); fn(d); this.setState({ draft: d, pop: null }); }
+  lineState(x, orig) {
+    const o = orig.find(y => y.id === x.id);
+    if (!o) return x.rm ? null : "add";
+    if (x.rm) return "rm";
+    if (x.p !== o.p || x.size !== o.size) return "rep";
+    if (x.fns.join("|") !== o.fns.join("|") || x.sec !== o.sec) return "chg";
+    if (x.moved) { const live = this.state.draft.filter(y => !y.rm), oi = orig.findIndex(y => y.id === x.id); if (live.indexOf(x) !== oi) return "mov"; }
+    return null;
+  }
+  changes() {
+    const s = this.state, p = this.P(s.detail); if (!s.draft) return [];
+    const out = [], live = s.draft.filter(y => !y.rm);
+    s.draft.forEach(x => {
+      const k = this.lineState(x, p.lines), o = p.lines.find(y => y.id === x.id);
+      if (!k) return;
+      if (k === "add") out.push({ k, id: x.id, sign: "+", text: lineText(x) });
+      else if (k === "rm") out.push({ k, id: x.id, sign: "−", text: lineText(o) });
+      else if (k === "rep") { out.push({ k, id: x.id, sign: "+", text: lineText(x) }); out.push({ k: "rm", id: x.id, sign: "−", text: lineText(o), sub: true }); }
+      else if (k === "chg") out.push({ k, id: x.id, sign: "~", text: x.p + " · " + (x.fns.join("|") !== o.fns.join("|") ? "wash functions now " + x.fns.join(", ") : "secondary max now " + x.sec + " gal") });
+      else if (k === "mov") out.push({ k, id: x.id, sign: "~", text: x.p + " · moved from #" + (p.lines.findIndex(y => y.id === x.id) + 1) + " to #" + (live.indexOf(x) + 1) });
+    });
+    return out;
+  }
+  dirtyN() { return new Set(this.changes().map(c => c.id)).size; }
+  keptStores() {
+    const s = this.state, p = this.P(s.detail), ids = new Set(this.changes().filter(c => c.k !== "add").map(c => c.id));
+    return this.storesOf(p.id).filter(st => st.custom.some(c => ids.has(c.line)));
+  }
+  saveDraft() {
+    const s = this.state, p = this.P(s.detail), ch = this.changes(), kept = this.keptStores(), n = this.storesOf(p.id).length;
+    const reps = ch.filter(c => c.k === "rep");
+    p.lines = s.draft.filter(x => !x.rm).map(x => ({ id: x.id, p: x.p, size: x.size, fns: x.fns.slice(), sec: x.sec }));
+    const sub = n ? n + " stores updated" + (kept.length ? ", " + kept.length + " kept custom" : "") : "No stores updated";
+    const N = new Set(ch.map(c => c.id)).size;
+    if (reps.length === 1 && N === 1) { const o = ch.find(c => c.k === "rm"), x = p.lines.find(l => l.id === reps[0].id); this.log(p, "Replaced " + o.text.split(" · ").slice(0, 2).join(" ") + " with " + x.p + " " + x.size + " gal", sub, IC.swap); }
+    else this.log(p, "Saved " + N + (N === 1 ? " change" : " changes") + " to the product list", sub, IC.edit);
+    this.bump({ draft: null, reorder: false, modal: null });
+    this.say(n ? p.name + " saved. " + n + " stores updated." : p.name + " saved.");
+  }
+
+  openForm(mode, pid) {
+    const src = pid ? this.P(pid) : null;
+    const f = mode === "create" ? { name: "", desc: "", size: "5 gal", start: "empty", srcP: DB.P[0].id, srcS: String(DB.S[0].no) }
+      : mode === "dup" ? { name: "Copy of " + src.name, desc: src.desc, size: src.size, start: "preset", srcP: src.id, srcS: String(DB.S[0].no) }
+      : { name: src.name, desc: src.desc, size: src.size };
+    this.setState({ pop: null, panel: Object.assign({ kind: "form", mode, pid, touched: false }, f) });
+  }
+  upP(patch) { this.setState({ panel: Object.assign({}, this.state.panel, patch) }); }
+  formErr(f) {
+    const nm = f.name.trim(); if (!nm) return f.touched ? "Enter a preset name." : "";
+    if (DB.P.some(p => p.name.toLowerCase() === nm.toLowerCase() && !(f.mode === "edit" && p.id === f.pid))) return "A preset with this name already exists.";
+    return "";
+  }
+  runForm() {
+    const f = this.state.panel, err = this.formErr(Object.assign({}, f, { touched: true }));
+    if (err) { this.upP({ touched: true }); return; }
+    const nm = f.name.trim();
+    if (f.mode === "edit") { const p = this.P(f.pid), old = p.name; p.name = nm; p.desc = f.desc.trim(); p.size = f.size; this.log(p, old !== nm ? "Renamed " + old + " to " + nm : "Edited details", "", IC.edit); this.bump({ panel: null }); this.say(nm + " saved."); return; }
+    let lines = [], from = "Started empty";
+    if (f.start === "preset") { const sp = this.P(f.srcP); lines = sp.lines.map(cloneL); from = "Copied from " + sp.name; }
+    if (f.start === "store") { const st = DB.S.find(x => String(x.no) === String(f.srcS)); lines = this.current(st).map(cloneL); from = "Copied from " + st.no + " " + st.city + " - " + st.st; }
+    const p = { id: "p" + Date.now(), name: nm, desc: f.desc.trim(), size: f.size, lines, created: nowD(), updated: nowD(), by: ME, act: [] };
+    this.log(p, "Created preset", from, IC.preset);
+    DB.P.push(p); this.bump({ panel: null }); this.openDetail(p.id, "products"); this.say(nm + " created.");
+  }
+
+  openApply(pid) { this.setState({ pop: null, panel: { kind: "apply", pid, step: 1, st: "All", from: "", to: "", q: "", off: {}, keep: true, prev: null } }); }
+  apShown(a) {
+    const q = a.q.trim().toLowerCase(), fr = parseInt(a.from, 10), to = parseInt(a.to, 10);
+    return DB.S.filter(x => (a.st === "All" || x.st === a.st) && (isNaN(fr) || x.no >= fr) && (isNaN(to) || x.no <= to) && (!q || String(x.no).includes(q) || x.city.toLowerCase().includes(q)));
+  }
+  apSel(a) { return this.apShown(a).filter(x => x.preset !== a.pid && !a.off[x.no]); }
+  runApply() {
+    const a = this.state.panel, p = this.P(a.pid), sel = this.apSel(a); if (!sel.length) return;
+    const moved = {};
+    sel.forEach(st => { if (st.preset) moved[st.preset] = (moved[st.preset] || 0) + 1; const nc = a.keep ? this.mapCustom(st, p) : []; st.preset = p.id; st.custom = nc; st.own = null; st.applied = nowD(); });
+    const fr = parseInt(a.from, 10), to = parseInt(a.to, 10), rng = !isNaN(fr) && !isNaN(to) ? " (" + fr + " to " + to + ")" : "";
+    this.log(p, "Applied to " + sel.length + (sel.length === 1 ? " store" : " stores") + rng, a.keep ? "Custom changes kept" : "Custom changes replaced", IC.apply);
+    Object.keys(moved).forEach(id => { const op = this.P(id); if (op) this.log(op, "Moved " + moved[id] + (moved[id] === 1 ? " store" : " stores") + " to " + p.name, "", IC.swap); });
+    this.bump({ panel: null, detail: p.id, dtab: "stores", draft: null, sq: "", sst: "All", custOnly: false });
+    this.say(p.name + " applied to " + sel.length + (sel.length === 1 ? " store." : " stores."));
+  }
+
+  openPick(kind, lineId) {
+    const s = this.state, p = this.P(s.detail), d = this.draftOf(), l = lineId ? d.find(x => x.id === lineId) : null;
+    const z0 = l ? l.size : p.size === "Mixed" ? 5 : parseFloat(p.size);
+    this.setState({ pop: null, panel: { kind: "pick", mode: kind, line: lineId, q: "", prod: null, size: z0, fns: [], err: "" } });
+  }
+  runPick() {
+    const k = this.state.panel; if (!k.prod) return;
+    const d = this.draftOf();
+    if (k.mode === "add") {
+      if (!k.fns.length) { this.upP({ err: "Pick at least one wash function." }); return; }
+      if (d.some(x => !x.rm && x.p === k.prod && x.fns.join("|") === k.fns.join("|"))) { this.upP({ err: "This product is already in the preset with these wash functions." }); return; }
+      const nl = L(k.prod, k.size, k.fns, k.size === 2.5 ? 10 : null); d.push(nl);
+      this.setState({ draft: d, panel: null }); this.say(k.prod + " added. Review and save to update stores.");
+    } else {
+      const x = d.find(y => y.id === k.line); const old = x.p; x.p = k.prod; x.size = k.size; if (k.size === 2.5 && !x.sec) x.sec = 10; if (k.size !== 2.5) x.sec = null;
+      this.setState({ draft: d, panel: null }); this.say(short(old) + " replaced with " + short(k.prod) + ".");
+    }
+  }
+
+  renderVals() {
+    const s = this.state, out = {};
+    const n172 = DB.S.length, onP = DB.S.filter(x => x.preset).length, custN = DB.S.filter(x => x.preset && x.custom.length).length;
+    out.icPreset = IC.preset; out.icShop = IC.shop; out.icApply = IC.apply;
+    out.secBtn = secondary(); out.fieldPlain = fieldSt(false);
+    out.showList = !s.detail; out.showDetail = !!s.detail;
+    out.toast = s.toast; out.toastOp = s.toast ? 1 : 0; out.toastY = s.toast ? "0px" : "14px";
+
+    const TD = [["all", "Presets", String(DB.P.length), DB.P.filter(p => this.storesOf(p.id).length).length + " in use", IC.preset], ["stores", "Stores on a preset", String(onP), "of " + n172 + " stores", IC.shop], ["cust", "Customised stores", String(custN), "Differ from their preset", IC.edit]];
+    out.tiles = TD.map(([k, label, value, sub, d], i) => {
+      const on = s.tile === k && k === "cust";
+      return { label, value, sub, d, icSw: on ? 2 : 1.6,
+        apply: () => { if (k === "all") this.setState({ tile: null, q: "", size: [], pop: null }); else if (k === "stores") { window.dispatchEvent(new CustomEvent("apf:nav", { detail: { page: "stores" } })); } else this.setState({ tile: on ? null : "cust", pop: null }); },
+        shHover: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 30px 50px -24px var(--k55)" : "var(--sc-shh)", arrowSz: on ? 16 : 13,
+        valColor: on ? "#fff" : "var(--sc-acc)", subColor: on ? "rgba(255,255,255,0.78)" : "var(--sc-ink3)", labelColor: on ? "#fff" : "var(--sc-acc)",
+        dark: on ? "1" : "0", blobOp: on ? 1 : 0, blobScale: on ? 1 : 0.6, arrowD: on ? "M7 7l10 10M17 7L7 17" : "M7 17L17 7M8 7h9v9",
+        style: { position: "relative", isolation: "isolate", overflow: "hidden", display: "flex", flexDirection: "column", width: "100%", minWidth: 0, minHeight: 200, textAlign: "left", padding: "18px 20px 20px", borderRadius: 28, animation: "scRise .85s cubic-bezier(.2,.8,.2,1) " + (0.12 + i * 0.09).toFixed(2) + "s both", cursor: "pointer", font: "inherit", color: "var(--t1)", background: on ? "linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%)" : "var(--sc-card)", boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,0.24), 0 20px 40px -24px var(--k55)" : "var(--sc-sh)", border: "1.5px solid transparent", transition: "background .35s,box-shadow .3s,translate .3s cubic-bezier(.2,.8,.2,1)" },
+        iconStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", width: 40, height: 40, borderRadius: 999, border: "1px solid " + (on ? "rgba(255,255,255,0.3)" : "var(--sc-line)"), background: on ? "rgba(255,255,255,0.12)" : "transparent", color: on ? "#fff" : "var(--sc-ink)" },
+        arrowStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", flex: "none", overflow: "hidden", width: 36, height: 36, borderRadius: 999, border: on ? "0" : "1px solid var(--sc-actb)", background: on ? "#fff" : "var(--sc-actbg)", color: on ? "#2e1065" : "var(--sc-actfg)", transition: "background .3s,color .3s,transform .45s cubic-bezier(.34,1.56,.64,1)", transform: on ? "rotate(90deg)" : "none" } };
+    });
+
+    const q = s.q.trim().toLowerCase();
+    let list = DB.P.filter(p => (!q || p.name.toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q)) && (!s.size.length || s.size.includes(p.size)) && (s.tile !== "cust" || this.storesOf(p.id).some(x => x.custom.length)));
+    list = list.slice().sort((a, b) => s.sort === "stores" ? this.storesOf(b.id).length - this.storesOf(a.id).length : s.sort === "updated" ? b.updated - a.updated : a.name.localeCompare(b.name));
+    out.q = s.q; out.onQ = e => this.setState({ q: e.target.value }); out.hasQ = !!s.q; out.clearQ = () => this.setState({ q: "" });
+    const SZ = ["2.5 gal", "5 gal", "15 gal", "Mixed"], SO = [["name", "Name"], ["stores", "Most stores"], ["updated", "Recently updated"]];
+    out.filters = [
+      { key: "size", label: "Size", hasN: s.size.length > 0, n: String(s.size.length), canClear: s.size.length > 0, clear: () => this.setState({ size: [], pop: null }),
+        opts: SZ.map(z => { const on = s.size.includes(z); return { label: z, style: optSt(on), box: boxSt(on), toggle: () => this.setState({ size: on ? s.size.filter(x => x !== z) : s.size.concat([z]) }) }; }) },
+      { key: "sort", label: "Sort: " + SO.find(x => x[0] === s.sort)[1], hasN: false, n: "", canClear: false, clear: () => {},
+        opts: SO.map(([k, l]) => { const on = s.sort === k; return { label: l, style: optSt(on), box: boxSt(on, true), toggle: () => this.setState({ sort: k, pop: null }) }; }) }
+    ].map(f => Object.assign(f, { isOpen: s.pop === "f:" + f.key, toggle: () => this.setState({ pop: s.pop === "f:" + f.key ? null : "f:" + f.key }), btn: pillBtn(s.pop === "f:" + f.key || f.hasN) }));
+    out.resultLine = list.length + (list.length === 1 ? " preset" : " presets");
+    out.hasRows = list.length > 0; out.noRows = !list.length;
+    out.emptyTitle = DB.P.length ? "No presets match" : "No presets yet"; out.emptySub = DB.P.length ? "Try another search or clear the filters." : "Create a preset to set up stores in one step."; out.emptyCreate = !DB.P.length;
+    out.openCreate = () => this.openForm("create");
+    out.rows = list.map(p => {
+      const sts = this.storesOf(p.id), cu = sts.filter(x => x.custom.length).length, used = sts.length > 0, mo = s.pop === "row:" + p.id;
+      return { name: p.name, desc: p.desc || "No description", icon: IC.preset, size: p.size, sizeSt: tag("var(--lc-chip)", "var(--lc-ink2)"), products: String(p.lines.length), stores: String(sts.length), storesFg: used ? "var(--t1)" : "var(--t3)",
+        cust: cu ? cu + (cu === 1 ? " store" : " stores") : "None", custSt: cu ? tag("var(--lc-warnbg)", "var(--lc-warn)") : tag("transparent", "var(--t3)"),
+        updated: fmtD(p.updated), updTip: "Updated " + fmtD(p.updated) + " by " + p.by, delay: (list.indexOf(p) * 60) + "ms",
+        stats: [["products", String(p.lines.length), "var(--sc-ink)", "var(--lc-chip)"], [sts.length === 1 ? "store" : "stores", String(sts.length), used ? "var(--sc-ink)" : "var(--sc-ink3)", "var(--lc-chip)"]].concat(cu ? [["customised", String(cu), "var(--lc-warn)", "var(--lc-warnbg)"]] : []).map(([k, v, fg, bg]) => ({ k, v, fg, bg, warn: k === "customised", plain: k !== "customised" })),
+        open: e => { if (e.target.closest && e.target.closest("[data-pop]")) return; this.openDetail(p.id, "products"); },
+        menuOpen: mo, toggleMenu: e => { e.stopPropagation(); this.setState({ pop: mo ? null : "row:" + p.id }); },
+        menu: [["Open", () => this.openDetail(p.id, "products")], ["Apply to stores", () => this.openApply(p.id)], ["Duplicate", () => this.openForm("dup", p.id)], ["Rename", () => this.openForm("edit", p.id)], ["Delete", () => this.askDelete(p), used, true]].map(([label, fn, dis, bad]) => ({ label, tip: dis ? "Used by " + sts.length + " stores. Move them to another preset first." : "", style: menuSt(dis, bad && !dis), run: e => { e.stopPropagation(); if (dis) return; this.setState({ pop: null }); fn(); } }))
+      };
+    });
+
+    if (s.detail) Object.assign(out, this.detailVals());
+    Object.assign(out, this.panelVals(), this.modalVals());
+    return out;
+  }
+
+  askDelete(p) { this.setState({ pop: null, modal: { kind: "delete", pid: p.id, typed: "" } }); }
+
+  detailVals() {
+    const s = this.state, p = this.P(s.detail); if (!p) return { showDetail: false, showList: true };
+    const sts = this.storesOf(p.id), cu = sts.filter(x => x.custom.length);
+    const out = {};
+    out.back = () => this.back();
+    out.dName = p.name; out.dSize = p.size; out.dDesc = p.desc; out.dHasDesc = !!p.desc;
+    out.dEdit = () => this.openForm("edit", p.id);
+    out.dMenuOpen = s.pop === "dmenu"; out.dToggleMenu = () => this.setState({ pop: s.pop === "dmenu" ? null : "dmenu" });
+    out.dMenu = [["Duplicate", () => this.openForm("dup", p.id), false], ["Delete", () => this.askDelete(p), sts.length > 0, true]].map(([label, fn, dis, bad]) => ({ label, tip: dis ? "Used by " + sts.length + " stores. Move them to another preset first." : "", style: menuSt(dis, bad && !dis), run: () => { if (dis) return; this.setState({ pop: null }); fn(); } }));
+    const draft = this.draftOf(), live = draft.filter(x => !x.rm);
+    out.dStats = [[String(live.length), live.length === 1 ? "Product" : "Products", "products"], [String(sts.length), sts.length === 1 ? "Store" : "Stores", "stores"], [String(cu.length), "Customised", "cust"]].map(([v, k, t]) => ({ v, k, go: () => this.setState({ dtab: t === "cust" ? "stores" : t, custOnly: t === "cust" ? true : s.custOnly }) }));
+    out.dInfo = [[IC.clock, "Updated", fmtD(p.updated) + " · " + p.by], [IC.cal, "Created", fmtD(p.created) + " · " + ME], [IC.box, "Default size", p.size]].map(([d, k, v], i) => ({ d, k, v, sep: i ? "inset 0 1px 0 rgba(255,255,255,.12)" : "none" }));
+    out.dTabs = [["products", "Products", live.length], ["stores", "Stores", sts.length], ["activity", "Activity", p.act.length]].map(([k, label, n]) => { const on = s.dtab === k; return { label, n: String(n), go: () => this.setState({ dtab: k, pop: null }), style: Object.assign(segSt(on), { height: 38, padding: "0 12px 0 16px", gap: 8, fontSize: 13.5 }), nStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 22, height: 22, padding: "0 7px", borderRadius: 999, font: "700 11.5px " + F, background: on ? "rgba(255,255,255,.2)" : "var(--lc-chip)", color: on ? "#fff" : "var(--lc-ink2)" } }; });
+    out.dIsProducts = s.dtab === "products"; out.dIsStores = s.dtab === "stores"; out.dIsAct = s.dtab === "activity";
+    out.openApply = () => { if (s.draft && this.dirtyN()) { this.say("Save or discard your changes first."); return; } this.openApply(p.id); };
+
+    // products
+    out.pCount = String(live.length); out.reorder = s.reorder; out.noLines = !draft.length;
+    out.reorderLabel = s.reorder ? "Done" : "Reorder"; out.reorderBtn = Object.assign(small(s.reorder ? "p" : "s"), { gap: 7, height: 38, padding: "0 15px 0 12px" });
+    out.toggleReorder = () => this.setState({ reorder: !s.reorder, pop: null, draft: s.draft || (s.reorder ? null : this.draftOf()) });
+    out.openAddProduct = () => this.openPick("add");
+    const orig = p.lines;
+    out.lines = draft.map(x => {
+      const k = s.draft ? this.lineState(x, orig) : null, rm = !!x.rm, liveIdx = live.indexOf(x), fo = s.pop === "fn:" + x.id, mo = s.pop === "ln:" + x.id;
+      const over = s.reorder && s.overId === x.id && s.dragId && s.dragId !== x.id;
+      const MK = { add: "Added", rm: "Removed", rep: "Replaced", chg: "Changed", mov: "Moved" };
+      const tint = k === "add" ? "linear-gradient(90deg,var(--lc-okbg),transparent 70%)" : k === "rm" ? "linear-gradient(90deg,var(--lc-badbg),transparent 70%)" : k ? "linear-gradient(90deg,var(--lc-warnbg),transparent 70%)" : "transparent";
+      return {
+        ord: rm ? "—" : String(liveIdx + 1), name: x.p, num: pnum(x.p, x.size), size: x.size + " gal", strike: rm ? "line-through" : "none",
+        hasMark: !!k, mark: MK[k] || "", markSt: markSt(k === "rep" ? "chg" : k),
+        isRemoved: rm, canEdit: !rm, undo: () => this.edit(d => { const y = d.find(z => z.id === x.id); y.rm = false; }),
+        fns: x.fns.map(fn => ({ label: fn, canRm: !rm && x.fns.length > 1, rm: () => this.edit(d => { const y = d.find(z => z.id === x.id); y.fns = y.fns.filter(f => f !== fn); }) })),
+        fnOpen: fo, toggleFn: () => this.setState({ pop: fo ? null : "fn:" + x.id }),
+        fnOpts: FNS.filter(fn => !x.fns.includes(fn)).map(fn => ({ label: fn, style: optSt(false), pick: () => this.edit(d => { const y = d.find(z => z.id === x.id); y.fns = y.fns.concat([fn]); }) })),
+        hasSec: x.size === 2.5, noSec: x.size !== 2.5,
+        secOpts: [10, 20].map(z => ({ label: z + " gal", style: miniSeg(x.sec === z), pick: () => this.edit(d => { d.find(y => y.id === x.id).sec = z; }) })),
+        menuOpen: mo, toggleMenu: () => this.setState({ pop: mo ? null : "ln:" + x.id }),
+        menu: [["Replace product", () => this.openPick("replace", x.id)], ["Remove", () => this.removeLine(x.id), true]].map(([label, fn, bad]) => ({ label, style: menuSt(false, bad), run: () => { this.setState({ pop: null }); fn(); } })),
+        remove: () => this.removeLine(x.id),
+        drag: s.reorder && !rm,
+        dragStart: e => { if (!s.reorder) return; try { e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", x.id); } catch (er) {} this.setState({ dragId: x.id }); },
+        dragOver: e => { if (!s.reorder) return; e.preventDefault(); if (s.overId !== x.id) this.setState({ overId: x.id }); },
+        drop: e => { if (!s.reorder) return; e.preventDefault(); const from = s.dragId; if (!from || from === x.id) return; const d = this.draftOf(); const a = d.findIndex(z => z.id === from), item = d.splice(a, 1)[0]; item.moved = true; d.splice(d.findIndex(z => z.id === x.id), 0, item); this.setState({ draft: d, dragId: null, overId: null }); },
+        dragEnd: () => this.setState({ dragId: null, overId: null }),
+        rowSt: { display: "grid", gridTemplateColumns: "40px minmax(0,1.6fr) 104px 70px minmax(0,1.7fr) 116px 74px", gap: 12, alignItems: "center", minHeight: 58, padding: "9px 22px", borderTop: "1px solid " + (over ? "var(--pa)" : "var(--lc-iline)"), font: "400 13.5px " + F, fontVariantNumeric: "tabular-nums", background: tint, opacity: rm ? .6 : s.dragId === x.id ? .45 : 1, cursor: s.reorder && !rm ? "grab" : "default", transition: "background .25s,opacity .2s" }
+      };
+    });
+    const dn = s.draft ? this.dirtyN() : 0;
+    out.dirty = dn > 0; out.dirtyLine = dn + (dn === 1 ? " unsaved change" : " unsaved changes");
+    out.discard = () => this.setState({ draft: null, reorder: false, pop: null });
+    out.reviewSave = () => this.setState({ modal: { kind: "save", showKept: false }, reorder: false });
+
+    // stores
+    const sq = s.sq.trim().toLowerCase();
+    const sl = sts.filter(x => (s.sst === "All" || x.st === s.sst) && (!s.custOnly || x.custom.length) && (!sq || String(x.no).includes(sq) || x.city.toLowerCase().includes(sq)));
+    const LIM = 60, shown = s.sAll ? sl : sl.slice(0, LIM);
+    out.sq = s.sq; out.onSq = e => this.setState({ sq: e.target.value, sAll: false });
+    const stsStates = ["All"].concat(["UT", "TX", "CA", "CO", "NV"].filter(z => sts.some(x => x.st === z)));
+    out.sStates = stsStates.map(z => ({ label: z, style: chipSt(s.sst === z), pick: () => this.setState({ sst: z, sAll: false }) }));
+    out.toggleCustOnly = () => this.setState({ custOnly: !s.custOnly });
+    out.custOnlySt = Object.assign(chipSt(false), { gap: 8, paddingLeft: 10, color: "var(--t1)", borderColor: s.custOnly ? "rgba(var(--pl),.5)" : "var(--sc-line)" }); out.custOnlyBox = Object.assign(boxSt(s.custOnly), { width: 16, height: 16, borderRadius: 5 });
+    out.sLine = sl.length + (sl.length === 1 ? " store" : " stores");
+    out.hasSRows = sl.length > 0; out.noSRows = !sl.length;
+    out.sEmptyTitle = sts.length ? "No stores match" : "No stores use this preset yet"; out.sEmptySub = sts.length ? "Try another search or clear the filters." : "Use Apply to stores to set stores up from this preset.";
+    out.sMore = sl.length > LIM && !s.sAll; out.sMoreLabel = "Show all " + sl.length + " stores"; out.showAllStores = () => this.setState({ sAll: true });
+    out.sRows = shown.map(st => {
+      const n = st.custom.length, mo = s.pop === "st:" + st.no, label = st.no + " " + st.city + " - " + st.st;
+      return { store: label, state: st.st, applied: fmtD(st.applied), bg: "transparent",
+        status: n ? "Customised · " + n + (n === 1 ? " difference" : " differences") : "Matches preset",
+        pill: Object.assign(n ? tag("var(--lc-warnbg)", "var(--lc-warn)") : tag("var(--lc-okbg)", "var(--lc-ok)"), { border: 0, cursor: n ? "pointer" : "default" }),
+        openDiff: () => { if (n) this.setState({ panel: { kind: "diff", no: st.no } }); },
+        openStore: () => window.dispatchEvent(new CustomEvent("apf:nav", { detail: { page: "stores", store: st.no } })),
+        menuOpen: mo, toggleMenu: () => this.setState({ pop: mo ? null : "st:" + st.no }),
+        menu: [["Open store", () => window.dispatchEvent(new CustomEvent("apf:nav", { detail: { page: "stores", store: st.no } })), false], ["Reset all to preset", () => { st.custom = []; this.log(p, "Reset " + label + " to the preset", "", IC.swap); this.bump(); this.say(st.no + " reset to " + p.name + "."); }, !n], ["Remove from preset", () => this.setState({ modal: { kind: "remove", no: st.no } }), false, true]].map(([l, fn, dis, bad]) => ({ label: l, style: menuSt(dis, bad), run: () => { if (dis) return; this.setState({ pop: null }); fn(); } }))
+      };
+    });
+
+    // activity
+    out.dAct = p.act.map((a, i) => ({ d: a.d || IC.edit, when: fmtDT(a.at), text: a.text, who: a.who + (a.sub ? " · " + a.sub : ""), sep: i ? "var(--lc-iline)" : "transparent", bg: a.fresh ? "linear-gradient(90deg,rgba(var(--pl),.08),transparent 70%)" : "transparent", anim: a.fresh ? "pdRise .45s both" : "none" }));
+    return out;
+  }
+  removeLine(id) { this.edit(d => { const i = d.findIndex(z => z.id === id), p = this.P(this.state.detail); if (!p.lines.some(l => l.id === id)) d.splice(i, 1); else d[i].rm = true; }); }
+
+  panelVals() {
+    const s = this.state, pn = s.panel, out = { panelOpen: !!pn, closePanel: () => this.setState({ panel: null }), pIsForm: false, pIsPick: false, pIsDiff: false, pIsApply: false, pHasBack: false, pHasRun: true, pCancelLabel: "Cancel", pLabel: "", pBtn: primary(false), pRun: () => {}, pBack: () => {} };
+    const narrow = typeof innerWidth === "number" && innerWidth < 640;
+    const W = pn && pn.kind === "apply" ? "min(720px,calc(100vw - 32px))" : "min(540px,calc(100vw - 32px))";
+    out.pBox = { position: "fixed", top: narrow ? 0 : 16, right: narrow ? 0 : 16, bottom: narrow ? 0 : 16, left: narrow ? 0 : "auto", zIndex: 181, width: narrow ? "100%" : W, display: "flex", flexDirection: "column", isolation: "isolate", overflow: "hidden", borderRadius: narrow ? 0 : 30, background: "var(--pn-bg)", backdropFilter: "blur(30px) saturate(1.4)", WebkitBackdropFilter: "blur(30px) saturate(1.4)", boxShadow: "var(--pn-sh)", color: "var(--pn-ink)", animation: "pnIn .5s cubic-bezier(.2,.8,.2,1) both" };
+    out.pEyebrow = ""; out.pTitle = "";
+    Object.assign(out, { fSizes: [], fStarts: [], pkList: [], pkSizes: [], pkFns: [], dfRows: [], apSteps: [], apStates: [], apList: [], apSum: [], apPrevOpts: [], apPrevStats: [] });
+    if (!pn) return out;
+
+    if (pn.kind === "form") {
+      const err = this.formErr(pn), src = pn.pid ? this.P(pn.pid) : null;
+      Object.assign(out, { pIsForm: true, pEyebrow: pn.mode === "edit" ? "Edit details" : pn.mode === "dup" ? "Duplicate preset" : "New preset", pTitle: pn.mode === "edit" ? src.name : pn.mode === "dup" ? "Duplicate " + src.name : "Create preset",
+        fName: pn.name, onFName: e => this.upP({ name: e.target.value }), fNameErr: !!err, fNameErrText: err, fNameSt: fieldSt(!!err),
+        fDesc: pn.desc, onFDesc: e => this.upP({ desc: e.target.value }), fDescSt: fieldSt(false), fDescCount: (pn.desc || "").length + " / 120",
+        fSizes: ["2.5 gal", "5 gal", "15 gal", "Mixed"].map(z => ({ label: z, style: chipSt(pn.size === z), pick: () => this.upP({ size: z }) })),
+        fHasStart: pn.mode !== "edit", fIsEdit: pn.mode === "edit",
+        fStarts: [["empty", "Empty list", "Add products yourself after creating."], ["preset", "Copy a preset", "Start with another preset's products."], ["store", "Copy a store's list", "Start with one store's current products."]].map(([k, label, sub]) => {
+          const on = pn.start === k;
+          return { label, sub, radio: radioSt(on), pick: () => this.upP({ start: k }), hasSel: on && k !== "empty",
+            wrap: { padding: "14px 16px", borderRadius: 18, background: on ? "rgba(var(--pl),.08)" : "var(--pn-tile)", boxShadow: on ? "inset 0 0 0 1px rgba(var(--pl),.4)" : "none", transition: "background .2s" },
+            val: k === "preset" ? pn.srcP : pn.srcS, onSel: e => this.upP(k === "preset" ? { srcP: e.target.value } : { srcS: e.target.value }),
+            opts: k === "preset" ? DB.P.map(p => ({ v: p.id, l: p.name + " · " + p.lines.length + " products" })) : DB.S.map(x => ({ v: String(x.no), l: x.no + " " + x.city + " - " + x.st })) };
+        }),
+        pLabel: pn.mode === "edit" ? "Save changes" : "Create preset", pBtn: primary(!pn.name.trim() || !!err), pRun: () => this.runForm() });
+    }
+
+    if (pn.kind === "pick") {
+      const p = this.P(s.detail), d = this.draftOf(), q = pn.q.trim().toLowerCase(), line = pn.line ? d.find(x => x.id === pn.line) : null;
+      const list = PM.filter(m => !q || m[0].toLowerCase().includes(q) || m[1].toLowerCase().includes(q));
+      const sizes = p.size === "Mixed" || pn.mode === "replace" ? [2.5, 5, 15] : [parseFloat(p.size)];
+      Object.assign(out, { pIsPick: true, pEyebrow: p.name, pTitle: pn.mode === "add" ? "Add product" : "Replace product", pkIsReplace: pn.mode === "replace", pkIsAdd: pn.mode === "add",
+        pkOrd: line ? String(d.filter(x => !x.rm).indexOf(line) + 1) : "", pkOld: line ? line.p + " · " + line.size + " gal · " + line.fns.join(", ") : "",
+        pkQ: pn.q, onPkQ: e => this.upP({ q: e.target.value }), pkEmpty: !list.length,
+        pkList: list.map(m => { const on = pn.prod === m[0], inL = d.some(x => !x.rm && x.p === m[0]); return { label: m[0], sub: m[1] + " · default " + m[2].join(", "), inList: inL, style: optSt(on), box: radioSt(on), pick: () => this.upP({ prod: m[0], fns: pm(m[0])[2].slice(), err: "" }) }; }),
+        pkHasProd: !!pn.prod, pkNum: pn.prod ? pnum(pn.prod, pn.size) : "",
+        pkSizes: sizes.map(z => ({ label: z + " gal", style: chipSt(pn.size === z), pick: () => this.upP({ size: z }) })),
+        pkFns: FNS.map(fn => { const on = pn.fns.includes(fn); return { label: fn, style: chipSt(on), pick: () => this.upP({ fns: on ? pn.fns.filter(x => x !== fn) : pn.fns.concat([fn]), err: "" }) }; }),
+        pkErr: !!pn.err, pkErrText: pn.err,
+        pLabel: pn.mode === "add" ? "Add to preset" : "Replace", pBtn: primary(!pn.prod), pRun: () => this.runPick() });
+    }
+
+    if (pn.kind === "diff") {
+      const p = this.P(s.detail), st = DB.S.find(x => x.no === pn.no);
+      Object.assign(out, { pIsDiff: true, pEyebrow: "Store differences", pTitle: st.no + " " + st.city + " - " + st.st,
+        dfIntro: st.custom.length ? "These lines differ from " + p.name + ". Changes to the preset never overwrite them." : "This store now matches the preset.",
+        dfRows: st.custom.map(c => { const l = p.lines.find(x => x.id === c.line) || { p: c.p, fns: [] }; return { name: c.p, store: c.fns.join(", "), preset: l.p === c.p ? l.fns.join(", ") : l.p + " · " + l.fns.join(", "), kept: !!c.kept, keptSt: tag("var(--lc-okbg)", "var(--lc-ok)"),
+          keepSt: Object.assign(small("s"), c.kept ? { borderColor: "rgba(var(--pl),.5)", color: "var(--pa)" } : {}), resetSt: small("s"),
+          keep: () => { c.kept = true; this.bump(); this.say("Kept the custom setup for " + short(c.p) + "."); },
+          reset: () => { st.custom = st.custom.filter(x => x !== c); this.log(p, "Reset " + short(c.p) + " on " + st.no + " to the preset", "", IC.swap); this.bump(); this.say(short(c.p) + " reset to the preset."); } }; }),
+        pCancelLabel: "Close", pHasRun: st.custom.length > 0, pLabel: "Reset all to preset", pBtn: primary(false),
+        pRun: () => { st.custom = []; this.log(p, "Reset " + st.no + " " + st.city + " - " + st.st + " to the preset", "", IC.swap); this.bump({ panel: null }); this.say(st.no + " reset to " + p.name + "."); } });
+    }
+
+    if (pn.kind === "apply") {
+      const p = this.P(pn.pid), shown = this.apShown(pn), sel = this.apSel(pn), up = patch => this.upP(patch);
+      out.pIsApply = true; out.pEyebrow = "Apply to stores"; out.pTitle = p.name;
+      out.apSteps = [["1", "Choose stores"], ["2", "Review"]].map(([n, label], i) => { const on = pn.step === i + 1, done = pn.step > i + 1; return { n: done ? "✓" : n, label, line: i === 0, fg: on || done ? "var(--pn-ink)" : "var(--pn-ink3)", dot: { display: "inline-flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, borderRadius: 999, background: on || done ? "#7c3aed" : "var(--pn-tile)", color: on || done ? "#fff" : "var(--pn-ink3)", font: "700 11.5px " + F } }; });
+      out.apStep1 = pn.step === 1; out.apStep2 = pn.step === 2;
+      if (pn.step === 1) {
+        Object.assign(out, { apStates: ["All", "UT", "TX", "CA", "CO", "NV"].map(z => ({ label: z, style: chipSt(pn.st === z), pick: () => up({ st: z }) })),
+          apFrom: pn.from, apTo: pn.to, onApFrom: e => up({ from: e.target.value.replace(/\D/g, "").slice(0, 4) }), onApTo: e => up({ to: e.target.value.replace(/\D/g, "").slice(0, 4) }),
+          apQ: pn.q, onApQ: e => up({ q: e.target.value }),
+          apSelLine: sel.length + (sel.length === 1 ? " store selected" : " stores selected") + " · " + shown.length + " shown", apSelFg: sel.length ? "var(--pn-ink)" : "var(--pn-ink3)",
+          apSelAll: () => { const off = Object.assign({}, pn.off); shown.forEach(x => delete off[x.no]); up({ off }); },
+          apClear: () => { const off = Object.assign({}, pn.off); shown.forEach(x => { off[x.no] = true; }); up({ off }); },
+          apEmpty: !shown.length,
+          apList: shown.slice(0, 300).map(x => { const already = x.preset === p.id, on = !already && !pn.off[x.no], cp = x.preset ? this.P(x.preset) : null;
+            return { label: x.no + " · " + x.city + " - " + x.st, sub: already ? "Already on this preset" : cp ? "On " + cp.name : "No preset", cust: !already && x.custom.length > 0,
+              style: Object.assign(optSt(on), { padding: "10px 12px", opacity: already ? .5 : 1, cursor: already ? "default" : "pointer", background: "transparent" }), box: boxSt(on),
+              toggle: () => { if (already) return; const off = Object.assign({}, pn.off); if (off[x.no]) delete off[x.no]; else off[x.no] = true; up({ off }); } }; }),
+          pLabel: "Next: review", pBtn: primary(!sel.length), pRun: () => { if (sel.length) up({ step: 2, prev: sel[0].no }); } });
+      } else {
+        const groups = {}; sel.forEach(x => { const k = x.preset || "_"; groups[k] = (groups[k] || 0) + 1; });
+        const sum = [{ d: IC.apply, text: "Apply " + p.name + " to " + sel.length + (sel.length === 1 ? " store." : " stores."), font: "600 14px " + F }];
+        Object.keys(groups).filter(k => k !== "_").forEach(k => sum.push({ d: IC.swap, text: groups[k] + (groups[k] === 1 ? " store switches" : " stores switch") + " from " + this.P(k).name + ".", font: "500 13.5px " + F }));
+        if (groups._) sum.push({ d: IC.none, text: groups._ + (groups._ === 1 ? " store has" : " stores have") + " no preset today.", font: "500 13.5px " + F });
+        const cuN = sel.filter(x => x.custom.length).length;
+        const prev = sel.find(x => x.no === pn.prev) || sel[0];
+        const cur = this.current(prev), tgt = this.eff(p, pn.keep ? this.mapCustom(prev, p) : []), dc = this.diffCount(cur, tgt);
+        Object.assign(out, { apSum: sum.map((r, i) => Object.assign(r, { sep: i ? "var(--pn-line)" : "transparent" })),
+          apHasCust: cuN > 0, apCustHelp: cuN + (cuN === 1 ? " store has" : " stores have") + " custom lines. Untick to replace them with the preset.", apKeepBox: boxSt(pn.keep), apToggleKeep: () => up({ keep: !pn.keep }),
+          apPrev: String(prev.no), onApPrev: e => up({ prev: +e.target.value }), apPrevOpts: sel.map(x => ({ v: String(x.no), l: x.no + " " + x.city + " - " + x.st })),
+          apPrevStats: [[dc.add, "Adds", "var(--lc-ok)"], [dc.rm, "Removes", "var(--lc-bad)"], [dc.keep, "Keeps", "var(--pn-ink)"]].map(([v, k, fg]) => ({ v: String(v), k, fg })),
+          apPrevLine: "Adds " + dc.add + ", removes " + dc.rm + ", keeps " + dc.keep + ".",
+          pHasBack: true, pBack: () => up({ step: 1 }), pLabel: "Apply to " + sel.length + (sel.length === 1 ? " store" : " stores"), pBtn: primary(false), pRun: () => this.runApply() });
+      }
+    }
+    return out;
+  }
+
+  modalVals() {
+    const s = this.state, m = s.modal, out = { modalOpen: !!m, closeModal: () => this.setState({ modal: null }), mTitle: "", mLines: [], mChanges: [], mKeptList: [], mHasChanges: false, mHasImpact: false, mHasKept: false, mShowKept: false, mHasType: false, mLabel: "", mBtn: primary(false), mRun: () => {} };
+    if (!m) return out;
+    if (m.kind === "save") {
+      const p = this.P(s.detail), ch = this.changes(), n = this.storesOf(p.id).length, kept = this.keptStores();
+      const keptProds = [...new Set(kept.flatMap(st => st.custom.filter(c => ch.some(x => x.id === c.line && x.k !== "add")).map(c => short(c.p))))];
+      Object.assign(out, { mTitle: "Save changes to " + p.name + "?", mHasChanges: true,
+        mChanges: ch.map((c, i) => ({ sign: c.sign, text: c.text, sep: i ? "var(--pn-line)" : "transparent", signSt: { flex: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 22, height: 22, borderRadius: 999, font: "700 13px " + F, background: c.sign === "+" ? "var(--lc-okbg)" : c.sign === "−" ? "var(--lc-badbg)" : "var(--lc-warnbg)", color: c.sign === "+" ? "var(--lc-ok)" : c.sign === "−" ? "var(--lc-bad)" : "var(--lc-warn)" } })),
+        mHasImpact: n > 0, mStoresLine: n + (n === 1 ? " store" : " stores") + " will be updated.",
+        mHasKept: kept.length > 0, mKeptLine: kept.length + (kept.length === 1 ? " store has" : " stores have") + " customised " + (keptProds.length === 1 ? keptProds[0] : "these lines") + " and keep" + (kept.length === 1 ? "s" : "") + " their own setup.",
+        mKeptBtn: m.showKept ? "Hide" : "View", mToggleKept: () => this.setState({ modal: Object.assign({}, m, { showKept: !m.showKept }) }), mShowKept: !!m.showKept && kept.length > 0, mKeptList: kept.map(st => st.no + " " + st.city + " - " + st.st),
+        mLines: n ? [] : ["No stores use this preset yet."], mLabel: n ? "Save and update stores" : "Save", mBtn: primary(false), mRun: () => this.saveDraft() });
+    }
+    if (m.kind === "remove") {
+      const p = this.P(s.detail), st = DB.S.find(x => x.no === m.no), label = st.no + " " + st.city + " - " + st.st;
+      Object.assign(out, { mTitle: "Remove " + label + " from " + p.name + "?", mLines: [label + " will keep its current products but won't get future changes from this preset."], mLabel: "Remove from preset", mBtn: danger(),
+        mRun: () => { st.own = this.current(st).map(cloneL); st.preset = null; st.custom = []; this.log(p, "Removed " + label, "Kept its current products", IC.minus); this.bump({ modal: null }); this.say(label + " removed from " + p.name + "."); } });
+    }
+    if (m.kind === "delete") {
+      const p = this.P(m.pid), ok = m.typed.trim() === p.name;
+      Object.assign(out, { mTitle: "Delete " + p.name + "?", mLines: ["No stores use this preset. This can't be undone."], mHasType: true, mTypeWant: p.name, mTyped: m.typed, mOnType: e => this.setState({ modal: Object.assign({}, m, { typed: e.target.value }) }),
+        mLabel: "Delete preset", mBtn: Object.assign(danger(), ok ? {} : { opacity: .45, cursor: "not-allowed" }),
+        mRun: () => { if (!ok) return; DB.P = DB.P.filter(x => x !== p); this.bump({ modal: null, detail: s.detail === p.id ? null : s.detail }); this.say(p.name + " deleted."); } });
+    }
+    return out;
+  }
+}
+
+</script>
+</body>
+</html>

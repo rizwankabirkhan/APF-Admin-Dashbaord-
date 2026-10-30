@@ -48,6 +48,7 @@ html[data-pn="1"] main{z-index:70!important}
 :root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
 :root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
 html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
 </style>
 </helmet>
 
@@ -280,7 +281,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
     <div style="flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;animation:spRise .45s cubic-bezier(.2,.8,.2,1) backwards">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--t2)">
-          <span style="white-space:nowrap">Based on preset: <span style="color:var(--t1);font-weight:600">{{ presetName }}</span></span>
+          <span style="white-space:nowrap">Based on preset: <button type="button" onClick="{{ openPreset }}" title="Open preset" style="border:0;background:transparent;padding:0;color:var(--pa);font:600 14px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(var(--pl),.4)">{{ presetName }}</button></span>
           <sc-if value="{{ isCustomised }}" hint-placeholder-val="{{ false }}">
             <span style="padding:3px 10px;border-radius:999px;background:rgba(139,92,246,.16);color:var(--pa);font-size:12px;font-weight:600">Customised</span>
             <button type="button" onClick="{{ toggleDiff }}" style="white-space:nowrap;border:0;background:transparent;padding:0;color:var(--pa);font-size:13px;font-weight:600;cursor:pointer" style-hover="color:var(--pa)">{{ diffLabel }}</button>
@@ -334,7 +335,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
                     </sc-if>
                     <sc-if value="{{ fc.idle }}" hint-placeholder-val="{{ true }}">
                       <span style="display:inline-flex;align-items:center;height:30px;border-radius:999px;background:rgba(var(--w),0.06);border:1px solid rgba(var(--w),0.06);transition:background .15s,border-color .15s" style-hover="background:rgba(139,92,246,.14);border-color:rgba(var(--pl),.35)">
-                        <button type="button" onClick="{{ fc.edit }}" title="Rename wash function" style="display:inline-flex;align-items:center;gap:{{ fc.gap }};height:100%;padding:0 {{ fc.padR }} 0 12px;border:0;background:transparent;color:var(--t1);font:inherit;font-size:13px;font-weight:500;white-space:nowrap;cursor:text">{{ fc.label }}<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;width:{{ fc.penW }};opacity:{{ fc.penOp }};transition:opacity .2s,width .2s;stroke:var(--t3)"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16z"></path></svg></button>
+                        <button type="button" onClick="{{ fc.edit }}" title="Rename wash function" style="display:inline-flex;align-items:center;gap:{{ fc.gap }};height:100%;padding:0 {{ fc.padR }} 0 14px;line-height:1;border:0;background:transparent;color:var(--t1);font:inherit;font-size:13px;font-weight:500;white-space:nowrap;cursor:text">{{ fc.label }}<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;width:{{ fc.penW }};opacity:{{ fc.penOp }};transition:opacity .2s,width .2s;stroke:var(--t3)"><path d="M13.26 3.6L5.05 12.29c-.31.33-.61.98-.67 1.43l-.37 3.24c-.13 1.17.71 1.97 1.87 1.77l3.22-.55c.45-.08 1.08-.41 1.39-.75l8.21-8.69c1.42-1.5 2.06-3.21-.15-5.3-2.2-2.07-3.87-1.34-5.29.16z"></path></svg></button>
                         <sc-if value="{{ fc.canRemove }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ fc.remove }}" aria-label="Remove wash function" title="Remove wash function" style="display:flex;align-items:center;justify-content:center;width:22px;height:22px;margin-right:4px;border:0;border-radius:50%;background:transparent;color:var(--t3);cursor:pointer;transition:background .15s,color .15s" style-hover="background:rgba(248,113,113,.16);color:var(--red)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
                       </span>
                     </sc-if>
@@ -1175,7 +1176,7 @@ const TABS = [["overview", "Overview"], ["products", "Products"], ["inventory", 
 const DEFAULT = { no: 7401, name: "Corpus Christi", street: "4602 Airline Rd", city: "Corpus Christi", state: "TX", zip: "78412", techs: [0, 1], svcDays: 14, svcNone: false, usage: { dir: "over", n: 2 }, flags: ["usage", "safety"], products: 14, preset: "Standard 5 gal", custom: false, status: "Active", inv: "Complete" };
 
 const PEOPLE = new Set(["james-carter","daniel-reyes","kevin-tran","luis-ortega","marcus-hill","omar-haddad","leo-santos","devon-price","mario-lopez","sam-mitchell","raj-shah","ramon-delgado","tony-nguyen","gary-kim","dan-whitfield"]);
-const pic = n => { const k = String(n || "").toLowerCase().trim().replace(/\s+/g, "-"); const p = PEOPLE.has(k) ? "assets/people/" + k + ".png" : ""; return { photo: p, photoBg: p ? "url(" + p + ")" : "none", hasPhoto: !!p }; };
+const pic = n => { const k = String(n || "").toLowerCase().trim().replace(/\s+/g, "-"); const p = PEOPLE.has(k) ? "assets/people/" + k + ".png" : ""; return { photo: p, photoBg: p ? "url(" + p + ")" : "var(--np)", hasPhoto: true }; };
 function rng(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 
 function presetRows(name, mkId) {
@@ -1567,7 +1568,7 @@ class Component extends DCLogic {
     const order = s.reorder && s.order ? s.order.map(id => d.products.find(p => p.id === id)).filter(Boolean) : d.products;
     const move = (id, dir) => this.setState(x => { const o = x.order.slice(), i = o.indexOf(id), j = i + dir; if (j < 0 || j >= o.length) return null; o.splice(i, 1); o.splice(j, 0, id); return { order: o }; });
     Object.assign(out, {
-      presetName: d.preset, isCustomised: customs.length > 0 || missing.length > 0,
+      presetName: d.preset, openPreset: () => { window.__apfPresetReq = { name: d.preset, ts: Date.now() }; window.dispatchEvent(new CustomEvent("apf:nav", { detail: { page: "productsstandards" } })); setTimeout(() => window.dispatchEvent(new CustomEvent("apf:open-preset", { detail: { name: d.preset } })), 80); }, isCustomised: customs.length > 0 || missing.length > 0,
       showDiff: s.showDiff, diffLabel: s.showDiff ? "Hide differences" : "View differences", toggleDiff: () => this.setState({ showDiff: !s.showDiff }),
       diffRows: customs.map(p => ({ tag: "Custom", text: p.name + " · " + p.fn })).concat(missing.map(p => ({ tag: "Not used", text: p.name + " · " + p.fn }))),
       notReorder: !s.reorder, reorder: s.reorder,
@@ -1595,7 +1596,7 @@ class Component extends DCLogic {
           idx: i + 1, name: p.name, num: p.num, numFg: p.num === "—" ? C.faint : C.muted, size: p.size + " gal", fn: p.fn,
           sec: p.size === 2.5 ? (p.sec || "—") + " gal" : "—", secFg: p.size === 2.5 ? C.text : C.faint,
           src: p.src, srcStyle: p.src === "Custom" ? tag(C.accentSoft, C.accent) : tag("rgba(var(--w),0.06)", C.muted),
-          fnChips: p.fns.map((label, k) => ({ label, penOp: s.hoverRow === p.id ? 1 : 0, penW: s.hoverRow === p.id ? "12px" : "0px", gap: s.hoverRow === p.id ? "7px" : "0px", editing: ed === k, idle: ed !== k, canRemove: p.fns.length > 1 && !s.reorder, padR: p.fns.length > 1 ? "4px" : "12px",
+          fnChips: p.fns.map((label, k) => ({ label, penOp: s.hoverRow === p.id ? 1 : 0, penW: s.hoverRow === p.id ? "12px" : "0px", gap: s.hoverRow === p.id ? "7px" : "0px", editing: ed === k, idle: ed !== k, canRemove: p.fns.length > 1 && !s.reorder, padR: p.fns.length > 1 ? "6px" : "14px",
             edit: () => { if (!s.reorder) this.setState({ editFn: { pid: p.id, idx: k }, fnDraft: label }); },
             remove: () => { setFns(p.fns.filter((x, z) => z !== k), "Wash function removed", "Removed wash function '" + label + "' from " + p.name); this.setState({ editFn: null }); } })),
           plusOp: s.hoverRow === p.id ? 1 : 0, plusW: s.hoverRow === p.id ? "80px" : "0px", plusPad: s.hoverRow === p.id ? "0 10px 0 8px" : "0px", plusX: s.hoverRow === p.id ? "0px" : "-4px",

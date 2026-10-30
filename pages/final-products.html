@@ -68,6 +68,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
 <input ref="{{ fileRef }}" type="file" accept="image/jpeg,image/png,image/webp,image/avif,.jpg,.jpeg,.png,.webp,.avif" onChange="{{ onFilePicked }}" style="display:none"/>
 <div style="width:100%;max-width:1760px;padding:8px 24px 48px;display:flex;flex-direction:column;gap:20px">
 <sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ showHead }}" hint-placeholder-val="{{ true }}">
 <div style="display:flex;flex-direction:column;gap:22px;padding:8px 0 0">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Products &amp; standards</h1>
@@ -84,6 +85,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
     <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2"><button type="button" onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}<span style="{{ t.countStyle }}">{{ t.count }}</span></button></sc-for>
   </div>
 </div>
+</sc-if>
 
 <sc-if value="{{ tabProducts }}" hint-placeholder-val="{{ true }}">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px">
@@ -158,7 +160,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
             <span><span style="{{ r.typeStyle }}">{{ r.typeLabel }}</span></span>
             <span style="display:flex;align-items:center;gap:5px;white-space:nowrap"><sc-for list="{{ r.sizes }}" as="z" hint-placeholder-count="3"><span style="{{ z.style }}">{{ z.label }}</span></sc-for><span style="font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">gal</span></span>
             <span style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-width:0">
-              <sc-for list="{{ r.fns }}" as="fn" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ fn.label }}</span></sc-for>
+              <sc-for list="{{ r.fns }}" as="fn" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 12px;line-height:1;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ fn.label }}</span></sc-for>
               <sc-if value="{{ r.fnDash }}" hint-placeholder-val="{{ false }}"><span style="color:var(--t3)">—</span></sc-if>
               <sc-if value="{{ r.fnNotSet }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;background:var(--lc-warnbg);color:var(--lc-warn);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif">Not set</span></sc-if>
             </span>
@@ -309,6 +311,9 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
     </div>
   </sc-if>
 </sc-if>
+<div style="{{ presetsWrap }}">
+  <dc-import name="Final Presets" create-tick="{{ presetTick }}" open-req="{{ presetReq }}" on-detail="{{ onPresetDetail }}" on-count="{{ onPresetCount }}" hint-size="0px,0px"></dc-import>
+</div>
 </sc-if>
 <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
 <div ref="{{ shellRef }}" style="{{ shellStyle }}">
@@ -489,7 +494,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
                     <sc-for list="{{ presetRows }}" as="pr" hint-placeholder-count="1">
                       <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid {{ pr.sep }}">
                         <span style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:var(--lc-chip);color:var(--t2)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.01 2.92l5.9 2.62c1.7.75 1.7 1.99 0 2.74l-5.9 2.62c-.67.3-1.77.3-2.44 0l-5.9-2.62c-1.7-.75-1.7-1.99 0-2.74l5.9-2.62c.67-.3 1.77-.3 2.44 0zM3 11c0 .84.63 1.81 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.77-.34 1.4-1.31 1.4-2.15M3 16c0 .93.55 1.77 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.85-.38 1.4-1.22 1.4-2.15"></path></svg></span>
-                        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pr.name }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Preset · {{ pr.size }}</span></span>
+                        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><button type="button" onClick="{{ pr.open }}" title="Open preset" style="align-self:flex-start;max-width:100%;border:0;background:transparent;padding:0;font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pa);text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pr.name }}</button><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Preset · {{ pr.size }}</span></span>
                         <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ pr.stores }}</span>
                       </div>
                     </sc-for>
@@ -604,7 +609,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
                     <sc-for list="{{ presetRows }}" as="pr" hint-placeholder-count="1">
                       <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid {{ pr.sep }}">
                         <span style="flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:var(--lc-chip);color:var(--t2)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13.01 2.92l5.9 2.62c1.7.75 1.7 1.99 0 2.74l-5.9 2.62c-.67.3-1.77.3-2.44 0l-5.9-2.62c-1.7-.75-1.7-1.99 0-2.74l5.9-2.62c.67-.3 1.77-.3 2.44 0zM3 11c0 .84.63 1.81 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.77-.34 1.4-1.31 1.4-2.15M3 16c0 .93.55 1.77 1.4 2.15l6.79 3.02c.52.23 1.11.23 1.62 0l6.79-3.02c.85-.38 1.4-1.22 1.4-2.15"></path></svg></span>
-                        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pr.name }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Preset · {{ pr.size }}</span></span>
+                        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><button type="button" onClick="{{ pr.open }}" title="Open preset" style="align-self:flex-start;max-width:100%;border:0;background:transparent;padding:0;font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pa);text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pr.name }}</button><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Preset · {{ pr.size }}</span></span>
                         <span style="font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2);white-space:nowrap">{{ pr.stores }}</span>
                       </div>
                     </sc-for>
@@ -932,7 +937,7 @@ const RAW = [
 ];
 const SO_DAYS = { 1: "3 Oct", 2.5: "—", 5: "10 Oct", 15: "26 Sep" };
 const STORES = [["7401","Corpus Christi - TX","TX"],["1234","Eagle Mountain - UT","UT"],["4512","Riverside - CA","CA"],["5820","Pueblo - CO","CO"],["5131","Layton - UT","UT"],["5112","Ogden - UT","UT"],["7312","San Antonio - TX","TX"],["4101","Santa Clarita - CA","CA"],["2841","Roseville - CA","CA"],["5703","Colorado Springs - CO","CO"]];
-const PRESETS = [["Standard 5 gal", 5, 132], ["5 gal California", 5, 18], ["Standard 15 gal", 15, 21]];
+const PRESETS = [["Standard 5 gal", 5, 118], ["Standard 5 gal California", 5, 32], ["Standard 15 gal", 15, 14]];
 const SIZES = [1, 2.5, 5, 15];
 const IMG = { OLBG: "olbg.avif", OLC: "olc.avif", OLW: "olw.avif", DG228: "dg228.avif", BB205: "bb205.avif", DF200: "df200.avif", EX226: "ex226.avif", EX224: "ex224.avif", EX223W: "ex223w.png", EX214: "ex214.avif", PS216: "ps216.avif", PS313: "ps313.avif", WX220B: "wx220.png", WX220R: "wx220.png", WX220Y: "wx220.png", WX224: "wx224.avif", S1026: "s1026.avif", S2212: "s2212.avif" };
 const IMG_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
@@ -1029,7 +1034,9 @@ class Component extends DCLogic {
     this.setState({ imgBusy: p.id, cardErr: null });
     setTimeout(() => { const had = !!p.img; p.img = dataUrl; this.touch(p); this.log("Product", had ? "Replaced image" : "Added image", (had ? "Replaced image for " : "Added image to ") + p.name, p.id); this.setState({ imgBusy: null }); this.say(had ? "Image replaced." : "Image added."); }, 950);
   }
+  presetListen() { this.onOpenPreset = e => { const r = { name: e.detail && e.detail.name, ts: Date.now() }; window.__apfPresetReq = null; this.setState({ tab: "presets", detail: null, presetReq: r, pop: null }); }; window.addEventListener("apf:open-preset", this.onOpenPreset); const w = window.__apfPresetReq; if (w) { window.__apfPresetReq = null; this.setState({ tab: "presets", presetReq: w }); } }
   componentDidMount() {
+    this.presetListen();
     this.fit = () => { const el = this.shellRef.current; if (!el || innerWidth < 1100) { if (this.state.shellH) this.setState({ shellH: 0 }); return; } const top = el.getBoundingClientRect().top + (document.scrollingElement || document.documentElement).scrollTop; const h = Math.max(480, Math.floor(innerHeight - top - 20)); if (Math.abs(h - (this.state.shellH || 0)) > 1) this.setState({ shellH: h }); };
     window.addEventListener("resize", this.fit);
     this.fitT = setInterval(() => { if (this.state.detail != null) this.fit(); }, 400);
@@ -1346,12 +1353,13 @@ class Component extends DCLogic {
     const anySel = Object.keys(sel).some(k => sel[k].length);
     Object.assign(out, {
       showList: !s.detail, dtOn: this.state.detail != null && innerWidth >= 1100 ? "1" : "0", shellRef: this.shellRef, ...(() => { const fitOn = !!this.state.shellH && this.state.detail != null; return { shellStyle: fitOn ? { display: "flex", gap: 22, alignItems: "stretch", height: this.state.shellH, animation: "pdRise .45s cubic-bezier(.2,.8,.2,1) both" } : { display: "flex", flexWrap: "wrap", gap: 22, alignItems: "flex-start", animation: "pdRise .45s cubic-bezier(.2,.8,.2,1) both" }, asideStyle: fitOn ? { flex: "0 0 340px", minWidth: 0, minHeight: 0, overflowY: "auto", scrollbarWidth: "none", display: "flex", flexDirection: "column", gap: 14 } : { flex: "0 0 340px", maxWidth: "100%", display: "flex", flexDirection: "column", gap: 14 }, rightCol: fitOn ? { flex: "999 1 560px", minWidth: 0, minHeight: 0, display: "flex", flexDirection: "column", gap: 14 } : { flex: "999 1 560px", minWidth: 0, display: "flex", flexDirection: "column", gap: 14 }, rightStyle: fitOn ? { flex: "1 1 auto", minWidth: 0, minHeight: 0, overflowY: "auto", overflowX: "hidden", scrollbarWidth: "none", display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6, margin: "0 -6px", padding: "0 6px 6px" } : { display: "flex", flexDirection: "column", gap: 14 } }; })(), showDetail: !!s.detail,
-      tabs: [["products", "Products", prods.length], ["functions", "Wash functions", FN.length]].map(([k, l, n]) => ({ label: l, count: String(n), go: () => this.setState({ tab: k, pop: null }), style: Object.assign(seg(s.tab === k), { height: 40, padding: "0 18px", font: (s.tab === k ? "600" : "500") + " 14px " + F }), countStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 24, height: 22, padding: "0 7px", borderRadius: 999, background: s.tab === k ? "rgba(255,255,255,.2)" : "var(--lc-chip)", color: s.tab === k ? "#fff" : "var(--t3)", font: "700 11.5px " + F } })),
-      tabProducts: s.tab === "products", tabFunctions: s.tab === "functions",
-      addLabel: s.tab === "products" ? "Add product" : "Add wash function",
-      addRun: () => s.tab === "products" ? this.openAdd() : this.openFn(null),
+      tabs: [["products", "Products", prods.length], ["functions", "Wash functions", FN.length], ["presets", "Presets", s.presetN || 4]].map(([k, l, n]) => ({ label: l, count: String(n), go: () => this.setState({ tab: k, pop: null }), style: Object.assign(seg(s.tab === k), { height: 40, padding: "0 18px", font: (s.tab === k ? "600" : "500") + " 14px " + F }), countStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 24, height: 22, padding: "0 7px", borderRadius: 999, background: s.tab === k ? "rgba(255,255,255,.2)" : "var(--lc-chip)", color: s.tab === k ? "#fff" : "var(--t3)", font: "700 11.5px " + F } })),
+      tabProducts: s.tab === "products", tabFunctions: s.tab === "functions", presetsWrap: this.state.tab === "presets" ? { display: "block" } : { display: "none" }, tabPresets: s.tab === "presets", showHead: !(s.tab === "presets" && s.presetOpen),
+      presetTick: s.presetTick || 0, presetReq: s.presetReq || null, onPresetDetail: o => { if (o !== !!this.state.presetOpen) this.setState({ presetOpen: o }); }, onPresetCount: n => { if (n !== s.presetN) this.setState({ presetN: n }); },
+      addLabel: s.tab === "products" ? "Add product" : s.tab === "presets" ? "Create preset" : "Add wash function",
+      addRun: () => s.tab === "products" ? this.openAdd() : s.tab === "presets" ? this.setState({ presetTick: Date.now() }) : this.openFn(null),
       openImport: () => this.setState({ pop: null, panel: { kind: "import", step: "upload", open: {} } }),
-      doExport: () => s.tab === "functions" ? this.say("Exported " + FN.length + " wash functions to Excel.") : this.say("Exported " + list.length + (list.length === 1 ? " product" : " products") + " to Excel."),
+      doExport: () => s.tab === "presets" ? this.say("Exported " + (s.presetN || 4) + " presets to Excel.") : s.tab === "functions" ? this.say("Exported " + FN.length + " wash functions to Excel.") : this.say("Exported " + list.length + (list.length === 1 ? " product" : " products") + " to Excel."),
       openActivity: () => this.setState({ pop: null, panel: { kind: "activity" } }),
       tiles: TILES.map(([k, label, sub, icon, apply], i) => { const on = s.tile === k, v = counts[k], warn = (k === "miss" || k === "review") && v > 0; return {
         label, sub, value: String(v), icon, on: on ? "1" : "0", arrowD: on ? IC.close : IC.arrow,
@@ -1470,7 +1478,7 @@ class Component extends DCLogic {
       wuRegions: [["all", "All regions"], ["CA", "CA"], ["CO", "CO"], ["TX", "TX"], ["UT", "UT"]].map(([k, l]) => ({ label: l, style: seg(s.wuRegion === k), pick: () => this.setState({ wuRegion: k }) })),
       wuRows: wu.map((r, i) => Object.assign(r, { sep: i ? "var(--lc-iline)" : "transparent", srcStyle: r.source === "Custom" ? tag("rgba(var(--pl),.14)", "var(--pa)") : tag("var(--lc-chip)", "var(--lc-ink2)"), open: () => this.say("Opens store " + r.no + " · Products tab") })),
       wuEmpty: wu.length === 0, wuNote: "Showing " + wu.length + " of " + (s.wuSize === "all" ? st : (p.sizes.find(x => String(x.size) === s.wuSize) || { stores: 0 }).stores) + " stores",
-      presetRows: presetsList.map((x, i) => ({ name: x[0], size: x[1] + " gal", stores: x[2] + " stores", sep: i ? "var(--lc-iline)" : "transparent" })), hasPresets: presetsList.length > 0,
+      presetRows: presetsList.map((x, i) => ({ name: x[0], open: () => this.setState({ tab: "presets", detail: null, presetReq: { name: x[0], ts: Date.now() } }), size: x[1] + " gal", stores: x[2] + " stores", sep: i ? "var(--lc-iline)" : "transparent" })), hasPresets: presetsList.length > 0,
       get ovSO() { return this.soRows.slice(0, 3); },
       soRows: st === 0 ? [] : Array.from({ length: 10 }, (_, i) => { const x = storeSizes[i % 4 === 3 && storeSizes.length > 1 ? 1 : 0]; const r = STORES[(i * 3) % STORES.length]; return { so: "SO-" + (58240 - i * 13), store: r[0] + " " + r[1], num: x.num, qty: (1 + (i * 7) % 4) + " × " + x.size + " gal", ship: (24 - i * 2 > 0 ? (24 - i * 2) + " Oct" : (30 + 24 - i * 2) + " Sep"), sep: i ? "var(--lc-iline)" : "transparent" }; }),
       actRowsD: acts.map((a, i) => ({ when: a.when, person: a.person, action: a.action, details: a.pid === "*" ? "Updated by import, Product_Master_8Oct.xlsx" : a.details, sep: i ? "var(--lc-iline)" : "transparent", bg: a.fresh ? "rgba(var(--pl),.06)" : "transparent" })), actEmptyD: acts.length === 0

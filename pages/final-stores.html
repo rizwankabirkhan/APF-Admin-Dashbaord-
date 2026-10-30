@@ -57,6 +57,7 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
 [data-zr-glow]{position:absolute;left:30%;right:30%;top:-10px;height:21px;background:radial-gradient(closest-side,var(--zr-glow),transparent);filter:blur(4px)}
 :root{--zr-line:rgba(196,181,253,.10);--zr-mid:rgba(196,181,253,.34);--zr-glow:rgba(139,92,246,.22);--zr-spark:rgba(221,210,255,.85)}
 :root[data-theme=light]{--zr-line:rgba(91,33,182,.08);--zr-mid:rgba(91,33,182,.26);--zr-glow:rgba(139,92,246,.14);--zr-spark:rgba(124,58,237,.7)}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
 </style>
 </helmet>
 
@@ -727,7 +728,7 @@ class Component extends DCLogic {
     const tech0 = st.techs.length ? TECHS[st.techs[0]] : null;
     const card = {
       pillBg: inactive ? "var(--lc-chip)" : "var(--lc-" + tk + "bg)", pillFg: inactive ? "var(--sc-ink3)" : "var(--lc-" + tk + ")", live: tk === "ok" ? "1" : "0",
-      avIni: tech0 ? "" : "?", avBg: tech0 ? "url(assets/people/" + tech0[0].toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,linear-gradient(135deg,#b06bff,#5b21b6)" : "var(--lc-warnbg)", avFg: tech0 ? "#fff" : "var(--lc-warn)",
+      avIni: tech0 ? "" : "?", avBg: tech0 ? "url(assets/people/" + tech0[0].toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,var(--np) center/cover no-repeat" : "var(--lc-warnbg)", avFg: tech0 ? "#fff" : "var(--lc-warn)",
       ownName: tech0 ? tech0[0] : "No technician", ownFg: tech0 ? "var(--sc-ink)" : "var(--lc-warn)",
       ownRole: tech0 ? (st.techs.length > 1 ? "Technician · +" + (st.techs.length - 1) + " more" : "Technician") : "Assign one to this store",
       prodN: String(st.products),
@@ -739,7 +740,7 @@ class Component extends DCLogic {
       edge: "transparent", edgeHover: "rgba(var(--w),0.06)",
       line: ta(.55) || "var(--s3)", glow: "transparent", shadow: "var(--k55)",
       cRows,
-      cAvatars: st.techs.length ? st.techs.slice(0, 3).map(t => { const p = "assets/people/" + TECHS[t][0].toLowerCase().replace(/\s+/g, "-") + ".png"; return { ini: TECHS[t][1], bg: "url(" + p + ") center/cover no-repeat,var(--s2)", fg: "transparent" }; }) : [{ ini: "?", bg: "rgba(251,191,36,0.14)", fg: C.late }],
+      cAvatars: st.techs.length ? st.techs.slice(0, 3).map(t => { const p = "assets/people/" + TECHS[t][0].toLowerCase().replace(/\s+/g, "-") + ".png"; return { ini: TECHS[t][1], bg: "url(" + p + ") center/cover no-repeat,var(--np) center/cover no-repeat", fg: "transparent" }; }) : [{ ini: "?", bg: "rgba(251,191,36,0.14)", fg: C.late }],
       teamText: st.techs.length ? names.join(", ") : "No technician assigned",
       teamFg: st.techs.length ? C.muted : C.late,
       productsText: st.products + " products",
@@ -914,7 +915,7 @@ const ixGlyph = (u, sz) => ({ display: "block", width: sz, height: sz, backgroun
       createdChips: s.created ? (() => { const c = s.created, n = c.techNames || [], out = [];
         out.push({ label: c.active === false ? "Hidden until activated" : "Live for technicians", dot: true, dotC: c.active === false ? "#8c8b95" : "#62d69a", hasPics: false, pics: [] });
         out.push({ label: c.products + (c.products === 1 ? " product" : " products"), dot: false, hasPics: false, pics: [] });
-        out.push(n.length ? { label: n.length + (n.length === 1 ? " technician" : " technicians"), dot: false, hasPics: true, pics: n.slice(0, 3).map((nm, i) => ({ ml: i ? "-7px" : "0px", bg: "url(assets/people/" + String(nm).toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,#2a2238" })) } : { label: "No technician yet", dot: true, dotC: "#f0c35a", hasPics: false, pics: [] });
+        out.push(n.length ? { label: n.length + (n.length === 1 ? " technician" : " technicians"), dot: false, hasPics: true, pics: n.slice(0, 3).map((nm, i) => ({ ml: i ? "-7px" : "0px", bg: "url(assets/people/" + String(nm).toLowerCase().replace(/\s+/g, "-") + ".png) center/cover no-repeat,var(--np) center/cover no-repeat" })) } : { label: "No technician yet", dot: true, dotC: "#f0c35a", hasPics: false, pics: [] });
         return out.map((x, i) => Object.assign(x, { delay: (1250 + i * 100) + "ms" })); })() : [], createdNo: s.created ? String(s.created.no) : "", createdName: s.created ? s.created.name : "", createdSub: s.created ? s.created.sub : "", createdAnim: s.createdOut ? "crOut .45s ease forwards" : "crIn .3s ease both",
       mainAnim: s.backed ? "stBackIn .35s ease both" : "none",
       total: noStores ? 0 : STORES.length,

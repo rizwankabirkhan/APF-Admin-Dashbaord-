@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head>
 <title>APF Portal</title>
-<script>window.__resources = {"./Final%20Dashboard.dc.html": "assets/efa59eed-64a1-4ea4-8cc8-8b6deaf616e9.html?v=2", "./APF%20New%20Login.dc.html": "assets/dbf94a76-469b-4357-ab48-dcaaf73985e3.html?v=2", "./Final%20Stores.dc.html": "assets/f6d79e66-275b-4d87-9290-c90b1b4523a0.html?v=2", "./Final%20Products.dc.html": "assets/b625c8c2-238e-4089-b0f0-279c5e95e46a.html?v=2", "./Final%20Training%20Videos.dc.html": "assets/f663a6ff-f175-4bd5-9cb1-e8c315801407.html?v=2", "./Final%20Store%20Detail.dc.html": "assets/84f456cd-5e3c-48f7-846f-89e3ca84fc3f.html?v=2", "./Final%20Add%20Store.dc.html": "assets/eba25578-4691-41c7-96fd-c5c183742b78.html?v=2", "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/d5d657d2-a602-4ac5-bc09-70d17e31a294.js?v=2", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/3c2811a8-fb86-4b4a-8df5-b804206d513b.js?v=2", "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "assets/babel-standalone-7.29.0.min.js?v=2"};</script>
+<script>window.__resources = {"https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js", "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js": "vendor/babel.min.js", "./APF%20New%20Login.dc.html": "pages/apf-new-login.html?v=3", "./Final%20Add%20Store.dc.html": "pages/final-add-store.html?v=3", "./Final%20Dashboard.dc.html": "pages/final-dashboard.html?v=3", "./Final%20Messages.dc.html": "pages/final-messages.html?v=3", "./Final%20Presets.dc.html": "pages/final-presets.html?v=3", "./Final%20Products.dc.html": "pages/final-products.html?v=3", "./Final%20Requests.dc.html": "pages/final-requests.html?v=3", "./Final%20Store%20Detail.dc.html": "pages/final-store-detail.html?v=3", "./Final%20Stores.dc.html": "pages/final-stores.html?v=3", "./Final%20Training%20Videos.dc.html": "pages/final-training-videos.html?v=3", "./Final%20Uploads.dc.html": "pages/final-uploads.html?v=3", "./Final%20Users.dc.html": "pages/final-users.html?v=3"};</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="assets/a0b4dfe8-3b4e-4d99-b6af-b00d612c2c3a.js?v=2"></script>
+<script src="support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-
-<script src="assets/c3bc2537-c949-4cf6-ac54-f442e9f0c4eb.js?v=2"></script>
-<script src="assets/ffc32e27-a509-439c-ba2f-80b7577dbc69.js?v=2"></script>
-<script src="assets/871ee8c8-11d6-4ee5-bfed-fcea69715094.js?v=2"></script>
-<script src="assets/22ad85ce-8969-4dda-93cd-4769c3d6f37e.js?v=2"></script>
-<script src="assets/9268ae5f-9df0-4ba6-973e-95c21f591079.js?v=2"></script>
-<script src="assets/7a373dac-e055-407d-93d0-046feae61134.js?v=2"></script>
 <style>
 html,body{margin:0;background:#0b0a12}
 a{color:#a78bfa}a:hover{color:#c4b5fd}
 html[data-gate="1"],html[data-gate="1"] body{overflow:hidden}
-[data-pl]{position:fixed;inset:0;z-index:200;overflow-y:auto;background:#f5f3fb;transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);will-change:opacity,transform}
-[data-pl][data-out="1"]{opacity:0;transform:scale(1.035);pointer-events:none}
-[data-pd]{position:relative;transition:opacity .75s cubic-bezier(.2,.8,.2,1) .18s,transform .9s cubic-bezier(.2,.8,.2,1) .18s;will-change:opacity,transform}
-[data-pd][data-in="0"]{opacity:0;transform:translateY(14px) scale(.985);pointer-events:none}
-[data-pd][data-in="1"]{opacity:1;transform:translateY(0) scale(1)}
-[data-pd][data-in="2"]{opacity:1;transform:none;transition:none;will-change:auto}
-@media (prefers-reduced-motion:reduce){[data-pl],[data-pd]{transition:opacity .2s linear!important;transform:none!important}}
+[data-pl]{position:fixed;inset:0;z-index:200;overflow-y:auto;background:#0b0a12;transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.2,.8,.2,1),filter .6s ease;will-change:opacity,transform}
+[data-pl][data-out="1"]{opacity:0;transform:scale(1.04);filter:blur(6px);pointer-events:none}
+[data-pd]{position:relative;transition:opacity .7s cubic-bezier(.2,.8,.2,1) .15s}
+[data-pd][data-in="0"]{opacity:0;pointer-events:none}
+[data-pd][data-in="1"],[data-pd][data-in="2"]{opacity:1}
+[data-pd][data-in="2"]{transition:none}
+@media (prefers-reduced-motion:reduce){[data-pl],[data-pd]{transition:opacity .2s linear!important;transform:none!important;filter:none!important}}
 </style>
 </helmet>
 <div data-screen-label="APF Portal" style="min-height:100vh;background:#0b0a12">
   <div data-pd="1" data-in="{{ dashIn }}">
-    <dc-import name="Final Dashboard" start-on="stores" hint-size="100%,100vh"></dc-import>
+    <sc-if value="{{ mountDash }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="Final Dashboard" start-on="stores" hint-size="100%,100vh"></dc-import>
+    </sc-if>
   </div>
   <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ true }}">
     <div data-pl="1" data-out="{{ loginOut }}">
@@ -40,9 +36,9 @@ html[data-gate="1"],html[data-gate="1"] body{overflow:hidden}
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="">
+<script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { phase: "login" };
+  state = { phase: "login", mount: false };
   componentDidMount() { document.documentElement.setAttribute("data-gate", "1"); window.scrollTo(0, 0); }
   componentWillUnmount() { clearTimeout(this.t1); clearTimeout(this.t2); document.documentElement.removeAttribute("data-gate"); }
   reveal() {
@@ -52,19 +48,19 @@ class Component extends DCLogic {
     this.t1 = setTimeout(() => {
       document.documentElement.removeAttribute("data-gate");
       this.setState({ phase: "app" });
-    }, 1150);
+    }, 950);
   }
   renderVals() {
     const p = this.state.phase;
     return {
+      mountDash: this.state.mount || p !== "login",
       showLogin: p !== "app",
       loginOut: p === "login" ? "0" : "1",
       dashIn: p === "login" ? "0" : p === "reveal" ? "1" : "2",
-      onAuthed: step => { if (step === "reveal") this.reveal(); }
+      onAuthed: step => { if (step === "start" && !this.state.mount) this.setState({ mount: true }); if (step === "reveal") this.reveal(); }
     };
   }
 }
 </script>
-
-
-</body></html>
+</body>
+</html>

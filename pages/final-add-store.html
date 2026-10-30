@@ -31,6 +31,7 @@ html[data-aspn="1"] main{z-index:70!important}
 @keyframes asMapPulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.2);opacity:0}}
 @keyframes asPinDrop{from{opacity:0;translate:0 -26px}to{opacity:1;translate:0 0}}
 @keyframes asPinDot{from{opacity:0;translate:0 -26px}to{opacity:1;translate:0 0}}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
 </style>
 </helmet>
 
@@ -238,6 +239,7 @@ html[data-aspn="1"] main{z-index:70!important}
                   </span>
                   <span style="display:flex;flex-direction:column;gap:3px;margin-top:14px"><span style="font-size:16px;font-weight:600">{{ pc.name }}</span><span style="font-size:12.5px;color:var(--t3)">{{ pc.meta }}</span></span>
                   <span style="margin-top:12px;padding-top:12px;border-top:1px solid var(--lc-iline);font-size:12.5px;line-height:1.5;color:var(--t2)">{{ pc.preview }}</span>
+                  <span role="link" tabIndex="0" onClick="{{ pc.view }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:5px;margin-top:10px;color:var(--pa);font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap">View preset<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
                 </button>
               </sc-for>
             </div>
@@ -570,9 +572,9 @@ const code = n => (MASTER.find(m => m[0] === n) || [n, "XX000"])[1];
 const pnum = (n, z) => code(n) + "-" + z;
 const P = (name, size, fns, sec) => ({ name, size, fns, sec: sec == null ? null : sec });
 const PRESETS = {
-  std5: { name: "Standard 5 gal", size: "5 gal", stores: 132, rows: MASTER.map(m => P(m[0], 5, [DEF[m[0]]])) },
-  std15: { name: "Standard 15 gal", size: "15 gal", stores: 21, rows: MASTER.map(m => P(m[0], 15, [DEF[m[0]]])) },
-  ca5: { name: "5 gal California", size: "5 gal", stores: 18, region: "Southern California", rows: [P("Duck Bath", 5, ["Presoak 1", "Duck Bath"]), P("Excel Hi pH Touchless Presoak", 5, ["Presoak 2"]), P("Excel Lo pH Presoak", 5, ["Low pH presoak"]), P("Excel Hi pH Wheel Cleaner", 5, ["CTA 1", "CTA 2"]), P("Foamy Film Penetrate", 5, ["Presoak 2"]), P("Bug B", 2.5, ["Bug prep"], 20), P("Triple Foam", 5, ["Triple foam"]), P("Silky Shine", 2.5, []), P("Lava Seal", 5, ["Lava arch"]), P("Lava Lo Shine", 5, ["Lava arch"]), P("Duck Rinse", 5, ["Dry aid"]), P("Machine Shine", 5, ["Air care"]), P("Excel Ceramic Sealant", 5, ["Ceramic"]), P("Duck Rinse", 15, ["Dry aid"]), P("Triple Foam", 15, ["Triple foam"]), P("Lava Seal", 15, ["Lava arch"])] }
+  std5: { name: "Standard 5 gal", size: "5 gal", stores: 118, rows: MASTER.map(m => P(m[0], 5, [DEF[m[0]]])) },
+  std15: { name: "Standard 15 gal", size: "15 gal", stores: 14, rows: MASTER.map(m => P(m[0], 15, [DEF[m[0]]])) },
+  ca5: { name: "Standard 5 gal California", size: "5 gal", stores: 32, region: "Southern California", rows: [P("Duck Bath", 5, ["Presoak 1", "Duck Bath"]), P("Excel Hi pH Touchless Presoak", 5, ["Presoak 2"]), P("Excel Lo pH Presoak", 5, ["Low pH presoak"]), P("Excel Hi pH Wheel Cleaner", 5, ["CTA 1", "CTA 2"]), P("Foamy Film Penetrate", 5, ["Presoak 2"]), P("Bug B", 2.5, ["Bug prep"], 20), P("Triple Foam", 5, ["Triple foam"]), P("Silky Shine", 2.5, []), P("Lava Seal", 5, ["Lava arch"]), P("Lava Lo Shine", 5, ["Lava arch"]), P("Duck Rinse", 5, ["Dry aid"]), P("Machine Shine", 5, ["Air care"]), P("Excel Ceramic Sealant", 5, ["Ceramic"]), P("Duck Rinse", 15, ["Dry aid"]), P("Triple Foam", 15, ["Triple foam"]), P("Lava Seal", 15, ["Lava arch"])] }
 };
 const ORDER = ["ca5", "std5", "std15"];
 const TECHS = [
@@ -585,7 +587,7 @@ const TECHS = [
   { i: 5, name: "Luis Ortega", reg: ["Texas"], n: 10, ph: "(210) 555-0159" }
 ];
 const slug = n => n.toLowerCase().replace(/\s+/g, "-");
-const photo = n => "url(assets/people/" + slug(n) + ".png) center/cover no-repeat";
+const photo = n => "url(assets/people/" + slug(n) + ".png) center/cover no-repeat,var(--np) center/cover no-repeat";
 const email = n => n.toLowerCase().replace(/\s+/g, ".") + "@dontdrivedirty.com";
 const STATES = ["AZ", "CA", "CO", "NV", "TX", "UT"];
 const TZS = ["Pacific (PT)", "Mountain (MT)", "Arizona (MST)", "Central (CT)", "Eastern (ET)"];
@@ -770,7 +772,7 @@ class Component extends DCLogic {
     const ic = on => ({ display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: on ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "rgba(139,92,246,.14)", color: on ? "#fff" : "var(--pa)", transition: "all .25s" });
     const keys = suggested ? ["ca5", "std5", "std15"] : ["std5", "std15", "ca5"];
     const pick = k => () => { if (s.preset === k) { this.setState({ picker: false }); return; } if (s.preset !== null && s.edits > 0) this.setState({ modal: { kind: "replace", k } }); else this.applyPreset(k); };
-    out.presetCards = keys.map(k => { const p = PRESETS[k], on = s.preset === k; const names = [...new Set(p.rows.map(r => r.name))]; return { name: p.name, meta: p.size + " · " + p.rows.length + " products · " + p.stores + " stores", preview: names.slice(0, 3).join(", ") + " +" + (names.length - 3) + " more", suggested: k === suggested && !on, selected: on, icon: I.box, iconStyle: ic(on), style: cardBase(on), pick: pick(k) }; })
+    out.presetCards = keys.map(k => { const p = PRESETS[k], on = s.preset === k; const names = [...new Set(p.rows.map(r => r.name))]; return { name: p.name, meta: p.size + " · " + p.rows.length + " products · " + p.stores + " stores", preview: names.slice(0, 3).join(", ") + " +" + (names.length - 3) + " more", suggested: k === suggested && !on, selected: on, icon: I.box, iconStyle: ic(on), style: cardBase(on), pick: pick(k), view: e => { e.stopPropagation(); window.__apfPresetReq = { name: p.name, ts: Date.now() }; window.dispatchEvent(new CustomEvent("apf:nav", { detail: { page: "productsstandards" } })); setTimeout(() => window.dispatchEvent(new CustomEvent("apf:open-preset", { detail: { name: p.name } })), 80); } }; })
       .concat([{ name: "Start empty", meta: "No preset", preview: "Build the list product by product.", suggested: false, selected: s.preset === "empty", icon: I.plus, iconStyle: ic(s.preset === "empty"), style: cardBase(s.preset === "empty"), pick: pick("empty") }]);
     out.presetMini = keys.map(k => ({ k, name: PRESETS[k].name, meta: PRESETS[k].size + " · " + PRESETS[k].rows.length + " products" })).concat([{ k: "empty", name: "Start empty", meta: "No preset" }]).map(x => { const on = s.preset === x.k; return { name: x.name, meta: x.meta, selected: on, suggested: x.k === suggested && !on, icon: x.k === "empty" ? I.plus : I.box, iconStyle: Object.assign(ic(on), { flex: "0 0 auto", width: 34, height: 34, borderRadius: 11 }), pick: pick(x.k), style: { display: "flex", alignItems: "center", gap: 10, minWidth: 0, padding: "8px 12px 8px 8px", border: 0, borderRadius: 16, background: on ? "rgba(139,92,246,.12)" : "var(--lc-inner)", boxShadow: on ? "inset 0 0 0 1px rgba(167,139,250,.55)" : "none", color: "var(--t1)", textAlign: "left", cursor: "pointer", transition: "background .2s,box-shadow .2s" } }; });
     out.showPicker = s.preset === null; out.pickerClosable = s.preset !== null && s.picker;

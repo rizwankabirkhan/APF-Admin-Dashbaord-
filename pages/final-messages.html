@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/apf-fonts.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--s0);color:var(--t1);-webkit-font-smoothing:antialiased}
+a{color:var(--pa);text-decoration:none}a:hover{color:var(--t1)}
+button,input,textarea{font-family:inherit}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+:root{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+:root[data-theme=light] [data-dark="1"]{--seg:#eeeef3;--segfg:#0b0a12;--sb1:oklch(0.235 0.022 293 / .88);--sb2:oklch(0.205 0.018 293 / .92);--t1:#eeeef3;--t2:#b1afba;--t3:#8c8b95;--pa:#a78bfa;--s0:#0b0a12;--s0b:#110e18;--s1:#1a1526;--s1b:#181322;--s2:#221b31;--s3:#2a2239;--amb:#fbbf24;--red:#f87171;--redl:#fca5a5;--c1:oklch(0.235 0.018 293);--c2:oklch(0.205 0.016 293);--c3:oklch(0.21 0.016 293);--c4:oklch(0.24 0.020 293);--c5:oklch(0.27 0.022 293);--w:255,255,255;--tx:244,242,246;--pl:167,139,250;--g1:26,21,38;--sc:4,4,6;--cs:dark;--k8:rgba(0,0,0,.8);--k55:rgba(0,0,0,.55);--k24:rgba(0,0,0,.24);--k7:rgba(0,0,0,.7);--k18:rgba(0,0,0,.18);--k28:rgba(0,0,0,.28);--k6:rgba(0,0,0,.6)}
+:root[data-theme=light] [data-dark="1"] [data-dark="0"]{--seg:#7c3aed;--segfg:#ffffff;--sb1:rgba(255,255,255,.88);--sb2:rgba(252,251,255,.92);--t1:#17151f;--t2:#4a4757;--t3:#6b6879;--pa:#7c3aed;--s0:#f4f3f8;--s0b:#f7f6fb;--s1:#ffffff;--s1b:#ffffff;--s2:#f4f3f9;--s3:#eceaf3;--amb:#b45309;--red:#dc2626;--redl:#b91c1c;--c1:#ffffff;--c2:#fdfcff;--c3:#ffffff;--c4:#f8f7fc;--c5:#f0eef7;--w:30,24,58;--tx:23,21,31;--pl:124,58,237;--g1:255,255,255;--sc:40,32,70;--cs:light;--k8:rgba(50,38,100,0.256);--k55:rgba(50,38,100,0.176);--k24:rgba(50,38,100,0.077);--k7:rgba(50,38,100,0.224);--k18:rgba(50,38,100,0.058);--k28:rgba(50,38,100,0.09);--k6:rgba(50,38,100,0.192)}
+html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease!important}
+:root{--sc-card:linear-gradient(180deg,#211a30 0%,#1c1729 100%);--sc-sh:inset 0 1px 0 rgba(232,224,248,.07),0 0 0 1px rgba(232,224,248,.06),0 1px 2px rgba(0,0,0,.2),0 20px 40px -24px rgba(0,0,0,.75);--sc-shh:inset 0 1px 0 rgba(232,224,248,.09),0 0 0 1px rgba(196,155,255,.14),0 1px 2px rgba(0,0,0,.2),0 30px 50px -24px rgba(0,0,0,.85);--sc-ink:#f1edf8;--sc-onink:#17131f;--sc-ink3:#8a8399;--sc-line:rgba(232,224,248,.14);--sc-acc:#d9c2ff;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root[data-theme=light]{--sc-card:#fdfbff;--sc-sh:0 1px 2px rgba(60,30,110,.05),0 20px 40px -24px rgba(60,30,110,.28);--sc-shh:0 1px 2px rgba(60,30,110,.05),0 30px 50px -24px rgba(60,30,110,.36);--sc-ink:#1a1625;--sc-onink:#ffffff;--sc-ink3:#8f88a0;--sc-line:rgba(26,22,37,.14);--sc-acc:#1a1625;--sc-actbg:transparent;--sc-actb:var(--sc-line);--sc-actfg:var(--sc-ink)}
+:root{--lc-flat:#1a1526;--lc-edge:0 0 0 1px rgba(232,224,248,.075),0 12px 28px -22px rgba(0,0,0,.65);--lc-hov:0 0 0 1px rgba(232,224,248,.1),0 18px 34px -22px rgba(0,0,0,.75);--lc-ring:#1d1729;--lc-inner:rgba(10,8,18,.45);--lc-iline:rgba(232,224,248,.06);--lc-chip:rgba(232,224,248,.07);--lc-ink2:#b5aec8;--lc-title:#d9c2ff;--lc-ok:#62d69a;--lc-okbg:rgba(47,184,106,.14);--lc-warn:#f0c35a;--lc-warnbg:rgba(240,195,90,.13);--lc-bad:#ff8a73;--lc-badbg:rgba(239,90,60,.15)}
+:root[data-theme=light]{--lc-flat:rgba(255,255,255,.86);--lc-edge:0 0 0 1px rgba(26,22,37,.07),0 10px 24px -20px rgba(60,30,110,.22);--lc-hov:0 0 0 1px rgba(26,22,37,.09),0 18px 34px -22px rgba(60,30,110,.3);--lc-ring:#ffffff;--lc-inner:#f6f3fb;--lc-iline:rgba(26,22,37,.06);--lc-chip:#f1edf8;--lc-ink2:#625b72;--lc-title:#1a1625;--lc-ok:#1f9a57;--lc-okbg:#e4f5ec;--lc-warn:#b56a00;--lc-warnbg:#fdf1d8;--lc-bad:#d23d22;--lc-badbg:#fde8e3}
+:root{--pn-field:rgba(8,6,14,.5);--pn-scrim:rgba(6,5,10,.58);--pn-bg:linear-gradient(180deg,rgba(38,30,56,.82) 0%,rgba(24,19,35,.88) 46%,rgba(20,16,30,.92) 100%);--pn-sh:inset 0 1px 0 rgba(232,224,248,.12),0 0 0 1px rgba(232,224,248,.09),0 40px 90px -30px rgba(0,0,0,.85);--pn-glow:radial-gradient(closest-side,rgba(150,120,255,.34),rgba(120,90,230,.12) 55%,transparent);--pn-sheen:rgba(232,224,248,.05);--pn-ink:#f1edf8;--pn-ink2:#b5aec8;--pn-ink3:#8a8399;--pn-line:rgba(232,224,248,.07);--pn-tile:rgba(232,224,248,.045);--pn-tileh:rgba(232,224,248,.09);--pn-inner:rgba(10,8,18,.35);--pn-track:rgba(232,224,248,.08);--pn-win:rgba(167,139,250,.36);--pn-ring:#1d1729;--pn-redbg:rgba(248,113,113,.09);--pn-rededge:rgba(248,113,113,.22);--pn-cta:#f1edf8;--pn-ctafg:#17131f;--pn-hero:#f1edf8;--pn-herofg:#17131f}
+:root[data-theme=light]{--pn-field:#ffffff;--pn-scrim:rgba(40,30,70,.22);--pn-bg:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(252,250,255,.9) 50%,rgba(250,248,254,.94) 100%);--pn-sh:inset 0 1px 0 #fff,0 0 0 1px rgba(26,22,37,.07),0 40px 90px -30px rgba(60,30,110,.35);--pn-glow:radial-gradient(closest-side,rgba(168,140,245,.32),rgba(184,160,246,.12) 55%,transparent);--pn-sheen:rgba(255,255,255,.4);--pn-ink:#1a1625;--pn-ink2:#625b72;--pn-ink3:#8f88a0;--pn-line:rgba(26,22,37,.07);--pn-tile:rgba(255,255,255,.7);--pn-tileh:#f1edf8;--pn-inner:#f6f3fb;--pn-track:rgba(26,22,37,.08);--pn-win:rgba(124,58,237,.22);--pn-ring:#ffffff;--pn-redbg:#fde8e3;--pn-rededge:rgba(210,61,34,.2);--pn-cta:#1a1625;--pn-ctafg:#ffffff;--pn-hero:#1a1625;--pn-herofg:#ffffff}
+:root{--np:url(assets/people/_no-photo.svg)}:root[data-theme=light]{--np:url(assets/people/_no-photo-light.svg)}
+[data-ms-scroll]{scrollbar-width:thin;scrollbar-color:rgba(var(--w),.14) transparent}
+[data-ms-scroll]::-webkit-scrollbar{width:6px}[data-ms-scroll]::-webkit-scrollbar-thumb{background:rgba(var(--w),.14);border-radius:9px}
+[data-ms-row][data-on="1"]:hover{background:rgba(var(--pl),.14)!important}
+[data-ms-thumb] img{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+[data-ms-thumb]:hover img{transform:scale(1.06)}
+[data-ms-send]:not(:disabled):hover{filter:brightness(1.1)}
+[data-ms-send]:not(:disabled):active{transform:scale(.94)}
+@keyframes msIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes msPop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes msFade{from{opacity:0}to{opacity:1}}
+@keyframes msPanel{from{opacity:0;transform:translateX(28px) scale(.99)}to{opacity:1;transform:none}}
+@keyframes msModal{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes msBubble{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes msDot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+@keyframes msTypeIn{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+[data-ms-dot]{display:block;width:7px;height:7px;border-radius:50%;background:currentColor;animation:msDot 1.3s cubic-bezier(.4,0,.2,1) infinite}
+[data-ms-dot="2"]{animation-delay:.16s}[data-ms-dot="3"]{animation-delay:.32s}
+[data-ms-ldot]{display:block;width:4px;height:4px;border-radius:50%;background:currentColor;animation:msDot 1.3s cubic-bezier(.4,0,.2,1) infinite}
+[data-ms-ldot="2"]{animation-delay:.16s}[data-ms-ldot="3"]{animation-delay:.32s}
+@keyframes msLive{0%{box-shadow:0 0 0 0 rgba(139,92,246,.55)}70%,100%{box-shadow:0 0 0 7px rgba(139,92,246,0)}}
+@media (prefers-reduced-motion:reduce){[data-screen-label="Messages"] *{animation:none!important}}
+:root{--ms-row:rgba(255,255,255,.028);--ms-rowe:rgba(255,255,255,.05);--ms-rowh:rgba(255,255,255,.05)}
+:root[data-theme=light]{--ms-row:rgba(255,255,255,.7);--ms-rowe:rgba(26,22,37,.07);--ms-rowh:#ffffff}
+[data-ms-row][data-on="0"]:hover{background:var(--ms-rowh)!important}
+</style>
+</helmet>
+<div data-screen-label="Messages" style="{{ root }}">
+<div style="width:100%;max-width:1760px;padding:8px 24px 24px;display:flex;flex-direction:column;gap:20px">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;min-height:48px">
+    <h1 style="margin:0;font:400 40px/1.05 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.03em;white-space:nowrap">Messages</h1>
+    <button data-dark="1" type="button" onClick="{{ openNew }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px 0 18px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 14.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:filter .15s" style-hover="filter:brightness(1.08)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 12h12M12 18V6"></path></svg>New message</button>
+  </div>
+
+  <div style="{{ shell }}">
+
+    <section style="{{ listCol }}">
+      <div style="display:flex;flex-direction:column;gap:10px;padding:14px 14px 12px">
+        <label style="display:flex;align-items:center;gap:9px;height:44px;padding:0 8px 0 15px;border-radius:999px;background:var(--lc-inner);box-shadow:inset 0 0 0 1px var(--lc-iline);color:var(--t3);cursor:text">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg>
+          <input type="text" value="{{ q }}" onChange="{{ onQ }}" placeholder="Search subject, store or person" style="flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif"/>
+          <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQ }}" aria-label="Clear search" style="flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+        </label>
+        <div style="display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--lc-inner);box-shadow:inset 0 0 0 1px var(--lc-iline)">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+            <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}<sc-if value="{{ t.hasN }}" hint-placeholder-val="{{ false }}"><span style="{{ t.nStyle }}">{{ t.n }}</span></sc-if></button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+            <div data-pop="" style="position:relative">
+              <button type="button" onClick="{{ f.toggle }}" style="{{ f.btn }}">{{ f.label }}<sc-if value="{{ f.hasN }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#7c3aed;color:#fff;font:700 10.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ f.n }}</span></sc-if><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--t3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+              <sc-if value="{{ f.isOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:230px;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:msPop .2s both">
+                <sc-if value="{{ f.searchable }}" hint-placeholder-val="{{ false }}"><label style="display:flex;align-items:center;gap:8px;height:38px;margin:2px 2px 6px;padding:0 12px;border-radius:12px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ storeQ }}" onChange="{{ onStoreQ }}" placeholder="Store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label></sc-if>
+                <div data-ms-scroll="1" style="max-height:260px;overflow-y:auto">
+                  <sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="4"><button type="button" onClick="{{ o.toggle }}" style="{{ o.style }}"><span style="{{ o.box }}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ o.label }}</span></button></sc-for>
+                </div>
+              </div></sc-if>
+            </div>
+          </sc-for>
+          <button type="button" onClick="{{ toggleUnread }}" style="{{ unreadBtn }}"><span style="width:7px;height:7px;border-radius:50%;background:#8b5cf6"></span>Unread only</button>
+        </div>
+        <sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;animation:msFade .25s both">
+            <sc-for list="{{ activeChips }}" as="ac" hint-placeholder-count="2"><button type="button" onClick="{{ ac.remove }}" style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px 0 11px;border:0;border-radius:999px;background:rgba(var(--pl),.14);color:var(--pa);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer">{{ ac.label }}<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-for>
+            <button type="button" onClick="{{ clearAll }}" style="border:0;background:transparent;padding:0 4px;color:var(--t2);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;white-space:nowrap" style-hover="color:var(--t1)">Clear all</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="height:1px;margin:0 14px;background:var(--lc-iline)"></div>
+      <div data-ms-scroll="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+          <div data-ms-row="1" data-on="{{ r.on }}" onClick="{{ r.open }}" style="{{ r.style }}">
+            <span style="{{ r.icStyle }}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg><sc-if value="{{ r.unread }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:0;right:0;width:10px;height:10px;border-radius:50%;background:#8b5cf6;box-shadow:0 0 0 3px var(--lc-ring);animation:msLive 2.4s ease-out infinite"></span></sc-if></span>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;padding-top:1px">
+              <div style="display:flex;align-items:baseline;gap:10px;min-width:0">
+                <span style="flex:1;min-width:0;font:700 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.store }}</span>
+                <span style="flex:none;font:500 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.timeFg }};white-space:nowrap">{{ r.time }}</span>
+              </div>
+              <span style="font-size:13.5px;font-weight:{{ r.subW }};font-family:'AppNumerals','Urbanist',system-ui,sans-serif;color:{{ r.subFg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.subject }}</span>
+              <sc-if value="{{ r.notTyping }}" hint-placeholder-val="{{ true }}"><span style="display:block;height:18px;line-height:18px;font:400 12.5px/18px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.preview }}</span></sc-if><sc-if value="{{ r.typing }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:8px;height:18px;font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--pa);white-space:nowrap"><span aria-hidden="true" style="flex:none;display:inline-flex;align-items:center;gap:4px;height:18px"><i data-ms-ldot="1"></i><i data-ms-ldot="2"></i><i data-ms-ldot="3"></i></span><span>{{ r.typeLine }}</span></span></sc-if>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:8px;min-width:0">
+                <span style="display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ r.tag }}</span>
+                <sc-if value="{{ r.hasPhotos }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--t3);font:600 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icImage }}"></path></svg>{{ r.photos }}</span></sc-if>
+                <span style="flex:1"></span>
+                <span style="{{ r.stStyle }}">{{ r.status }}</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:52px 20px;text-align:center;animation:msFade .3s both">
+            <span style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ emptyIc }}"></path></svg></span>
+            <span style="font:500 17px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--lc-title)">{{ emptyTitle }}</span>
+            <sc-if value="{{ hasEmptySub }}" hint-placeholder-val="{{ true }}"><span style="max-width:260px;font:400 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ emptySub }}</span></sc-if>
+            <sc-if value="{{ emptyClear }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearAll }}" style="margin-top:4px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--lc-chip)">Clear filters</button></sc-if>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+
+    <section style="{{ convCol }}">
+      <sc-if value="{{ noSel }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px;text-align:center;animation:msFade .35s both">
+          <span style="display:flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icMsg }}"></path></svg></span>
+          <span style="font:500 22px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--lc-title)">Select a conversation</span>
+          <span style="font:400 14px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Choose a message on the left to read and reply.</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none;display:flex;align-items:flex-start;gap:14px;padding:20px 20px 16px 22px;border-bottom:1px solid var(--lc-iline)">
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ backToList }}" aria-label="Back to messages" style="flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--t1);cursor:pointer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icBack }}"></path></svg></button></sc-if>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px;animation:msIn .4s both" data-k="{{ selId }}">
+            <h2 style="margin:0;font:500 23px/1.2 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:var(--lc-title);text-wrap:pretty">{{ cSubject }}</h2>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <button type="button" onClick="{{ openStore }}" style="display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 11px 0 9px;border:0;border-radius:999px;background:rgba(var(--pl),.12);color:var(--pa);font:600 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer" style-hover="background:rgba(var(--pl),.2)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg>{{ cStore }}</button>
+              <span style="display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:600 12px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap">{{ cTag }}</span>
+              <span style="{{ cStStyle }}"><i style="width:7px;height:7px;border-radius:50%;background:currentColor"></i>{{ cStatus }}</span>
+            </div>
+            <span style="font:400 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">{{ cStarted }}</span>
+          </div>
+          <div style="flex:none;display:flex;align-items:center;gap:8px">
+            <sc-if value="{{ canClose }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ askClose }}" style="display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 16px 0 13px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icDone }}"></path></svg>Close conversation</button></sc-if>
+            <button type="button" onClick="{{ toggleInfo }}" aria-label="Store info" title="Store info" style="{{ infoBtn }}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icPanel }}"></path></svg></button>
+          </div>
+        </div>
+
+        <div ref="{{ threadRef }}" data-ms-thread="1" data-ms-scroll="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:20px 22px 12px;display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ items }}" as="m" hint-placeholder-count="4">
+            <sc-if value="{{ m.isDay }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:12px;margin:4px 0">
+                <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--lc-iline))"></span>
+                <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap">{{ m.label }}</span>
+                <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--lc-iline),transparent)"></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.isSys }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;justify-content:center;animation:msFade .4s both">
+                <span style="display:inline-flex;align-items:center;gap:7px;max-width:100%;padding:7px 14px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:500 12.5px 'AppNumerals','Urbanist',system-ui,sans-serif;text-align:center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="{{ icLock }}"></path></svg>{{ m.text }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.isMsg }}" hint-placeholder-val="{{ true }}">
+              <div style="{{ m.rowStyle }}">
+                <span style="{{ m.avStyle }}">{{ m.ini }}</span>
+                <div style="{{ m.colStyle }}">
+                  <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;padding:0 4px"><b style="font-weight:600;color:var(--t2)">{{ m.name }}</b> · {{ m.role }}</span>
+                  <div style="{{ m.bubble }}">
+                    <sc-if value="{{ m.hasText }}" hint-placeholder-val="{{ true }}"><span style="white-space:pre-wrap;overflow-wrap:anywhere;text-wrap:pretty">{{ m.text }}</span></sc-if>
+                    <sc-if value="{{ m.hasPhotos }}" hint-placeholder-val="{{ false }}">
+                      <div style="{{ m.gridStyle }}">
+                        <sc-for list="{{ m.photos }}" as="p" hint-placeholder-count="0">
+                          <button type="button" data-ms-thumb="1" onClick="{{ p.open }}" aria-label="Open photo" style="display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;border-radius:14px;overflow:hidden;background:var(--lc-inner);cursor:zoom-in"><img src="{{ p.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover"/></button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                  <span style="font:400 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);padding:0 4px">{{ m.time }}</span>
+                </div>
+              </div>
+            </sc-if>
+          </sc-for>
+          <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:flex-end;gap:10px;animation:msTypeIn .45s cubic-bezier(.2,.8,.2,1) both">
+              <span style="{{ typeAv }}"></span>
+              <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+                <span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap;padding:0 4px"><b style="font-weight:600;color:var(--t2)">{{ typeName }}</b> is typing</span>
+                <div aria-label="{{ typeName }} is typing" style="display:flex;align-items:center;gap:5px;height:42px;padding:0 16px;border-radius:20px 20px 20px 6px;background:var(--lc-chip);box-shadow:inset 0 0 0 1px var(--lc-iline);color:var(--pa)"><i data-ms-dot="1"></i><i data-ms-dot="2"></i><i data-ms-dot="3"></i></div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="flex:none;padding:12px 16px 16px;border-top:1px solid var(--lc-iline)">
+          <sc-if value="{{ isOpenConv }}" hint-placeholder-val="{{ true }}">
+            <sc-if value="{{ hasAtt }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:8px;margin:0 0 10px 4px;animation:msFade .25s both">
+                <sc-for list="{{ att }}" as="a" hint-placeholder-count="0">
+                  <span style="position:relative;width:60px;height:60px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--lc-iline);animation:msBubble .3s both"><img src="{{ a.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover"/><button type="button" onClick="{{ a.remove }}" aria-label="Remove photo" style="position:absolute;top:4px;right:4px;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border:0;border-radius:50%;background:rgba(10,8,18,.72);color:#fff;cursor:pointer"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+                </sc-for>
+              </div>
+            </sc-if>
+            <div style="{{ composer }}">
+              <label title="Attach photos" style="flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--lc-chip);color:var(--t2);cursor:pointer;transition:background .2s,color .2s" style-hover="background:rgba(var(--pl),.16);color:var(--pa)"><svg viewBox="0 0 24 24" width="17" height="17" style="display:block" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icClip }}"></path></svg><input type="file" accept="image/png,image/jpeg,image/heic,.heic" multiple="{{ true }}" onChange="{{ onPick }}" style="display:none"/></label>
+              <textarea ref="{{ taRef }}" rows="1" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" onFocus="{{ onFocusTa }}" onBlur="{{ onBlurTa }}" placeholder="Write a reply…" style="flex:1;min-width:0;max-height:160px;padding:10px 4px;align-self:center;border:0;background:transparent;outline:none;resize:none;color:var(--t1);font:400 14px/1.5 'AppNumerals','Urbanist',system-ui,sans-serif"></textarea>
+              <button type="button" data-ms-send="1" onClick="{{ send }}" disabled="{{ sendOff }}" aria-label="Send" style="{{ sendBtn }}"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icSend }}"></path></svg></button>
+            </div>
+            <span style="display:block;margin-top:8px;padding-left:8px;font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">Everyone at this store and its technicians will see your reply.</span>
+          </sc-if>
+          <sc-if value="{{ isClosed }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:20px;background:var(--lc-chip);color:var(--lc-ink2);font:400 13.5px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;animation:msFade .3s both">
+              <span style="flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--sc-line);color:var(--t2)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icLock }}"></path></svg></span>
+              This conversation is closed. The store can start a new one if they need more help.
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </section>
+
+    <aside style="{{ infoCol }}">
+      <sc-if value="{{ showInfo }}" hint-placeholder-val="{{ true }}">
+        <div data-ms-scroll="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px;animation:msFade .35s both">
+          <section data-dark="1" style="position:relative;isolation:isolate;overflow:hidden;flex:none;display:flex;flex-direction:column;gap:18px;padding:16px;border-radius:24px;background:linear-gradient(158deg,#5b21b6 0%,#4a1596 55%,#3b0f7a 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.24),0 20px 40px -24px var(--k55);color:#fff">
+            <span aria-hidden="true" style="position:absolute;z-index:-1;width:220px;height:220px;top:-100px;left:-50px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(176,107,255,0.92) 0%,rgba(176,107,255,0.6) 22%,rgba(176,107,255,0.27) 46%,rgba(176,107,255,0.07) 70%,rgba(176,107,255,0) 96%);filter:blur(14px);pointer-events:none"></span>
+            <span aria-hidden="true" style="position:absolute;z-index:-1;width:200px;height:200px;bottom:-110px;right:-40px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(231,118,214,0.82) 0%,rgba(231,118,214,0.54) 22%,rgba(231,118,214,0.24) 46%,rgba(231,118,214,0.06) 70%,rgba(231,118,214,0) 96%);filter:blur(14px);pointer-events:none"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+              <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.14);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),inset 0 0 0 1px rgba(255,255,255,0.12);backdrop-filter:blur(10px);color:#fff"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icShop }}"></path></svg></span>
+              <div style="display:flex;gap:8px">
+                <button type="button" onClick="{{ openStore }}" aria-label="Open store" title="Open store" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;transition:background .2s" style-hover="background:rgba(255,255,255,0.18)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></button>
+                <sc-if value="{{ infoFloat }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ toggleInfo }}" aria-label="Close store info" style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px;min-width:0">
+              <span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.68)">Store {{ iNo }}</span>
+              <span style="font:600 22px/1.15 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.02em;color:#fff">{{ iCity }}</span>
+              <span style="font:400 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,0.72);text-wrap:pretty">{{ iAddr }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;background:rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.18),inset 0 0 0 1px rgba(255,255,255,0.1);backdrop-filter:blur(10px)">
+              <div style="flex:none;display:flex;padding-left:8px"><sc-for list="{{ iTechs }}" as="it" hint-placeholder-count="2"><span style="width:32px;height:32px;margin-left:-8px;border-radius:50%;background:{{ it.bg }};box-shadow:0 0 0 2px #4a1596"></span></sc-for></div>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:1px"><span style="font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:rgba(255,255,255,0.68)">Technicians</span><span style="font:600 13px/1.35 'AppNumerals','Urbanist',system-ui,sans-serif;color:#fff;text-wrap:pretty">{{ iTechNames }}</span></div>
+            </div>
+          </section>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+            <sc-for list="{{ iFacts }}" as="fa" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:12px;min-width:0;padding:14px;border-radius:20px;background:var(--ms-row);box-shadow:inset 0 0 0 1px var(--ms-rowe)">
+                <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:11px;background:var(--lc-chip);color:var(--t2)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ fa.ic }}"></path></svg></span>
+                <div style="min-width:0;display:flex;flex-direction:column;gap:3px"><span style="font:500 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ fa.k }}</span><span style="font:600 15px/1.25 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:{{ fa.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ fa.v }}</span><sc-if value="{{ fa.hasSub }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px/1.35 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);text-wrap:pretty">{{ fa.sub }}</span></sc-if></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:20px;background:var(--ms-row);box-shadow:inset 0 0 0 1px var(--ms-rowe)">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 2px 2px"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap">Other conversations</span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--lc-chip);color:var(--lc-ink2);font:700 11.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ otherN }}</span></div>
+            <sc-for list="{{ iOther }}" as="io" hint-placeholder-count="1">
+              <button type="button" onClick="{{ io.open }}" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px 10px 10px 12px;border:0;border-radius:14px;background:var(--lc-inner);color:var(--t1);text-align:left;cursor:pointer;transition:background .2s" style-hover="background:var(--lc-chip)">
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="max-width:100%;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ io.subject }}</span><span style="display:flex;align-items:center;gap:8px"><span style="{{ io.stStyle }}">{{ io.status }}</span><span style="font:400 12px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3);white-space:nowrap">{{ io.time }}</span></span></span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--t3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M9 6l6 6-6 6"></path></svg>
+              </button>
+            </sc-for>
+            <sc-if value="{{ noOther }}" hint-placeholder-val="{{ false }}"><span style="padding:2px;font:400 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t3)">No other conversations.</span></sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </aside>
+  </div>
+</div>
+
+<sc-if value="{{ newOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeNew }}" style="position:fixed;inset:0;z-index:80;background:var(--pn-scrim);animation:msFade .25s both"></div>
+  <aside style="position:fixed;top:16px;right:16px;bottom:16px;z-index:81;width:min(480px,calc(100vw - 32px));display:flex;flex-direction:column;border-radius:28px;background:var(--pn-bg);box-shadow:var(--pn-sh);backdrop-filter:blur(28px) saturate(1.4);-webkit-backdrop-filter:blur(28px) saturate(1.4);overflow:hidden;animation:msPanel .38s cubic-bezier(.2,.8,.2,1) both">
+    <div style="flex:none;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:22px 22px 14px">
+      <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)">Messages</span><span style="font:500 22px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--lc-title)">New message</span></div>
+      <button type="button" onClick="{{ closeNew }}" aria-label="Close" style="flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--sc-line);background:transparent;color:var(--t1);cursor:pointer"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div data-ms-scroll="1" style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:4px 22px 18px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:rgba(var(--pl),.1);color:var(--t2);font:400 13px/1.45 'AppNumerals','Urbanist',system-ui,sans-serif"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--pa)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM12 8v5M11.99 16h.01"></path></svg>Everyone at this store and its technicians will see this conversation.</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">Store <span style="color:var(--lc-bad)">*</span></span>
+        <div data-pop="" style="position:relative">
+          <button type="button" onClick="{{ nToggleStore }}" style="{{ nStoreBtn }}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:var(--t3)"><path d="{{ icShop }}"></path></svg><span style="flex:1;min-width:0;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ nStoreFg }}">{{ nStoreLabel }}</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--t3)"><path d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg></button>
+          <sc-if value="{{ nStoreOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:40;padding:6px;border-radius:18px;background:var(--sc-card);box-shadow:var(--sc-shh),0 24px 50px -16px var(--k55);animation:msPop .2s both">
+            <label style="display:flex;align-items:center;gap:8px;height:38px;margin:2px 2px 6px;padding:0 12px;border-radius:12px;background:var(--lc-inner);color:var(--t3)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"></path></svg><input type="text" value="{{ nStoreQ }}" onChange="{{ onNStoreQ }}" placeholder="Store number or city" style="flex:1;min-width:0;border:0;background:transparent;outline:none;color:var(--t1);font:500 13px 'AppNumerals','Urbanist',system-ui,sans-serif"/></label>
+            <div data-ms-scroll="1" style="max-height:220px;overflow-y:auto">
+              <sc-for list="{{ nStoreOpts }}" as="so" hint-placeholder-count="4"><button type="button" onClick="{{ so.pick }}" style="{{ so.style }}"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">{{ so.label }}</span><sc-if value="{{ so.on }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--pa)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></button></sc-for>
+            </div>
+          </div></sc-if>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">Tag <span style="color:var(--lc-bad)">*</span></span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ nTags }}" as="nt" hint-placeholder-count="4"><button type="button" onClick="{{ nt.pick }}" style="{{ nt.style }}">{{ nt.label }}</button></sc-for></div>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="display:flex;justify-content:space-between;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)"><span>Subject <span style="color:var(--lc-bad)">*</span></span><span style="font-weight:500;color:var(--t3)">{{ nSubN }}</span></span>
+        <input type="text" maxLength="80" value="{{ nSubject }}" onChange="{{ onNSubject }}" placeholder="What is this about?" style="{{ nField }}"/>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">Message <span style="color:var(--lc-bad)">*</span></span>
+        <textarea value="{{ nBody }}" onChange="{{ onNBody }}" rows="5" placeholder="Write your message" style="{{ nArea }}"></textarea>
+      </label>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="display:flex;justify-content:space-between;font:600 13px 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)"><span>Photos</span><span style="font-weight:500;color:var(--t3)">Up to 3</span></span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ nAtt }}" as="na" hint-placeholder-count="0"><span style="position:relative;width:72px;height:72px;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px var(--lc-iline)"><img src="{{ na.src }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover"/><button type="button" onClick="{{ na.remove }}" aria-label="Remove photo" style="position:absolute;top:5px;right:5px;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border:0;border-radius:50%;background:rgba(10,8,18,.72);color:#fff;cursor:pointer"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span></sc-for>
+          <sc-if value="{{ nCanAdd }}" hint-placeholder-val="{{ true }}"><label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:72px;height:72px;border-radius:16px;border:1.5px dashed var(--sc-line);color:var(--t3);font:600 11px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer;transition:border-color .2s,color .2s" style-hover="border-color:var(--pa);color:var(--pa)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icImage }}"></path></svg>Add<input type="file" accept="image/png,image/jpeg,image/heic,.heic" multiple="{{ true }}" onChange="{{ onNPick }}" style="display:none"/></label></sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="flex:none;display:flex;justify-content:flex-end;gap:10px;padding:16px 22px 20px;border-top:1px solid var(--lc-iline)">
+      <button type="button" onClick="{{ closeNew }}" style="height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--lc-chip)">Cancel</button>
+      <button type="button" onClick="{{ sendNew }}" disabled="{{ nOff }}" style="{{ nSendBtn }}">Send</button>
+    </div>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ closeOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div onClick="{{ cancelClose }}" style="position:absolute;inset:0;background:var(--pn-scrim);animation:msFade .22s both"></div>
+    <div style="position:relative;width:min(460px,100%);display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:28px;background:var(--pn-bg);box-shadow:var(--pn-sh);backdrop-filter:blur(28px) saturate(1.4);-webkit-backdrop-filter:blur(28px) saturate(1.4);animation:msModal .32s cubic-bezier(.2,.8,.2,1) both">
+      <span style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--sc-line);color:var(--sc-ink)"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icDone }}"></path></svg></span>
+      <span style="font:500 21px 'AppNumerals','Urbanist',system-ui,sans-serif;letter-spacing:-.01em;color:var(--lc-title)">Close this conversation?</span>
+      <span style="font:400 14px/1.55 'AppNumerals','Urbanist',system-ui,sans-serif;color:var(--t2)">The store will see it as closed and won't be able to reply. They can start a new conversation if they need more help.</span>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
+        <button type="button" onClick="{{ cancelClose }}" style="height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--sc-line);background:transparent;color:var(--t1);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="background:var(--lc-chip)">Cancel</button>
+        <button data-dark="1" type="button" onClick="{{ doClose }}" style="height:44px;padding:0 20px;border:0;border-radius:999px;background:linear-gradient(180deg,#8b5cf6,#6d28d9);color:var(--t1);box-shadow:inset 0 1px 0 rgba(255,255,255,.24);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;cursor:pointer" style-hover="filter:brightness(1.08)">Close conversation</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:95;display:flex;align-items:center;justify-content:center;padding:72px 84px;animation:msFade .22s both">
+    <div onClick="{{ lbClose }}" style="position:absolute;inset:0;background:rgba(6,5,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)"></div>
+    <div style="position:absolute;top:18px;left:22px;right:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#eeeef3">
+      <span style="font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif">{{ lbCount }}</span>
+      <div style="display:flex;gap:8px">
+        <a href="{{ lbSrc }}" download="" aria-label="Download photo" style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.18);color:#eeeef3"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11v6l2-2M9 17l-2-2M22 10v5c0 5-2 7-7 7H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h5M22 10h-4c-3 0-4-1-4-4V2l8 8z"></path></svg></a>
+        <button type="button" onClick="{{ lbClose }}" aria-label="Close" style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:transparent;color:#eeeef3;cursor:pointer"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+    </div>
+    <img src="{{ lbSrc }}" alt="" data-k="{{ lbSrc }}" style="position:relative;max-width:100%;max-height:100%;border-radius:20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);animation:msModal .3s cubic-bezier(.2,.8,.2,1) both"/>
+    <sc-if value="{{ lbMulti }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ lbPrev }}" aria-label="Previous photo" style="position:absolute;left:20px;top:50%;margin-top:-23px;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#eeeef3;cursor:pointer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg></button>
+      <button type="button" onClick="{{ lbNext }}" aria-label="Next photo" style="position:absolute;right:20px;top:50%;margin-top:-23px;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#eeeef3;cursor:pointer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></button>
+    </sc-if>
+  </div>
+</sc-if>
+
+<div style="position:fixed;left:50%;bottom:28px;z-index:120;display:flex;align-items:center;gap:9px;padding:12px 18px 12px 14px;border-radius:999px;background:var(--seg);color:var(--segfg);font:600 13.5px 'AppNumerals','Urbanist',system-ui,sans-serif;white-space:nowrap;pointer-events:none;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1);opacity:{{ toastOp }};transform:translateX(-50%) translateY({{ toastY }})"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ toast }}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const F = "'AppNumerals','Urbanist',system-ui,sans-serif";
+const ME = "Dan Whitfield";
+const IC = {
+  shop: "M3.01 11.22v4.49C3.01 20.2 4.81 22 9.3 22h5.39c4.49 0 6.29-1.8 6.29-6.29v-4.49M12 12c1.83 0 3.18-1.49 3-3.32L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12zM18.31 12c2.02 0 3.5-1.64 3.3-3.65l-.28-2.75C20.97 3 19.97 2 17.35 2H14.3l.7 7.01c.17 1.65 1.66 2.99 3.31 2.99zM5.64 12c1.65 0 3.14-1.34 3.3-2.99l.22-2.21L9.64 2H6.59C3.97 2 2.97 3 2.61 5.6l-.27 2.75C2.14 10.36 3.62 12 5.64 12zM12 17c-1.67 0-2.5.83-2.5 2.5V22h5v-2.5c0-1.67-.83-2.5-2.5-2.5z",
+  image: "M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7zM9 10a2 2 0 100-4 2 2 0 000 4zM2.67 18.95l4.93-3.31c.79-.53 1.93-.47 2.64.14l.33.29c.78.67 2.04.67 2.82 0l4.16-3.57c.78-.67 2.04-.67 2.82 0L22 13.9",
+  msg: "M8.5 19H8c-4 0-6-1-6-6V8c0-4 2-6 6-6h8c4 0 6 2 6 6v5c0 4-2 6-6 6h-.5c-.31 0-.61.15-.8.4l-1.5 2c-.66.88-1.74.88-2.4 0l-1.5-2c-.16-.22-.53-.4-.8-.4zM7 8h10M7 13h6",
+  back: "M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08",
+  panel: "M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7zM15 2v20",
+  done: "M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10zM7.75 12l2.83 2.83 5.67-5.66",
+  lock: "M6 10V8c0-3.31 1-6 6-6s6 2.69 6 6v2M17 22H7c-4 0-5-1-5-5v-2c0-4 1-5 5-5h10c4 0 5 1 5 5v2c0 4-1 5-5 5zM15.996 16h.01M11.995 16h.01M7.995 16h.009",
+  clip: "M12.33 12.15l-2.47 2.47c-1.37 1.37-1.37 3.58 0 4.95s3.58 1.37 4.95 0l3.89-3.89c2.73-2.73 2.73-7.17 0-9.9s-7.17-2.73-9.9 0l-4.24 4.24c-2.34 2.34-2.34 6.14 0 8.49",
+  send: "M7.4 6.32l8.49-2.83c3.81-1.27 5.88.81 4.62 4.62l-2.83 8.49c-1.9 5.71-5.02 5.71-6.92 0l-.84-2.52-2.52-.84c-5.71-1.9-5.71-5.01 0-6.92zM10.11 13.65l3.58-3.59",
+  truck: "M15 2v10c0 1.1-.9 2-2 2H2V8c0-2.21 1.79-4 4-4h9zM22 14v3c0 1.66-1.34 3-3 3h-1c0-1.1-.9-2-2-2s-2 .9-2 2h-4c0-1.1-.9-2-2-2s-2 .9-2 2H5c-1.66 0-3-1.34-3-3v-3h11c1.1 0 2-.9 2-2V5h1.84c.72 0 1.38.39 1.74 1.01L20.29 9H19c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3zM8 22a2 2 0 100-4 2 2 0 000 4zM16 22a2 2 0 100-4 2 2 0 000 4z",
+  clock: "M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM15.71 15.18l-3.1-1.85c-.54-.32-.98-1.09-.98-1.66v-4.1",
+  search: "M11.5 21a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM22 22l-2-2"
+};
+const PEOPLE = new Set(["dan-whitfield", "raj-shah", "kevin-tran", "james-carter", "mario-lopez", "luis-ortega", "sam-mitchell", "daniel-reyes"]);
+const slug = n => String(n || "").toLowerCase().trim().replace(/\s+/g, "-");
+const avBg = n => PEOPLE.has(slug(n)) ? "url(assets/people/" + slug(n) + ".png) center/cover no-repeat,var(--lc-chip)" : "var(--np) center/cover no-repeat,var(--lc-chip)";
+const TAGS = ["Delivery", "Equipment", "Account", "Other"];
+const STATES = ["UT", "TX", "CA", "CO", "NV"];
+const STORES = {
+  7401: { city: "Corpus Christi - TX", addr: "4602 Airline Rd, Corpus Christi, TX 78412", techs: ["Raj Shah", "Kevin Tran"], ship: "Wed 16 Oct · UPS Ground · 4 products", svc: "Fri 11 Oct · Raj Shah" },
+  5231: { city: "Herriman - UT", addr: "13361 S Market Center Dr, Herriman, UT 84096", techs: ["James Carter", "Mario Lopez"], ship: "Thu 17 Oct · FedEx Freight · 6 products", svc: "Tue 8 Oct · James Carter" },
+  6101: { city: "Henderson - NV", addr: "1180 W Sunset Rd, Henderson, NV 89014", techs: ["Luis Ortega"], ship: "", svc: "Mon 7 Oct · Luis Ortega" },
+  7406: { city: "Kingsville - TX", addr: "210 E King Ave, Kingsville, TX 78363", techs: ["Kevin Tran"], ship: "Fri 18 Oct · UPS Ground · 3 products", svc: "Wed 9 Oct · Kevin Tran" },
+  5820: { city: "Pueblo - CO", addr: "4210 N Elizabeth St, Pueblo, CO 81008", techs: ["Mario Lopez"], ship: "Tue 15 Oct · FedEx Freight · 5 products", svc: "Thu 3 Oct · Mario Lopez" },
+  3647: { city: "Bakersfield - CA", addr: "2701 Ming Ave, Bakersfield, CA 93304", techs: ["Raj Shah"], ship: "", svc: "Wed 9 Oct · Raj Shah" },
+  7435: { city: "Corpus Christi - TX", addr: "5730 S Staples St, Corpus Christi, TX 78413", techs: ["Raj Shah", "Kevin Tran"], ship: "Mon 21 Oct · UPS Ground · 4 products", svc: "Thu 10 Oct · Kevin Tran" },
+  5302: { city: "Orem - UT", addr: "1250 S State St, Orem, UT 84097", techs: ["James Carter"], ship: "Wed 16 Oct · FedEx Freight · 5 products", svc: "Mon 30 Sep · James Carter" },
+  6140: { city: "Henderson - NV", addr: "2550 Anthem Village Dr, Henderson, NV 89052", techs: ["Luis Ortega"], ship: "", svc: "Tue 1 Oct · Luis Ortega" },
+  5418: { city: "St George - UT", addr: "1490 E Red Cliffs Dr, St George, UT 84790", techs: ["James Carter"], ship: "Thu 17 Oct · UPS Ground · 4 products", svc: "Fri 4 Oct · James Carter" }
+};
+const stateOf = no => (STORES[no].city.split(" - ")[1] || "");
+const NOW = new Date(2024, 9, 14, 11, 30);
+const D = (d, h, m) => new Date(2024, 9, d, h, m);
+const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const p2 = n => String(n).padStart(2, "0");
+const hm = d => p2(d.getHours()) + ":" + p2(d.getMinutes());
+const dayKey = d => d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+const dayDiff = d => Math.round((new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate()) - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / 864e5);
+const dLong = d => DOW[d.getDay()] + " " + d.getDate() + " " + MON[d.getMonth()];
+const dRow = d => { const x = dayDiff(d); return x <= 0 ? hm(d) : x === 1 ? "Yesterday" : dLong(d); };
+const dDay = d => { const x = dayDiff(d); return x <= 0 ? "Today" : x === 1 ? "Yesterday" : dLong(d); };
+const dFull = d => dLong(d) + ", " + hm(d);
+const ROLE = { store: "Store user", tech: "Technician", apf: "APF" };
+const tag = (bg, fg) => ({ display: "inline-flex", alignItems: "center", gap: 6, height: 24, padding: "0 10px", borderRadius: 999, background: bg, color: fg, font: "600 11.5px " + F, whiteSpace: "nowrap" });
+const ST = { waiting: ["Waiting for reply", tag("var(--lc-warnbg)", "var(--lc-warn)")], replied: ["Replied", tag("rgba(var(--pl),.14)", "var(--pa)")], closed: ["Closed", tag("var(--lc-chip)", "var(--lc-ink2)")] };
+const optSt = on => ({ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "9px 11px", border: 0, borderRadius: 12, cursor: "pointer", textAlign: "left", whiteSpace: "nowrap", font: (on ? 600 : 500) + " 13.5px " + F, color: "var(--t1)", background: on ? "rgba(var(--pl),.12)" : "transparent" });
+const boxSt = on => ({ flex: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: 6, border: "1.5px solid " + (on ? "#7c3aed" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "transparent", transition: "all .15s" });
+const fBtn = on => ({ display: "inline-flex", alignItems: "center", gap: 7, height: 34, padding: "0 11px 0 13px", borderRadius: 999, border: "1px solid " + (on ? "rgba(var(--pl),.45)" : "var(--sc-line)"), background: on ? "rgba(var(--pl),.12)" : "transparent", color: "var(--t1)", font: "600 12.5px " + F, whiteSpace: "nowrap", cursor: "pointer", transition: "background .2s,border-color .2s" });
+const chipSt = on => ({ display: "inline-flex", alignItems: "center", height: 36, padding: "0 15px", borderRadius: 999, border: "1px solid " + (on ? "transparent" : "var(--sc-line)"), background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "var(--t2)", font: "600 13px " + F, cursor: "pointer", whiteSpace: "nowrap", transition: "background .2s,color .2s" });
+const fieldSt = { width: "100%", height: 46, padding: "0 14px", borderRadius: 14, border: "1px solid var(--sc-line)", background: "var(--pn-field)", color: "var(--t1)", font: "500 14px " + F, outline: "none" };
+const PH = { slip: "assets/service/chemical-room.png", drums: "assets/service/drum-delivery.png", pump: "assets/service/dosing-pump.png", hose: "assets/service/hose-reel.png", noz: "assets/service/nozzles.png", screen: "assets/service/drain-cover.png" };
+const M = (by, role, at, text, photos) => ({ by, role, at, text, photos: photos || [] });
+
+function seed() {
+  return [
+    { id: "c1", store: 7401, tag: "Delivery", subject: "Only 1 of 2 Duck Bath drums arrived", starter: "Olivia Grant", status: "waiting", unread: true, msgs: [
+      M("Olivia Grant", "store", D(14, 9, 12), "Hi, our shipment came this morning but we only got 1 of the 2 Duck Bath drums on the order. Photos of the packing slip attached.", [PH.slip, PH.drums]),
+      M("Raj Shah", "tech", D(14, 10, 5), "Thanks Olivia, I'll check the back room on my visit Wednesday and confirm with the office."),
+      M("Olivia Grant", "store", D(14, 10, 24), "Thanks. We'll run low by Thursday if it doesn't come.")] },
+    { id: "c2", store: 5231, tag: "Equipment", subject: "Tire shine pump leaking", starter: "Marcus Bell", status: "waiting", unread: true, msgs: [
+      M("Marcus Bell", "store", D(14, 8, 48), "The tire shine pump started leaking at the fitting this morning. It's dripping next to the arch. Three photos attached.", [PH.pump, PH.hose, PH.noz])] },
+    { id: "c3", store: 6101, tag: "Account", subject: "New assistant needs app access", starter: "Priya Nair", status: "waiting", unread: false, msgs: [
+      M("Priya Nair", "store", D(13, 16, 5), "We have a new assistant manager starting Monday, Jordan Fields. Can you give him access to the app for our store?")] },
+    { id: "c4", store: 7406, tag: "Other", subject: "Can we try Pumpkin Spice early?", starter: "Tyler Brooks", status: "waiting", unread: false, msgs: [
+      M("Tyler Brooks", "store", D(12, 14, 22), "Customers keep asking about fall scents. Could we switch to Pumpkin Spice a couple of weeks early this year?")] },
+    { id: "c5", store: 5820, tag: "Delivery", subject: "Tracking link not working", starter: "Ava Reed", status: "replied", unread: false, msgs: [
+      M("Ava Reed", "store", D(11, 10, 10), "The tracking link in the app says it can't find our shipment. Screenshot attached.", [PH.screen]),
+      M("Dan Whitfield", "apf", D(11, 13, 32), "Thanks Ava. The carrier updated the number. The new tracking is in your Next Shipment now.")] },
+    { id: "c6", store: 3647, tag: "Equipment", subject: "Presoak looks weak after visit", starter: "Ethan Cole", status: "replied", unread: false, msgs: [
+      M("Ethan Cole", "store", D(10, 9, 40), "Since the visit on Wednesday the presoak looks weaker on the cars. Did anything change?"),
+      M("Raj Shah", "tech", D(10, 12, 15), "I lowered the presoak dilution a little to match the new water report. I'll bring it back up on Friday and check the results with you.")] },
+    { id: "c7", store: 7435, tag: "Delivery", subject: "Shipment arrived early, thanks", starter: "Nora Webb", status: "closed", unread: false, msgs: [
+      M("Nora Webb", "store", D(8, 8, 30), "The shipment arrived a day early. Thanks, the team is happy."),
+      M("Dan Whitfield", "apf", D(8, 9, 5), "Great to hear, Nora. Thanks for letting us know."),
+      { sys: true, at: D(8, 9, 6), text: "Dan Whitfield closed this conversation · Tue 8 Oct, 09:06" }] },
+    { id: "c8", store: 7401, tag: "Equipment", subject: "Spot-free rinse pressure low", starter: "Olivia Grant", status: "closed", unread: false, msgs: [
+      M("Olivia Grant", "store", D(3, 15, 20), "The spot-free rinse pressure dropped this afternoon. Cars are coming out with spots."),
+      M("Kevin Tran", "tech", D(4, 9, 40), "Replaced the filter on the RO unit. Pressure is back to normal."),
+      M("Olivia Grant", "store", D(4, 10, 2), "Looks great now, thanks Kevin."),
+      { sys: true, at: D(4, 11, 15), text: "Dan Whitfield closed this conversation · Fri 4 Oct, 11:15" }] }
+  ];
+}
+const last = c => c.msgs.filter(m => !m.sys).slice(-1)[0];
+const lastAt = c => c.msgs[c.msgs.length - 1].at;
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.convs = seed();
+    this.t0 = Date.now();
+    this.uid = 100;
+    this.state = { tab: "waiting", q: "", fTag: [], fStore: [], fState: [], unread: false, pop: null, storeQ: "", sel: null, draft: "", att: [], info: (typeof innerWidth === "number" ? innerWidth : 1440) >= 1260, vw: typeof innerWidth === "number" ? innerWidth : 1440, mobileConv: false, closeOpen: false, lb: null, toast: "", n: null, focusTa: false, v: 0 };
+    this.threadRef = React.createRef();
+    this.taRef = React.createRef();
+  }
+  componentDidMount() {
+    if (this.state.vw >= 820) this.select("c1", true);
+    this.onRs = () => this.setState({ vw: innerWidth });
+    this.onDoc = e => { if (this.state.pop && !(e.target.closest && e.target.closest("[data-pop]"))) this.setState({ pop: null }); };
+    this.onKeyDoc = e => {
+      const s = this.state;
+      if (s.lb) { if (e.key === "Escape") this.setState({ lb: null }); if (e.key === "ArrowRight") this.lbStep(1); if (e.key === "ArrowLeft") this.lbStep(-1); return; }
+      if (e.key === "Escape") this.setState({ pop: null, closeOpen: false, n: null });
+    };
+    addEventListener("resize", this.onRs);
+    document.addEventListener("mousedown", this.onDoc);
+    document.addEventListener("keydown", this.onKeyDoc);
+    this.report();
+  }
+  componentWillUnmount() { removeEventListener("resize", this.onRs); document.removeEventListener("mousedown", this.onDoc); document.removeEventListener("keydown", this.onKeyDoc); clearTimeout(this.tt); }
+  componentDidUpdate(pp, ps) {
+    const c = this.cur();
+    const len = c ? c.msgs.length : 0;
+    if (this.prevSel !== this.state.sel || this.lastLen !== len) {
+      const same = this.prevSel === this.state.sel;
+      this.prevSel = this.state.sel;
+      const go = sm => { const el = this.threadRef.current || document.querySelector("[data-ms-thread]"); if (el) el.scrollTo({ top: el.scrollHeight, behavior: sm ? "smooth" : "auto" }); };
+      requestAnimationFrame(() => go(same)); setTimeout(() => go(false), 120); setTimeout(() => go(false), 450); setTimeout(() => go(false), 1000);
+      this.lastLen = len;
+    }
+    if (this.props.active && !this.wasActive) { const go = () => { const el = this.threadRef.current || document.querySelector("[data-ms-thread]"); if (el) el.scrollTop = el.scrollHeight; }; requestAnimationFrame(go); setTimeout(go, 150); setTimeout(go, 500); }
+    this.wasActive = !!this.props.active;
+    this.report();
+    const f = this.props.focus;
+    if (f && f.ts && f.ts !== this.focusTs) { this.focusTs = f.ts; if (f.id) this.select(f.id); }
+  }
+  report() { const n = this.convs.filter(c => c.status === "waiting").length; if (n !== this.lastN && this.props.onCount) { this.lastN = n; this.props.onCount(n); } }
+  now() { return new Date(NOW.getTime() + (Date.now() - this.t0)); }
+  cur() { return this.convs.find(c => c.id === this.state.sel) || null; }
+  say(t) { clearTimeout(this.tt); this.setState({ toast: t }); this.tt = setTimeout(() => this.setState({ toast: "" }), 2600); }
+  select(id, silent) {
+    const c = this.convs.find(x => x.id === id); if (!c) return;
+    c.unread = false;
+    this.setState({ sel: id, draft: "", att: [], mobileConv: true, pop: null });
+    const ta = this.taRef.current; if (ta) ta.style.height = "auto";
+  }
+  lbStep(d) { const lb = this.state.lb; if (!lb) return; this.setState({ lb: { photos: lb.photos, i: (lb.i + d + lb.photos.length) % lb.photos.length } }); }
+  readFiles(files, have, cb) {
+    const arr = Array.from(files || []).filter(f => /^image\//.test(f.type) || /\.heic$/i.test(f.name));
+    const room = 3 - have;
+    if (arr.length > room) this.say("Up to 3 photos per message.");
+    cb(arr.slice(0, Math.max(0, room)).map(f => ({ id: "a" + (++this.uid), src: URL.createObjectURL(f) })));
+  }
+  send() {
+    const c = this.cur(), s = this.state; if (!c || c.status === "closed") return;
+    const text = s.draft.trim(); if (!text && !s.att.length) return;
+    c.msgs.push(M(ME, "apf", this.now(), text, s.att.map(a => a.src)));
+    c.status = "replied"; c.unread = false;
+    this.setState({ draft: "", att: [] });
+    const ta = this.taRef.current; if (ta) ta.style.height = "auto";
+  }
+  doClose() {
+    const c = this.cur(); if (!c) return;
+    const t = this.now();
+    c.msgs.push({ sys: true, at: t, text: ME + " closed this conversation · " + dFull(t) });
+    c.status = "closed";
+    this.setState({ closeOpen: false });
+    this.say("Conversation closed.");
+  }
+  sendNew() {
+    const n = this.state.n; if (!n || !n.store || !n.tag || !n.subject.trim() || !n.body.trim()) return;
+    const id = "c" + (++this.uid);
+    this.convs.unshift({ id, store: n.store, tag: n.tag, subject: n.subject.trim(), starter: ME, status: "replied", unread: false, msgs: [M(ME, "apf", this.now(), n.body.trim(), n.att.map(a => a.src))] });
+    this.setState({ n: null, tab: this.state.tab === "all" ? "all" : "replied", q: "", fTag: [], fStore: [], fState: [], unread: false });
+    this.select(id);
+    this.say("Message sent to " + n.store + ".");
+  }
+  openStore(no) { if (this.props.onOpenStore) this.props.onOpenStore(no); else this.say("Opens the " + no + " store page."); }
+
+  renderVals() {
+    const s = this.state, mobile = s.vw < 820, wide = s.vw >= 1260;
+    const q = s.q.trim().toLowerCase();
+    const counts = { waiting: this.convs.filter(c => c.status === "waiting").length };
+    const match = c => {
+      if (s.tab !== "all" && c.status !== s.tab) return false;
+      if (s.fTag.length && !s.fTag.includes(c.tag)) return false;
+      if (s.fStore.length && !s.fStore.includes(c.store)) return false;
+      if (s.fState.length && !s.fState.includes(stateOf(c.store))) return false;
+      if (s.unread && !c.unread) return false;
+      if (q) { const hay = [c.subject, String(c.store), STORES[c.store].city].concat(c.msgs.map(m => m.by || "")).join(" ").toLowerCase(); if (!hay.includes(q)) return false; }
+      return true;
+    };
+    const list = this.convs.filter(match).sort((a, b) => lastAt(b) - lastAt(a));
+    const filtered = !!(q || s.fTag.length || s.fStore.length || s.fState.length || s.unread);
+    const out = { icShop: IC.shop, icImage: IC.image, icMsg: IC.msg, icBack: IC.back, icPanel: IC.panel, icDone: IC.done, icLock: IC.lock, icClip: IC.clip, icSend: IC.send };
+
+    const H = "calc(100vh - 184px)";
+    const card = { borderRadius: 28, background: "var(--lc-flat)", boxShadow: "var(--lc-edge)", display: "flex", flexDirection: "column", minHeight: 0, overflow: "hidden" };
+    const showList = !mobile || !s.mobileConv, showConv = !mobile || s.mobileConv;
+    out.root = { position: "relative", isolation: "isolate", fontFamily: F, color: "var(--t1)", fontVariantNumeric: "tabular-nums" };
+    out.shell = mobile ? { display: "flex", flexDirection: "column", gap: 14, height: "calc(100vh - 170px)", minHeight: 520 } : { display: "flex", gap: 16, height: H, minHeight: 600 };
+    out.listCol = Object.assign({}, card, mobile ? { flex: "1 1 auto", display: showList ? "flex" : "none" } : { flex: "0 0 392px", width: 392 }, { animation: "msIn .5s cubic-bezier(.2,.8,.2,1) both" });
+    out.convCol = Object.assign({}, card, { flex: "1 1 0", minWidth: 0, display: showConv ? "flex" : "none", animation: "msIn .5s cubic-bezier(.2,.8,.2,1) .05s both" });
+    const infoOn = s.info && !!this.cur() && !mobile;
+    out.infoFloat = infoOn && !wide;
+    out.showInfo = infoOn;
+    out.infoCol = !infoOn ? { display: "none" } : wide ? Object.assign({}, card, { flex: "0 0 304px", width: 304, background: "var(--sc-card)", boxShadow: "var(--sc-sh)", animation: "msPanel .4s cubic-bezier(.2,.8,.2,1) both" })
+      : Object.assign({}, card, { position: "fixed", top: 16, right: 16, bottom: 16, zIndex: 70, width: 320, background: "var(--pn-bg)", boxShadow: "var(--pn-sh)", backdropFilter: "blur(28px) saturate(1.4)", WebkitBackdropFilter: "blur(28px) saturate(1.4)", animation: "msPanel .38s cubic-bezier(.2,.8,.2,1) both" });
+    out.isMobile = mobile; out.backToList = () => this.setState({ mobileConv: false });
+
+    // toolbar
+    out.q = s.q; out.onQ = e => this.setState({ q: e.target.value }); out.hasQ = !!s.q; out.clearQ = () => this.setState({ q: "" });
+    out.tabs = [["waiting", "Waiting for reply"], ["replied", "Replied"], ["closed", "Closed"], ["all", "All"]].map(([k, label]) => {
+      const on = s.tab === k;
+      return { label, pick: () => this.setState({ tab: k }), hasN: k === "waiting" && counts.waiting > 0, n: String(counts.waiting),
+        nStyle: { display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 18, height: 18, padding: "0 5px", borderRadius: 999, background: on ? "rgba(255,255,255,.2)" : "var(--lc-warnbg)", color: on ? "#fff" : "var(--lc-warn)", font: "700 10.5px " + F },
+        style: { flex: k === "waiting" ? "1.6 1 auto" : "1 1 auto", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6, height: 34, padding: "0 10px", border: 0, borderRadius: 999, background: on ? "#7c3aed" : "transparent", color: on ? "#fff" : "var(--t2)", font: (on ? 600 : 500) + " 12.5px " + F, whiteSpace: "nowrap", cursor: "pointer", transition: "background .2s,color .2s" } };
+    });
+    const sq = s.storeQ.trim().toLowerCase();
+    const mk = (key, label, all, sel, lab, searchable) => ({ label, hasN: sel.length > 0, n: String(sel.length), isOpen: s.pop === key, searchable: !!searchable, btn: fBtn(s.pop === key || sel.length > 0),
+      toggle: () => this.setState({ pop: s.pop === key ? null : key, storeQ: "" }),
+      opts: all.filter(v => !searchable || !sq || lab(v).toLowerCase().includes(sq)).map(v => { const on = sel.includes(v); return { label: lab(v), style: optSt(on), box: boxSt(on), toggle: () => this.setState(x => { const cur = x[key]; return { [key]: on ? cur.filter(y => y !== v) : cur.concat([v]) }; }) }; }) });
+    out.filters = [mk("fTag", "Tag", TAGS, s.fTag, v => v), mk("fStore", "Store", Object.keys(STORES).map(Number), s.fStore, v => v + " · " + STORES[v].city, true), mk("fState", "State", STATES, s.fState, v => v)];
+    out.storeQ = s.storeQ; out.onStoreQ = e => this.setState({ storeQ: e.target.value });
+    out.unreadBtn = Object.assign(fBtn(s.unread), { gap: 7, padding: "0 13px 0 12px" });
+    out.toggleUnread = () => this.setState({ unread: !s.unread });
+    const chips = [].concat(s.fTag.map(v => ({ label: v, remove: () => this.setState({ fTag: s.fTag.filter(x => x !== v) }) })), s.fStore.map(v => ({ label: String(v), remove: () => this.setState({ fStore: s.fStore.filter(x => x !== v) }) })), s.fState.map(v => ({ label: v, remove: () => this.setState({ fState: s.fState.filter(x => x !== v) }) })), s.unread ? [{ label: "Unread", remove: () => this.setState({ unread: false }) }] : []);
+    out.activeChips = chips; out.hasActive = chips.length > 0;
+    out.clearAll = () => this.setState({ q: "", fTag: [], fStore: [], fState: [], unread: false });
+
+    // rows
+    out.rows = list.map((c, i) => {
+      const on = c.id === s.sel, lm = last(c);
+      return { on: on ? "1" : "0", unread: c.unread, open: () => this.select(c.id), store: c.store + " · " + STORES[c.store].city, time: dRow(lastAt(c)), timeFg: c.unread ? "var(--pa)" : "var(--t3)",
+        subject: c.subject, subW: c.unread ? 700 : 500, subFg: c.unread ? "var(--t1)" : "var(--t2)",
+        preview: (lm.by === ME ? "You" : lm.by.split(" ")[0]) + ": " + (lm.text || "Sent a photo"),
+        typing: c.store === 5231 && c.status !== "closed", notTyping: !(c.store === 5231 && c.status !== "closed"), typeLine: "Marcus is typing",
+        tag: c.tag, hasPhotos: c.msgs.some(m => m.photos && m.photos.length), photos: String(c.msgs.reduce((a, m) => a + ((m.photos && m.photos.length) || 0), 0)),
+        status: ST[c.status][0], stStyle: ST[c.status][1],
+        icStyle: { position: "relative", flex: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 42, height: 42, borderRadius: "50%", border: on ? "0" : "1px solid var(--sc-line)", background: on ? "linear-gradient(160deg,#8b5cf6,#6d28d9)" : "transparent", color: on ? "#fff" : "var(--sc-ink)", boxShadow: on ? "inset 0 1px 0 rgba(255,255,255,.24),0 10px 20px -12px rgba(109,40,217,.8)" : "none", transition: "background .25s,color .25s" },
+        style: { display: "flex", alignItems: "flex-start", gap: 14, padding: "14px 14px 14px 12px", borderRadius: 20, cursor: "pointer", transition: "background .2s,box-shadow .2s", background: on ? "rgba(var(--pl),.12)" : "var(--ms-row)", boxShadow: on ? "inset 0 0 0 1px rgba(var(--pl),.32)" : "inset 0 0 0 1px var(--ms-rowe)", animation: "msIn .45s cubic-bezier(.2,.8,.2,1) both", animationDelay: Math.min(i, 8) * 35 + "ms" } };
+    });
+    out.listEmpty = !list.length;
+    if (!list.length) {
+      if (filtered) Object.assign(out, { emptyTitle: "No conversations match", emptySub: "Try another search or clear the filters.", emptyClear: true, emptyIc: IC.search });
+      else if (s.tab === "waiting") Object.assign(out, { emptyTitle: "You're all caught up", emptySub: "No messages are waiting for a reply.", emptyClear: false, emptyIc: IC.done });
+      else if (s.tab === "closed") Object.assign(out, { emptyTitle: "No closed conversations yet", emptySub: "", emptyClear: false, emptyIc: IC.lock });
+      else Object.assign(out, { emptyTitle: "No conversations yet", emptySub: "", emptyClear: false, emptyIc: IC.msg });
+      out.hasEmptySub = !!out.emptySub;
+    }
+
+    // conversation
+    const c = this.cur();
+    out.noSel = !c; out.hasSel = !!c; out.selId = s.sel || "";
+    out.threadRef = this.threadRef; out.taRef = this.taRef;
+    if (c) {
+      const st = STORES[c.store];
+      Object.assign(out, { cSubject: c.subject, cStore: c.store + " · " + st.city, cTag: c.tag, cStatus: ST[c.status][0], cStStyle: Object.assign({}, ST[c.status][1], { height: 28, padding: "0 11px", font: "600 12px " + F }),
+        cStarted: "Started by " + (c.starter === ME ? "you" : c.starter) + " · " + dFull(c.msgs[0].at), canClose: c.status !== "closed", isClosed: c.status === "closed", isOpenConv: c.status !== "closed",
+        askClose: () => this.setState({ closeOpen: true }), openStore: () => this.openStore(c.store),
+        toggleInfo: () => this.setState({ info: !s.info }),
+        infoBtn: { display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", border: "1px solid " + (infoOn ? "rgba(var(--pl),.45)" : "var(--sc-line)"), background: infoOn ? "rgba(var(--pl),.14)" : "transparent", color: infoOn ? "var(--pa)" : "var(--t1)", cursor: "pointer", transition: "all .2s" } });
+      const items = []; let lastDay = "", prev = null;
+      c.msgs.forEach((m, i) => {
+        const k = dayKey(m.at);
+        if (k !== lastDay) { items.push({ isDay: true, isSys: false, isMsg: false, label: dDay(m.at) }); lastDay = k; prev = null; }
+        if (m.sys) { items.push({ isDay: false, isSys: true, isMsg: false, text: m.text }); prev = null; return; }
+        const mine = m.role !== "store", tech = m.role === "tech";
+        const photos = m.photos || [];
+        items.push({ isDay: false, isSys: false, isMsg: true, name: m.by === ME ? m.by + " (you)" : m.by, role: ROLE[m.role], time: hm(m.at), text: m.text, hasText: !!m.text, ini: "",
+          hasPhotos: photos.length > 0,
+          photos: photos.map((src, j) => ({ src, open: () => this.setState({ lb: { photos, i: j } }) })),
+          gridStyle: { display: "grid", gridTemplateColumns: "repeat(" + Math.min(photos.length, 3) + ",minmax(0," + (photos.length === 1 ? "260px" : "150px") + "))", gap: 6, marginTop: m.text ? 10 : 0 },
+          rowStyle: { display: "flex", flexDirection: mine ? "row-reverse" : "row", alignItems: "flex-end", gap: 10, animation: "msBubble .4s cubic-bezier(.2,.8,.2,1) both", animationDelay: Math.min(i, 6) * 40 + "ms" },
+          avStyle: { flex: "none", width: 32, height: 32, borderRadius: "50%", marginBottom: 22, background: avBg(m.by), boxShadow: "0 0 0 2px var(--lc-ring)" },
+          colStyle: { display: "flex", flexDirection: "column", alignItems: mine ? "flex-end" : "flex-start", gap: 6, maxWidth: "min(560px,74%)", minWidth: 0 },
+          bubble: mine
+            ? (tech ? { padding: photos.length && !m.text ? 6 : "12px 15px", borderRadius: "20px 20px 6px 20px", background: "rgba(var(--pl),.18)", boxShadow: "inset 0 0 0 1px rgba(var(--pl),.32)", color: "var(--t1)", font: "400 14px/1.55 " + F }
+              : { padding: photos.length && !m.text ? 6 : "12px 15px", borderRadius: "20px 20px 6px 20px", background: "linear-gradient(160deg,#8b5cf6,#6d28d9)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.22),0 14px 26px -18px rgba(109,40,217,.85)", color: "#fff", font: "400 14px/1.55 " + F })
+            : { padding: photos.length && !m.text ? 6 : "12px 15px", borderRadius: "20px 20px 20px 6px", background: "var(--lc-chip)", boxShadow: "inset 0 0 0 1px var(--lc-iline)", color: "var(--t1)", font: "400 14px/1.55 " + F } });
+      });
+      out.items = items;
+      out.typing = c.store === 5231 && c.status !== "closed";
+      out.typeName = "Marcus Bell";
+      out.typeAv = { flex: "none", width: 32, height: 32, borderRadius: "50%", marginBottom: 0, background: avBg("Marcus Bell"), boxShadow: "0 0 0 2px var(--lc-ring)" };
+      // composer
+      const canSend = !!(s.draft.trim() || s.att.length);
+      Object.assign(out, { draft: s.draft, sendOff: !canSend, att: s.att.map(a => ({ src: a.src, remove: () => this.setState({ att: s.att.filter(x => x.id !== a.id) }) })), hasAtt: s.att.length > 0,
+        onDraft: e => { const el = e.target; el.style.height = "auto"; el.style.height = Math.min(el.scrollHeight, 160) + "px"; this.setState({ draft: el.value }); },
+        onKey: e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); this.send(); } },
+        onFocusTa: () => this.setState({ focusTa: true }), onBlurTa: () => this.setState({ focusTa: false }),
+        onPick: e => { const t = e.target; this.readFiles(t.files, s.att.length, add => this.setState(x => ({ att: x.att.concat(add) }))); t.value = ""; },
+        send: () => this.send(),
+        composer: { display: "flex", alignItems: "flex-end", gap: 8, padding: "6px 6px 6px 6px", borderRadius: 24, background: "var(--lc-inner)", boxShadow: s.focusTa ? "inset 0 0 0 1px rgba(var(--pl),.55),0 0 0 4px rgba(var(--pl),.12)" : "inset 0 0 0 1px var(--lc-iline)", transition: "box-shadow .2s" },
+        sendBtn: { flex: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, border: 0, borderRadius: "50%", background: canSend ? "linear-gradient(160deg,#8b5cf6,#6d28d9)" : "var(--lc-chip)", color: canSend ? "#fff" : "var(--t3)", boxShadow: canSend ? "inset 0 1px 0 rgba(255,255,255,.24),0 10px 20px -12px rgba(109,40,217,.8)" : "none", cursor: canSend ? "pointer" : "not-allowed", transition: "background .25s,color .25s,transform .12s" } });
+      // info
+      const others = this.convs.filter(x => x.store === c.store && x.id !== c.id).sort((a, b) => lastAt(b) - lastAt(a)).slice(0, 3);
+      Object.assign(out, { iNo: String(c.store), iCity: st.city, iAddr: st.addr,
+        iTechs: st.techs.map(n => ({ name: n, bg: avBg(n) })), iTechNames: st.techs.join(", "),
+        iFacts: [(() => { const p = (st.ship || "").split(" · "); return st.ship ? { k: "Next shipment", v: p[0], sub: p.slice(1).join(" · "), hasSub: true, fg: "var(--t1)", ic: IC.truck } : { k: "Next shipment", v: "None scheduled", sub: "", hasSub: false, fg: "var(--t3)", ic: IC.truck }; })(), (() => { const p = st.svc.split(" · "); return { k: "Last service visit", v: p[0], sub: p[1] || "", hasSub: !!p[1], fg: "var(--t1)", ic: IC.clock }; })()],
+        iOther: others.map(o => ({ subject: o.subject, status: ST[o.status][0], stStyle: ST[o.status][1], time: dRow(lastAt(o)), open: () => this.select(o.id) })), noOther: !others.length, otherN: String(others.length) });
+    }
+
+    // close modal
+    out.closeOpen = s.closeOpen; out.cancelClose = () => this.setState({ closeOpen: false }); out.doClose = () => this.doClose();
+
+    // lightbox
+    const lb = s.lb;
+    Object.assign(out, { lbOpen: !!lb, lbSrc: lb ? lb.photos[lb.i] : "", lbCount: lb ? (lb.i + 1) + " / " + lb.photos.length : "", lbMulti: !!lb && lb.photos.length > 1, lbClose: () => this.setState({ lb: null }), lbPrev: () => this.lbStep(-1), lbNext: () => this.lbStep(1) });
+
+    // new message
+    const n = s.n;
+    out.openNew = () => this.setState({ n: { store: null, tag: null, subject: "", body: "", att: [], storeOpen: false, storeQ: "" } });
+    out.newOpen = !!n; out.closeNew = () => this.setState({ n: null });
+    if (n) {
+      const upd = patch => this.setState(x => ({ n: Object.assign({}, x.n, patch) }));
+      const nq = n.storeQ.trim().toLowerCase();
+      const ok = !!(n.store && n.tag && n.subject.trim() && n.body.trim());
+      Object.assign(out, {
+        nStoreLabel: n.store ? n.store + " · " + STORES[n.store].city : "Choose a store", nStoreFg: n.store ? "var(--t1)" : "var(--t3)",
+        nStoreBtn: Object.assign({}, fieldSt, { display: "flex", alignItems: "center", gap: 10, cursor: "pointer", textAlign: "left" }),
+        nToggleStore: () => upd({ storeOpen: !n.storeOpen, storeQ: "" }), nStoreOpen: n.storeOpen,
+        nStoreQ: n.storeQ, onNStoreQ: e => upd({ storeQ: e.target.value }),
+        nStoreOpts: Object.keys(STORES).map(Number).filter(v => !nq || (v + " " + STORES[v].city).toLowerCase().includes(nq)).map(v => ({ label: v + " · " + STORES[v].city, on: n.store === v, style: optSt(n.store === v), pick: () => upd({ store: v, storeOpen: false }) })),
+        nTags: TAGS.map(t => ({ label: t, style: chipSt(n.tag === t), pick: () => upd({ tag: t }) })),
+        nSubject: n.subject, onNSubject: e => upd({ subject: e.target.value.slice(0, 80) }), nSubN: n.subject.length + " / 80", nField: fieldSt,
+        nBody: n.body, onNBody: e => upd({ body: e.target.value }), nArea: Object.assign({}, fieldSt, { height: "auto", minHeight: 140, padding: "12px 14px", resize: "vertical", lineHeight: 1.5 }),
+        nAtt: n.att.map(a => ({ src: a.src, remove: () => upd({ att: n.att.filter(x => x.id !== a.id) }) })), nCanAdd: n.att.length < 3,
+        onNPick: e => { const t = e.target; this.readFiles(t.files, n.att.length, add => upd({ att: n.att.concat(add) })); t.value = ""; },
+        nOff: !ok, sendNew: () => this.sendNew(),
+        nSendBtn: { height: 44, padding: "0 24px", border: 0, borderRadius: 999, background: ok ? "linear-gradient(180deg,#8b5cf6,#6d28d9)" : "var(--lc-chip)", color: ok ? "#fff" : "var(--t3)", boxShadow: ok ? "inset 0 1px 0 rgba(255,255,255,.24)" : "none", font: "600 13.5px " + F, cursor: ok ? "pointer" : "not-allowed", transition: "background .25s,color .25s" } });
+    }
+
+    out.toast = s.toast; out.toastOp = s.toast ? 1 : 0; out.toastY = s.toast ? "0px" : "12px";
+    return out;
+  }
+}
+</script>
+</body>
+</html>
